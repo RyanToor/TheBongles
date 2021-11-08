@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Cloud
+  - RandomTrash
+  - Region
   layers:
   - Default
   - TransparentFX
@@ -11,9 +14,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Clouds
+  - Regions
+  - Boss
   - 
   - 
   - 
@@ -38,6 +41,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1654036311
+    locked: 0
+  - name: ObjectsBehind
+    uniqueID: 69605307
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ObjectsBefore
+    uniqueID: 1106131159
     locked: 0
