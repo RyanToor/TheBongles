@@ -90,3 +90,11 @@ public struct NameSpriteArray
     public string name;
     public Sprite[] sprites;
 }
+
+[System.Serializable]
+public struct NameController
+{
+    public string name;
+    public RuntimeAnimatorController bossController;
+    public RuntimeAnimatorController rippleController;
+}

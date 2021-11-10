@@ -8,7 +8,7 @@ public class Region : MonoBehaviour
     public GameObject minigameMarker;
     public trashTypes trashType;
     public bossTypes bossEnum;
-    public List<NameSprite> bossSprites = new List<NameSprite>();
+    public List<NameController> bossControllers = new List<NameController>();
 
     private Collider2D regionCollider;
     private List<Transform> minigameSpawnPoints = new List<Transform>();
@@ -28,11 +28,12 @@ public class Region : MonoBehaviour
         Unlock(isUnlocked);
         isStoryCleared = PlayerPrefs.GetInt("StoryCleared", 0) == 1;
         boss = bossEnum.ToString();
-        foreach (NameSprite bossSprite in bossSprites)
+        foreach (NameController bossType in bossControllers)
         {
-            if (bossSprite.name == boss)
+            if (bossType.name == boss)
             {
-                transform.Find("BossIsland/Sprite").GetComponent<SpriteRenderer>().sprite = bossSprite.sprite;
+                transform.Find("BossIsland/SpriteBoss").GetComponent<Animator>().runtimeAnimatorController = bossType.bossController;
+                //transform.Find("BossIsland/SpriteRipple").GetComponent<Animator>().runtimeAnimatorController = bossType.rippleController;
             }
         }
     }
