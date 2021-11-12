@@ -103,7 +103,12 @@ public class Clouds : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
+    /*private void OnApplicationQuit()
+    {
+        seeds.Dispose();
+    */
+
+    private void OnDisable()
     {
         seeds.Dispose();
     }

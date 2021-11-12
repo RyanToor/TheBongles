@@ -72,6 +72,7 @@ public class Map : MonoBehaviour
                 PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(PlayerPrefs.GetInt("maxRegion", 1) - 1, 1, 3));
             }
             print(PlayerPrefs.GetInt("maxRegion", 1));
+            floatingObjectsScript.RemoveAll();
             RespawnTrash();
         }
     }

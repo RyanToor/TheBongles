@@ -1,0 +1,1524 @@
+fileFormatVersion: 2
+guid: 495ad478caefe014eba65a8315b7f025
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3816514743957521894
+    second: Vertical_Scroller_Tileset_0
+  - first:
+      213: 8324639126922852118
+    second: Vertical_Scroller_Tileset_1
+  - first:
+      213: 7027996704341001353
+    second: Vertical_Scroller_Tileset_2
+  - first:
+      213: -747248239581449079
+    second: Vertical_Scroller_Tileset_3
+  - first:
+      213: -7474346786085833119
+    second: Vertical_Scroller_Tileset_4
+  - first:
+      213: 2435734774366609113
+    second: Vertical_Scroller_Tileset_5
+  - first:
+      213: -5867728911698720495
+    second: Vertical_Scroller_Tileset_6
+  - first:
+      213: -862700829628084121
+    second: Vertical_Scroller_Tileset_7
+  - first:
+      213: 8647103785405281707
+    second: Vertical_Scroller_Tileset_8
+  - first:
+      213: 3440509632476028023
+    second: Vertical_Scroller_Tileset_9
+  - first:
+      213: 8568924114410505519
+    second: Vertical_Scroller_Tileset_10
+  - first:
+      213: -6164032823210121003
+    second: Vertical_Scroller_Tileset_11
+  - first:
+      213: -3370280101820298250
+    second: Vertical_Scroller_Tileset_12
+  - first:
+      213: -4190249339362378288
+    second: Vertical_Scroller_Tileset_13
+  - first:
+      213: -4919912229730754161
+    second: Vertical_Scroller_Tileset_14
+  - first:
+      213: 4925449664407221391
+    second: Vertical_Scroller_Tileset_15
+  - first:
+      213: -9205820182842961023
+    second: Vertical_Scroller_Tileset_16
+  - first:
+      213: -3667351927983896314
+    second: Vertical_Scroller_Tileset_17
+  - first:
+      213: -5573508110008112810
+    second: Vertical_Scroller_Tileset_18
+  - first:
+      213: 3251139663360290359
+    second: Vertical_Scroller_Tileset_19
+  - first:
+      213: 2693616320015110386
+    second: Vertical_Scroller_Tileset_20
+  - first:
+      213: 2440002757692652157
+    second: Vertical_Scroller_Tileset_21
+  - first:
+      213: -3441056374666438574
+    second: Vertical_Scroller_Tileset_22
+  - first:
+      213: 2317347696416936734
+    second: Vertical_Scroller_Tileset_23
+  - first:
+      213: -5506033442329351453
+    second: Vertical_Scroller_Tileset_24
+  - first:
+      213: -6645866670036230570
+    second: Vertical_Scroller_Tileset_25
+  - first:
+      213: 3193632285395646947
+    second: Vertical_Scroller_Tileset_26
+  - first:
+      213: -8933932794194777456
+    second: Vertical_Scroller_Tileset_27
+  - first:
+      213: 6012684282173823123
+    second: Vertical_Scroller_Tileset_28
+  - first:
+      213: -2814448235697225588
+    second: Vertical_Scroller_Tileset_29
+  - first:
+      213: -2233920898084375772
+    second: Vertical_Scroller_Tileset_30
+  - first:
+      213: -1450020831534216647
+    second: Vertical_Scroller_Tileset_31
+  - first:
+      213: 7195093693292568574
+    second: Vertical_Scroller_Tileset_32
+  - first:
+      213: 7193767252826330143
+    second: Vertical_Scroller_Tileset_33
+  - first:
+      213: -6814256121728593258
+    second: Vertical_Scroller_Tileset_34
+  - first:
+      213: 8135348062432224875
+    second: Vertical_Scroller_Tileset_35
+  - first:
+      213: -2721271777759909415
+    second: Vertical_Scroller_Tileset_36
+  - first:
+      213: 586399493038505763
+    second: Vertical_Scroller_Tileset_37
+  - first:
+      213: -5440979813029061637
+    second: Vertical_Scroller_Tileset_38
+  - first:
+      213: 5452589945398711019
+    second: Vertical_Scroller_Tileset_39
+  - first:
+      213: 201276147988692277
+    second: Vertical_Scroller_Tileset_40
+  - first:
+      213: -4791519103986142734
+    second: Vertical_Scroller_Tileset_41
+  - first:
+      213: 6697229566232073410
+    second: Vertical_Scroller_Tileset_42
+  - first:
+      213: -275452512562560590
+    second: Vertical_Scroller_Tileset_43
+  - first:
+      213: -2399201661713579739
+    second: Vertical_Scroller_Tileset_44
+  - first:
+      213: -2115394959051373585
+    second: Vertical_Scroller_Tileset_45
+  - first:
+      213: -70945670763829782
+    second: Vertical_Scroller_Tileset_46
+  - first:
+      213: -3735884774653347131
+    second: Vertical_Scroller_Tileset_47
+  - first:
+      213: 1528281371118568001
+    second: Vertical_Scroller_Tileset_48
+  - first:
+      213: -2798615663223565846
+    second: Vertical_Scroller_Tileset_49
+  - first:
+      213: 1975778365808625306
+    second: Vertical_Scroller_Tileset_50
+  - first:
+      213: 3278770831307512038
+    second: Vertical_Scroller_Tileset_51
+  - first:
+      213: 3851770113617719101
+    second: Vertical_Scroller_Tileset_52
+  - first:
+      213: 3544628743418177553
+    second: Vertical_Scroller_Tileset_53
+  - first:
+      213: 6294616422972453254
+    second: Vertical_Scroller_Tileset_54
+  - first:
+      213: 3155492968293369697
+    second: Vertical_Scroller_Tileset_55
+  - first:
+      213: -4267072190479376168
+    second: Vertical_Scroller_Tileset_56
+  - first:
+      213: -5149554423263692154
+    second: Vertical_Scroller_Tileset_57
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_0
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 471
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e501a950fbf6f430800000000000000
+      internalID: 3816514743957521894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_1
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 471
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617fd8b1e2f078370800000000000000
+      internalID: 8324639126922852118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_2
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 433
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9848cd444c5788160800000000000000
+      internalID: 7027996704341001353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_3
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 433
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98436b86fad31a5f0800000000000000
+      internalID: -747248239581449079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_4
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 433
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1667547e239c54890800000000000000
+      internalID: -7474346786085833119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_5
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 433
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de10394fd77dc120800000000000000
+      internalID: 2435734774366609113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_6
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 433
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11988e3b4a3a19ea0800000000000000
+      internalID: -5867728911698720495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_7
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 395
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760559e8a221704f0800000000000000
+      internalID: -862700829628084121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_8
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 395
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba57409141fa00870800000000000000
+      internalID: 8647103785405281707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_9
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 395
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c1b0a38452fbf20800000000000000
+      internalID: 3440509632476028023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_10
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 395
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2587baf41feae670800000000000000
+      internalID: 8568924114410505519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_11
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 395
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d866b44ec4f47aa0800000000000000
+      internalID: -6164032823210121003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_12
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 395
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fb0f699a1c5a31d0800000000000000
+      internalID: -3370280101820298250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_13
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 357
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dd7dfe3d6e39d5c0800000000000000
+      internalID: -4190249339362378288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_14
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 357
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f816cc4d4e5f8bbb0800000000000000
+      internalID: -4919912229730754161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_15
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 357
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f843f06af56ba5440800000000000000
+      internalID: 4925449664407221391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_16
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 357
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1831687715b5e3080800000000000000
+      internalID: -9205820182842961023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_17
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 357
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6090d2a1ad2fa1dc0800000000000000
+      internalID: -3667351927983896314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_18
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 357
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 659253657ebe6a2b0800000000000000
+      internalID: -5573508110008112810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_19
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 205
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73ee5cd6c4e5e1d20800000000000000
+      internalID: 3251139663360290359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_20
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 319
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f012bb85c5a16520800000000000000
+      internalID: 2693616320015110386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_21
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 319
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7a7e379491acd120800000000000000
+      internalID: 2440002757692652157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_22
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 319
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 258d9ef6579ee30d0800000000000000
+      internalID: -3441056374666438574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_23
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 319
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e13500ab37fd82020800000000000000
+      internalID: 2317347696416936734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_24
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 319
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eaa984a1c3a693b0800000000000000
+      internalID: -5506033442329351453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_25
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 319
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65ed1e3997325c3a0800000000000000
+      internalID: -6645866670036230570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_26
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 281
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e9f93a94af025c20800000000000000
+      internalID: 3193632285395646947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_27
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 281
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09aaeca257b440480800000000000000
+      internalID: -8933932794194777456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_28
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 281
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3989b818f78517350800000000000000
+      internalID: 6012684282173823123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_29
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 281
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c80ca80cd3211f8d0800000000000000
+      internalID: -2814448235697225588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_30
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 281
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 423fb5d67c48ff0e0800000000000000
+      internalID: -2233920898084375772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_31
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 281
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93a8c7b7cbd70ebe0800000000000000
+      internalID: -1450020831534216647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_32
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 243
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff5b52c79b1ad360800000000000000
+      internalID: 7195093693292568574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_33
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 243
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f141d85c33565d360800000000000000
+      internalID: 7193767252826330143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_34
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 243
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69216d72926ee61a0800000000000000
+      internalID: -6814256121728593258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_35
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 243
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b666f69b5ff86e070800000000000000
+      internalID: 8135348062432224875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_36
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 243
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d9235d6cb91c3ad0800000000000000
+      internalID: -2721271777759909415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_37
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 243
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f77076b3f432800800000000000000
+      internalID: 586399493038505763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_38
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 243
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfbd45600b1cd74b0800000000000000
+      internalID: -5440979813029061637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_39
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 319
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be25b519aad7bab40800000000000000
+      internalID: 5452589945398711019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_40
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 205
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53dff9617931bc200800000000000000
+      internalID: 201276147988692277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_41
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 205
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f17860f2ca118db0800000000000000
+      internalID: -4791519103986142734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_42
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 205
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c4918a9ec651fc50800000000000000
+      internalID: 6697229566232073410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_43
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 205
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b1483436656d2cf0800000000000000
+      internalID: -275452512562560590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_44
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 205
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5210909dcc254bed0800000000000000
+      internalID: -2399201661713579739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_45
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 167
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3471a1e7b94a2e0800000000000000
+      internalID: -2115394959051373585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_46
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 167
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae525cfc943f30ff0800000000000000
+      internalID: -70945670763829782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_47
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 167
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca3ffc4798772cc0800000000000000
+      internalID: -3735884774653347131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_48
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 167
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1428e525fcb853510800000000000000
+      internalID: 1528281371118568001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_49
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 167
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae117bac1e15929d0800000000000000
+      internalID: -2798615663223565846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_50
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 167
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a96cce0a4ff5b6b10800000000000000
+      internalID: 1975778365808625306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_51
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 129
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e81ffb03b8808d20800000000000000
+      internalID: 3278770831307512038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_52
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 129
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3f66a2c28c347530800000000000000
+      internalID: 3851770113617719101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_53
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 129
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1186418df0d013130800000000000000
+      internalID: 3544628743418177553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_54
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 129
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 681fc905948fa5750800000000000000
+      internalID: 6294616422972453254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_55
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 129
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1678e5ad2209acb20800000000000000
+      internalID: 3155492968293369697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_56
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 91
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d0678f537058c4c0800000000000000
+      internalID: -4267072190479376168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vertical_Scroller_Tileset_57
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 91
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68a73d9198b1988b0800000000000000
+      internalID: -5149554423263692154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

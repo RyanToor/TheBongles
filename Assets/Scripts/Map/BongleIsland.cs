@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class BongleIsland : MonoBehaviour
 {
@@ -92,6 +92,21 @@ public class BongleIsland : MonoBehaviour
             print("Collected " + trashType);
             PlayerPrefs.SetInt(trashType, PlayerPrefs.GetInt(trashType, 0) + 1);
             floatingObjectsScript.objectsToRemove.Add(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Minigame"))
+        {
+            switch (collision.gameObject.GetComponent<MinigameMarker>().trashType)
+            {
+                case "Plastic":
+                    SceneManager.LoadScene("VerticalScroller");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

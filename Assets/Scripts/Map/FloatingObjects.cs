@@ -68,6 +68,11 @@ public class FloatingObjects : MonoBehaviour
         floatingObjectsJob.Complete();
     }
 
+    public void RemoveAll()
+    {
+        objectsToRemove.AddRange(floatingObjects);
+    }
+
     [BurstCompile]
     private struct CalculateFloatTransform : IJobParallelForTransform
     {
@@ -82,7 +87,14 @@ public class FloatingObjects : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
+    /*private void OnApplicationQuit()
+    {
+        seeds.Dispose();
+        startPosList.Dispose();
+        transformAccessArray.Dispose();
+    }*/
+
+    private void OnDisable()
     {
         seeds.Dispose();
         startPosList.Dispose();

@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: 
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: ebe4a3aec33f8fe4a8497615a72be9d0
+  - enabled: 1
+    path: Assets/Scenes/VerticalScroller.unity
+    guid: e5e1901371ffb384ba7bd6f62c5c73f5
   m_configObjects: {}
