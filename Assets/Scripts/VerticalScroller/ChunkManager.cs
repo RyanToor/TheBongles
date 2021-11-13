@@ -26,7 +26,7 @@ public class ChunkManager : MonoBehaviour
     {
         if (width - chasmStartWidth - maxChasmDeviation - 2 * maxIrregularity < 1)
         {
-            maxChasmDeviation = width - 2 - (int)Mathf.Ceil(chasmStartWidth) - 2 * maxIrregularity;
+            maxChasmDeviation = width - (int)Mathf.Ceil(chasmStartWidth) - 2 * maxIrregularity;
         }
         widthSeed = UnityEngine.Random.Range(0, 100000);
         irregularitySeedL = UnityEngine.Random.Range(0, 100000);
@@ -55,7 +55,6 @@ public class ChunkManager : MonoBehaviour
                 if (!enabledChunks.Contains(i))
                 {
                     StartCoroutine(LoadChunk(i, true));
-                    enabledChunks.Add(i);
                 }
             }
             else
@@ -100,7 +99,7 @@ public class ChunkManager : MonoBehaviour
         int tileCount = 0;
         foreach (int2 thicknessPair in lRThickness)
         {
-            tileCount += thicknessPair.x + thicknessPair.y + 2;
+            tileCount += thicknessPair.x + thicknessPair.y;
         }
         int2[] tempArray = new int2[lRThickness.Length];
         lRThickness.CopyTo(tempArray);
@@ -130,7 +129,11 @@ public class ChunkManager : MonoBehaviour
             numOps++;
             yield return null;
         }
-        if (!isLoaded)
+        if (isLoaded)
+        {
+            enabledChunks.Add(chunkMatrixIndex);
+        }
+        else
         {
             enabledChunks.Remove(chunkMatrixIndex);
         }
@@ -142,11 +145,11 @@ public class ChunkManager : MonoBehaviour
         int runCount = 0;
         Vector3Int[] positions = new Vector3Int[tileCount];
         TileBase[] tiles = new TileBase[tileCount];
-        for (int i = 0; i < Mathf.Ceil((float)height / rowsConvertedPerFrame); i++)
+        for (int i = 0; i < Mathf.Floor((float)height / rowsConvertedPerFrame); i++)
         {
             for (int row = runCount * rowsConvertedPerFrame; row < (runCount + 1) * rowsConvertedPerFrame; row++)
             {
-                for (int j = 0; j <= lRThickness[row].x; j++)
+                for (int j = 0; j < lRThickness[row].x; j++)
                 {
                     positions[counter] = new Vector3Int(j - width / 2, -row - chunkIndex * height, 0);
                     tiles[counter] = ruleTile;
@@ -154,7 +157,7 @@ public class ChunkManager : MonoBehaviour
                 }
                 for (int j = 0; j < lRThickness[row].y; j++)
                 {
-                    positions[counter] = new Vector3Int(width / 2 - j, -row - chunkIndex * height, 0);
+                    positions[counter] = new Vector3Int(width / 2 - 1 - j, -row - chunkIndex * height, 0);
                     tiles[counter] = ruleTile;
                     counter++;
                 }
@@ -174,9 +177,9 @@ public class ChunkManager : MonoBehaviour
         public NativeArray<int2> lRThickness;
         public void Execute(int index)
         {
-            int centrePoint = width / 2 + (int)math.round(noise.cnoise(new float2(widthSeed, (chunkIndex + (float)index / height) * chasmFrequency)) * maxChasmDeviation);
-            int lThickness = (int)math.clamp((centrePoint - chasmWidth / 2 - maxIrregularity + math.round((noise.cnoise(new float2(irregularitySeedL, (chunkIndex * height + (float)index / height) * irregularityFrequency)) / 2 + 0.5f) * maxIrregularity)), 1, width);
-            int rThickness = (int)math.clamp((width - centrePoint - chasmWidth / 2 - maxIrregularity + math.round((noise.cnoise(new float2(irregularitySeedR, (chunkIndex * height + (float)index / height) * irregularityFrequency)) / 2 + 0.5f) * maxIrregularity)), 1, width);
+            float centrePoint = width / 2 + noise.cnoise(new float2(widthSeed, (chunkIndex + (float)index / height) * chasmFrequency)) * maxChasmDeviation;
+            int lThickness = (int)math.clamp((centrePoint - chasmWidth / 2 - maxIrregularity + math.round((noise.cnoise(new float2(irregularitySeedL, (chunkIndex * height + (float)index / height) * irregularityFrequency)) / 2 + 0.5f) * maxIrregularity)), 3, width);
+            int rThickness = (int)math.clamp((width - centrePoint - chasmWidth / 2 - maxIrregularity + math.round((noise.cnoise(new float2(irregularitySeedR, (chunkIndex * height + (float)index / height) * irregularityFrequency)) / 2 + 0.5f) * maxIrregularity)), 3, width);
             lRThickness[index] = new int2(lThickness, rThickness);
         }
     }

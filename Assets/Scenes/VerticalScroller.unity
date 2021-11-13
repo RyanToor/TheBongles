@@ -565,11 +565,11 @@ MonoBehaviour:
   chunk: {fileID: 7872744487397286734, guid: 3cf5b725dcb3f254d83cae40874ed345, type: 3}
   chunkBuffer: 2
   width: 64
-  height: 20
-  maxChasmDeviation: 20
-  maxIrregularity: 10
+  height: 40
+  maxChasmDeviation: 10
+  maxIrregularity: 20
   rowsConvertedPerFrame: 1
-  tilesPlacedPerFrame: 10
+  tilesPlacedPerFrame: 5
   chasmStartWidth: 20
   chasmMinWidth: 6
   chasmWidthAsymptoteLevel: 200
