@@ -337,7 +337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &528690233
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1369,12 +1369,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1992641501}
+  m_Father: {fileID: 1425610194}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 285.20007, y: 216.1507}
+  m_AnchoredPosition: {x: -124.79993, y: 181.1507}
   m_SizeDelta: {x: 54.2834, y: 67.9303}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1325743710
@@ -1421,10 +1421,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1425610197}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 1992641504}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: OpenCloseMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1582,12 +1582,13 @@ RectTransform:
   m_Children:
   - {fileID: 991052927}
   - {fileID: 1768305887}
+  - {fileID: 1325743709}
   m_Father: {fileID: 1992641501}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 410, y: 35}
+  m_AnchoredPosition: {x: 811, y: 327}
   m_SizeDelta: {x: 443.5781, y: 443.5781}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1425610195
@@ -1636,7 +1637,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425610193}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2b9a42ee8fe7c4d4b9541fbd6c9e8fea, type: 2}
   m_CullingMode: 0
@@ -2185,7 +2186,6 @@ RectTransform:
   m_Children:
   - {fileID: 1425610194}
   - {fileID: 528690233}
-  - {fileID: 1325743709}
   m_Father: {fileID: 1676734594}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2244,4 +2244,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2def72f400326d49b317266790c4749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lerpSpeed: 0.05
+  closedPos: {x: 1060, y: 327, z: 0}
+  openPos: {x: 811, y: 327, z: 0}
   rightPanel: {fileID: 1425610197}
+  lerpPos: 0
+  lerpDir: -1
