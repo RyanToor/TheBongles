@@ -7,17 +7,20 @@ public class BongleIsland : MonoBehaviour
 {
     public float acceleration, pathSeparation, pathYOffset;
     public int pathLength;
-    public GameObject pathObject, pathContainer;
+    public GameObject pathObject, pathContainer, popupPrefab;
     
     public List<GameObject> pathObjects = new List<GameObject>();
     private Rigidbody2D rb2D;
     private bool isMovingRight;
     private Vector3 lastPathPos, pathOffset;
     private FloatingObjects floatingObjectsScript;
+    private Transform canvas;
+    private Dictionary<GameObject, GameObject> activePopups = new Dictionary<GameObject, GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
+        canvas = GameObject.Find("Canvas").transform;
         rb2D = GetComponent<Rigidbody2D>();
         pathOffset = new Vector3(0, pathYOffset, 0);
         floatingObjectsScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
@@ -93,20 +96,21 @@ public class BongleIsland : MonoBehaviour
             PlayerPrefs.SetInt(trashType, PlayerPrefs.GetInt(trashType, 0) + 1);
             floatingObjectsScript.objectsToRemove.Add(collision.gameObject);
         }
+        else if (collision.CompareTag("Minigame"))
+        {
+            GameObject newPopup = Instantiate(popupPrefab, Camera.main.WorldToScreenPoint(collision.gameObject.transform.position), Quaternion.identity, canvas);
+            newPopup.GetComponent<Popup>().minigameMarker = collision.gameObject;
+            newPopup.GetComponent<Popup>().trashType = collision.gameObject.GetComponent<MinigameMarker>().trashType;
+            activePopups.Add(collision.gameObject, newPopup);
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Minigame"))
+        if (collision.CompareTag("Minigame"))
         {
-            switch (collision.gameObject.GetComponent<MinigameMarker>().trashType)
-            {
-                case "Plastic":
-                    SceneManager.LoadScene("VerticalScroller");
-                    break;
-                default:
-                    break;
-            }
+            Destroy(activePopups[collision.gameObject]);
+            activePopups.Remove(collision.gameObject);
         }
     }
 

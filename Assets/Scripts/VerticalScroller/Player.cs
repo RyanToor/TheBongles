@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
     {
         transform.rotation = Quaternion.LerpUnclamped(Quaternion.identity, Quaternion.AngleAxis(90, Vector3.forward), spriteDir * rb.velocity.y / maxSpeed);
         animator.SetFloat("Speed", rb.velocity.magnitude);
+        animator.speed = Mathf.Clamp(rb.velocity.magnitude / maxSpeed, 0.5f, 1);
         if (prevFlipDir != flipDir)
         {
             animator.SetTrigger("Flip");

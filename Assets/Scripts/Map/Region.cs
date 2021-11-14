@@ -15,6 +15,7 @@ public class Region : MonoBehaviour
     private bool isStoryCleared;
     private string boss;
     private FloatingObjects floatingObjectScript;
+    private Animator bossAnimator;
 
     private void Start()
     {
@@ -32,7 +33,8 @@ public class Region : MonoBehaviour
         {
             if (bossType.name == boss)
             {
-                transform.Find("BossIsland/SpriteBoss").GetComponent<Animator>().runtimeAnimatorController = bossType.bossController;
+                bossAnimator = transform.Find("BossIsland/SpriteBoss").GetComponent<Animator>();
+                bossAnimator.runtimeAnimatorController = bossType.bossController;
                 //transform.Find("BossIsland/SpriteRipple").GetComponent<Animator>().runtimeAnimatorController = bossType.rippleController;
             }
         }
@@ -40,6 +42,7 @@ public class Region : MonoBehaviour
 
     private void Update()
     {
+        bossAnimator.SetFloat("RandomChance", Random.Range(0f, 100f));
         if (Application.isEditor)
         {
             EditorUpdate();

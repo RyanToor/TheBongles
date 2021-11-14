@@ -427,4 +427,13 @@ MonoBehaviour:
   minigameMarker: {fileID: 5340263978038331420, guid: d4e42f8411db8e041998318216fd89c7, type: 3}
   trashType: 0
   bossEnum: 0
-  bossControllers: []
+  bossControllers:
+  - name: Eel
+    bossController: {fileID: 0}
+    rippleController: {fileID: 0}
+  - name: Crab
+    bossController: {fileID: 0}
+    rippleController: {fileID: 0}
+  - name: Whale
+    bossController: {fileID: 9100000, guid: 527a355eb9101e24586d27e7156a6555, type: 2}
+    rippleController: {fileID: 0}
