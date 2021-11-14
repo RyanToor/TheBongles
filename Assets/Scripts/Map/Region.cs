@@ -62,7 +62,6 @@ public class Region : MonoBehaviour
             foreach (Transform minigame in GameObject.Find("Minigames").transform)
             {
                 floatingObjectScript.objectsToRemove.Add(minigame.gameObject);
-                Destroy(minigame.gameObject);
             }
         }
     }

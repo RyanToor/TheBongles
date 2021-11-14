@@ -20,7 +20,6 @@ public class RandomTrash : MonoBehaviour
             {
                 GameObject.Find("Map").GetComponent<Map>().SpawnRandomTrash();
                 floatingObjectsScript.objectsToRemove.Add(gameObject);
-
             }
         }
     }

@@ -35,29 +35,12 @@ public class FloatingObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (GameObject objectToAdd in objectsToAdd)
-        {
-            floatingObjects.Add(objectToAdd);
-            seeds.Add(UnityEngine.Random.Range(0, 100000));
-            transformAccessArray.Add(objectToAdd.transform);
-            startPosList.Add(objectToAdd.transform.position);
-        }
-        foreach (GameObject objectToRemove in objectsToRemove)
-        {
-            int indexToRemove = floatingObjects.IndexOf(objectToRemove);
-            floatingObjects.RemoveAt(indexToRemove);
-            seeds.RemoveAt(indexToRemove);
-            startPosList.RemoveAt(indexToRemove);
-            Destroy(objectToRemove);
-        }
         Transform[] currentTransforms = new Transform[floatingObjects.Count];
         for (int i = 0; i < floatingObjects.Count; i++)
         {
             currentTransforms[i] = floatingObjects[i].transform;
         }
         transformAccessArray.SetTransforms(currentTransforms);
-        objectsToAdd.Clear();
-        objectsToRemove.Clear();
         CalculateFloatTransform calculateFloatTransform = new CalculateFloatTransform
         {
             time = Time.time, maxAngle = maxAngle, maxYDisplacement = maxYDisplacement,
@@ -66,6 +49,30 @@ public class FloatingObjects : MonoBehaviour
         };
         JobHandle floatingObjectsJob = calculateFloatTransform.Schedule(transformAccessArray);
         floatingObjectsJob.Complete();
+    }
+
+    private void LateUpdate()
+    {
+        foreach (GameObject objectToAdd in objectsToAdd)
+        {
+            floatingObjects.Add(objectToAdd);
+            seeds.Add(UnityEngine.Random.Range(0, 100000));
+            transformAccessArray.Add(objectToAdd.transform);
+            startPosList.Add(objectToAdd.transform.position);
+        }
+        objectsToAdd.Clear();
+        foreach (GameObject objectToRemove in objectsToRemove)
+        {
+            int indexToRemove = floatingObjects.IndexOf(objectToRemove);
+            if (indexToRemove >= 0)
+            {
+                floatingObjects.RemoveAt(indexToRemove);
+                seeds.RemoveAt(indexToRemove);
+                startPosList.RemoveAt(indexToRemove);
+                Destroy(objectToRemove);
+            }
+        }
+        objectsToRemove.Clear();
     }
 
     public void RemoveAll()
@@ -86,13 +93,6 @@ public class FloatingObjects : MonoBehaviour
             transform.localRotation = Quaternion.SlerpUnclamped(Quaternion.AngleAxis(-maxAngle, Vector3.forward), Quaternion.AngleAxis(maxAngle, Vector3.forward), (math.cos(time + seeds[index]) + 1) / 2);
         }
     }
-
-    /*private void OnApplicationQuit()
-    {
-        seeds.Dispose();
-        startPosList.Dispose();
-        transformAccessArray.Dispose();
-    }*/
 
     private void OnDisable()
     {
