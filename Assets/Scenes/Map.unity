@@ -180,9 +180,9 @@ Transform:
   - {fileID: 1570100359}
   - {fileID: 1610920205}
   - {fileID: 1625250448}
-  - {fileID: 1627294158}
   - {fileID: 1748585586}
   - {fileID: 1622636864}
+  - {fileID: 1627294158}
   - {fileID: 1262547724}
   - {fileID: 1014736545}
   - {fileID: 85020530}
@@ -4216,6 +4216,7 @@ MonoBehaviour:
   pathLength: 30
   pathObject: {fileID: 1416289045611933762, guid: ca783a55b6a888b419d800a97993eb73, type: 3}
   pathContainer: {fileID: 1642853308}
+  popupPrefab: {fileID: 7855191233411730984, guid: b25a42a666a3858468c8f53eecd11f52, type: 3}
   pathObjects: []
 --- !u!70 &1169432137
 CapsuleCollider2D:
