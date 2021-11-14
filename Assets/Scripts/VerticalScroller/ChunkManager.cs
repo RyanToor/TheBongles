@@ -115,7 +115,7 @@ public class ChunkManager : MonoBehaviour
         switch (isLoaded)
         {
             case true: fillTiles = Enumerable.Repeat(ruleTile, chunkMatrix.Length).ToArray(); break;
-            case false: fillTiles = Enumerable.Repeat<TileBase>(null, chunkMatrix.Length).ToArray(); print("Tried to Destroy Chunk"); break;
+            case false: fillTiles = Enumerable.Repeat<TileBase>(null, chunkMatrix.Length).ToArray(); break;
         }
         print(Mathf.Ceil(chunkMatrix.Length / tilesPlacedPerFrame));
         for (int i = 0; i < Mathf.Ceil(chunkMatrix.Length / tilesPlacedPerFrame); i++)
@@ -178,8 +178,8 @@ public class ChunkManager : MonoBehaviour
         public void Execute(int index)
         {
             float centrePoint = width / 2 + noise.cnoise(new float2(widthSeed, (chunkIndex + (float)index / height) * chasmFrequency)) * maxChasmDeviation;
-            int lThickness = (int)math.clamp((centrePoint - chasmWidth / 2 - maxIrregularity + math.round((noise.cnoise(new float2(irregularitySeedL, (chunkIndex * height + (float)index / height) * irregularityFrequency)) / 2 + 0.5f) * maxIrregularity)), 3, width);
-            int rThickness = (int)math.clamp((width - centrePoint - chasmWidth / 2 - maxIrregularity + math.round((noise.cnoise(new float2(irregularitySeedR, (chunkIndex * height + (float)index / height) * irregularityFrequency)) / 2 + 0.5f) * maxIrregularity)), 3, width);
+            int lThickness = (int)math.clamp((centrePoint - chasmWidth / 2 - maxIrregularity + math.ceil((noise.cnoise(new float2(irregularitySeedL, (chunkIndex * height + (float)index / height) * irregularityFrequency)) / 2 + 0.5f) * maxIrregularity)), 3, width);
+            int rThickness = (int)math.clamp((width - centrePoint - chasmWidth / 2 - maxIrregularity + math.ceil((noise.cnoise(new float2(irregularitySeedR, (chunkIndex * height + (float)index / height) * irregularityFrequency)) / 2 + 0.5f) * maxIrregularity)), 3, width);
             lRThickness[index] = new int2(lThickness, rThickness);
         }
     }
