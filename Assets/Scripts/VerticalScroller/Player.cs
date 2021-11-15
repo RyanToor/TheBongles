@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public int health;
     public float moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce;
+    public GameObject splash;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -120,6 +121,18 @@ public class Player : MonoBehaviour
                 print(collectedPlastic);
             }
             trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
+        }
+        else if (collision.CompareTag("Region"))
+        {
+            Instantiate(splash, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Region"))
+        {
+            Instantiate(splash, new Vector3(transform.position.x, 0.75f, 0), Quaternion.identity);
         }
     }
 

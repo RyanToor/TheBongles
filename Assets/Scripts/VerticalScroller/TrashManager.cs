@@ -14,7 +14,7 @@ public class TrashManager : MonoBehaviour
     [Range(0, 100)]
     public float maxIsDangerousChance;
     public GameObject trashPrefab;
-    public List<Sprite> trashSprites;
+    public List<Sprite> trashSprites, dangerousTrashSprites;
 
     [HideInInspector]
     public Dictionary<int, List<Trash>> loadedTrash = new Dictionary<int, List<Trash>>();
@@ -148,15 +148,25 @@ public class TrashManager : MonoBehaviour
             loadedTrash.Add(index, new List<Trash>());
             for (int i = 0; i < (UnityEngine.Random.Range(minTrash, (index / maxTrashDepth) * maxTrash)); i++)
             {
+                Sprite tempSprite;
+                bool isDangerous = ((index / maxDangerousTrashDepth) * UnityEngine.Random.value > (100 - maxIsDangerousChance) / 100);
+                if (!isDangerous)
+                {
+                    tempSprite = trashSprites[UnityEngine.Random.Range(0, trashSprites.Count)];
+                }
+                else
+                {
+                    tempSprite = dangerousTrashSprites[UnityEngine.Random.Range(0, dangerousTrashSprites.Count)];
+                }
                 loadedTrash[index].Add(new Trash()
                 {
                     speed = UnityEngine.Random.Range(minSpeed, Mathf.Clamp((index / maxTrashDepth) * maxSpeed, minSpeed, maxSpeed)),
                     startSide = Mathf.Sign(UnityEngine.Random.value - 0.5f),
                     yPos = (UnityEngine.Random.value + index) * chunkHeight,
-                    isDangerous = ((index / maxDangerousTrashDepth) * UnityEngine.Random.value > (100 - maxIsDangerousChance) / 100),
-                    sprite = trashSprites[UnityEngine.Random.Range(0, trashSprites.Count)],
-                    offset = UnityEngine.Random.value * 360f
-                });
+                    isDangerous = isDangerous,
+                    sprite = tempSprite,
+                    offset = UnityEngine.Random.value * 360f,
+                }); ;
             }
         }
         foreach (Trash trash in loadedTrash[index])
@@ -175,11 +185,8 @@ public class TrashManager : MonoBehaviour
         }
         currentTrash[chunkIndex].Add(newTrash);
         newTrash.GetComponent<SpriteRenderer>().sprite = loadedTrash[chunkIndex][currentTrash[chunkIndex].Count - 1].sprite;
-        //!!!REMOVE IN FINAL VERSION!!! --- !!!REMOVE IN FINAL VERSION!!! --- !!!REMOVE IN FINAL VERSION!!!
-        if (trash.isDangerous)
-        {
-            newTrash.GetComponent<SpriteRenderer>().color = Color.red;
-        }
+        PolygonCollider2D newCollider = newTrash.AddComponent<PolygonCollider2D>();
+        newCollider.isTrigger = true;
     }
 
     [BurstCompile]

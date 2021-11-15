@@ -10760,7 +10760,7 @@ MonoBehaviour:
   minTrash: 5
   maxTrash: 20
   maxTrashDepth: 40
-  maxDangerousTrashDepth: 20
+  maxDangerousTrashDepth: 30
   minSpeed: 0.2
   maxSpeed: 5
   maxBob: 0.5
@@ -10772,6 +10772,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b0ccd3f7bfa590947998662828176770, type: 3}
   - {fileID: 21300000, guid: 0e8ca79227b4e6740a79bbc35ca6df4d, type: 3}
   - {fileID: 21300000, guid: 14ac477d49578554a994874407a5bf22, type: 3}
+  dangerousTrashSprites:
+  - {fileID: 21300000, guid: 90c90a276f288024d80112c7102254d3, type: 3}
+  - {fileID: 21300000, guid: f5fc9242aad6d2c42853eb608ce86a2c, type: 3}
+  - {fileID: 21300000, guid: 49879853b81de7343a3643e4a16907b5, type: 3}
   chunkHeight: 0
   objectsToRemove: []
   currentlyUnIndexed: []
@@ -11177,10 +11181,11 @@ MonoBehaviour:
   health: 3
   moveForce: 1500
   maxSpeed: 15
-  airControlMultiplier: 0
+  airControlMultiplier: 0.1
   waterDrag: 1
   airDrag: 0
   knockbackForce: 5000
+  splash: {fileID: 3127932473184676390, guid: 90f6ae0d0a6b6e54f9c9e93a66c6b625, type: 3}
 --- !u!95 &813436470
 Animator:
   serializedVersion: 3
@@ -11853,6 +11858,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1947269955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1947269957}
+  - component: {fileID: 1947269956}
+  m_Layer: 0
+  m_Name: SplashTrigger
+  m_TagString: Region
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1947269956
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947269955}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 12}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 60, y: 20}
+  m_EdgeRadius: 0
+--- !u!4 &1947269957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947269955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1959105749
 GameObject:
   m_ObjectHideFlags: 0
