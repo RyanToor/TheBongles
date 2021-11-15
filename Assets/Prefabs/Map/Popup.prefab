@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 4688323288725147012}
   m_LocalRotation: {x: -0, y: -0, z: 0.22662567, w: 0.9739819}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8230692, y: 0.49384153, z: 0.8230692}
+  m_LocalScale: {x: 0.8, y: 0.5, z: 0.8}
   m_Children:
   - {fileID: 6933550173500738203}
   m_Father: {fileID: 8211053549801812661}
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9843137, g: 0.8901961, b: 0.7647059, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
