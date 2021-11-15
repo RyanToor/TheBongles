@@ -11,6 +11,7 @@ using System;
 
 public class ChunkManager : MonoBehaviour
 {
+    public TrashManager trashManagerScript;
     public Tilemap tilemap;
     public TileBase ruleTile;
     public GameObject player, chunk;
@@ -24,6 +25,7 @@ public class ChunkManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        trashManagerScript = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
         if (width - chasmStartWidth - maxChasmDeviation - 2 * maxIrregularity < 1)
         {
             maxChasmDeviation = width - (int)Mathf.Ceil(chasmStartWidth) - 2 * maxIrregularity;
@@ -109,6 +111,7 @@ public class ChunkManager : MonoBehaviour
 
     IEnumerator LoadChunk(int chunkMatrixIndex, bool isLoaded)
     {
+        trashManagerScript.ToggleTrash(chunkMatrixIndex, isLoaded);
         Vector3Int[] chunkMatrix = chunkMatrices[chunkMatrixIndex];
         TileBase[] fillTiles;
         int numOps = 0;
@@ -117,7 +120,6 @@ public class ChunkManager : MonoBehaviour
             case true: fillTiles = Enumerable.Repeat(ruleTile, chunkMatrix.Length).ToArray(); break;
             case false: fillTiles = Enumerable.Repeat<TileBase>(null, chunkMatrix.Length).ToArray(); break;
         }
-        print(Mathf.Ceil(chunkMatrix.Length / tilesPlacedPerFrame));
         for (int i = 0; i < Mathf.Ceil(chunkMatrix.Length / tilesPlacedPerFrame); i++)
         {
             for (int j = numOps * tilesPlacedPerFrame; j < Mathf.Clamp((numOps + 1) * tilesPlacedPerFrame, 0, chunkMatrix.Length); j++)

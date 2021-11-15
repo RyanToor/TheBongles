@@ -7,9 +7,10 @@ public class FollowCameraVertical : MonoBehaviour
     public GameObject target;
     [Range(0, 10)]
     public float lerpSpeed;
-    public float minDistance, backgroundPlateSeparation;
+    public float minDistance, backgroundPlateSeparation, deepColourDepth;
     public int backgroundPlatesPerLevel;
     public List<BackgroundSprites> backgroundSprites;
+    public List<ColourPair> depthColours;
 
     private Vector3 desiredPos;
     private Transform[] backgroundPlateContainers = new Transform[3];
@@ -17,16 +18,18 @@ public class FollowCameraVertical : MonoBehaviour
     private List<Sprite[]> loadedBackgrounds = new List<Sprite[]>();
     private float[] offset = new float[3];
     private int[] positionIndex = new int[3];
+    private SpriteRenderer[] colourPlates;
 
     private void Start()
     {
         for (int i = 0; i < 3; i++)
         {
+            colourPlates = new SpriteRenderer[2] { transform.Find("Background").GetComponent<SpriteRenderer>(), transform.Find("Midground").GetComponent<SpriteRenderer>()};
             string backgroundPlateName = "Background_" + (i + 1).ToString();
             Transform backgroundPlateTransform = transform.Find(backgroundPlateName);
             backgroundPlateContainers[i] = backgroundPlateTransform;
             backgroundPlates.Add(new GameObject[2] { backgroundPlateTransform.Find("Left").gameObject, backgroundPlateTransform.Find("Right").gameObject });
-            offset[i] = (-1080 / 32 - backgroundPlateSeparation) * i;
+            offset[i] = (-1080 / 32 - backgroundPlateSeparation - 0.75f) * i - 1080 / 128;
             positionIndex[i] = i;
             LoadBackgroundPlate(i, 0);
         }
@@ -43,8 +46,8 @@ public class FollowCameraVertical : MonoBehaviour
         }
         for (int i = 0; i < backgroundPlateContainers.Length; i++)
         {
-            backgroundPlateContainers[i].localPosition = - transform.position / 2 + offset[i] * Vector3.up;
-            if (backgroundPlateContainers[i].localPosition.y > 1080 / 17 +backgroundPlateSeparation && transform.position.y < -1080 / 64)
+            backgroundPlateContainers[i].localPosition = -transform.position / 2 + offset[i] * Vector3.up;
+            if (backgroundPlateContainers[i].localPosition.y > 1080 / 17 + backgroundPlateSeparation && transform.position.y < -1080 / 64)
             {
                 LoadBackgroundPlate(i, -1);
             }
@@ -52,13 +55,21 @@ public class FollowCameraVertical : MonoBehaviour
             {
                 LoadBackgroundPlate(i, 1);
             }
+            if (transform.position.y > -1080 / 64)
+            {
+                backgroundPlateContainers[i].localPosition = Vector3.Lerp((1080 / 64) * Vector3.down, Vector3.zero, Mathf.Abs(transform.position.y) / (1080 / 64)) + (offset[i] + 1080 / 128) * Vector3.up;
+            }
+        }
+        for (int i = 0; i < colourPlates.Length; i++)
+        {
+            colourPlates[i].color = Color.Lerp(depthColours[i].shallowColor, depthColours[i].deepColour, -transform.position.y / deepColourDepth);
         }
     }
 
     private void LoadBackgroundPlate(int plateIndex, int direction)
     {
         Vector3 platePos = backgroundPlateContainers[plateIndex].localPosition;
-        offset[plateIndex] += (3240 / 32 + backgroundPlateSeparation) * direction;
+        offset[plateIndex] += (3240 / 32 + backgroundPlateSeparation + 0.25f) * direction;
         positionIndex[plateIndex] -= direction * 3;
         Sprite[] newSprites;
         if (direction <= 0 && positionIndex[plateIndex] >= loadedBackgrounds.Count)
@@ -107,4 +118,11 @@ public struct BackgroundSprite
 {
     public Sprite sprite;
     public bool crossesFrame;
+}
+
+[System.Serializable]
+public struct ColourPair
+{
+    public Color shallowColor;
+    public Color deepColour;
 }

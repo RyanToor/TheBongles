@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private float gravity, controlMultiplier, moveRight = 1, prevFlipDir = 1, flipDir = 1, spriteDir;
+    private float gravity, controlMultiplier, moveRight = 1, prevFlipDir = 1, flipDir = 1, spriteDir = 1;
     private Vector2 moveDir;
     private Animator animator;
 

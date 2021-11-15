@@ -429,8 +429,8 @@ MonoBehaviour:
   bossEnum: 0
   bossControllers:
   - name: Eel
-    bossController: {fileID: 0}
-    rippleController: {fileID: 0}
+    bossController: {fileID: 9100000, guid: d274efafb27ab274c9dedcc1c6e3de80, type: 2}
+    rippleController: {fileID: 9100000, guid: 80d8a98ac1d8c8447a10c85c26948d25, type: 2}
   - name: Crab
     bossController: {fileID: 0}
     rippleController: {fileID: 0}
