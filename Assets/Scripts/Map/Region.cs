@@ -76,10 +76,11 @@ public class Region : MonoBehaviour
         for (int i = 0; i < minigameSpawnCount; i++)
         {
             int j = Random.Range(0, minigameSpawnPoints.Count);
-            MinigameMarker newMarker = Instantiate(minigameMarker, minigameSpawnPoints[j].position, Quaternion.identity, GameObject.Find("Minigames").transform).GetComponent<MinigameMarker>();
+            MinigameMarker newMarker = Instantiate(minigameMarker, minigameSpawnPoints[j].position, Quaternion.identity, transform.Find("Minigames")).GetComponent<MinigameMarker>();
             newMarker.trashType = trashType.ToString();
             floatingObjectScript.objectsToAdd.Add(newMarker.gameObject);
             minigameSpawnPoints.RemoveAt(j);
+            minigameSpawnPoints.TrimExcess();
         }
     }
 

@@ -9,14 +9,22 @@ using Unity.Jobs;
 
 public class TrashManager : MonoBehaviour
 {
-    public int minTrash, maxTrash;
-    public float minspeed, maxspeed;
+    public int minTrash, maxTrash, maxTrashDepth, maxDangerousTrashDepth;
+    public float minSpeed, maxSpeed, maxBob, bobSpeed;
+    [Range(0, 100)]
+    public float maxIsDangerousChance;
     public GameObject trashPrefab;
     public List<Sprite> trashSprites;
 
-    private Dictionary<int, List<GameObject>> currentTrash = new Dictionary<int, List<GameObject>>();
-    private Dictionary<int, List<Trash>> loadedTrash = new Dictionary<int, List<Trash>>();
-    private int chunkHeight;
+    [HideInInspector]
+    public Dictionary<int, List<Trash>> loadedTrash = new Dictionary<int, List<Trash>>();
+    [HideInInspector]
+    public int chunkHeight;
+    [HideInInspector]
+    public Dictionary<int, List<GameObject>> currentTrash = new Dictionary<int, List<GameObject>>();
+    [HideInInspector]
+    public List<int2> objectsToRemove, currentlyUnIndexed;
+
     private TransformAccessArray trashTransforms;
 
     // Start is called before the first frame update
@@ -26,9 +34,38 @@ public class TrashManager : MonoBehaviour
         chunkHeight = GameObject.Find("Grid").GetComponent<ChunkManager>().height;
     }
 
+    private void LateUpdate()
+    {
+    }
+
     // Update is called once per frame
     void Update()
     {
+        foreach (int2 removeObject in objectsToRemove)
+        {
+            if (currentTrash.ContainsKey(removeObject.x))
+            {
+                if (currentTrash[removeObject.x].ElementAtOrDefault(removeObject.y) != null)
+                {
+                    Destroy(currentTrash[removeObject.x][removeObject.y]);
+                    currentTrash[removeObject.x].RemoveAt(removeObject.y);
+                    currentTrash[removeObject.x].TrimExcess();
+                    loadedTrash[removeObject.x].RemoveAt(removeObject.y);
+                    loadedTrash[removeObject.x].TrimExcess();
+                }
+                else
+                {
+                    currentlyUnIndexed.Add(removeObject);
+                }
+            }
+            else
+            {
+                currentlyUnIndexed.Add(removeObject);
+            }
+        }
+        objectsToRemove.Clear();
+        objectsToRemove = currentlyUnIndexed;
+        currentlyUnIndexed.Clear();
         int[] keys = currentTrash.Keys.ToArray();
         int arrayLength = 0;
         foreach (int key in keys)
@@ -42,6 +79,7 @@ public class TrashManager : MonoBehaviour
         NativeArray<float> speeds = new NativeArray<float>(arrayLength, Allocator.TempJob);
         NativeArray<float> startSides = new NativeArray<float>(arrayLength, Allocator.TempJob);
         NativeArray<float> yPos = new NativeArray<float>(arrayLength, Allocator.TempJob);
+        NativeArray<float> offsets = new NativeArray<float>(arrayLength, Allocator.TempJob);
         int counter = 0;
         foreach (int key in keys)
         {
@@ -52,37 +90,42 @@ public class TrashManager : MonoBehaviour
                 speeds[counter] = currentTrashList[i].speed;
                 startSides[counter] = currentTrashList[i].startSide;
                 yPos[counter] = currentTrashList[i].yPos;
-                yPos[counter] = currentTrashList[i].yPos;
                 transforms[counter] = currentObjectList[i].transform;
+                offsets[counter] = currentTrashList[i].offset;
                 counter++;
             }
         }
         trashTransforms.SetTransforms(transforms);
         TrashScroller trashScroller = new TrashScroller
         {
-            speeds = speeds, startSides = startSides, yPos = yPos, time = Time.time
+            speeds = speeds, startSides = startSides, yPos = yPos, time = Time.time, offsets = offsets, maxBob = maxBob, bobSpeed = bobSpeed
         };
         JobHandle trashScrollerJob = trashScroller.Schedule(trashTransforms);
         trashScrollerJob.Complete();
         speeds.Dispose();
         yPos.Dispose();
         startSides.Dispose();
+        offsets.Dispose();
     }
 
     public void ToggleTrash(int chunkIndex, bool isEnabled)
     {
         if (isEnabled)
         {
-            if (loadedTrash.ContainsKey(chunkIndex))
+            if (!currentTrash.ContainsKey(chunkIndex))
             {
-                foreach (Trash trash in loadedTrash[chunkIndex])
+                if (loadedTrash.ContainsKey(chunkIndex))
                 {
-                    InstantiateTrash(trash, chunkIndex);
+                    foreach (Trash trash in loadedTrash[chunkIndex])
+                    {
+                        InstantiateTrash(trash, chunkIndex);
+                    }
+                    print("Instantiated " + chunkIndex + " from ToggleTrash");
                 }
-            }
-            else
-            {
-                GenerateTrash(chunkIndex);
+                else
+                {
+                    GenerateTrash(chunkIndex);
+                }
             }
         }
         else
@@ -103,48 +146,65 @@ public class TrashManager : MonoBehaviour
         if (!loadedTrash.ContainsKey(index))
         {
             loadedTrash.Add(index, new List<Trash>());
-        }
-        for (int i = 0; i < UnityEngine.Random.Range(minTrash, maxTrash); i++)
-        {
-            loadedTrash[index].Add(new Trash() { speed = UnityEngine.Random.Range(minspeed, maxspeed), startSide = Mathf.Sign(UnityEngine.Random.value - 1), yPos = (UnityEngine.Random.value + index) * chunkHeight });
+            for (int i = 0; i < (UnityEngine.Random.Range(minTrash, (index / maxTrashDepth) * maxTrash)); i++)
+            {
+                loadedTrash[index].Add(new Trash()
+                {
+                    speed = UnityEngine.Random.Range(minSpeed, Mathf.Clamp((index / maxTrashDepth) * maxSpeed, minSpeed, maxSpeed)),
+                    startSide = Mathf.Sign(UnityEngine.Random.value - 0.5f),
+                    yPos = (UnityEngine.Random.value + index) * chunkHeight,
+                    isDangerous = ((index / maxDangerousTrashDepth) * UnityEngine.Random.value > (100 - maxIsDangerousChance) / 100),
+                    sprite = trashSprites[UnityEngine.Random.Range(0, trashSprites.Count)],
+                    offset = UnityEngine.Random.value * 360f
+                });
+            }
         }
         foreach (Trash trash in loadedTrash[index])
         {
             InstantiateTrash(trash, index);
         }
+        print("Instantiated " + index + " from GenerateTrash");
     }
 
     private void InstantiateTrash(Trash trash, int chunkIndex)
     {
         GameObject newTrash = Instantiate(trashPrefab, Vector3.down * trash.yPos, Quaternion.identity, gameObject.transform);
-        newTrash.GetComponent<SpriteRenderer>().sprite = trashSprites[UnityEngine.Random.Range(0, trashSprites.Count)];
         if (!currentTrash.ContainsKey(chunkIndex))
         {
             currentTrash[chunkIndex] = new List<GameObject>();
         }
         currentTrash[chunkIndex].Add(newTrash);
-    }
-
-    public struct TrashScroller : IJobParallelForTransform
-    {
-        public NativeArray<float> speeds, startSides, yPos;
-        public float time;
-
-        public void Execute(int index, TransformAccess transform)
+        newTrash.GetComponent<SpriteRenderer>().sprite = loadedTrash[chunkIndex][currentTrash[chunkIndex].Count - 1].sprite;
+        //!!!REMOVE IN FINAL VERSION!!! --- !!!REMOVE IN FINAL VERSION!!! --- !!!REMOVE IN FINAL VERSION!!!
+        if (trash.isDangerous)
         {
-            transform.position = new float3(startSides[index] * 32 * math.sin(time * speeds[index]), -yPos[index], 0);
+            newTrash.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 
     [BurstCompile]
-    public struct Trash
+    public struct TrashScroller : IJobParallelForTransform
     {
-        public float speed;
-        public float startSide;
-        public float yPos;
+        public NativeArray<float> speeds, startSides, yPos, offsets;
+        public float time, maxBob, bobSpeed;
+
+        public void Execute(int index, TransformAccess transform)
+        {
+            transform.position = new float3(startSides[index] * 32 * math.sin(time * speeds[index] + offsets[index]), -yPos[index] + maxBob * math.sin(offsets[index] + bobSpeed * time), 0);
+        }
     }
+
     private void OnDisable()
     {
         trashTransforms.Dispose();
     }
+}
+public struct Trash
+{
+    public float speed;
+    public float startSide;
+    public float yPos;
+    public bool isDangerous;
+    public Sprite sprite;
+    public float offset;
 }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BongleIsland : MonoBehaviour
@@ -24,6 +23,7 @@ public class BongleIsland : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         pathOffset = new Vector3(0, pathYOffset, 0);
         floatingObjectsScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
+        transform.position = new Vector3(PlayerPrefs.GetFloat("posX", 0), PlayerPrefs.GetFloat("posY", 0), PlayerPrefs.GetFloat("posZ", 0));
     }
 
     // Update is called once per frame
@@ -122,5 +122,12 @@ public class BongleIsland : MonoBehaviour
             print("Metal : " + PlayerPrefs.GetInt("Metal", 0));
             print("Glass : " + PlayerPrefs.GetInt("Glass", 0));
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetFloat("posX", transform.position.x);
+        PlayerPrefs.SetFloat("posY", transform.position.y);
+        PlayerPrefs.SetFloat("posZ", transform.position.z);
     }
 }
