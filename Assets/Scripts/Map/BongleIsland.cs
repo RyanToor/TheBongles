@@ -20,7 +20,7 @@ public class BongleIsland : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        canvas = GameObject.Find("Canvas").transform;
+        canvas = GameObject.Find("UI").transform;
         rb2D = GetComponent<Rigidbody2D>();
         pathOffset = new Vector3(0, pathYOffset, 0);
         floatingObjectsScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
