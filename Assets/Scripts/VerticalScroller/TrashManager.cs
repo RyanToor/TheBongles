@@ -120,7 +120,6 @@ public class TrashManager : MonoBehaviour
                     {
                         InstantiateTrash(trash, chunkIndex);
                     }
-                    print("Instantiated " + chunkIndex + " from ToggleTrash");
                 }
                 else
                 {
@@ -146,10 +145,10 @@ public class TrashManager : MonoBehaviour
         if (!loadedTrash.ContainsKey(index))
         {
             loadedTrash.Add(index, new List<Trash>());
-            for (int i = 0; i < (UnityEngine.Random.Range(minTrash, (index / maxTrashDepth) * maxTrash)); i++)
+            for (int i = 0; i < (UnityEngine.Random.Range(minTrash, ((float)index / maxTrashDepth) * maxTrash)); i++)
             {
                 Sprite tempSprite;
-                bool isDangerous = ((index / maxDangerousTrashDepth) * UnityEngine.Random.value > (100 - maxIsDangerousChance) / 100);
+                bool isDangerous =  (UnityEngine.Random.Range(0, (float)index / maxDangerousTrashDepth) > (100f - maxIsDangerousChance) / 100);
                 if (!isDangerous)
                 {
                     tempSprite = trashSprites[UnityEngine.Random.Range(0, trashSprites.Count)];
@@ -160,7 +159,7 @@ public class TrashManager : MonoBehaviour
                 }
                 loadedTrash[index].Add(new Trash()
                 {
-                    speed = UnityEngine.Random.Range(minSpeed, Mathf.Clamp((index / maxTrashDepth) * maxSpeed, minSpeed, maxSpeed)),
+                    speed = UnityEngine.Random.Range(minSpeed, Mathf.Clamp(((float)index / maxTrashDepth) * maxSpeed, minSpeed, maxSpeed)),
                     startSide = Mathf.Sign(UnityEngine.Random.value - 0.5f),
                     yPos = (UnityEngine.Random.value + index) * chunkHeight,
                     isDangerous = isDangerous,
@@ -173,7 +172,6 @@ public class TrashManager : MonoBehaviour
         {
             InstantiateTrash(trash, index);
         }
-        print("Instantiated " + index + " from GenerateTrash");
     }
 
     private void InstantiateTrash(Trash trash, int chunkIndex)

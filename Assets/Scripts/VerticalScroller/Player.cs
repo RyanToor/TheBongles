@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,16 +6,18 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public int health;
-    public float moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce;
-    public GameObject splash;
+    public float moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce, maxBagDistance, damagePulseCount, damagePulseSpeed;
+    public GameObject splash, bag;
+
+    [HideInInspector]
+    public int collectedPlastic;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private float gravity, controlMultiplier, moveRight = 1, prevFlipDir = 1, flipDir = 1, spriteDir = 1;
     private Vector2 moveDir;
-    private Animator animator;
+    private Animator animator, bagAnimator;
     private TrashManager trashManager;
-    private int collectedPlastic;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         gravity = rb.gravityScale;
         animator = GetComponent<Animator>();
+        bagAnimator = GameObject.Find("Bag").GetComponent<Animator>();
         trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
     }
 
@@ -44,6 +48,7 @@ public class Player : MonoBehaviour
         rb.AddForce(rb.mass * moveDir * moveForce * controlMultiplier * Time.deltaTime, ForceMode2D.Force);
         rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxSpeed);
         Animate();
+        MoveBag();
     }
 
     private void CheckPhysics()
@@ -70,11 +75,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void MoveBag()
+    {
+        if ((bag.transform.position - transform.position).magnitude != maxBagDistance)
+        {
+            Vector3 bagOffset = (bag.transform.position - transform.position).normalized * maxBagDistance;
+            bag.transform.position = transform.position + bagOffset;
+            bag.transform.rotation = Quaternion.LookRotation(Vector3.forward, bagOffset);
+        }
+    }
+
     private void Animate()
     {
         transform.rotation = Quaternion.LerpUnclamped(Quaternion.identity, Quaternion.AngleAxis(90, Vector3.forward), spriteDir * rb.velocity.y / maxSpeed);
         animator.SetFloat("Speed", rb.velocity.magnitude);
-        animator.speed = Mathf.Clamp(rb.velocity.magnitude / maxSpeed, 0.5f, 1);
+        float currentSpeed = Mathf.Clamp(rb.velocity.magnitude / maxSpeed, 0.5f, 1);
+        animator.speed = currentSpeed;
+        bagAnimator.speed = currentSpeed;
         if (prevFlipDir != flipDir)
         {
             animator.SetTrigger("Flip");
@@ -114,18 +131,27 @@ public class Player : MonoBehaviour
             {
                 health--;
                 rb.AddForce((transform.position - collision.transform.position).normalized * knockbackForce, ForceMode2D.Impulse);
+                trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
+                StopAllCoroutines();
+                StartCoroutine(DamagePulse());
             }
-            else
-            {
-                collectedPlastic++;
-                print(collectedPlastic);
-            }
-            trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
         }
-        else if (collision.CompareTag("Region"))
+        if (collision.CompareTag("Region"))
         {
             Instantiate(splash, transform.position + Vector3.up * 1.5f, Quaternion.identity);
         }
+    }
+
+    IEnumerator DamagePulse()
+    {
+        float duration = 0;
+        while (duration < damagePulseCount * 2 * Mathf.PI)
+        {
+            spriteRenderer.color = Color.Lerp(Color.white, Color.red, (Mathf.Sin(duration) + 0.5f) / 2);
+            duration += Time.deltaTime * damagePulseSpeed;
+            yield return null;
+        }
+        spriteRenderer.color = Color.white;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

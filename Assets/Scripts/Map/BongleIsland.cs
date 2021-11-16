@@ -6,7 +6,7 @@ public class BongleIsland : MonoBehaviour
 {
     public float acceleration, pathSeparation, pathYOffset;
     public int pathLength;
-    public GameObject pathObject, pathContainer, popupPrefab;
+    public GameObject pathObject, pathContainer, popupPrefab, upgradeMenu;
     
     public List<GameObject> pathObjects = new List<GameObject>();
     private Rigidbody2D rb2D;
@@ -95,6 +95,7 @@ public class BongleIsland : MonoBehaviour
             print("Collected " + trashType);
             PlayerPrefs.SetInt(trashType, PlayerPrefs.GetInt(trashType, 0) + 1);
             floatingObjectsScript.objectsToRemove.Add(collision.gameObject);
+            upgradeMenu.GetComponent<UpgradeMenu>().UpdateReadouts();
         }
         else if (collision.CompareTag("Minigame"))
         {
