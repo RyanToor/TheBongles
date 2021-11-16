@@ -79,10 +79,10 @@ public void OpenCloseMenu()
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
     }
     public void QuitGame()
     {
         Application.Quit();
+        PlayerPrefs.SetInt("isLoaded", 1);
     }
 }

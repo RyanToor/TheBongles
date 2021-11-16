@@ -23,4 +23,9 @@ public class GameAssets : MonoBehaviour
         public SoundManager.Sound sound;
         public AudioClip audioClip;
     }
+
+    public void ButtonClick()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.OnClick);
+    }
 }
