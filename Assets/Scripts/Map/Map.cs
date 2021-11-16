@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Map : MonoBehaviour
@@ -6,6 +7,7 @@ public class Map : MonoBehaviour
     public int randomTrashAmount;
     public GameObject randomTrashContainer, randomTrash;
     public float trashClearBorder;
+    public List<GameObject> inGameUI;
 
     Rect mapArea;
     private FloatingObjects floatingObjectsScript;
@@ -18,6 +20,13 @@ public class Map : MonoBehaviour
             GameObject.Find("CloudCover").SetActive(false);
             GameObject.Find("MainMenu").SetActive(false);
             GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = true;
+        }
+        else
+        {
+            foreach (GameObject uI in inGameUI)
+            {
+                uI.SetActive(false);
+            }
         }
         floatingObjectsScript = GetComponent<FloatingObjects>();
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();

@@ -52,9 +52,6 @@ public class Player : MonoBehaviour
             {
                 flipDir = 1;
             }
-        }
-        else
-        {
             moveUp = Input.GetAxis("Vertical");
         }
         moveDir = new Vector3(moveRight, moveUp).normalized;

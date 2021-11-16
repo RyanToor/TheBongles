@@ -13,6 +13,10 @@ public class MainMenu : MonoBehaviour
         {
             popup.gameObject.SetActive(true);
         }
+        foreach (GameObject uI in GameObject.Find("Map").GetComponent<Map>().inGameUI)
+        {
+            uI.SetActive(true);
+        }
         gameObject.SetActive(false);
     }
 

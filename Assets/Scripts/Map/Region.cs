@@ -15,7 +15,7 @@ public class Region : MonoBehaviour
     private bool isStoryCleared;
     private string boss;
     private FloatingObjects floatingObjectScript;
-    private Animator bossAnimator;
+    private Animator bossAnimator, rippleAnimator;
 
     private void Start()
     {
@@ -34,8 +34,9 @@ public class Region : MonoBehaviour
             if (bossType.name == boss)
             {
                 bossAnimator = transform.Find("BossIsland/SpriteBoss").GetComponent<Animator>();
+                rippleAnimator = transform.Find("BossIsland/SpriteRipples").GetComponent<Animator>();
                 bossAnimator.runtimeAnimatorController = bossType.bossController;
-                //transform.Find("BossIsland/SpriteRipple").GetComponent<Animator>().runtimeAnimatorController = bossType.rippleController;
+                rippleAnimator.runtimeAnimatorController = bossType.rippleController;
             }
         }
     }
@@ -46,7 +47,9 @@ public class Region : MonoBehaviour
         if (Application.isEditor)
         {
             EditorUpdate();
-        }        
+        }
+        bossAnimator.SetBool("isClean", isStoryCleared);
+        rippleAnimator.SetBool("isClean", isStoryCleared);
     }
 
     public void Unlock(bool state)

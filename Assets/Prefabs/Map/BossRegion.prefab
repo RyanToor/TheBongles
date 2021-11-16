@@ -89,8 +89,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 69605307
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -436,4 +436,4 @@ MonoBehaviour:
     rippleController: {fileID: 0}
   - name: Whale
     bossController: {fileID: 9100000, guid: 527a355eb9101e24586d27e7156a6555, type: 2}
-    rippleController: {fileID: 0}
+    rippleController: {fileID: 9100000, guid: 80d8a98ac1d8c8447a10c85c26948d25, type: 2}
