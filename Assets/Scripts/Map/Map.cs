@@ -13,6 +13,12 @@ public class Map : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.GetInt("isLoaded", 1) == 0)
+        {
+            GameObject.Find("CloudCover").SetActive(false);
+            GameObject.Find("MainMenu").SetActive(false);
+            GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = true;
+        }
         floatingObjectsScript = GetComponent<FloatingObjects>();
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         mapArea = new Rect(sprite.bounds.min + Vector3.one * trashClearBorder, sprite.bounds.size - Vector3.one * trashClearBorder * 2);
@@ -71,6 +77,11 @@ public class Map : MonoBehaviour
             print(PlayerPrefs.GetInt("maxRegion", 1));
             RespawnTrash();
         }
+    }
+
+    public void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt("isLoaded", 1);
     }
 }
 

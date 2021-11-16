@@ -11,10 +11,14 @@ public class Player : MonoBehaviour
 
     [HideInInspector]
     public int collectedPlastic;
+    [HideInInspector]
+    public float gravity;
+    [HideInInspector]
+    public bool isloaded;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private float gravity, controlMultiplier, moveRight = 1, prevFlipDir = 1, flipDir = 1, spriteDir = 1;
+    private float controlMultiplier, moveRight = 1, prevFlipDir = 1, flipDir = 1, spriteDir = 1;
     private Vector2 moveDir;
     private Animator animator, bagAnimator;
     private TrashManager trashManager;
@@ -28,23 +32,32 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         bagAnimator = GameObject.Find("Bag").GetComponent<Animator>();
         trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
+        rb.gravityScale = 0;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         EditorUpdate();
-        CheckPhysics();
-        moveRight = Input.GetAxis("Horizontal");
-        if (moveRight < 0)
+        float moveUp = 0;
+        if (isloaded)
         {
-            flipDir = -1;
+            CheckPhysics();
+            moveRight = Input.GetAxis("Horizontal");
+            if (moveRight < 0)
+            {
+                flipDir = -1;
+            }
+            else if (moveRight > 0)
+            {
+                flipDir = 1;
+            }
         }
-        else if (moveRight > 0)
+        else
         {
-            flipDir = 1;
+            moveUp = Input.GetAxis("Vertical");
         }
-        moveDir = new Vector3(moveRight, Input.GetAxis("Vertical")).normalized;
+        moveDir = new Vector3(moveRight, moveUp).normalized;
         rb.AddForce(rb.mass * moveDir * moveForce * controlMultiplier * Time.deltaTime, ForceMode2D.Force);
         rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxSpeed);
         Animate();

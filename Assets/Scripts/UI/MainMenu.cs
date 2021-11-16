@@ -1,22 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public void StartGame()
     {
-        
+        PlayerPrefs.SetInt("isLoaded", 0);
+        GameObject.Find("CloudCover").SetActive(false);
+        BongleIsland bongleIsland = GameObject.Find("BongleIsland").GetComponent<BongleIsland>();
+        bongleIsland.isInputEnabled = true;
+        foreach  (Transform popup in GameObject.Find("UI/PopupsContainer").transform)
+        {
+            popup.gameObject.SetActive(true);
+        }
+        gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void QuitGame()
     {
         Application.Quit();
+        PlayerPrefs.SetInt("isLoaded", 1);
     }
 }

@@ -5,11 +5,15 @@ public class Popup : MonoBehaviour
 {
     public GameObject minigameMarker;
     public string trashType;
+    public GameObject loadScreen;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (PlayerPrefs.GetInt("isLoaded", 1) == 1)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -23,6 +27,8 @@ public class Popup : MonoBehaviour
         switch (trashType)
         {
             case "Plastic":
+                GameObject newLoadScreen = Instantiate(loadScreen, new Vector3(960, 540, 0), Quaternion.identity);
+                DontDestroyOnLoad(newLoadScreen);
                 SceneManager.LoadScene("VerticalScroller");
                 break;
             default:

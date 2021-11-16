@@ -7,23 +7,28 @@ public class BongleIsland : MonoBehaviour
     public float acceleration, pathSeparation, pathYOffset;
     public int pathLength;
     public GameObject pathObject, pathContainer, popupPrefab, upgradeMenu;
-    
+
+    [HideInInspector]
+    public bool isInputEnabled = false;
+    [HideInInspector]
+    public Dictionary<GameObject, GameObject> activePopups = new Dictionary<GameObject, GameObject>();
+
     public List<GameObject> pathObjects = new List<GameObject>();
     private Rigidbody2D rb2D;
     private bool isMovingRight;
     private Vector3 lastPathPos, pathOffset;
     private FloatingObjects floatingObjectsScript;
-    private Transform canvas;
-    private Dictionary<GameObject, GameObject> activePopups = new Dictionary<GameObject, GameObject>();
+    private Transform popupsContainer;
 
     // Start is called before the first frame update
     void Start()
     {
-        canvas = GameObject.Find("UI").transform;
+        popupsContainer = GameObject.Find("UI/PopupsContainer").transform;
         rb2D = GetComponent<Rigidbody2D>();
         pathOffset = new Vector3(0, pathYOffset, 0);
         floatingObjectsScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("posX", 0), PlayerPrefs.GetFloat("posY", 0), PlayerPrefs.GetFloat("posZ", 0));
+        lastPathPos = transform.position;
     }
 
     // Update is called once per frame
@@ -33,8 +38,13 @@ public class BongleIsland : MonoBehaviour
         {
             EditorUpdate();
         }
-        float moveRight = Input.GetAxis("Horizontal");
-        float moveUp = Input.GetAxis("Vertical");
+        float moveRight = 0;
+        float moveUp = 0;
+        if (isInputEnabled)
+        {
+            moveRight = Input.GetAxis("Horizontal");
+            moveUp = Input.GetAxis("Vertical");
+        }
 
         if (moveRight > 0)
         {
@@ -99,7 +109,7 @@ public class BongleIsland : MonoBehaviour
         }
         else if (collision.CompareTag("Minigame"))
         {
-            GameObject newPopup = Instantiate(popupPrefab, Camera.main.WorldToScreenPoint(collision.gameObject.transform.position), Quaternion.identity, canvas);
+            GameObject newPopup = Instantiate(popupPrefab, Camera.main.WorldToScreenPoint(collision.gameObject.transform.position), Quaternion.identity, popupsContainer);
             newPopup.GetComponent<Popup>().minigameMarker = collision.gameObject;
             newPopup.GetComponent<Popup>().trashType = collision.gameObject.GetComponent<MinigameMarker>().trashType;
             activePopups.Add(collision.gameObject, newPopup);

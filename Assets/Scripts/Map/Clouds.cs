@@ -26,12 +26,14 @@ public class Clouds : MonoBehaviour
         width = map.GetComponent<SpriteRenderer>().bounds.size.x + cloudBorder;
         height = map.GetComponent<SpriteRenderer>().bounds.size.y + cloudBorder;
         PoissonDiscSampler sampler = new PoissonDiscSampler(width, height, radius);
+        int cloudAlpha = PlayerPrefs.GetInt("isLoaded", 1);
         foreach (Vector2 sample in sampler.Samples())
         {
             Vector2 samplePos = new Vector2(sample.x - (width / 2), sample.y - (height / 2));
             if (!(samplePos.magnitude > height))
             {
                 GameObject newCloud = (GameObject)Instantiate(cloudObject, new Vector3(samplePos.x, samplePos.y, 0), Quaternion.identity, gameObject.transform);
+                newCloud.GetComponent<Cloud>().currentAlpha = cloudAlpha;
                 clouds.Add(newCloud);
             }
         }

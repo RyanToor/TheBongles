@@ -303,3 +303,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameMarker: {fileID: 0}
   trashType: 
+  loadScreen: {fileID: 8501071293954850938, guid: 94454062a6294e2408b01b9ef78015c1, type: 3}

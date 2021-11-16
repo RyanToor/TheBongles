@@ -6,8 +6,8 @@ public class Cloud : MonoBehaviour
     public float fadeSpeed;
     public Sprite[] cloudSprites;
     public SpriteRenderer sprite;
+    public float currentAlpha;
 
-    private float currentAlpha;
     private int currentColliders;
 
     // Start is called before the first frame update
@@ -45,7 +45,7 @@ public class Cloud : MonoBehaviour
         Color col = sprite.color;
         while (0 <= currentAlpha && currentAlpha <= 1)
         {
-            currentAlpha = Mathf.Clamp01(currentAlpha + fadeDir * fadeSpeed);
+            currentAlpha = Mathf.Clamp01(currentAlpha + fadeDir * fadeSpeed * Time.deltaTime);
             col.a = currentAlpha;
             sprite.color = col;
             yield return null;

@@ -16,15 +16,18 @@ public class ChunkManager : MonoBehaviour
     public TileBase ruleTile;
     public GameObject player, chunk;
     public int chunkBuffer, width, height, maxChasmDeviation, maxIrregularity, rowsConvertedPerFrame, tilesPlacedPerFrame;
-    public float chasmStartWidth, chasmMinWidth, chasmWidthAsymptoteLevel, chasmFrequency, irregularityFrequency;
+    public float chasmStartWidth, chasmMinWidth, chasmWidthAsymptoteLevel, chasmFrequency, irregularityFrequency, waterSurfaceScrollSpeed;
 
-    private int widthSeed, irregularitySeedL, irregularitySeedR, currentChunk;
+    private int widthSeed, irregularitySeedL, irregularitySeedR, currentChunk, chunksLoaded;
     private List<int> enabledChunks = new List<int>();
     private List<Vector3Int[]> chunkMatrices = new List<Vector3Int[]>();
+    private Transform[] waterSurfaces;
+    private bool isLoaded;
 
     // Start is called before the first frame update
     void Start()
     {
+        waterSurfaces = new Transform[2] { GameObject.Find("WaterSurface_1").transform, GameObject.Find("WaterSurface_2").transform };
         trashManagerScript = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
         if (width - chasmStartWidth - maxChasmDeviation - 2 * maxIrregularity < 1)
         {
@@ -39,12 +42,29 @@ public class ChunkManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isLoaded)
+        {
+            if (chunksLoaded > chunkBuffer)
+            {
+                Destroy(GameObject.Find("LoadingCanvas(Clone)"));
+                player.GetComponent<Player>().isloaded = true;
+                isLoaded = true;
+            }
+        }
         int newChunk = (int)Mathf.Floor(Mathf.Abs(player.transform.position.y) / height);
         if (newChunk != currentChunk)
         {
             print(currentChunk + "--->" + newChunk);
             currentChunk = newChunk;
             CheckChunks(currentChunk);
+        }
+        foreach (Transform waterSurface in waterSurfaces)
+        {
+            waterSurface.position += new Vector3(waterSurfaceScrollSpeed * Time.deltaTime, 0, 0);
+            if (Mathf.Abs(waterSurface.position.x) > 150)
+            {
+                waterSurface.position = new Vector3(waterSurface.position.x - Mathf.Sign(waterSurface.position.x) * 240, waterSurface.position.y, waterSurface.position.z);
+            }
         }
     }
 
@@ -139,6 +159,7 @@ public class ChunkManager : MonoBehaviour
         {
             enabledChunks.Remove(chunkMatrixIndex);
         }
+        chunksLoaded++;
     }
 
     IEnumerator GenerateTileMatrix(int chunkIndex, int2[] lRThickness, int tileCount)
@@ -184,5 +205,10 @@ public class ChunkManager : MonoBehaviour
             int rThickness = (int)math.clamp((width - centrePoint - chasmWidth / 2 - maxIrregularity + math.ceil((noise.cnoise(new float2(irregularitySeedR, (chunkIndex * height + (float)index / height) * irregularityFrequency)) / 2 + 0.5f) * maxIrregularity)), (width - 60) / 2 + 1, width);
             lRThickness[index] = new int2(lThickness, rThickness);
         }
+    }
+
+    public void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt("isLoaded", 1);
     }
 }
