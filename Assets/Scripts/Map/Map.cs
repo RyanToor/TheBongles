@@ -20,6 +20,7 @@ public class Map : MonoBehaviour
             GameObject.Find("CloudCover").SetActive(false);
             GameObject.Find("MainMenu").SetActive(false);
             GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = true;
+            Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         }
         else
         {

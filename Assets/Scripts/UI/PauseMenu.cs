@@ -3,8 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public AudioSource SFX;
-    public AudioClip OnClick;
+    public GameObject loadScreen;
 
     public static bool GameIsPaused = false;
     [Range(0, 1)]
@@ -73,7 +72,6 @@ public class PauseMenu : MonoBehaviour
 public void OpenCloseMenu()
     {
         lerpDir *= -1;
-        SFX.PlayOneShot(OnClick);
     }
 
     public void LoadMenu()
@@ -84,5 +82,13 @@ public void OpenCloseMenu()
     {
         Application.Quit();
         PlayerPrefs.SetInt("isLoaded", 1);
+    }
+
+    public void backToMap()
+    {
+        Time.timeScale = 1f;
+        GameObject newLoadScreen = Instantiate(loadScreen, new Vector3(960, 540, 0), Quaternion.identity);
+        DontDestroyOnLoad(newLoadScreen);
+        SceneManager.LoadScene("Map");
     }
 }
