@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
         rb.gravityScale = 0;
     }
 
+    public void Update()
+    {
+        Dead();
+    }
     // Update is called once per frame
     void LateUpdate()
     {
@@ -185,5 +189,17 @@ public class Player : MonoBehaviour
         int plastic = PlayerPrefs.GetInt("Plastic", 0);
         plastic += collectedPlastic;
         PlayerPrefs.SetInt("Plastic", plastic);
+    }
+    private void Dead()
+    {
+        if (health <= 0)
+        {
+            Destroy(this);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            ;
+        }
     }
 }

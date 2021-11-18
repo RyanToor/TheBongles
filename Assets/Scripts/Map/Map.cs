@@ -20,7 +20,6 @@ public class Map : MonoBehaviour
             GameObject.Find("CloudCover").SetActive(false);
             GameObject.Find("MainMenu").SetActive(false);
             GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = true;
-            Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         }
         else
         {
@@ -34,6 +33,7 @@ public class Map : MonoBehaviour
         mapArea = new Rect(sprite.bounds.min + Vector3.one * trashClearBorder, sprite.bounds.size - Vector3.one * trashClearBorder * 2);
         UpdateRegionsUnlocked(PlayerPrefs.GetInt("maxRegion", 1));
         RespawnTrash();
+        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
     }
 
     private void Update()

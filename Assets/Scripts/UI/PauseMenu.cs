@@ -23,8 +23,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     // Update is called once per frame
-     void Update()
-      {
+    public void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
@@ -36,26 +36,26 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-    
+
         if (lerpPos != Mathf.Clamp(lerpDir, 0, 1))
         {
             lerpPos = Mathf.Clamp(Mathf.Lerp(0, 1, lerpPos + lerpDir * lerpSpeed), 0, 1);
             rightPaneTransform.localPosition = Vector3.Lerp(closedPos, openPos, lerpPos);
         }
     }
-      public void Resume()
-      {
+    public void Resume()
+    {
         OpenCloseMenu();
         Time.timeScale = 1f;
         GameIsPaused = false;
-      }
+    }
 
-      void Pause()
-      {
+    void Pause()
+    {
         OpenCloseMenu();
         Time.timeScale = 0f;
-          GameIsPaused = true;
-      }
+        GameIsPaused = true;
+    }
 
     public void pauseGame()
     {
@@ -69,7 +69,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-public void OpenCloseMenu()
+    public void OpenCloseMenu()
     {
         lerpDir *= -1;
     }
