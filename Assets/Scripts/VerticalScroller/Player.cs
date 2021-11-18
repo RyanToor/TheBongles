@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     public int health;
     public float moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce, maxBagDistance, damagePulseCount, damagePulseSpeed;
     public GameObject splash, bag;
+    public GameObject gameOver;
+    public GameObject pauseMenu;
+    public GameObject plastic;
 
     [HideInInspector]
     public int collectedPlastic;
@@ -194,8 +197,11 @@ public class Player : MonoBehaviour
     {
         if (health <= 0)
         {
+            isloaded = false;
             Destroy(this);
-            Time.timeScale = 0f;
+            gameOver.SetActive(true);
+            pauseMenu.SetActive(false);
+            plastic.SetActive(false);
         }
         else
         {
