@@ -1478,9 +1478,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75707672d1ad4a54ab9c115a1b7b87dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: d3416157b2751044cbc887695b8c685c, type: 3}
-  OnClickSFX: {fileID: 8300000, guid: 2c9fec4b5f904f44cb8355461e3cf6eb, type: 3}
-  OnHoverSFX: {fileID: 0}
+  musicOriginal: {fileID: 8300000, guid: d3416157b2751044cbc887695b8c685c, type: 3}
+  TrashHunt: {fileID: 8300000, guid: 5a4a998908fa46942ba644686a52d6e1, type: 3}
+  OnClickSFX: {fileID: 8300000, guid: fb7710d4d8272444b9fc376ee2a4e98c, type: 3}
+  OnHoverSFX: {fileID: 8300000, guid: 5016a1da16a968b45913430631a6c20c, type: 3}
+  UIClose: {fileID: 8300000, guid: 742df099ccc11984f810f2c77094941b, type: 3}
+  UIConfirm: {fileID: 8300000, guid: 70359f05613255f4b8178635d48f8cf5, type: 3}
+  UITwinkle: {fileID: 8300000, guid: 343fcf3ff86517740aeb9abd866de7bf, type: 3}
+  UIHarp: {fileID: 8300000, guid: 784ba0abafa760941b929ccf63d85c10, type: 3}
+  UISoundCrinckle: {fileID: 8300000, guid: cf154d96d7c971247b3af95901334d90, type: 3}
 --- !u!1 &293001722
 GameObject:
   m_ObjectHideFlags: 0
@@ -6510,7 +6516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: f219c8e6742087a409085e9dc652acb0, type: 3}
+  - {fileID: 21300000, guid: c29851e188db20547927de11e23b2c4c, type: 3}
   - {fileID: 21300000, guid: b5853ec45020e164f9cba10a9c5af46b, type: 3}
   - {fileID: 21300000, guid: f6be64b600c550c44b3711c8b608b534, type: 3}
   trashReadouts:

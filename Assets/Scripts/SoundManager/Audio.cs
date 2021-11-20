@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Audio : MonoBehaviour
 {
-    [SerializeField] private AudioClip music;
+    [SerializeField] private AudioClip musicOriginal;
+    [SerializeField] private AudioClip TrashHunt;
     [SerializeField] private AudioClip OnClickSFX;
     [SerializeField] private AudioClip OnHoverSFX;
+    [SerializeField] private AudioClip UIClose;
+    [SerializeField] private AudioClip UIConfirm;
+    [SerializeField] private AudioClip UITwinkle;
+    [SerializeField] private AudioClip UIHarp;
+    [SerializeField] private AudioClip UISoundCrinckle;
 
     private void Start()
     {
-            AudioManager.Instance.PlayMusic(music);
+        AudioManager.Instance.PlayMusic(musicOriginal);
     }
 
     public void OnClick()
