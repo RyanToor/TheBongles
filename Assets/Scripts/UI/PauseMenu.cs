@@ -5,6 +5,8 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject loadScreen;
 
+    public AudioClip OnClickSFX;
+
     public static bool GameIsPaused = false;
     [Range(0, 1)]
     public float lerpSpeed;
@@ -35,6 +37,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
+            AudioManager.Instance.PlaySFX(OnClickSFX);
         }
 
         if (lerpPos != Mathf.Clamp(lerpDir, 0, 1))
@@ -90,5 +93,9 @@ public class PauseMenu : MonoBehaviour
         GameObject newLoadScreen = Instantiate(loadScreen, new Vector3(960, 540, 0), Quaternion.identity);
         DontDestroyOnLoad(newLoadScreen);
         SceneManager.LoadScene("Map");
+    }
+    public void ResetGame()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }

@@ -25,11 +25,15 @@ public class Audio : MonoBehaviour
     }
     public void musicOn()
     {
-        AudioManager.Instance.SetMusicVolume(1.0f);
+        AudioManager.Instance.SetMusicVolume(0.5f);
     }
     public void musicOff()
     {
         AudioManager.Instance.SetMusicVolume(0.0f);
+    }
+    public void OnHover()
+    {
+        AudioManager.Instance.PlaySFX(OnHoverSFX);
     }
     public void TrashHunt()
     {
