@@ -5,7 +5,7 @@ using UnityEngine;
 public class Audio : MonoBehaviour
 {
     [SerializeField] private AudioClip musicOriginal;
-    [SerializeField] private AudioClip TrashHunt;
+    [SerializeField] private AudioClip TrashHuntMusic;
     [SerializeField] private AudioClip OnClickSFX;
     [SerializeField] private AudioClip OnHoverSFX;
     [SerializeField] private AudioClip UIClose;
@@ -30,5 +30,10 @@ public class Audio : MonoBehaviour
     public void musicOff()
     {
         AudioManager.Instance.SetMusicVolume(0.0f);
+    }
+    public void TrashHunt()
+    {
+        AudioManager.Instance.StopAllCoroutines();
+        AudioManager.Instance.PlayMusic(TrashHuntMusic);
     }
 }
