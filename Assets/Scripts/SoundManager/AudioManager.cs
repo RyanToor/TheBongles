@@ -64,7 +64,6 @@ public class AudioManager : MonoBehaviour
         AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource : musicSource2;
 
         StartCoroutine(UpdateMusicWithFade(activeSource, newClip, transitionTime));
-
     }
     private IEnumerator UpdateMusicWithFade(AudioSource activeSource, AudioClip newClip, float transitionTime)
     {
@@ -95,6 +94,7 @@ public class AudioManager : MonoBehaviour
     
     public void PlaySFX(AudioClip clip)
     {
+        sfxSource.volume = 0.5f;
         sfxSource.PlayOneShot(clip);
     }
 

@@ -14071,6 +14071,7 @@ MonoBehaviour:
   gameOver: {fileID: 799855463}
   pauseMenu: {fileID: 273911313}
   plastic: {fileID: 230742347}
+  TrashHuntMusic: {fileID: 8300000, guid: 5a4a998908fa46942ba644686a52d6e1, type: 3}
   collectedPlastic: 0
   gravity: 0
   isloaded: 0
@@ -17010,7 +17011,6 @@ MonoBehaviour:
   chasmFrequency: 0.5
   irregularityFrequency: 10
   waterSurfaceScrollSpeed: 0.5
-  TrashHuntMusic: {fileID: 8300000, guid: 5a4a998908fa46942ba644686a52d6e1, type: 3}
 --- !u!1 &1784403781
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class BongleIsland : MonoBehaviour
     public float acceleration, pathSeparation, pathYOffset;
     public int pathLength;
     public GameObject pathObject, pathContainer, popupPrefab, upgradeMenu;
+    public AudioClip musicOriginal;
 
     [HideInInspector]
     public bool isInputEnabled = false;
@@ -21,6 +22,7 @@ public class BongleIsland : MonoBehaviour
     private Transform popupsContainer;
 
     // Start is called before the first frame update
+
     void Start()
     {
         popupsContainer = GameObject.Find("UI/PopupsContainer").transform;
@@ -29,6 +31,7 @@ public class BongleIsland : MonoBehaviour
         floatingObjectsScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("posX", 0), PlayerPrefs.GetFloat("posY", 0), PlayerPrefs.GetFloat("posZ", 0));
         lastPathPos = transform.position;
+        AudioManager.Instance.PlayMusic(musicOriginal);
     }
 
     // Update is called once per frame

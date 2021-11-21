@@ -14,9 +14,9 @@ public class Audio : MonoBehaviour
     [SerializeField] private AudioClip UIHarp;
     [SerializeField] private AudioClip UISoundCrinckle;
 
-    private void Start()
+    public void Start()
     {
-        AudioManager.Instance.PlayMusic(musicOriginal);
+
     }
 
     public void OnClick()

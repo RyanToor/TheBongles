@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public GameObject gameOver;
     public GameObject pauseMenu;
     public GameObject plastic;
+    public AudioClip TrashHuntMusic;
 
     [HideInInspector]
     public int collectedPlastic;
@@ -26,6 +27,11 @@ public class Player : MonoBehaviour
     private Animator animator, bagAnimator;
     private TrashManager trashManager;
 
+    public void Awake()
+    {
+        AudioManager.Instance.PlayMusic(TrashHuntMusic);
+        AudioManager.Instance.SetMusicVolume(0.2f);
+    }
     // Start is called before the first frame update
     void Start()
     {

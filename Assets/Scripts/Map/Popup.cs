@@ -6,7 +6,7 @@ public class Popup : MonoBehaviour
     public GameObject minigameMarker;
     public string trashType;
     public GameObject loadScreen;
-   // public AudioClip TrashHuntMusic;
+    public AudioClip TrashHuntMusic;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class Popup : MonoBehaviour
                 GameObject newLoadScreen = Instantiate(loadScreen, new Vector3(960, 540, 0), Quaternion.identity);
                 DontDestroyOnLoad(newLoadScreen);
                 SceneManager.LoadScene("VerticalScroller");
-                //AudioManager.Instance.PlayMusic(TrashHuntMusic);
+                AudioManager.Instance.PlayMusic(TrashHuntMusic);
                 break;
             default:
                 break;
