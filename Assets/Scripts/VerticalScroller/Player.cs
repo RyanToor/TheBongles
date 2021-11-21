@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
     public void Awake()
     {
         AudioManager.Instance.PlayMusic(TrashHuntMusic);
-        AudioManager.Instance.SetMusicVolume(0.2f);
     }
     // Start is called before the first frame update
     void Start()

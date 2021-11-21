@@ -1425,7 +1425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicOriginal: {fileID: 8300000, guid: d3416157b2751044cbc887695b8c685c, type: 3}
-  TrashHuntMusic: {fileID: 8300000, guid: 5a4a998908fa46942ba644686a52d6e1, type: 3}
+  TrashHuntMusic: {fileID: 8300000, guid: 3a863e08dd14f9343b05a5c8490c785f, type: 3}
   OnClickSFX: {fileID: 8300000, guid: fb7710d4d8272444b9fc376ee2a4e98c, type: 3}
   OnHoverSFX: {fileID: 8300000, guid: 5016a1da16a968b45913430631a6c20c, type: 3}
   UIClose: {fileID: 8300000, guid: 742df099ccc11984f810f2c77094941b, type: 3}

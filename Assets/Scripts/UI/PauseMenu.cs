@@ -77,10 +77,6 @@ public class PauseMenu : MonoBehaviour
         lerpDir *= -1;
     }
 
-    public void LoadMenu()
-    {
-        Time.timeScale = 1f;
-    }
     public void QuitGame()
     {
         Application.Quit();
@@ -90,6 +86,7 @@ public class PauseMenu : MonoBehaviour
     public void backToMap()
     {
         Time.timeScale = 1f;
+        GameIsPaused = false;
         GameObject newLoadScreen = Instantiate(loadScreen, new Vector3(960, 540, 0), Quaternion.identity);
         DontDestroyOnLoad(newLoadScreen);
         SceneManager.LoadScene("Map");
