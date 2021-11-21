@@ -37,7 +37,6 @@ public class Audio : MonoBehaviour
     }
     public void TrashHunt()
     {
-        AudioManager.Instance.StopAllCoroutines();
-        AudioManager.Instance.PlayMusic(TrashHuntMusic);
+        AudioManager.Instance.PlayMusicWithFade(TrashHuntMusic);
     }
 }

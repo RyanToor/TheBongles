@@ -1,7 +1,8 @@
 using UnityEngine;
-
+using UnityEngine.Audio;
 public class MainMenu : MonoBehaviour
 {
+    public AudioMixer audioMixer;
     // Start is called before the first frame update
     public void StartGame()
     {
@@ -24,5 +25,9 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
         PlayerPrefs.SetInt("isLoaded", 1);
+    }
+    public void SetVolume (float volume)
+    {
+        audioMixer.SetFloat("masterVolume", volume);
     }
 }

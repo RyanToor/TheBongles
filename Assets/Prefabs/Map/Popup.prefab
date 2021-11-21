@@ -123,9 +123,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1626375397647656992}
-        m_TargetAssemblyTypeName: Popup, Assembly-CSharp
-        m_MethodName: LaunchMinigame
+      - m_Target: {fileID: 9023316475175859979}
+        m_TargetAssemblyTypeName: Audio, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -135,9 +135,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 9023316475175859979}
-        m_TargetAssemblyTypeName: Audio, Assembly-CSharp
-        m_MethodName: OnClick
+      - m_Target: {fileID: 1626375397647656992}
+        m_TargetAssemblyTypeName: Popup, Assembly-CSharp
+        m_MethodName: LaunchMinigame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6590586734425187269
 Transform:
   m_ObjectHideFlags: 0
@@ -231,15 +231,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75707672d1ad4a54ab9c115a1b7b87dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicOriginal: {fileID: 0}
-  TrashHuntMusic: {fileID: 0}
-  OnClickSFX: {fileID: 0}
-  OnHoverSFX: {fileID: 0}
-  UIClose: {fileID: 0}
-  UIConfirm: {fileID: 0}
-  UITwinkle: {fileID: 0}
-  UIHarp: {fileID: 0}
-  UISoundCrinckle: {fileID: 0}
+  musicOriginal: {fileID: 8300000, guid: d3416157b2751044cbc887695b8c685c, type: 3}
+  TrashHuntMusic: {fileID: 8300000, guid: 5a4a998908fa46942ba644686a52d6e1, type: 3}
+  OnClickSFX: {fileID: 8300000, guid: fb7710d4d8272444b9fc376ee2a4e98c, type: 3}
+  OnHoverSFX: {fileID: 8300000, guid: 5016a1da16a968b45913430631a6c20c, type: 3}
+  UIClose: {fileID: 8300000, guid: 742df099ccc11984f810f2c77094941b, type: 3}
+  UIConfirm: {fileID: 8300000, guid: 70359f05613255f4b8178635d48f8cf5, type: 3}
+  UITwinkle: {fileID: 8300000, guid: 343fcf3ff86517740aeb9abd866de7bf, type: 3}
+  UIHarp: {fileID: 8300000, guid: 784ba0abafa760941b929ccf63d85c10, type: 3}
+  UISoundCrinckle: {fileID: 8300000, guid: cf154d96d7c971247b3af95901334d90, type: 3}
 --- !u!1 &7608952872358234934
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,3 +412,4 @@ MonoBehaviour:
   minigameMarker: {fileID: 0}
   trashType: 
   loadScreen: {fileID: 8501071293954850938, guid: 94454062a6294e2408b01b9ef78015c1, type: 3}
+  TrashHuntMusic: {fileID: 8300000, guid: 5a4a998908fa46942ba644686a52d6e1, type: 3}
