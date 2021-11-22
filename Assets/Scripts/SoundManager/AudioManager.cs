@@ -36,6 +36,12 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        // Make sure there isn't already an AudioManager in the scene
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         // Make sure we don't destroy this instance
         DontDestroyOnLoad(this.gameObject);
 
@@ -101,6 +107,30 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip clip, float volume)
     {
         sfxSource.PlayOneShot(clip, volume);
+    }
+
+    public void PlaySFX(AudioClip clip, bool isOneShot)
+    {
+        sfxSource.volume = 0.5f;
+        if (isOneShot)
+        {
+            if (!sfxSource.isPlaying)
+            {
+                sfxSource.PlayOneShot(clip);
+            }
+        }
+    }
+
+    public void PlaySFX(AudioClip clip, float volume, bool isOneShot)
+    {
+        sfxSource.volume = 0.5f;
+        if (isOneShot)
+        {
+            if (!sfxSource.isPlaying)
+            {
+                sfxSource.PlayOneShot(clip, volume);
+            }
+        }
     }
 
     public void SetMusicVolume(float volume)

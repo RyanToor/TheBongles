@@ -33,7 +33,7 @@ public class Audio : MonoBehaviour
     }
     public void OnHover()
     {
-        AudioManager.Instance.PlaySFX(OnHoverSFX);
+        AudioManager.Instance.PlaySFX(OnHoverSFX, 0.2f, true);
     }
     public void TrashHunt()
     {

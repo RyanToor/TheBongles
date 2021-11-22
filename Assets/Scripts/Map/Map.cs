@@ -34,6 +34,7 @@ public class Map : MonoBehaviour
         UpdateRegionsUnlocked(PlayerPrefs.GetInt("maxRegion", 1));
         RespawnTrash();
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
+        Time.timeScale = 1;
     }
 
     private void Update()
