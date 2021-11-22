@@ -128,16 +128,16 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(string sound)
     {
         Sound newSound = FindSound(sFX, sound);
-        sfxSource.volume = newSound.volume;
-        sfxSource.pitch = newSound.pitch;
+        sfxSource.volume = RandomiseValue(newSound.volume, newSound.volume, PlayerPrefs.GetFloat("SFXVolume", 1));
+        sfxSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
         sfxSource.PlayOneShot(newSound.clip, newSound.volume);
     }
 
     public void PlaySFXComplete(string sound)
     {
         Sound newSound = FindSound(sFX, sound);
-        sfxSource.volume = newSound.volume;
-        sfxSource.pitch = newSound.pitch;
+        sfxSource.volume = RandomiseValue(newSound.volume, newSound.volume, PlayerPrefs.GetFloat("SFXVolume", 1));
+        sfxSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
         if (!sfxSource.isPlaying)
         {
             sfxSource.PlayOneShot(newSound.clip, newSound.volume);
@@ -152,23 +152,31 @@ public class AudioManager : MonoBehaviour
         tempObj.transform.position = location;
         AudioSource tempSource = tempObj.AddComponent<AudioSource>();
         tempSource.clip = newSound.clip;
-        tempSource.pitch = newSound.pitch;
-        tempSource.volume = newSound.volume;
+        tempSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
+        tempSource.volume = RandomiseValue(newSound.volume, newSound.volume, PlayerPrefs.GetFloat("SFXVolume", 1));
         tempSource.Play();
         Destroy(tempObj, newSound.clip.length);
         return tempSource;
     }
 
+    public void SetMasterVolume(float volume)
+    {
+        PlayerPrefs.SetFloat("MasterVolume", volume);
+        musicSource.volume = volume * PlayerPrefs.GetFloat("MusicVolume", 1);
+        musicSource2.volume = volume * PlayerPrefs.GetFloat("MusicVolume", 1);
+        sfxSource.volume = volume * PlayerPrefs.GetFloat("SFXVolume", 1);
+    }
+
     public void SetMusicVolume(float volume)
     {
         PlayerPrefs.SetFloat("MusicVolume", volume);
-        musicSource.volume = volume;
-        musicSource2.volume = volume;
+        musicSource.volume = volume * PlayerPrefs.GetFloat("MasterVolume", 1);
+        musicSource2.volume = volume * PlayerPrefs.GetFloat("MasterVolume", 1);
     }
     public void SetSFXVolume(float volume)
     {
         PlayerPrefs.SetFloat("SFXVolume", volume);
-        sfxSource.volume = volume;
+        sfxSource.volume = volume * PlayerPrefs.GetFloat("MasterVolume", 1);
     }
     public void ToggleMusic()
     {
@@ -182,6 +190,14 @@ public class AudioManager : MonoBehaviour
             musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
             musicSource2.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
         }
+    }
+    private float RandomiseValue(float baseValue, float deviation)
+    {
+        return baseValue + Random.Range(-deviation / 2, deviation / 2);
+    }
+    private float RandomiseValue(float baseValue, float deviation, float soundTypeVolume)
+    {
+        return PlayerPrefs.GetFloat("MasterVolume", 1) * PlayerPrefs.GetFloat("MasterVolume", 1) * soundTypeVolume * baseValue + Random.Range(-deviation / 2, deviation / 2);
     }
 }
 
@@ -199,7 +215,7 @@ public class Sound
     public float pitch = 1f;
     [Range(0f, 0.5f)]
     public float volumeDeviation = 0.1f;
-    [Range(0f, 0.5f)]
+    [Range(0f, 1f)]
     public float pitchDeviation = 0.5f;
 
     //Set if sound will loop

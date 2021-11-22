@@ -8637,7 +8637,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: Close
     clip: {fileID: 8300000, guid: 742df099ccc11984f810f2c77094941b, type: 3}
@@ -8662,10 +8662,10 @@ MonoBehaviour:
     loop: 0
   - name: Hover
     clip: {fileID: 8300000, guid: 5016a1da16a968b45913430631a6c20c, type: 3}
-    volume: 0.5
-    pitch: 1
+    volume: 0.3
+    pitch: 0.7
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.5
     loop: 0
   - name: Crinkle
     clip: {fileID: 8300000, guid: cf154d96d7c971247b3af95901334d90, type: 3}
