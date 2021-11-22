@@ -48,6 +48,8 @@ public class ChunkManager : MonoBehaviour
             {
                 Destroy(GameObject.Find("LoadingCanvas(Clone)"));
                 player.GetComponent<Player>().isloaded = true;
+
+                GameObject.Find("SoundManager").GetComponent<AudioManager>().PlayMusic("Trash Hunt");
                 isLoaded = true;
             }
         }

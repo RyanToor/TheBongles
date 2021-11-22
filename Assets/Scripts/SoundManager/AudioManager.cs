@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class AudioManager : MonoBehaviour
                 instance = FindObjectOfType<AudioManager>();
                 if (instance == null)
                 {
-                    instance = new GameObject("Spawned AudioManager", typeof(AudioManager)).GetComponent<AudioManager>();
+                    instance = new GameObject("SoundManager", typeof(AudioManager)).GetComponent<AudioManager>();
                 }
             }
             return instance;
@@ -27,9 +28,14 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region Fields
+    public List<Sound> music;
+    public List<Sound> sFX;
+
     private AudioSource musicSource;
     private AudioSource musicSource2;
     private AudioSource sfxSource;
+
+    private Slider volumeSlider;
 
     private bool firstMusicSourceIsPlaying;
     #endregion
@@ -43,103 +49,159 @@ public class AudioManager : MonoBehaviour
         }
 
         // Make sure we don't destroy this instance
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
 
         // Create audio sources, and save them as references
-        musicSource = this.gameObject.AddComponent<AudioSource>();
-        musicSource2 = this.gameObject.AddComponent<AudioSource>();
-        sfxSource = this.gameObject.AddComponent<AudioSource>();
+        musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource2 = gameObject.AddComponent<AudioSource>();
+        sfxSource = gameObject.AddComponent<AudioSource>();
 
-        // Loop the music tracks
-        musicSource.loop = true;
-        musicSource2.loop = true;
+        musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
+        musicSource2.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
+        sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume", 1);
+
+        volumeSlider = GameObject.Find("UI/MainMenu/Settings/Sounds").GetComponent<Slider>();
+        volumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
     }
 
-    public void PlayMusic(AudioClip musicClip)
+    private Sound FindSound(List<Sound> soundType, string name)
     {
-        // Determine which source is active
-        AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource : musicSource2;
-
-        activeSource.clip = musicClip;
-        activeSource.volume = 0.5f;
-        activeSource.Play();
-    }
-    public void PlayMusicWithFade(AudioClip newClip, float transitionTime = 1.0f)
-    {
-        // Determine which source is active
-        AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource : musicSource2;
-
-        StartCoroutine(UpdateMusicWithFade(activeSource, newClip, transitionTime));
-    }
-    private IEnumerator UpdateMusicWithFade(AudioSource activeSource, AudioClip newClip, float transitionTime)
-    {
-        // Make sure the source is active and playing
-        if (!activeSource.isPlaying)
-            activeSource.Play();
-
-        float t = 0.0f;
-
-        // Fade out
-        for (t = 0; t < transitionTime; t += Time.deltaTime)
+        foreach (Sound sound in soundType)
         {
-            activeSource.volume = (1 - (t / transitionTime));
-            yield return null;
+            if (sound.name == name)
+            {
+                return sound;
+            }
         }
+        Debug.Log("Sound not found in list : Have you selected the correct list, is the sound located there, and do the names match?");
+        return null;
+    }
 
-        activeSource.Stop();
-        activeSource.clip = newClip;
+    public void PlayMusic(string musicName)
+    {
+        musicSource.Stop();
+        musicSource2.Stop();
+
+        // Determine which source is active
+        AudioSource activeSource = musicSource;
+        firstMusicSourceIsPlaying = true;
+        Sound musicSound = FindSound(music, musicName);
+
+        activeSource.clip = musicSound.clip;
+        activeSource.pitch = musicSound.pitch;
+        activeSource.volume = musicSound.volume * PlayerPrefs.GetFloat("MusicVolume", 1);
+        activeSource.loop = musicSound.loop;
         activeSource.Play();
+    }
+    public void PlayMusicWithFade(string musicName, float transitionTime = 1.0f)
+    {
+        // Determine which source is active
+        AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource : musicSource2;
+        AudioSource innactiveSource = (firstMusicSourceIsPlaying) ? musicSource2 : musicSource;
 
-        // Fade in
-        for (t = 0; t < transitionTime; t += Time.deltaTime)
+        StartCoroutine(UpdateMusicWithFade(activeSource, innactiveSource, FindSound(music, musicName), transitionTime));
+    }
+    private IEnumerator UpdateMusicWithFade(AudioSource activeSource, AudioSource innactiveSource, Sound newSound, float transitionTime)
+    {
         {
-            activeSource.volume = (t / transitionTime);
-            yield return null;
+            float t = 0.0f;
+            innactiveSource.clip = newSound.clip;
+            innactiveSource.pitch = newSound.pitch;
+            innactiveSource.loop = newSound.loop;
+            float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1);
+
+            // Fade out
+            for (t = 0; t < transitionTime; t += Time.deltaTime)
+            {
+                if (activeSource.clip != null)
+                {
+                    activeSource.volume = (newSound.volume * musicVolume - (newSound.volume * musicVolume / transitionTime));
+                }
+                innactiveSource.volume = (t * newSound.volume * musicVolume / transitionTime);
+                yield return null;
+            }
+            innactiveSource.volume = newSound.volume * musicVolume;
+            firstMusicSourceIsPlaying = (innactiveSource == musicSource);
         }
     }
     
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(string sound)
     {
-        sfxSource.volume = 0.5f;
-        sfxSource.PlayOneShot(clip);
+        Sound newSound = FindSound(sFX, sound);
+        sfxSource.volume = newSound.volume;
+        sfxSource.pitch = newSound.pitch;
+        sfxSource.PlayOneShot(newSound.clip, newSound.volume);
     }
 
-    public void PlaySFX(AudioClip clip, float volume)
+    public void PlaySFXComplete(string sound)
     {
-        sfxSource.PlayOneShot(clip, volume);
-    }
-
-    public void PlaySFX(AudioClip clip, bool isOneShot)
-    {
-        sfxSource.volume = 0.5f;
-        if (isOneShot)
+        Sound newSound = FindSound(sFX, sound);
+        sfxSource.volume = newSound.volume;
+        sfxSource.pitch = newSound.pitch;
+        if (!sfxSource.isPlaying)
         {
-            if (!sfxSource.isPlaying)
-            {
-                sfxSource.PlayOneShot(clip);
-            }
+            sfxSource.PlayOneShot(newSound.clip, newSound.volume);
+            sfxSource.pitch = newSound.pitch;
         }
     }
 
-    public void PlaySFX(AudioClip clip, float volume, bool isOneShot)
+    public AudioSource PlaySFXAtLocation(string sound, Vector3 location)
     {
-        sfxSource.volume = 0.5f;
-        if (isOneShot)
-        {
-            if (!sfxSource.isPlaying)
-            {
-                sfxSource.PlayOneShot(clip, volume);
-            }
-        }
+        Sound newSound = FindSound(sFX, sound);
+        GameObject tempObj = new GameObject("TempAudio");
+        tempObj.transform.position = location;
+        AudioSource tempSource = tempObj.AddComponent<AudioSource>();
+        tempSource.clip = newSound.clip;
+        tempSource.pitch = newSound.pitch;
+        tempSource.volume = newSound.volume;
+        tempSource.Play();
+        Destroy(tempObj, newSound.clip.length);
+        return tempSource;
     }
 
     public void SetMusicVolume(float volume)
     {
+        PlayerPrefs.SetFloat("MusicVolume", volume);
         musicSource.volume = volume;
         musicSource2.volume = volume;
     }
-    public void SetSfxVolume(float volume)
+    public void SetSFXVolume(float volume)
     {
+        PlayerPrefs.SetFloat("SFXVolume", volume);
         sfxSource.volume = volume;
     }
+    public void ToggleMusic()
+    {
+        if (musicSource.volume != 0)
+        {
+            musicSource.volume = 0;
+            musicSource2.volume = 0;
+        }
+        else
+        {
+            musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
+            musicSource2.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
+        }
+    }
+}
+
+[System.Serializable]
+public class Sound
+{
+    //Initialise name and audioclip and source
+    public string name;
+    public AudioClip clip;
+
+    //Sliders and floats to affect sound playback
+    [Range(0f, 1f)]
+    public float volume = 1f;
+    [Range(0.5f, 1.5f)]
+    public float pitch = 1f;
+    [Range(0f, 0.5f)]
+    public float volumeDeviation = 0.1f;
+    [Range(0f, 0.5f)]
+    public float pitchDeviation = 0.5f;
+
+    //Set if sound will loop
+    public bool loop = false;
 }

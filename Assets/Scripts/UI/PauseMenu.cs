@@ -16,10 +16,12 @@ public class PauseMenu : MonoBehaviour
 
     public float lerpPos = 0, lerpDir = -1;
     private RectTransform rightPaneTransform;
+    private AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         rightPaneTransform = transform.Find("RightPanel").GetComponent<RectTransform>();
         rightPaneTransform.localPosition = closedPos;
     }
@@ -37,7 +39,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
-            AudioManager.Instance.PlaySFX(OnClickSFX);
+            audioManager.PlaySFX("Click");
         }
 
         if (lerpPos != Mathf.Clamp(lerpDir, 0, 1))

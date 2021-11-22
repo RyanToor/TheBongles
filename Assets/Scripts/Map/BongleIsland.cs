@@ -20,18 +20,20 @@ public class BongleIsland : MonoBehaviour
     private Vector3 lastPathPos, pathOffset;
     private FloatingObjects floatingObjectsScript;
     private Transform popupsContainer;
+    private AudioManager audioManager;
 
     // Start is called before the first frame update
 
     void Start()
     {
+        audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         popupsContainer = GameObject.Find("UI/PopupsContainer").transform;
         rb2D = GetComponent<Rigidbody2D>();
         pathOffset = new Vector3(0, pathYOffset, 0);
         floatingObjectsScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("posX", 0), PlayerPrefs.GetFloat("posY", 0), PlayerPrefs.GetFloat("posZ", 0));
         lastPathPos = transform.position;
-        AudioManager.Instance.PlayMusic(musicOriginal);
+        audioManager.PlayMusic("Map");
     }
 
     // Update is called once per frame

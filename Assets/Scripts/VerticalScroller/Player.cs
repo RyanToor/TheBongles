@@ -26,14 +26,11 @@ public class Player : MonoBehaviour
     private Vector2 moveDir;
     private Animator animator, bagAnimator;
     private TrashManager trashManager;
-
-    public void Awake()
-    {
-        AudioManager.Instance.PlayMusic(TrashHuntMusic);
-    }
+    private AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         gravity = rb.gravityScale;
@@ -207,10 +204,6 @@ public class Player : MonoBehaviour
             gameOver.SetActive(true);
             pauseMenu.SetActive(false);
             plastic.SetActive(false);
-        }
-        else
-        {
-            ;
         }
     }
 }

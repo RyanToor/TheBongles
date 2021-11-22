@@ -31,10 +31,19 @@ public class Popup : MonoBehaviour
                 GameObject newLoadScreen = Instantiate(loadScreen, new Vector3(960, 540, 0), Quaternion.identity);
                 DontDestroyOnLoad(newLoadScreen);
                 SceneManager.LoadScene("VerticalScroller");
-                AudioManager.Instance.PlayMusic(TrashHuntMusic);
                 break;
             default:
                 break;
         }
+    }
+
+    public void OnClick()
+    {
+        GameObject.Find("SoundManager").GetComponent<AudioInterface>().OnClick();
+    }
+
+    public void OnHover()
+    {
+        GameObject.Find("SoundManager").GetComponent<AudioInterface>().OnHover();
     }
 }
