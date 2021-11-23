@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class Player : MonoBehaviour
     public GameObject gameOver;
     public GameObject pauseMenu;
     public GameObject plastic;
-    public AudioClip TrashHuntMusic;
 
     [HideInInspector]
     public int collectedPlastic;
@@ -40,14 +40,13 @@ public class Player : MonoBehaviour
         rb.gravityScale = 0;
     }
 
-    public void Update()
-    {
-        Dead();
-    }
     // Update is called once per frame
     void LateUpdate()
     {
-        EditorUpdate();
+        if (Application.isEditor)
+        {
+            EditorUpdate();
+        }
         float moveUp = 0;
         if (isloaded)
         {
@@ -149,6 +148,10 @@ public class Player : MonoBehaviour
             if (trashInfo.isDangerous)
             {
                 health--;
+                if (health <= 0)
+                {
+                    Dead();
+                }
                 rb.AddForce((transform.position - collision.transform.position).normalized * knockbackForce, ForceMode2D.Impulse);
                 trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
                 StopAllCoroutines();
@@ -197,13 +200,12 @@ public class Player : MonoBehaviour
     }
     private void Dead()
     {
-        if (health <= 0)
-        {
-            isloaded = false;
-            Destroy(this);
-            gameOver.SetActive(true);
-            pauseMenu.SetActive(false);
-            plastic.SetActive(false);
-        }
+        isloaded = false;
+        Destroy(this);
+        gameOver.SetActive(true);
+        pauseMenu.SetActive(false);
+        plastic.SetActive(false);
+        gameOver.transform.Find("EndScreen/Score/Plastic").GetComponent<Text>().text = collectedPlastic.ToString();
+        gameOver.transform.Find("EndScreen/Score/Depth").GetComponent<Text>().text = Mathf.Abs(Mathf.Ceil(transform.position.y)).ToString();
     }
 }
