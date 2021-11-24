@@ -5,8 +5,6 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject loadScreen;
 
-    public AudioClip OnClickSFX;
-
     public static bool GameIsPaused = false;
     [Range(0, 1)]
     public float lerpSpeed;
