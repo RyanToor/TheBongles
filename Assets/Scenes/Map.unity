@@ -3280,7 +3280,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadScreen: {fileID: 8501071293954850938, guid: 94454062a6294e2408b01b9ef78015c1, type: 3}
-  OnClickSFX: {fileID: 8300000, guid: fb7710d4d8272444b9fc376ee2a4e98c, type: 3}
   lerpSpeed: 0.05
   closedPos: {x: 1175, y: 90, z: 0}
   openPos: {x: 650, y: 90, z: 0}
@@ -7021,8 +7020,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320, y: -240}
-  m_SizeDelta: {x: 640, y: 480}
+  m_AnchoredPosition: {x: 960, y: -540}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1473632721
 MonoBehaviour:

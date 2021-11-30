@@ -100,6 +100,24 @@ public class BongleIsland : MonoBehaviour
                 pathObjects.RemoveAt(0);
             }
         }
+        if (Input.GetAxis("Jump") > 0)
+        {
+            float minDist = 100f;
+            GameObject currentMinPopup = null;
+            foreach (KeyValuePair<GameObject, GameObject> popupEntry in activePopups)
+            {
+                float popupEntryDist = (popupEntry.Key.transform.position - transform.position).magnitude;
+                if (popupEntryDist < minDist)
+                {
+                    minDist = popupEntryDist;
+                    currentMinPopup = popupEntry.Value;
+                }
+            }
+            if (currentMinPopup != null)
+            {
+                currentMinPopup.GetComponent<Popup>().LaunchMinigame();
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

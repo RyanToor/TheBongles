@@ -27,9 +27,11 @@ public class Player : MonoBehaviour
     private Animator animator, bagAnimator;
     private TrashManager trashManager;
     private AudioManager audioManager;
+    private VerticalScrollerUI uI;
     // Start is called before the first frame update
     void Start()
     {
+        uI = GameObject.Find("Canvas").GetComponent<VerticalScrollerUI>();
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -190,6 +192,20 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("Map");
         }
+        if (Input.GetKeyDown(KeyCode.Minus))
+        {
+            health--;
+            if (health <= 0)
+            {
+                Dead();
+            }
+            StopAllCoroutines();
+            StartCoroutine(DamagePulse());
+        }
+        if (Input.GetKeyDown(KeyCode.Equals))
+        {
+            collectedPlastic += 20;
+        }
     }
 
     private void OnDestroy()
@@ -201,11 +217,11 @@ public class Player : MonoBehaviour
     private void Dead()
     {
         isloaded = false;
-        Destroy(this);
         gameOver.SetActive(true);
         pauseMenu.SetActive(false);
         plastic.SetActive(false);
         gameOver.transform.Find("EndScreen/Score/Plastic").GetComponent<Text>().text = collectedPlastic.ToString();
         gameOver.transform.Find("EndScreen/Score/Depth").GetComponent<Text>().text = Mathf.Abs(Mathf.Ceil(transform.position.y)).ToString();
+        uI.EndGame();
     }
 }
