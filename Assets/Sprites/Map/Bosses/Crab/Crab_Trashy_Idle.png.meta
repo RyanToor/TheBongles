@@ -1,31 +1,28 @@
 fileFormatVersion: 2
-guid: d70db7d5427146e4fafcb468f78c9fe7
+guid: ac4cea87a1827204ebf2d5f233e76ad4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5806897213843227908
-    second: Eel_Clean_Idle_0
+      213: -3949418263998506380
+    second: Crab_Trashy_Idle_0
   - first:
-      213: -7984511630379135844
-    second: Eel_Clean_Idle_1
+      213: 4245224747459287346
+    second: Crab_Trashy_Idle_1
   - first:
-      213: -2892218989116528305
-    second: Eel_Clean_Idle_2
+      213: -268533498568061170
+    second: Crab_Trashy_Idle_2
   - first:
-      213: 6866227506775265451
-    second: Eel_Clean_Idle_3
+      213: -7367906031466372404
+    second: Crab_Trashy_Idle_3
   - first:
-      213: 6340812237359910486
-    second: Eel_Clean_Idle_4
+      213: -8926250374765078101
+    second: Crab_Trashy_Idle_4
   - first:
-      213: 8484675121927159472
-    second: Eel_Clean_Idle_5
+      213: -5578486878276799397
+    second: Crab_Trashy_Idle_5
   - first:
-      213: 2675061390876888812
-    second: Eel_Clean_Idle_6
-  - first:
-      213: -3377877171177506539
-    second: Eel_Clean_Idle_7
+      213: -1840664876180491318
+    second: Crab_Trashy_Idle_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Eel_Clean_Idle_0
+      name: Crab_Trashy_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -147,20 +144,20 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      pivot: {x: 0.5, y: 0.24}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 405c45eef3e369050800000000000000
-      internalID: 5806897213843227908
+      spriteID: 47adde88309d039c0800000000000000
+      internalID: -3949418263998506380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_1
+      name: Crab_Trashy_Idle_1
       rect:
         serializedVersion: 2
         x: 1024
@@ -168,20 +165,20 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      pivot: {x: 0.5, y: 0.24}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9cc646d9f0513190800000000000000
-      internalID: -7984511630379135844
+      spriteID: 23912086a611aea30800000000000000
+      internalID: 4245224747459287346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_2
+      name: Crab_Trashy_Idle_2
       rect:
         serializedVersion: 2
         x: 2048
@@ -189,20 +186,20 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      pivot: {x: 0.5, y: 0.24}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f49e11d2726ccd7d0800000000000000
-      internalID: -2892218989116528305
+      spriteID: e0fce8fa43af54cf0800000000000000
+      internalID: -268533498568061170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_3
+      name: Crab_Trashy_Idle_3
       rect:
         serializedVersion: 2
         x: 3072
@@ -210,20 +207,20 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      pivot: {x: 0.5, y: 0.24}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba01b50e98db94f50800000000000000
-      internalID: 6866227506775265451
+      spriteID: cc22dff4080ffb990800000000000000
+      internalID: -7367906031466372404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_4
+      name: Crab_Trashy_Idle_4
       rect:
         serializedVersion: 2
         x: 0
@@ -231,20 +228,20 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      pivot: {x: 0.5, y: 0.24}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65e894382271ff750800000000000000
-      internalID: 6340812237359910486
+      spriteID: ba91ee3d3969f1480800000000000000
+      internalID: -8926250374765078101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_5
+      name: Crab_Trashy_Idle_5
       rect:
         serializedVersion: 2
         x: 1024
@@ -252,20 +249,20 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      pivot: {x: 0.5, y: 0.24}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0beff05d11f9fb570800000000000000
-      internalID: 8484675121927159472
+      spriteID: b5432248dbb3592b0800000000000000
+      internalID: -5578486878276799397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_6
+      name: Crab_Trashy_Idle_6
       rect:
         serializedVersion: 2
         x: 2048
@@ -273,35 +270,14 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      pivot: {x: 0.5, y: 0.24}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cee4493792abf1520800000000000000
-      internalID: 2675061390876888812
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_7
-      rect:
-        serializedVersion: 2
-        x: 3072
-        y: 2048
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 519301d0c9e5f11d0800000000000000
-      internalID: -3377877171177506539
+      spriteID: ac339b02c05a476e0800000000000000
+      internalID: -1840664876180491318
       vertices: []
       indices: 
       edges: []

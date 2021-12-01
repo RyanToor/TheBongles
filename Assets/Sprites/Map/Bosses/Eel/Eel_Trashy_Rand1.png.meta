@@ -1,31 +1,16 @@
 fileFormatVersion: 2
-guid: d70db7d5427146e4fafcb468f78c9fe7
+guid: 1335a3d369eea5f44aa29d357aa49deb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5806897213843227908
-    second: Eel_Clean_Idle_0
+      213: 2634072797154221726
+    second: Eel_Trashy_Rand1_0
   - first:
-      213: -7984511630379135844
-    second: Eel_Clean_Idle_1
+      213: 6387311698586078872
+    second: Eel_Trashy_Rand1_1
   - first:
-      213: -2892218989116528305
-    second: Eel_Clean_Idle_2
-  - first:
-      213: 6866227506775265451
-    second: Eel_Clean_Idle_3
-  - first:
-      213: 6340812237359910486
-    second: Eel_Clean_Idle_4
-  - first:
-      213: 8484675121927159472
-    second: Eel_Clean_Idle_5
-  - first:
-      213: 2675061390876888812
-    second: Eel_Clean_Idle_6
-  - first:
-      213: -3377877171177506539
-    second: Eel_Clean_Idle_7
+      213: -1472535565748158727
+    second: Eel_Trashy_Rand1_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,7 +124,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Eel_Clean_Idle_0
+      name: Eel_Trashy_Rand1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -147,20 +132,20 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      pivot: {x: 0.5, y: 0.47}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 405c45eef3e369050800000000000000
-      internalID: 5806897213843227908
+      spriteID: e9e95eac04b1e8420800000000000000
+      internalID: 2634072797154221726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_1
+      name: Eel_Trashy_Rand1_1
       rect:
         serializedVersion: 2
         x: 1024
@@ -168,62 +153,20 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      pivot: {x: 0.5, y: 0.47}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9cc646d9f0513190800000000000000
-      internalID: -7984511630379135844
+      spriteID: 89e8beff52a44a850800000000000000
+      internalID: 6387311698586078872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_2
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 3072
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f49e11d2726ccd7d0800000000000000
-      internalID: -2892218989116528305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_3
-      rect:
-        serializedVersion: 2
-        x: 3072
-        y: 3072
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba01b50e98db94f50800000000000000
-      internalID: 6866227506775265451
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_4
+      name: Eel_Trashy_Rand1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -231,77 +174,14 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      pivot: {x: 0.5, y: 0.47}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65e894382271ff750800000000000000
-      internalID: 6340812237359910486
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_5
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 2048
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0beff05d11f9fb570800000000000000
-      internalID: 8484675121927159472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_6
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 2048
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cee4493792abf1520800000000000000
-      internalID: 2675061390876888812
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_7
-      rect:
-        serializedVersion: 2
-        x: 3072
-        y: 2048
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 519301d0c9e5f11d0800000000000000
-      internalID: -3377877171177506539
+      spriteID: 9feb37c64b0809be0800000000000000
+      internalID: -1472535565748158727
       vertices: []
       indices: 
       edges: []

@@ -1,31 +1,43 @@
 fileFormatVersion: 2
-guid: d70db7d5427146e4fafcb468f78c9fe7
+guid: 9e4b58e49fdc2584dab8dfa4c7fa5b40
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5806897213843227908
-    second: Eel_Clean_Idle_0
+      213: -6311089849043271796
+    second: DefaultRipples_0
   - first:
-      213: -7984511630379135844
-    second: Eel_Clean_Idle_1
+      213: 4837331610354569101
+    second: DefaultRipples_1
   - first:
-      213: -2892218989116528305
-    second: Eel_Clean_Idle_2
+      213: -6137639428946927103
+    second: DefaultRipples_2
   - first:
-      213: 6866227506775265451
-    second: Eel_Clean_Idle_3
+      213: 331950653096925416
+    second: DefaultRipples_3
   - first:
-      213: 6340812237359910486
-    second: Eel_Clean_Idle_4
+      213: 4267350470511742086
+    second: DefaultRipples_4
   - first:
-      213: 8484675121927159472
-    second: Eel_Clean_Idle_5
+      213: 5884101955832487114
+    second: DefaultRipples_5
   - first:
-      213: 2675061390876888812
-    second: Eel_Clean_Idle_6
+      213: -4045546743484444315
+    second: DefaultRipples_6
   - first:
-      213: -3377877171177506539
-    second: Eel_Clean_Idle_7
+      213: 2633228797114271563
+    second: DefaultRipples_7
+  - first:
+      213: 696580806544915413
+    second: DefaultRipples_8
+  - first:
+      213: 714802663332481394
+    second: DefaultRipples_9
+  - first:
+      213: -2433718533539747064
+    second: DefaultRipples_10
+  - first:
+      213: -2854510263423762252
+    second: DefaultRipples_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,169 +151,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Eel_Clean_Idle_0
+      name: DefaultRipples_0
       rect:
         serializedVersion: 2
         x: 0
         y: 3072
         width: 1024
         height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 405c45eef3e369050800000000000000
-      internalID: 5806897213843227908
+      spriteID: c8fb33a48318a68a0800000000000000
+      internalID: -6311089849043271796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_1
+      name: DefaultRipples_1
       rect:
         serializedVersion: 2
         x: 1024
         y: 3072
         width: 1024
         height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9cc646d9f0513190800000000000000
-      internalID: -7984511630379135844
+      spriteID: d8fc3f76877a12340800000000000000
+      internalID: 4837331610354569101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_2
+      name: DefaultRipples_2
       rect:
         serializedVersion: 2
         x: 2048
         y: 3072
         width: 1024
         height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f49e11d2726ccd7d0800000000000000
-      internalID: -2892218989116528305
+      spriteID: 102ef2e3579b2daa0800000000000000
+      internalID: -6137639428946927103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_3
+      name: DefaultRipples_3
       rect:
         serializedVersion: 2
         x: 3072
         y: 3072
         width: 1024
         height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba01b50e98db94f50800000000000000
-      internalID: 6866227506775265451
+      spriteID: 8e81dc83c535b9400800000000000000
+      internalID: 331950653096925416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_4
+      name: DefaultRipples_4
       rect:
         serializedVersion: 2
         x: 0
         y: 2048
         width: 1024
         height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65e894382271ff750800000000000000
-      internalID: 6340812237359910486
+      spriteID: 68cc2feb4aca83b30800000000000000
+      internalID: 4267350470511742086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_5
+      name: DefaultRipples_5
       rect:
         serializedVersion: 2
         x: 1024
         y: 2048
         width: 1024
         height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0beff05d11f9fb570800000000000000
-      internalID: 8484675121927159472
+      spriteID: acc9393bd8788a150800000000000000
+      internalID: 5884101955832487114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_6
+      name: DefaultRipples_6
       rect:
         serializedVersion: 2
         x: 2048
         y: 2048
         width: 1024
         height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cee4493792abf1520800000000000000
-      internalID: 2675061390876888812
+      spriteID: 5611f58cba45bd7c0800000000000000
+      internalID: -4045546743484444315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Clean_Idle_7
+      name: DefaultRipples_7
       rect:
         serializedVersion: 2
         x: 3072
         y: 2048
         width: 1024
         height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.2}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 519301d0c9e5f11d0800000000000000
-      internalID: -3377877171177506539
+      spriteID: b474358b3ab1b8420800000000000000
+      internalID: 2633228797114271563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DefaultRipples_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dbf67b8d80caa900800000000000000
+      internalID: 696580806544915413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DefaultRipples_9
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2798f603c3d7be900800000000000000
+      internalID: 714802663332481394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DefaultRipples_10
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80b241d53e1b93ed0800000000000000
+      internalID: -2433718533539747064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DefaultRipples_11
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b08bec0a0eb268d0800000000000000
+      internalID: -2854510263423762252
       vertices: []
       indices: 
       edges: []

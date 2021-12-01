@@ -432,8 +432,8 @@ MonoBehaviour:
     bossController: {fileID: 9100000, guid: d274efafb27ab274c9dedcc1c6e3de80, type: 2}
     rippleController: {fileID: 9100000, guid: 80d8a98ac1d8c8447a10c85c26948d25, type: 2}
   - name: Crab
-    bossController: {fileID: 0}
-    rippleController: {fileID: 0}
+    bossController: {fileID: 9100000, guid: a50bc35d9e434fb4a885d1a55b300e42, type: 2}
+    rippleController: {fileID: 9100000, guid: 6ab993aaa536cad4b94348f45a89623b, type: 2}
   - name: Whale
     bossController: {fileID: 9100000, guid: 527a355eb9101e24586d27e7156a6555, type: 2}
-    rippleController: {fileID: 9100000, guid: 80d8a98ac1d8c8447a10c85c26948d25, type: 2}
+    rippleController: {fileID: 9100000, guid: 6ab993aaa536cad4b94348f45a89623b, type: 2}
