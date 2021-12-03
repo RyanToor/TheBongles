@@ -3,7 +3,7 @@ using UnityEngine;
 public class AudioInterface : MonoBehaviour
 {
     AudioManager audioManager;
-    private void Start()
+    private void Awake()
     {
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
     }
@@ -18,7 +18,7 @@ public class AudioInterface : MonoBehaviour
     }
     public void SetMusicVolume(float volume)
     {
-        audioManager.SetMusicVolume(volume);
+        GameObject.Find("SoundManager").GetComponent<AudioManager>().SetMusicVolume(volume);
     }
     public void ToggleMusic()
     {

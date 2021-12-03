@@ -70,6 +70,7 @@ public class Map : MonoBehaviour
         if (region > PlayerPrefs.GetInt("maxRegion", 1))
         {
             PlayerPrefs.SetInt("maxRegion", region);
+            GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().UpdateStoryPanel();
         }
     }
 
@@ -85,8 +86,21 @@ public class Map : MonoBehaviour
             {
                 PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(PlayerPrefs.GetInt("maxRegion", 1) - 1, 1, 3));
             }
+            GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().UpdateStoryPanel();
             print(PlayerPrefs.GetInt("maxRegion", 1));
             RespawnTrash();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            PlayerPrefs.SetInt("StoryStarted", Mathf.Abs(PlayerPrefs.GetInt("StoryStarted", 1) - 1));
+            if (PlayerPrefs.GetInt("StoryStarted", 0) == 1)
+            {
+                print("Story Started");
+            }
+            else
+            {
+                print("Story Not Started");
+            }
         }
     }
 

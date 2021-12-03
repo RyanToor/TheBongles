@@ -7,9 +7,11 @@ public class MapCamera : MonoBehaviour
     private Vector3 offset, desiredOffset;
     [Range(0.0f, 10.0f)]
     public float offsetLerpSpeed;
+    private UpgradeMenu upgradeMenu;
     // Start is called before the first frame update
     void Start()
     {
+        upgradeMenu = GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>();
         desiredOffset = (gameObject.transform.position - target.transform.position).normalized * startOffset;
         offset = desiredOffset;
     }
@@ -37,5 +39,14 @@ public class MapCamera : MonoBehaviour
             }
         }
         transform.position = targetPos + offset;
+        if (desiredOffset.magnitude == minZoom && PlayerPrefs.GetInt("StoryStarted", 0) == 1 && upgradeMenu.lerpDir == -1)
+        {
+            upgradeMenu.FlipLerpDir();
+        }
+    }
+
+    public void ZoomToIsland()
+    {
+        desiredOffset -= (minZoom - desiredOffset.magnitude) * transform.forward;
     }
 }
