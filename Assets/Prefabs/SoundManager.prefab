@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4321469445173243482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4321469445173243483}
+  - component: {fileID: 4321469445173243460}
+  - component: {fileID: 4321469445173243461}
+  m_Layer: 5
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4321469445173243483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321469445173243482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1331.9882, y: 647.572, z: -1508.983}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4321469445173243460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321469445173243482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73045aa973059cc4490e3fff12711efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music:
+  - name: Map
+    clip: {fileID: 8300000, guid: d3416157b2751044cbc887695b8c685c, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Trash Hunt
+    clip: {fileID: 8300000, guid: 3a863e08dd14f9343b05a5c8490c785f, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  sFX:
+  - name: Click
+    clip: {fileID: 8300000, guid: fb7710d4d8272444b9fc376ee2a4e98c, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0.2
+    loop: 0
+  - name: Close
+    clip: {fileID: 8300000, guid: 742df099ccc11984f810f2c77094941b, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Confirm
+    clip: {fileID: 8300000, guid: 70359f05613255f4b8178635d48f8cf5, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Harp
+    clip: {fileID: 8300000, guid: 784ba0abafa760941b929ccf63d85c10, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Hover
+    clip: {fileID: 8300000, guid: 5016a1da16a968b45913430631a6c20c, type: 3}
+    volume: 0.3
+    pitch: 0.7
+    volumeDeviation: 0
+    pitchDeviation: 0.5
+    loop: 0
+  - name: Crinkle
+    clip: {fileID: 8300000, guid: cf154d96d7c971247b3af95901334d90, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Twinkle
+    clip: {fileID: 8300000, guid: 343fcf3ff86517740aeb9abd866de7bf, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+--- !u!114 &4321469445173243461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321469445173243482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8c695a82b26a940b9f0288db44b4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

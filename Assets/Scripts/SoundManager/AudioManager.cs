@@ -5,27 +5,7 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    #region Static Instance
-    private static AudioManager instance;
-    public static AudioManager Instance {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<AudioManager>();
-                if (instance == null)
-                {
-                    instance = new GameObject("SoundManager", typeof(AudioManager)).GetComponent<AudioManager>();
-                }
-            }
-            return instance;
-        }
-        private set
-        {
-            instance = value;
-        }
-    }
-    #endregion
+    public static AudioManager instance { get; private set;}
 
     #region Fields
     public List<Sound> music;
@@ -43,13 +23,17 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         // Make sure there isn't already an AudioManager in the scene
-        if (instance != null && instance != this)
+        if (instance == null)
+        {
+            instance = this;
+            // Make sure we don't destroy this instance
+            DontDestroyOnLoad(gameObject);
+        }
+        else
         {
             Destroy(gameObject);
         }
 
-        // Make sure we don't destroy this instance
-        DontDestroyOnLoad(gameObject);
 
         // Create audio sources, and save them as references
         musicSource = gameObject.AddComponent<AudioSource>();

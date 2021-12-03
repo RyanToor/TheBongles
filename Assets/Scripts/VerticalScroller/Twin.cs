@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bag : MonoBehaviour
+public class Twin : MonoBehaviour
 {
     public TrashManager trashManager;
     public Player player;
@@ -10,13 +10,13 @@ public class Bag : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -11,10 +11,9 @@ using System;
 
 public class ChunkManager : MonoBehaviour
 {
-    public TrashManager trashManagerScript;
     public Tilemap tilemap;
     public TileBase ruleTile;
-    public GameObject player, chunk;
+    public GameObject player;
     public int chunkBuffer, width, height, maxChasmDeviation, maxIrregularity, rowsConvertedPerFrame, tilesPlacedPerFrame;
     public float chasmStartWidth, chasmMinWidth, chasmWidthAsymptoteLevel, chasmFrequency, irregularityFrequency, waterSurfaceScrollSpeed;
 
@@ -23,6 +22,7 @@ public class ChunkManager : MonoBehaviour
     private List<Vector3Int[]> chunkMatrices = new List<Vector3Int[]>();
     private Transform[] waterSurfaces;
     private bool isLoaded;
+    private TrashManager trashManagerScript;
 
     // Start is called before the first frame update
     void Start()

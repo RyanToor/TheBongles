@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,10 +7,11 @@ public class Player : MonoBehaviour
 {
     public int health;
     public float moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce, maxBagDistance, damagePulseCount, damagePulseSpeed;
-    public GameObject splash, bag;
+    public GameObject splash, twin;
     public GameObject gameOver;
     public GameObject pauseMenu;
     public GameObject plastic;
+    public float tailSegmentLength = 0.1f, tailWidth = 0.1f, tailGravity = 9.8f, underwaterTailGravity = 0.1f, jointLerpSpeed;
 
     [HideInInspector]
     public int collectedPlastic;
@@ -24,22 +24,31 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float controlMultiplier, moveRight = 1, prevFlipDir = 1, flipDir = 1, spriteDir = 1;
     private Vector2 moveDir;
-    private Animator animator, bagAnimator;
+    private Animator animator, twinAnimator;
     private TrashManager trashManager;
     private AudioManager audioManager;
     private VerticalScrollerUI uI;
+    private Vector3[] joints, lerpJoints;
+    private LineRenderer lineRenderer;
+    private bool[] dry;
+    private float[] dryTime, jointLerpSpeeds;
+    private Transform tailOffset;
+    private Vector3 twinPrevPos;
+
     // Start is called before the first frame update
     void Start()
     {
+        tailOffset = transform.Find("TailOffset");
         uI = GameObject.Find("Canvas").GetComponent<VerticalScrollerUI>();
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         gravity = rb.gravityScale;
         animator = GetComponent<Animator>();
-        bagAnimator = GameObject.Find("Bag").GetComponent<Animator>();
+        twinAnimator = GameObject.Find("Twin").GetComponent<Animator>();
         trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
         rb.gravityScale = 0;
+        InitialiseTail();
     }
 
     // Update is called once per frame
@@ -68,7 +77,7 @@ public class Player : MonoBehaviour
         rb.AddForce(rb.mass * moveDir * moveForce * controlMultiplier * Time.deltaTime, ForceMode2D.Force);
         rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxSpeed);
         Animate();
-        MoveBag();
+        UpdateTail();
     }
 
     private void CheckPhysics()
@@ -95,23 +104,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void MoveBag()
-    {
-        if ((bag.transform.position - transform.position).magnitude != maxBagDistance)
-        {
-            Vector3 bagOffset = (bag.transform.position - transform.position).normalized * maxBagDistance;
-            bag.transform.position = transform.position + bagOffset;
-            bag.transform.rotation = Quaternion.LookRotation(Vector3.forward, bagOffset);
-        }
-    }
-
     private void Animate()
     {
-        transform.rotation = Quaternion.LerpUnclamped(Quaternion.identity, Quaternion.AngleAxis(90, Vector3.forward), spriteDir * rb.velocity.y / maxSpeed);
+        transform.rotation = Quaternion.SlerpUnclamped(Quaternion.identity, Quaternion.AngleAxis(90, Vector3.forward), spriteDir * rb.velocity.y / maxSpeed);
+        print((spriteDir * rb.velocity.y / maxSpeed).ToString());
         animator.SetFloat("Speed", rb.velocity.magnitude);
+        twinAnimator.SetFloat("Speed", rb.velocity.magnitude);
         float currentSpeed = Mathf.Clamp(rb.velocity.magnitude / maxSpeed, 0.5f, 1);
         animator.speed = currentSpeed;
-        bagAnimator.speed = currentSpeed;
+        twinAnimator.speed = currentSpeed;
         if (prevFlipDir != flipDir)
         {
             animator.SetTrigger("Flip");
@@ -130,6 +131,69 @@ public class Player : MonoBehaviour
         {
             spriteDir = 1;
         }
+    }
+
+    private void InitialiseTail()
+    {
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        joints = new Vector3[Mathf.CeilToInt((twin.transform.position - transform.position).magnitude / tailSegmentLength)];
+        joints[0] = transform.position + (tailOffset.position - transform.position) * spriteDir;
+        dry = new bool[joints.Length];
+        dryTime = new float[joints.Length];
+        lineRenderer.positionCount = joints.Length;
+        for (int i = 1; i < joints.Length; i++)
+        {
+            joints[i] = transform.position + (twin.transform.position - transform.position).normalized * (i * tailSegmentLength);
+        }
+        lineRenderer.SetPositions(joints);
+        lineRenderer.startWidth = tailWidth;
+        lineRenderer.endWidth = tailWidth;
+        lerpJoints = new Vector3[joints.Length];
+        jointLerpSpeeds = new float[joints.Length];
+    }
+
+    private void UpdateTail()
+    {
+        for (int i = 1; i < joints.Length; i++)
+        {
+            if (joints[i].y > 0)
+            {
+                if (!dry[i])
+                {
+                    dry[i] = true;
+                    dryTime[i] = Time.time;
+                }
+            }
+            else
+            {
+                if (dry[i])
+                {
+                    dry[i] = false;
+                }
+            }
+        }
+        for (int i = 1; i < joints.Length; i++)
+        {
+            if (dry[i])
+            {
+                joints[i].y -= tailGravity * (Time.time - dryTime[i]) * Time.deltaTime;
+            }
+            else
+            {
+                joints[i].y -= underwaterTailGravity * Time.deltaTime;
+            }
+        }
+        twinPrevPos = lerpJoints[lerpJoints.Length - 1];
+        joints[0] = transform.position + (tailOffset.position - transform.position) * spriteDir;
+        lerpJoints[0] = joints[0];
+        for (int i = 1; i < joints.Length; i++)
+        {
+            joints[i] += (tailSegmentLength - (joints[i] - joints[i - 1]).magnitude) * (joints[i] - joints[i - 1]).normalized;
+            lerpJoints[i] = Vector3.Lerp(lerpJoints[i], joints[i], Mathf.Lerp(100, jointLerpSpeed, (float)i / jointLerpSpeeds.Length) * Time.deltaTime);
+        }
+        lineRenderer.SetPositions(lerpJoints);
+        twin.transform.position = lerpJoints[lerpJoints.Length - 1];
+        twin.transform.rotation = /*Quaternion.Slerp(Quaternion.identity, */Quaternion.LookRotation(Vector3.forward, lerpJoints[lerpJoints.Length - 1] - lerpJoints[lerpJoints.Length - 2])/*, (lerpJoints[lerpJoints.Length - 1] - twinPrevPos).magnitude / 0.01f)*/;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
