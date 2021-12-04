@@ -6,7 +6,7 @@ public class VerticalScrollerUI : MonoBehaviour
 {
     public float trashScore, scoreBarRate, starPulsePeriod, starPulseMaxScale;
     public int[] starValues;
-    public GameObject[] stars;
+    public GameObject[] stars, healthObjects;
 
     private Player player;
     private Text plasticCounterText, depthCounterText, scoreText;
@@ -37,6 +37,10 @@ public class VerticalScrollerUI : MonoBehaviour
         plasticCounterText.text = plasticCount.ToString();
         depthCount = Mathf.Abs(Mathf.Clamp(Mathf.Ceil(player.transform.position.y), -Mathf.Infinity, 0));
         depthCounterText.text = depthCount.ToString();
+        for (int i = 0; i < healthObjects.Length; i++)
+        {
+            healthObjects[i].SetActive(i < player.health);
+        }
     }
 
     public void EndGame()

@@ -27,7 +27,6 @@ public class Region : MonoBehaviour
             minigameSpawnCount = minigameSpawnsCount;
         }
         regionCollider = GetComponent<Collider2D>();
-        Unlock(isUnlocked);
         isStoryCleared = PlayerPrefs.GetInt("StoryCleared", 0) == 1;
         boss = bossEnum.ToString();
         foreach (NameController bossType in bossControllers)

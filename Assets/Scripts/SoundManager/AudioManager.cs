@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
 
 
@@ -44,8 +46,11 @@ public class AudioManager : MonoBehaviour
         musicSource2.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
         sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume", 1);
 
-        volumeSlider = GameObject.Find("UI/MainMenu/Settings/Sounds").GetComponent<Slider>();
-        volumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        if (SceneManager.GetActiveScene().name == "Map")
+        {
+            volumeSlider = GameObject.Find("UI/MainMenu/Settings/Sounds").GetComponent<Slider>();
+            volumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        }
     }
 
     private Sound FindSound(List<Sound> soundType, string name)

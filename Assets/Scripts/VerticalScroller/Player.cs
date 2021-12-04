@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public int health;
+    public SpriteRenderer[] spriteRenderers;
+    public int maxHealth;
     public float moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce, maxBagDistance, damagePulseCount, damagePulseSpeed;
     public GameObject splash, twin;
     public GameObject gameOver;
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public int collectedPlastic;
     [HideInInspector]
-    public float gravity;
+    public float gravity, health = 3;
     [HideInInspector]
     public bool isloaded;
 
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
     private bool[] dry;
     private float[] dryTime, jointLerpSpeeds;
     private Transform tailOffset;
-    private Vector3 twinPrevPos;
+    //private Vector3 twinPrevPos;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +50,18 @@ public class Player : MonoBehaviour
         trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
         rb.gravityScale = 0;
         InitialiseTail();
+        for (int i = 0; i < 3; i++)
+        {
+            if (PlayerPrefs.GetInt("upgrade0" + i, 0) == 1)
+            {
+                if (transform.Find("Upgrade" + (i + 1)) != null)
+                {
+                    transform.Find("Upgrade" + (i + 1)).gameObject.SetActive(true);
+                    Upgrade(i + 1);
+                }
+            }
+        }
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -107,7 +120,6 @@ public class Player : MonoBehaviour
     private void Animate()
     {
         transform.rotation = Quaternion.SlerpUnclamped(Quaternion.identity, Quaternion.AngleAxis(90, Vector3.forward), spriteDir * rb.velocity.y / maxSpeed);
-        print((spriteDir * rb.velocity.y / maxSpeed).ToString());
         animator.SetFloat("Speed", rb.velocity.magnitude);
         twinAnimator.SetFloat("Speed", rb.velocity.magnitude);
         float currentSpeed = Mathf.Clamp(rb.velocity.magnitude / maxSpeed, 0.5f, 1);
@@ -123,6 +135,10 @@ public class Player : MonoBehaviour
     public void Flip()
     {
         spriteRenderer.flipX = !spriteRenderer.flipX;
+        foreach (SpriteRenderer upgradeSpriteRenderer in spriteRenderers)
+        {
+            upgradeSpriteRenderer.flipX = spriteRenderer.flipX;
+        }
         if (spriteRenderer.flipX)
         {
             spriteDir = -1;
@@ -183,7 +199,7 @@ public class Player : MonoBehaviour
                 joints[i].y -= underwaterTailGravity * Time.deltaTime;
             }
         }
-        twinPrevPos = lerpJoints[lerpJoints.Length - 1];
+        //twinPrevPos = lerpJoints[lerpJoints.Length - 1];
         joints[0] = transform.position + (tailOffset.position - transform.position) * spriteDir;
         lerpJoints[0] = joints[0];
         for (int i = 1; i < joints.Length; i++)
@@ -194,6 +210,21 @@ public class Player : MonoBehaviour
         lineRenderer.SetPositions(lerpJoints);
         twin.transform.position = lerpJoints[lerpJoints.Length - 1];
         twin.transform.rotation = /*Quaternion.Slerp(Quaternion.identity, */Quaternion.LookRotation(Vector3.forward, lerpJoints[lerpJoints.Length - 1] - lerpJoints[lerpJoints.Length - 2])/*, (lerpJoints[lerpJoints.Length - 1] - twinPrevPos).magnitude / 0.01f)*/;
+    }
+
+    private void Upgrade(int upgradeNumber)
+    {
+        switch (upgradeNumber)
+        {
+            case 1:
+                maxHealth += 2;
+                break;
+            case 2:
+                maxHealth += 1;
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
