@@ -65,12 +65,17 @@ public class Map : MonoBehaviour
         floatingObjectsScript.objectsToAdd.Add(newTrash);
     }
 
-    private void UpdateRegionsUnlocked(int region)
+    public void UpdateRegionsUnlocked(int region)
     {
         if (region > PlayerPrefs.GetInt("maxRegion", 1))
         {
             PlayerPrefs.SetInt("maxRegion", region);
-            GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().UpdateStoryPanel();
+            GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().RefreshStoryPanel();
+        }
+        foreach (Transform regionTransform in GameObject.Find("BossRegions").transform)
+        {
+            Region regionScript = regionTransform.GetComponent<Region>();
+            regionScript.Unlock(PlayerPrefs.GetInt("maxRegion", 1) >= regionScript.regionOrder);
         }
     }
 
@@ -78,15 +83,19 @@ public class Map : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.Minus))
         {
+            int currentRegion = PlayerPrefs.GetInt("maxRegion", 1);
             if (Input.GetKeyDown(KeyCode.Equals))
             {
-                PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(PlayerPrefs.GetInt("maxRegion", 1) + 1, 1, 3));
+                PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(currentRegion + 1, 1, 3));
+                currentRegion++;
             }
             else if (Input.GetKeyDown(KeyCode.Minus))
             {
-                PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(PlayerPrefs.GetInt("maxRegion", 1) - 1, 1, 3));
+                PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(currentRegion - 1, 1, 3));
+                currentRegion--;
             }
-            GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().UpdateStoryPanel();
+            UpdateRegionsUnlocked(currentRegion);
+            GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().RefreshStoryPanel();
             print(PlayerPrefs.GetInt("maxRegion", 1));
             RespawnTrash();
         }

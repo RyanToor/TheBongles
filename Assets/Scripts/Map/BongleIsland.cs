@@ -128,8 +128,8 @@ public class BongleIsland : MonoBehaviour
             print("Collected " + trashType);
             PlayerPrefs.SetInt(trashType, PlayerPrefs.GetInt(trashType, 0) + 1);
             floatingObjectsScript.objectsToRemove.Add(collision.gameObject);
-            upgradeMenu.GetComponent<UpgradeMenu>().UpdateReadouts();
-            upgradeMenu.GetComponent<UpgradeMenu>().UpdateStoryPanel();
+            upgradeMenu.GetComponent<UpgradeMenu>().RefreshReadouts();
+            upgradeMenu.GetComponent<UpgradeMenu>().RefreshStoryPanel();
         }
         else if (collision.CompareTag("Minigame"))
         {

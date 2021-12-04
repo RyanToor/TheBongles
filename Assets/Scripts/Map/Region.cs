@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Region : MonoBehaviour
 {
+    public float regionOrder;
     public bool isUnlocked;
     public int minigameSpawnCount;
     public GameObject minigameMarker;

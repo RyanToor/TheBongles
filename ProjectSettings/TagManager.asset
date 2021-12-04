@@ -8,6 +8,7 @@ TagManager:
   - RandomTrash
   - Region
   - Minigame
+  - UpgradeButton
   layers:
   - Default
   - TransparentFX
