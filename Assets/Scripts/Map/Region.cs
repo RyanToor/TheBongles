@@ -18,7 +18,7 @@ public class Region : MonoBehaviour
     private FloatingObjects floatingObjectScript;
     private Animator bossAnimator, rippleAnimator;
 
-    private void Start()
+    private void Awake()
     {
         floatingObjectScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
         int minigameSpawnsCount = transform.Find("MinigameSpawns").childCount;

@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private bool[] dry;
     private float[] dryTime, jointLerpSpeeds;
     private Transform tailOffset;
+    private bool isFlipping;
     //private Vector3 twinPrevPos;
 
     // Start is called before the first frame update
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
         {
             CheckPhysics();
             moveRight = Input.GetAxis("Horizontal");
+            moveUp = Input.GetAxis("Vertical");
             if (moveRight < 0)
             {
                 flipDir = -1;
@@ -84,7 +86,6 @@ public class Player : MonoBehaviour
             {
                 flipDir = 1;
             }
-            moveUp = Input.GetAxis("Vertical");
         }
         moveDir = new Vector3(moveRight, moveUp).normalized;
         rb.AddForce(rb.mass * moveDir * moveForce * controlMultiplier * Time.deltaTime, ForceMode2D.Force);
@@ -125,16 +126,17 @@ public class Player : MonoBehaviour
         float currentSpeed = Mathf.Clamp(rb.velocity.magnitude / maxSpeed, 0.5f, 1);
         animator.speed = currentSpeed;
         twinAnimator.speed = currentSpeed;
-        if (prevFlipDir != flipDir)
+        if (spriteRenderer.flipX != (flipDir != 1) && !isFlipping)
         {
             animator.SetTrigger("Flip");
+            isFlipping = true;
         }
         prevFlipDir = flipDir;
     }
 
     public void Flip()
     {
-        spriteRenderer.flipX = !spriteRenderer.flipX;
+        spriteRenderer.flipX = !(moveRight == 1);
         foreach (SpriteRenderer upgradeSpriteRenderer in spriteRenderers)
         {
             upgradeSpriteRenderer.flipX = spriteRenderer.flipX;
@@ -147,6 +149,7 @@ public class Player : MonoBehaviour
         {
             spriteDir = 1;
         }
+        isFlipping = false;
     }
 
     private void InitialiseTail()

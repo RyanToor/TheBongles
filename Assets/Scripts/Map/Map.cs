@@ -74,7 +74,7 @@ public class Map : MonoBehaviour
         }
         foreach (Transform regionTransform in GameObject.Find("BossRegions").transform)
         {
-            Region regionScript = regionTransform.GetComponent<Region>();
+            Region regionScript = regionTransform.gameObject.GetComponent<Region>();
             regionScript.Unlock(PlayerPrefs.GetInt("maxRegion", 1) >= regionScript.regionOrder);
         }
     }

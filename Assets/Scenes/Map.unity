@@ -2041,7 +2041,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -2053,8 +2053,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1647074544}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 1017704878}
+        m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
         m_Arguments:
@@ -2144,7 +2144,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -2805,7 +2805,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -2872,7 +2872,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -4720,7 +4720,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -4811,7 +4811,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -5124,7 +5124,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -5215,7 +5215,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -5913,7 +5913,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -6004,7 +6004,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -6189,6 +6189,49 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5786167024573015595, guid: e0cf1ad815481c346bfd5fa666aecb8e, type: 3}
   m_PrefabInstance: {fileID: 1259414454}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1017704877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1017704879}
+  - component: {fileID: 1017704878}
+  m_Layer: 0
+  m_Name: SoundInterface
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1017704878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017704877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8c695a82b26a940b9f0288db44b4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1017704879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017704877}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1452.3235, y: 671.5643, z: -524.5464}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1020971745
 GameObject:
   m_ObjectHideFlags: 0
@@ -6332,7 +6375,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -6344,8 +6387,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1647074544}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 1017704878}
+        m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
         m_Arguments:
@@ -6455,7 +6498,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -6878,7 +6921,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -6946,7 +6989,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -7188,7 +7231,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -7244,7 +7287,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -8604,7 +8647,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 0
@@ -9106,7 +9149,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -9185,7 +9228,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -9342,7 +9385,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -9445,7 +9488,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -10033,7 +10076,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -10045,8 +10088,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1647074544}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 1017704878}
+        m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
         m_Arguments:
@@ -10136,7 +10179,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -11289,7 +11332,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -11380,7 +11423,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -12102,7 +12145,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -12114,8 +12157,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1647074544}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 1017704878}
+        m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
         m_Arguments:
@@ -12205,7 +12248,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -12247,28 +12290,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1647074544 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
-  m_PrefabInstance: {fileID: 4321469443531944628}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73045aa973059cc4490e3fff12711efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1647074545 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4321469445173243461, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
-  m_PrefabInstance: {fileID: 4321469443531944628}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8c695a82b26a940b9f0288db44b4db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1647153105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14054,7 +14075,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1920374335
 PrefabInstance:
@@ -15383,7 +15404,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647074545}
+      - m_Target: {fileID: 1017704878}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -15462,7 +15483,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1647074545}
+        - m_Target: {fileID: 1017704878}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -15568,7 +15589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4321469445173243483, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4321469445173243483, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
       propertyPath: m_LocalPosition.x
