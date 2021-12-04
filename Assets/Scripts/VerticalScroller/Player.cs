@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     private bool[] dry;
     private float[] dryTime, jointLerpSpeeds;
     private Transform tailOffset;
-    private bool isFlipping;
+    bool isFlipping;
     //private Vector3 twinPrevPos;
 
     // Start is called before the first frame update
@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
 
     public void Flip()
     {
-        spriteRenderer.flipX = !(moveRight == 1);
+        spriteRenderer.flipX = (flipDir != 1);
         foreach (SpriteRenderer upgradeSpriteRenderer in spriteRenderers)
         {
             upgradeSpriteRenderer.flipX = spriteRenderer.flipX;

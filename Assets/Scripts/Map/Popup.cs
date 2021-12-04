@@ -39,11 +39,11 @@ public class Popup : MonoBehaviour
 
     public void OnClick()
     {
-        GameObject.Find("SoundManager").GetComponent<AudioInterface>().OnClick();
+        GameObject.Find("SoundInterface").GetComponent<AudioInterface>().OnClick();
     }
 
     public void OnHover()
     {
-        GameObject.Find("SoundManager").GetComponent<AudioInterface>().OnHover();
+        GameObject.Find("SoundInterface").GetComponent<AudioInterface>().OnHover();
     }
 }

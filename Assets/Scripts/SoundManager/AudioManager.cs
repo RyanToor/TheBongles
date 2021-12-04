@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Map")
         {
-            volumeSlider = GameObject.Find("UI/MainMenu/Settings/Sounds").GetComponent<Slider>();
+            volumeSlider = GameObject.Find("UI/MainMenu/Settings/Music_Sound").GetComponent<Slider>();
             volumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
         }
     }
