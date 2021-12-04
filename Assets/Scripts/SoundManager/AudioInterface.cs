@@ -20,6 +20,10 @@ public class AudioInterface : MonoBehaviour
     {
         GameObject.Find("SoundManager").GetComponent<AudioManager>().SetMusicVolume(volume);
     }
+    public void SetSFXVolume(float volume)
+    {
+        GameObject.Find("SoundManager").GetComponent<AudioManager>().SetSFXVolume(volume);
+    }
     public void ToggleMusic()
     {
         audioManager.ToggleMusic();

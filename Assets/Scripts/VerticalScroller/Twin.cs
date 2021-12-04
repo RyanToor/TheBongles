@@ -7,9 +7,12 @@ public class Twin : MonoBehaviour
     public TrashManager trashManager;
     public Player player;
 
+    private AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
     }
 
@@ -36,5 +39,6 @@ public class Twin : MonoBehaviour
             player.collectedPlastic++;
             trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
         }
+        audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position);
     }
 }
