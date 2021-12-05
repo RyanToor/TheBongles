@@ -2434,7 +2434,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Quit Game? \n(Current progress will be lost)"
+  m_Text: 'Quit Game? '
 --- !u!1 &4168531507058469079
 GameObject:
   m_ObjectHideFlags: 0

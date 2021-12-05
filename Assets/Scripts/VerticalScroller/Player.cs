@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
         rb.gravityScale = 0;
         InitialiseTail();
+        health = maxHealth;
         for (int i = 0; i < 3; i++)
         {
             if (PlayerPrefs.GetInt("upgrade0" + i, 0) == 1)
@@ -62,7 +63,6 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -220,13 +220,21 @@ public class Player : MonoBehaviour
         switch (upgradeNumber)
         {
             case 1:
-                maxHealth += 2;
+                health += 2;
                 break;
             case 2:
-                maxHealth += 1;
+                health += 1;
                 break;
             default:
                 break;
+        }
+    }
+
+    private void RemoveArmour(int armourIndex)
+    {
+        if (transform.Find("Upgrade" + (armourIndex)) != null)
+        {
+            transform.Find("Upgrade" + (armourIndex)).gameObject.SetActive(false);
         }
     }
 
@@ -263,6 +271,14 @@ public class Player : MonoBehaviour
                 if (health <= 0)
                 {
                     Dead();
+                }
+                if (health < maxHealth + 3)
+                {
+                    RemoveArmour(2);
+                    if (health < maxHealth + 1)
+                    {
+                        RemoveArmour(1);
+                    }
                 }
                 audioManager.PlaySFXAtLocation("Hit1", collision.transform.position);
                 rb.AddForce((transform.position - collision.transform.position).normalized * knockbackForce, ForceMode2D.Impulse);
@@ -324,6 +340,9 @@ public class Player : MonoBehaviour
     }
     private void Dead()
     {
+        rb.bodyType = RigidbodyType2D.Static;
+        GetComponent<Collider2D>().enabled = false;
+        twin.GetComponent<Collider2D>().enabled = false;
         audioManager.PlaySFX("GameOver");
         isloaded = false;
         gameOver.SetActive(true);

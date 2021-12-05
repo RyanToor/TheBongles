@@ -24,7 +24,7 @@ public class FollowCameraVertical : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            colourPlates = new SpriteRenderer[2] { transform.Find("Background").GetComponent<SpriteRenderer>(), transform.Find("Midground").GetComponent<SpriteRenderer>()};
+            colourPlates = new SpriteRenderer[3] { transform.Find("Background").GetComponent<SpriteRenderer>(), transform.Find("Midground").GetComponent<SpriteRenderer>(), transform.Find("Foreground").GetComponent<SpriteRenderer>() };
             string backgroundPlateName = "Background_" + (i + 1).ToString();
             Transform backgroundPlateTransform = transform.Find(backgroundPlateName);
             backgroundPlateContainers[i] = backgroundPlateTransform;
