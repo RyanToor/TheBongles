@@ -13,7 +13,7 @@ public class Region : MonoBehaviour
 
     private Collider2D regionCollider;
     private List<Transform> minigameSpawnPoints = new List<Transform>();
-    private bool isStoryCleared;
+    private bool isStoryCleared, isBossMet;
     private string boss;
     private FloatingObjects floatingObjectScript;
     private Animator bossAnimator, rippleAnimator;
@@ -27,7 +27,8 @@ public class Region : MonoBehaviour
             minigameSpawnCount = minigameSpawnsCount;
         }
         regionCollider = GetComponent<Collider2D>();
-        isStoryCleared = PlayerPrefs.GetInt("StoryCleared", 0) == 1;
+        isStoryCleared = PlayerPrefs.GetInt("maxRegion", 0) >= regionOrder;
+        isBossMet = PlayerPrefs.GetInt("storyPoint", 0) / 2 >= regionOrder;
         boss = bossEnum.ToString();
         foreach (NameController bossType in bossControllers)
         {
@@ -38,7 +39,7 @@ public class Region : MonoBehaviour
                 bossAnimator.runtimeAnimatorController = bossType.bossController;
                 rippleAnimator.runtimeAnimatorController = bossType.rippleController;
             }
-        }
+        }        
     }
 
     private void Update()
@@ -48,7 +49,7 @@ public class Region : MonoBehaviour
         {
             EditorUpdate();
         }
-        bossAnimator.SetBool("isClean", isStoryCleared);
+        bossAnimator.SetBool("isClean", isBossMet);
         rippleAnimator.SetBool("isClean", isStoryCleared);
     }
 
@@ -56,7 +57,8 @@ public class Region : MonoBehaviour
     {
         isUnlocked = state;
         regionCollider.enabled = !state;
-        if (isUnlocked)
+        print(bossEnum.ToString() + " Story Point : " + PlayerPrefs.GetInt("storyPoint", 0));
+        if (isUnlocked && PlayerPrefs.GetInt("storyPoint", 0) / 2 >= regionOrder)
         {
             SpawnMinigames();
         }

@@ -230,6 +230,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    IEnumerator DamagePulse()
+    {
+        float duration = 0;
+        while (duration < damagePulseCount * 2 * Mathf.PI)
+        {
+            spriteRenderer.color = Color.Lerp(Color.white, Color.red, (Mathf.Sin(duration) + 0.5f) / 2);
+            duration += Time.deltaTime * damagePulseSpeed;
+            yield return null;
+        }
+        spriteRenderer.color = Color.white;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("RandomTrash"))
@@ -264,23 +276,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator DamagePulse()
-    {
-        float duration = 0;
-        while (duration < damagePulseCount * 2 * Mathf.PI)
-        {
-            spriteRenderer.color = Color.Lerp(Color.white, Color.red, (Mathf.Sin(duration) + 0.5f) / 2);
-            duration += Time.deltaTime * damagePulseSpeed;
-            yield return null;
-        }
-        spriteRenderer.color = Color.white;
-    }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Region"))
         {
             Instantiate(splash, new Vector3(transform.position.x, 0.75f, 0), Quaternion.identity);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            PlayerPrefs.SetInt("storyPoint", 2);
+            Dead();
         }
     }
 

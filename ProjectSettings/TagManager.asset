@@ -9,6 +9,7 @@ TagManager:
   - Region
   - Minigame
   - UpgradeButton
+  - Boss
   layers:
   - Default
   - TransparentFX

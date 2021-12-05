@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 0a7409b060a00e54097199fd263ca3e3, type: 2}
+  videoManager: {fileID: 6708069970092528578}
 --- !u!1 &14940754
 GameObject:
   m_ObjectHideFlags: 0
@@ -9749,7 +9750,9 @@ MonoBehaviour:
   pathContainer: {fileID: 1642853308}
   popupPrefab: {fileID: 7855191233411730984, guid: b25a42a666a3858468c8f53eecd11f52, type: 3}
   upgradeMenu: {fileID: 1473632719}
+  loadScreen: {fileID: 8501071293954850938, guid: 94454062a6294e2408b01b9ef78015c1, type: 3}
   musicOriginal: {fileID: 8300000, guid: d3416157b2751044cbc887695b8c685c, type: 3}
+  videoManager: {fileID: 6708069970092528578}
   isInputEnabled: 0
   pathObjects: []
 --- !u!70 &1169432137
@@ -12434,6 +12437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e77707e1f64dc4992a614ab9e37a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  videoManager: {fileID: 6708069970092528578}
   lerpSpeed: 0.05
   lerpDir: -1
   closedPos: {x: 0, y: 0, z: 0}
@@ -18823,6 +18827,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testVideo: {fileID: 32900000, guid: 94d4478a9250dd444867cd1d706e3985, type: 3}
+  storyVideos:
+  - {fileID: 32900000, guid: 94d4478a9250dd444867cd1d706e3985, type: 3}
+  - {fileID: 32900000, guid: dbdba0186a1fa624b907f898b1a01616, type: 3}
+  - {fileID: 32900000, guid: 906274bc60c926941962f825ae594f7a, type: 3}
 --- !u!222 &6708069970092528579
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -1,11 +1,20 @@
 using UnityEngine;
 using UnityEngine.Audio;
+
 public class MainMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
+    public VideoManager videoManager;
+
     // Start is called before the first frame update
     public void StartGame()
     {
+        if (PlayerPrefs.GetInt("storyPoint", 0) == 0)
+        {
+            videoManager.PlayVideo(videoManager.storyVideos[0]);
+            PlayerPrefs.SetInt("storyPoint", 1);
+            print("Story Point : " + PlayerPrefs.GetInt("storyPoint", 0));
+        }
         PlayerPrefs.SetInt("isLoaded", 0);
         GameObject.Find("CloudCover").SetActive(false);
         BongleIsland bongleIsland = GameObject.Find("BongleIsland").GetComponent<BongleIsland>();

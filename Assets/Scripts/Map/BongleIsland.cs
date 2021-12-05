@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BongleIsland : MonoBehaviour
 {
     public float acceleration, pathSeparation, pathYOffset;
     public int pathLength;
-    public GameObject pathObject, pathContainer, popupPrefab, upgradeMenu;
+    public GameObject pathObject, pathContainer, popupPrefab, upgradeMenu, loadScreen;
     public AudioClip musicOriginal;
+    public VideoManager videoManager;
 
     [HideInInspector]
     public bool isInputEnabled = false;
@@ -33,7 +35,6 @@ public class BongleIsland : MonoBehaviour
         floatingObjectsScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("posX", 0), PlayerPrefs.GetFloat("posY", 0), PlayerPrefs.GetFloat("posZ", 0));
         lastPathPos = transform.position;
-        audioManager.PlayMusic("Map");
     }
 
     // Update is called once per frame
@@ -146,6 +147,27 @@ public class BongleIsland : MonoBehaviour
         {
             Destroy(activePopups[collision.gameObject]);
             activePopups.Remove(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            switch (collision.transform.parent.name)
+            {
+                case "Eel":
+                    if (PlayerPrefs.GetInt("storyPoint", 1) == 1)
+                    {
+                        GameObject newLoadScreen = Instantiate(loadScreen, new Vector3(960, 540, 0), Quaternion.identity);
+                        DontDestroyOnLoad(newLoadScreen);
+                        SceneManager.LoadScene("VerticalScroller");
+                    }
+                    break;
+                default:
+                    break;
+            }
+            print("Story Point : " + PlayerPrefs.GetInt("storyPoint", 0));
         }
     }
 

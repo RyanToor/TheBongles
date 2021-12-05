@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class UpgradeMenu : MonoBehaviour
 {
+    public VideoManager videoManager;
     public float lerpSpeed, lerpDir = -1;
     public Vector3 closedPos, openPos;
     public Color upgradeAvailableColour, upgradeActiveColour;
@@ -113,6 +114,10 @@ public class UpgradeMenu : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                upgradeCosts[currentTabIndex].upgrades[i].button.color = Color.white;
+            }
         }
     }
 
@@ -144,7 +149,7 @@ public class UpgradeMenu : MonoBehaviour
 
     public void FlipLerpDir()
     {
-        if (PlayerPrefs.GetInt("StoryStarted", 0) == 1)
+        if (PlayerPrefs.GetInt("storyPoint", 0) > 1)
         {
             print("Upgrade Menu Dir Flipped");
             lerpDir *= -1;
@@ -195,20 +200,20 @@ public class UpgradeMenu : MonoBehaviour
         bool canAffordUpgrade = true;
         for (int i = 0; i < upgradeCost.Length; i++)
         {
-            print(upgradeCost[i].type.ToString() + " : " + PlayerPrefs.GetInt(upgradeCost[i].type.ToString(), 0) + " / " + upgradeCost[i].cost);
+            //print(upgradeCost[i].type.ToString() + " : " + PlayerPrefs.GetInt(upgradeCost[i].type.ToString(), 0) + " / " + upgradeCost[i].cost);
             if (PlayerPrefs.GetInt(upgradeCost[i].type.ToString(), 0) < upgradeCost[i].cost)
             {
                 canAffordUpgrade = false;
             }
         }
-        print(canAffordUpgrade);
+        //print(canAffordUpgrade);
         return canAffordUpgrade;
     }
 
     public void StoryUpgradeButton()
     {
         bool affordable = true;
-        UpgradeCost[] prices = storyUpgradeCosts[PlayerPrefs.GetInt("maxRegion", 0) - 1].upgradeCosts;
+        UpgradeCost[] prices = storyUpgradeCosts[PlayerPrefs.GetInt("maxRegion", 1) - 1].upgradeCosts;
         for (int i = 0; i < prices.Length; i++)
         {
             print(prices[i].type.ToString() + " : " + PlayerPrefs.GetInt(prices[i].type.ToString(), 0) + " / " + prices[i].cost);
@@ -223,10 +228,11 @@ public class UpgradeMenu : MonoBehaviour
             {
                 PlayerPrefs.SetInt(prices[i].type.ToString(), PlayerPrefs.GetInt(prices[i].type.ToString(), 0) - prices[i].cost);
             }
+            videoManager.PlayVideo(videoManager.storyVideos[PlayerPrefs.GetInt("maxRegion", 1) * 2]);
             PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(PlayerPrefs.GetInt("maxRegion", 1) + 1, 1, 3));
+            GameObject.Find("Map").GetComponent<Map>().UpdateRegionsUnlocked(PlayerPrefs.GetInt("maxRegion", 1));
             RefreshStoryPanel();
             RefreshReadouts();
-            GameObject.Find("Map").GetComponent<Map>().UpdateRegionsUnlocked(PlayerPrefs.GetInt("maxRegion", 1));
             print("Unlocked Next Region");
         }
     }

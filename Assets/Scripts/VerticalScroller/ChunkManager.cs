@@ -27,6 +27,10 @@ public class ChunkManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!(PlayerPrefs.GetInt("storyPoint", 0) < 2))
+        {
+            GameObject.Find("Eel").SetActive(false);
+        }
         waterSurfaces = new Transform[2] { GameObject.Find("WaterSurface_1").transform, GameObject.Find("WaterSurface_2").transform };
         trashManagerScript = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
         if (width - chasmStartWidth - maxChasmDeviation - 2 * maxIrregularity < 1)

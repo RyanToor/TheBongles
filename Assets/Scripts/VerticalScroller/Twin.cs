@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Twin : MonoBehaviour
@@ -38,7 +36,7 @@ public class Twin : MonoBehaviour
         {
             player.collectedPlastic++;
             trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
+            audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position);
         }
-        audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position);
     }
 }

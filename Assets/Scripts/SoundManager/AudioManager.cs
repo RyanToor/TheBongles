@@ -12,10 +12,11 @@ public class AudioManager : MonoBehaviour
     public List<Sound> music;
     public List<Sound> sFX;
 
-    private AudioSource musicSource;
-    private AudioSource musicSource2;
+    [HideInInspector]
+    public AudioSource musicSource;
+    public AudioSource musicSource2;
+    
     private AudioSource sfxSource;
-
     private Slider volumeSlider;
 
     private bool firstMusicSourceIsPlaying;

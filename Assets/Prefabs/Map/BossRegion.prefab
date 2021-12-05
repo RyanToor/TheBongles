@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 8161915668416156828}
   m_Layer: 8
   m_Name: BossIsland
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -422,6 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48590847ef70b824f92f4aabcc1c52f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regionOrder: 0
   isUnlocked: 1
   minigameSpawnCount: 2
   minigameMarker: {fileID: 5340263978038331420, guid: d4e42f8411db8e041998318216fd89c7, type: 3}

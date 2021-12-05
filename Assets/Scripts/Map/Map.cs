@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class Map : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class Map : MonoBehaviour
         RespawnTrash();
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         Time.timeScale = 1;
+        GameObject.Find("SoundManager").GetComponent<AudioManager>().PlayMusic("Map");
     }
 
     private void Update()
@@ -67,6 +69,7 @@ public class Map : MonoBehaviour
 
     public void UpdateRegionsUnlocked(int region)
     {
+        print("Max Region : " + region);
         if (region > PlayerPrefs.GetInt("maxRegion", 1))
         {
             PlayerPrefs.SetInt("maxRegion", region);
@@ -87,16 +90,14 @@ public class Map : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Equals))
             {
                 PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(currentRegion + 1, 1, 3));
-                currentRegion++;
             }
             else if (Input.GetKeyDown(KeyCode.Minus))
             {
                 PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(currentRegion - 1, 1, 3));
-                currentRegion--;
             }
-            UpdateRegionsUnlocked(currentRegion);
+            print("Max Region : " + PlayerPrefs.GetInt("maxRegion", 1));
+            UpdateRegionsUnlocked(PlayerPrefs.GetInt("maxRegion", 1));
             GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().RefreshStoryPanel();
-            print(PlayerPrefs.GetInt("maxRegion", 1));
             RespawnTrash();
         }
         if (Input.GetKeyDown(KeyCode.M))
