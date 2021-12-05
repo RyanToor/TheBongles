@@ -264,6 +264,7 @@ public class Player : MonoBehaviour
                 {
                     Dead();
                 }
+                audioManager.PlaySFXAtLocation("Hit1", collision.transform.position);
                 rb.AddForce((transform.position - collision.transform.position).normalized * knockbackForce, ForceMode2D.Impulse);
                 trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
                 StopAllCoroutines();
@@ -323,6 +324,7 @@ public class Player : MonoBehaviour
     }
     private void Dead()
     {
+        audioManager.PlaySFX("GameOver");
         isloaded = false;
         gameOver.SetActive(true);
         pauseMenu.SetActive(false);

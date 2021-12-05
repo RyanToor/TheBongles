@@ -131,6 +131,7 @@ public class BongleIsland : MonoBehaviour
             floatingObjectsScript.objectsToRemove.Add(collision.gameObject);
             upgradeMenu.GetComponent<UpgradeMenu>().RefreshReadouts();
             upgradeMenu.GetComponent<UpgradeMenu>().RefreshStoryPanel();
+            audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position);
         }
         else if (collision.CompareTag("Minigame"))
         {

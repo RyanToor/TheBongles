@@ -20,6 +20,7 @@ public class UpgradeMenu : MonoBehaviour
     [HideInInspector]
     public int currentlyVisibleUpgrades;
 
+    private AudioManager audioManager;
     private float lerpPos = 0;
     private string[] trashNames = new string[] { "Plastic", "Metal", "Glass" };
     private int currentTabIndex;
@@ -27,6 +28,7 @@ public class UpgradeMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         currentTabIndex = 0;
         RefreshReadouts();
         RefreshStoryPanel();
@@ -191,6 +193,7 @@ public class UpgradeMenu : MonoBehaviour
             }
             PlayerPrefs.SetInt("upgrade" + upgradeIndicies[0] + upgradeIndicies[1], 1);
             RefreshReadouts();
+            audioManager.PlaySFX("Twinkle");
         }
     }
 
@@ -228,6 +231,7 @@ public class UpgradeMenu : MonoBehaviour
             {
                 PlayerPrefs.SetInt(prices[i].type.ToString(), PlayerPrefs.GetInt(prices[i].type.ToString(), 0) - prices[i].cost);
             }
+            audioManager.PlaySFX("Twinkle");
             videoManager.PlayVideo(videoManager.storyVideos[PlayerPrefs.GetInt("maxRegion", 1) * 2]);
             PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(PlayerPrefs.GetInt("maxRegion", 1) + 1, 1, 3));
             GameObject.Find("Map").GetComponent<Map>().UpdateRegionsUnlocked(PlayerPrefs.GetInt("maxRegion", 1));

@@ -108,3 +108,33 @@ MonoBehaviour:
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 0
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 1882d25b0cea51940ade7eac7bfef2d8, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Hit1
+    clip: {fileID: 8300000, guid: 94a9acdfec5b6fe43b77cf83de369d8e, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Hit2
+    clip: {fileID: 8300000, guid: 26751a9808efcf04ab2cac71c41481fa, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Hit3
+    clip: {fileID: 8300000, guid: 182036ca8ea60cf438a2b5303c58e7fa, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  musicSource: {fileID: 0}
+  musicSource2: {fileID: 0}

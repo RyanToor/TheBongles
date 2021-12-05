@@ -26,7 +26,7 @@ public class VerticalScrollerUI : MonoBehaviour
         }
         player = GameObject.Find("Player").GetComponent<Player>();
         plasticCounterText = transform.Find("ReadoutPanel/Plastic").GetComponent<Text>();
-        depthCounterText = transform.Find("ReadoutPanel/Depth").GetComponent<Text>();
+        depthCounterText = transform.Find("ReadoutPanel/DepthPanel/Depth").GetComponent<Text>();
         print(plasticCounterText.text);
     }
 
