@@ -4,15 +4,17 @@ public class MapCamera : MonoBehaviour
 {
     public GameObject target;
     public float minZoom, maxZoom, startOffset, targetHeightOffset;
-    private Vector3 offset, desiredOffset;
+    public Vector3 desiredOffset;
     [Range(0.0f, 10.0f)]
     public float offsetLerpSpeed;
+
+    private Vector3 offset;
     private UpgradeMenu upgradeMenu;
     // Start is called before the first frame update
     void Start()
     {
         upgradeMenu = GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>();
-        desiredOffset = (gameObject.transform.position - target.transform.position).normalized * startOffset;
+        desiredOffset = desiredOffset.normalized * startOffset;
         offset = desiredOffset;
     }
 

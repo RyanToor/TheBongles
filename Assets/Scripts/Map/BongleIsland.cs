@@ -5,24 +5,27 @@ using UnityEngine.UI;
 
 public class BongleIsland : MonoBehaviour
 {
-    public float acceleration, pathSeparation, pathYOffset;
+    public float acceleration, pathSeparation, pathYOffset, animationSpeedDivisor;
     public int pathLength;
     public GameObject pathObject, pathContainer, popupPrefab, upgradeMenu, loadScreen;
     public AudioClip musicOriginal;
     public VideoManager videoManager;
+    public Animator sailAnimator, islandAnimator;
+    public GameObject[] flipObjects;
 
     [HideInInspector]
     public bool isInputEnabled = false;
     [HideInInspector]
     public Dictionary<GameObject, GameObject> activePopups = new Dictionary<GameObject, GameObject>();
-
+    [HideInInspector]
     public List<GameObject> pathObjects = new List<GameObject>();
+
     private Rigidbody2D rb2D;
-    private bool isMovingRight;
     private Vector3 lastPathPos, pathOffset;
     private FloatingObjects floatingObjectsScript;
     private Transform popupsContainer;
     private AudioManager audioManager;
+    private bool prevFlipX;
 
     // Start is called before the first frame update
 
@@ -44,32 +47,42 @@ public class BongleIsland : MonoBehaviour
         {
             EditorUpdate();
         }
-        float moveRight = 0;
-        float moveUp = 0;
-        if (isInputEnabled)
-        {
-            moveRight = Input.GetAxis("Horizontal");
-            moveUp = Input.GetAxis("Vertical");
-        }
+        Vector2 moveDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if (moveRight > 0)
-        {
-            isMovingRight = true;
-        }
-        else if (moveRight < 0)
-        {
-            isMovingRight = false;
-        }
+        rb2D.AddForce(100 * acceleration * Time.deltaTime * moveDir.normalized);
 
-        rb2D.AddForce(new Vector2(moveRight * acceleration, moveUp * acceleration) * Time.deltaTime * 100);
-
-        if (!isMovingRight)
+        if (Mathf.Abs(moveDir.x) > 0)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            sailAnimator.gameObject.GetComponent<SpriteRenderer>().flipX = (moveDir.x > 0);
+            if (sailAnimator.gameObject.GetComponent<SpriteRenderer>().flipX != prevFlipX && sailAnimator.GetBool("MoveVertical") == false)
+            {
+                sailAnimator.SetBool("Flip", true);
+            }
+        }
+        prevFlipX = sailAnimator.gameObject.GetComponent<SpriteRenderer>().flipX;
+        if (moveDir.magnitude <= 1 && moveDir.magnitude > 0)
+        {
+            if (Mathf.Abs(moveDir.y) > 0 && Mathf.Abs(moveDir.y) > Mathf.Abs(moveDir.x))
+            {
+                sailAnimator.SetBool("MoveVertical", true);
+                if (moveDir.y != 0)
+                {
+                    sailAnimator.SetBool("MoveNorth", moveDir.y > 0);
+                }
+            }
+            else
+            {
+                sailAnimator.SetBool("MoveVertical", false);
+            }
+        }
+        Vector3 tempPos = sailAnimator.gameObject.transform.localPosition;
+        if (sailAnimator.GetBool("MoveVertical") == true && sailAnimator.GetBool("MoveNorth") == false)
+        {
+            sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, 0, tempPos.z);
         }
         else
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, 0.045f, tempPos.z);
         }
 
         if (Input.GetKeyDown(KeyCode.BackQuote))
@@ -81,6 +94,8 @@ public class BongleIsland : MonoBehaviour
 
     private void LateUpdate()
     {
+        islandAnimator.speed = rb2D.velocity.magnitude / animationSpeedDivisor + 1;
+        sailAnimator.SetFloat("Speed", rb2D.velocity.magnitude);
         Vector3 latestVector = transform.position + pathOffset - lastPathPos;
         if (latestVector.magnitude > pathSeparation)
         {

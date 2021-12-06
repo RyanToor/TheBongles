@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private float controlMultiplier, moveRight = 1, prevFlipDir = 1, flipDir = 1, spriteDir = 1;
+    private float controlMultiplier, moveRight = 1, flipDir = 1, spriteDir = 1;
     private Vector2 moveDir;
     private Animator animator, twinAnimator;
     private TrashManager trashManager;
@@ -131,7 +131,6 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Flip");
             isFlipping = true;
         }
-        prevFlipDir = flipDir;
     }
 
     public void Flip()
