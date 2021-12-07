@@ -14,12 +14,13 @@ public class AudioManager : MonoBehaviour
 
     [HideInInspector]
     public AudioSource musicSource;
+    [HideInInspector]
     public AudioSource musicSource2;
     
     private AudioSource sfxSource;
     private Slider volumeSlider;
 
-    private bool firstMusicSourceIsPlaying;
+    private bool firstMusicSourceIsPlaying = true;
     #endregion
 
     private void Awake()
@@ -43,14 +44,14 @@ public class AudioManager : MonoBehaviour
         musicSource2 = gameObject.AddComponent<AudioSource>();
         sfxSource = gameObject.AddComponent<AudioSource>();
 
-        musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
-        musicSource2.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
+        musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
+        musicSource2.volume = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
         sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume", 1);
 
         if (SceneManager.GetActiveScene().name == "Map")
         {
             volumeSlider = GameObject.Find("UI/MainMenu/Settings/Music_Sound").GetComponent<Slider>();
-            volumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+            volumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
         }
     }
 
@@ -67,14 +68,19 @@ public class AudioManager : MonoBehaviour
         return null;
     }
 
-    public void PlayMusic(string musicName)
+    public void PlayMusic(string musicName, bool isFading = false)
     {
-        musicSource.Stop();
-        musicSource2.Stop();
-
         // Determine which source is active
-        AudioSource activeSource = musicSource;
-        firstMusicSourceIsPlaying = true;
+        AudioSource activeSource;
+        if (isFading)
+        {
+            activeSource = firstMusicSourceIsPlaying ? musicSource2 : musicSource;
+        }
+        else
+        {
+            activeSource = firstMusicSourceIsPlaying ? musicSource : musicSource2;
+        }
+        firstMusicSourceIsPlaying = activeSource == musicSource;
         Sound musicSound = FindSound(music, musicName);
 
         activeSource.clip = musicSound.clip;
@@ -86,8 +92,10 @@ public class AudioManager : MonoBehaviour
     public void PlayMusicWithFade(string musicName, float transitionTime = 1.0f)
     {
         // Determine which source is active
-        AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource : musicSource2;
-        AudioSource innactiveSource = (firstMusicSourceIsPlaying) ? musicSource2 : musicSource;
+        AudioSource activeSource = firstMusicSourceIsPlaying ? musicSource : musicSource2;
+        AudioSource innactiveSource = firstMusicSourceIsPlaying ? musicSource2 : musicSource;
+
+        PlayMusic(musicName, true);
 
         StartCoroutine(UpdateMusicWithFade(activeSource, innactiveSource, FindSound(music, musicName), transitionTime));
     }
@@ -105,13 +113,14 @@ public class AudioManager : MonoBehaviour
             {
                 if (activeSource.clip != null)
                 {
-                    activeSource.volume = (newSound.volume * musicVolume - (newSound.volume * musicVolume / transitionTime));
+                    activeSource.volume = (newSound.volume * musicVolume * (1 - t) / transitionTime);
                 }
-                innactiveSource.volume = (t * newSound.volume * musicVolume / transitionTime);
+                innactiveSource.volume = (newSound.volume * musicVolume * t / transitionTime);
                 yield return null;
             }
             innactiveSource.volume = newSound.volume * musicVolume;
-            firstMusicSourceIsPlaying = (innactiveSource == musicSource);
+            firstMusicSourceIsPlaying = (innactiveSource != musicSource2);
+            activeSource.Stop();
         }
     }
     

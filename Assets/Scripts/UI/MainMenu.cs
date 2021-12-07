@@ -15,8 +15,11 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetInt("storyPoint", 1);
             print("Story Point : " + PlayerPrefs.GetInt("storyPoint", 0));
         }
+        else
+        {
+            GameObject.Find("CloudCover").SetActive(false);
+        }
         PlayerPrefs.SetInt("isLoaded", 0);
-        GameObject.Find("CloudCover").SetActive(false);
         BongleIsland bongleIsland = GameObject.Find("BongleIsland").GetComponent<BongleIsland>();
         bongleIsland.isInputEnabled = true;
         foreach  (Transform popup in GameObject.Find("UI/PopupsContainer").transform)

@@ -238,6 +238,10 @@ public class UpgradeMenu : MonoBehaviour
             RefreshReadouts();
             print("Unlocked Next Region");
         }
+        foreach (Transform bossRegion in GameObject.Find("BossRegions").transform)
+        {
+            bossRegion.gameObject.GetComponent<Region>().RefreshSprites();
+        }
     }
 
     private void EditorUpdate()

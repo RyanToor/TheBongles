@@ -27,8 +27,7 @@ public class Region : MonoBehaviour
             minigameSpawnCount = minigameSpawnsCount;
         }
         regionCollider = GetComponent<Collider2D>();
-        isStoryCleared = PlayerPrefs.GetInt("maxRegion", 0) >= regionOrder;
-        isBossMet = PlayerPrefs.GetInt("storyPoint", 0) / 2 >= regionOrder;
+        RefreshSprites();
         boss = bossEnum.ToString();
         foreach (NameController bossType in bossControllers)
         {
@@ -64,7 +63,7 @@ public class Region : MonoBehaviour
         }
         else
         {
-            foreach (Transform minigame in GameObject.Find("Minigames").transform)
+            foreach (Transform minigame in transform.Find("Minigames"))
             {
                 floatingObjectScript.objectsToRemove.Add(minigame.gameObject);
             }
@@ -73,20 +72,29 @@ public class Region : MonoBehaviour
 
     private void SpawnMinigames()
     {
-        minigameSpawnPoints.Clear();
-        foreach (Transform spawnPoint in transform.Find("MinigameSpawns"))
+        if (transform.Find("Minigames").childCount == 0)
         {
-            minigameSpawnPoints.Add(spawnPoint);
+            minigameSpawnPoints.Clear();
+            foreach (Transform spawnPoint in transform.Find("MinigameSpawns"))
+            {
+                minigameSpawnPoints.Add(spawnPoint);
+            }
+            for (int i = 0; i < minigameSpawnCount; i++)
+            {
+                int j = Random.Range(0, minigameSpawnPoints.Count);
+                MinigameMarker newMarker = Instantiate(minigameMarker, minigameSpawnPoints[j].position, Quaternion.identity, transform.Find("Minigames")).GetComponent<MinigameMarker>();
+                newMarker.trashType = trashType.ToString();
+                floatingObjectScript.objectsToAdd.Add(newMarker.gameObject);
+                minigameSpawnPoints.RemoveAt(j);
+                minigameSpawnPoints.TrimExcess();
+            }
         }
-        for (int i = 0; i < minigameSpawnCount; i++)
-        {
-            int j = Random.Range(0, minigameSpawnPoints.Count);
-            MinigameMarker newMarker = Instantiate(minigameMarker, minigameSpawnPoints[j].position, Quaternion.identity, transform.Find("Minigames")).GetComponent<MinigameMarker>();
-            newMarker.trashType = trashType.ToString();
-            floatingObjectScript.objectsToAdd.Add(newMarker.gameObject);
-            minigameSpawnPoints.RemoveAt(j);
-            minigameSpawnPoints.TrimExcess();
-        }
+    }
+
+    public void RefreshSprites()
+    {
+        isStoryCleared = PlayerPrefs.GetInt("maxRegion", 0) >= regionOrder;
+        isBossMet = PlayerPrefs.GetInt("storyPoint", 0) / 2 >= regionOrder;
     }
 
     private void EditorUpdate()

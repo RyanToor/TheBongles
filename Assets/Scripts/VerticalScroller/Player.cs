@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public SpriteRenderer[] spriteRenderers;
     public int maxHealth;
-    public float moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce, maxBagDistance, damagePulseCount, damagePulseSpeed;
+    public float chasmTopperForce, moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce, maxBagDistance, damagePulseCount, damagePulseSpeed;
     public GameObject splash, twin;
     public GameObject gameOver;
     public GameObject pauseMenu;
@@ -34,13 +34,15 @@ public class Player : MonoBehaviour
     private bool[] dry;
     private float[] dryTime, jointLerpSpeeds;
     private Transform tailOffset;
-    bool isFlipping;
+    private bool isFlipping;
+    private Vector3 startTailOffset;
     //private Vector3 twinPrevPos;
 
     // Start is called before the first frame update
     void Start()
     {
         tailOffset = transform.Find("TailOffset");
+        startTailOffset = tailOffset.localPosition;
         uI = GameObject.Find("Canvas").GetComponent<VerticalScrollerUI>();
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -78,6 +80,7 @@ public class Player : MonoBehaviour
             CheckPhysics();
             moveRight = Input.GetAxis("Horizontal");
             moveUp = Input.GetAxis("Vertical");
+            tailOffset.localPosition = new Vector3(startTailOffset.x, startTailOffset.y * flipDir, startTailOffset.z);
             if (moveRight < 0)
             {
                 flipDir = -1;
@@ -305,7 +308,21 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Boss"))
         {
             PlayerPrefs.SetInt("storyPoint", 2);
-            Dead();
+            rb.bodyType = RigidbodyType2D.Static;
+            GetComponent<Collider2D>().enabled = false;
+            twin.GetComponent<Collider2D>().enabled = false;
+            isloaded = false;
+            pauseMenu.SetActive(false);
+            plastic.SetActive(false);
+            SceneManager.LoadScene("Map");
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "ChasmTopper_1" || collision.gameObject.name == "ChasmTopper_2")
+        {
+            rb.AddForce(Vector3.right * ((collision.gameObject.name == "ChasmTopper_1") ? 1 : -1) * chasmTopperForce);
         }
     }
 

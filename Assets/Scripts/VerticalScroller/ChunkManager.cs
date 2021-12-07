@@ -14,6 +14,7 @@ public class ChunkManager : MonoBehaviour
     public Tilemap tilemap;
     public TileBase ruleTile;
     public GameObject player;
+    public Transform chasmToppers;
     public int chunkBuffer, width, height, maxChasmDeviation, maxIrregularity, rowsConvertedPerFrame, tilesPlacedPerFrame;
     public float chasmStartWidth, chasmMinWidth, chasmWidthAsymptoteLevel, chasmFrequency, irregularityFrequency, waterSurfaceScrollSpeed;
 
@@ -54,6 +55,27 @@ public class ChunkManager : MonoBehaviour
                 player.GetComponent<Player>().isloaded = true;
 
                 GameObject.Find("SoundManager").GetComponent<AudioManager>().PlayMusic("Trash Hunt");
+
+                float l = 0, r = 0;
+                foreach (Vector3Int tilePosition in chunkMatrices[0])
+                {
+                    if (tilePosition.y == 0)
+                    {
+                        if (tilePosition.x < 0)
+                        {
+                            l++;
+                        }
+                        else
+                        {
+                            r++;
+                        }
+                    }
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    Transform currentTopper = chasmToppers.Find("ChasmTopper_" + (i + 1));
+                    currentTopper.position += Vector3.right * (((i == 1) ? 1 : -1) * ((width / 2) - ((i == 0) ? l : r)));
+                }
                 isLoaded = true;
             }
         }

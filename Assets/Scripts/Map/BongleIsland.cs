@@ -10,7 +10,7 @@ public class BongleIsland : MonoBehaviour
     public GameObject pathObject, pathContainer, popupPrefab, upgradeMenu, loadScreen;
     public AudioClip musicOriginal;
     public VideoManager videoManager;
-    public Animator sailAnimator, islandAnimator;
+    public Animator sailAnimator, islandAnimator, waveAnimator;
     public GameObject[] flipObjects;
 
     [HideInInspector]
@@ -49,7 +49,10 @@ public class BongleIsland : MonoBehaviour
         }
         Vector2 moveDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        rb2D.AddForce(100 * acceleration * Time.deltaTime * moveDir.normalized);
+        if (isInputEnabled)
+        {
+            rb2D.AddForce(100 * acceleration * Time.deltaTime * moveDir.normalized);
+        }
 
         if (Mathf.Abs(moveDir.x) > 0)
         {
@@ -75,14 +78,30 @@ public class BongleIsland : MonoBehaviour
                 sailAnimator.SetBool("MoveVertical", false);
             }
         }
-        Vector3 tempPos = sailAnimator.gameObject.transform.localPosition;
-        if (sailAnimator.GetBool("MoveVertical") == true && sailAnimator.GetBool("MoveNorth") == false)
+        if (Mathf.Abs(rb2D.velocity.x) > 0)
         {
-            sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, 0, tempPos.z);
+            waveAnimator.gameObject.GetComponent<SpriteRenderer>().flipX = (rb2D.velocity.x > 0);
+        }
+        if (Mathf.Abs(rb2D.velocity.y) > 0 && Mathf.Abs(rb2D.velocity.y) > Mathf.Abs(rb2D.velocity.x))
+        {
+            waveAnimator.SetBool("MoveVertical", true);
+            if (rb2D.velocity.y != 0)
+            {
+                waveAnimator.SetBool("MoveNorth", rb2D.velocity.y > 0);
+            }
         }
         else
         {
-            sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, 0.045f, tempPos.z);
+            waveAnimator.SetBool("MoveVertical", false);
+        }
+        Vector3 tempPos = sailAnimator.gameObject.transform.localPosition;
+        if (sailAnimator.GetBool("MoveVertical") == true && sailAnimator.GetBool("MoveNorth") == false)
+        {
+            sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, tempPos.y, -1);
+        }
+        else
+        {
+            sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, tempPos.y, 1);
         }
 
         if (Input.GetKeyDown(KeyCode.BackQuote))
@@ -95,7 +114,9 @@ public class BongleIsland : MonoBehaviour
     private void LateUpdate()
     {
         islandAnimator.speed = rb2D.velocity.magnitude / animationSpeedDivisor + 1;
+        waveAnimator.speed = rb2D.velocity.magnitude / animationSpeedDivisor + 1;
         sailAnimator.SetFloat("Speed", rb2D.velocity.magnitude);
+        waveAnimator.SetFloat("Speed", rb2D.velocity.magnitude);
         Vector3 latestVector = transform.position + pathOffset - lastPathPos;
         if (latestVector.magnitude > pathSeparation)
         {
