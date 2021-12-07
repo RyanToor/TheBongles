@@ -26,11 +26,13 @@ public class BongleIsland : MonoBehaviour
     private Transform popupsContainer;
     private AudioManager audioManager;
     private bool prevFlipX;
+    private float sailZ;
 
     // Start is called before the first frame update
 
     void Start()
     {
+        sailZ = sailAnimator.gameObject.transform.position.z;
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         popupsContainer = GameObject.Find("UI/PopupsContainer").transform;
         rb2D = GetComponent<Rigidbody2D>();
@@ -97,11 +99,11 @@ public class BongleIsland : MonoBehaviour
         Vector3 tempPos = sailAnimator.gameObject.transform.localPosition;
         if (sailAnimator.GetBool("MoveVertical") == true && sailAnimator.GetBool("MoveNorth") == false)
         {
-            sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, tempPos.y, -1);
+            sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, tempPos.y, -sailZ);
         }
         else
         {
-            sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, tempPos.y, 1);
+            sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, tempPos.y, sailZ);
         }
 
         if (Input.GetKeyDown(KeyCode.BackQuote))
@@ -215,6 +217,10 @@ public class BongleIsland : MonoBehaviour
             print("Plastic : " + PlayerPrefs.GetInt("Plastic", 0));
             print("Metal : " + PlayerPrefs.GetInt("Metal", 0));
             print("Glass : " + PlayerPrefs.GetInt("Glass", 0));
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            print("Current Story Point : " + PlayerPrefs.GetInt("storyPoint"));
         }
     }
 

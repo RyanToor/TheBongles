@@ -234,6 +234,7 @@ public class UpgradeMenu : MonoBehaviour
             videoManager.PlayVideo(videoManager.storyVideos[PlayerPrefs.GetInt("maxRegion", 1) * 2]);
             PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(PlayerPrefs.GetInt("maxRegion", 1) + 1, 1, 3));
             GameObject.Find("Map").GetComponent<Map>().UpdateRegionsUnlocked(PlayerPrefs.GetInt("maxRegion", 1));
+            PlayerPrefs.SetInt("storyPoint", PlayerPrefs.GetInt("storyPoint", 0) + 1);
             RefreshStoryPanel();
             RefreshReadouts();
             print("Unlocked Next Region");

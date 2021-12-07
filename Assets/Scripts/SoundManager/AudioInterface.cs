@@ -28,4 +28,9 @@ public class AudioInterface : MonoBehaviour
     {
         audioManager.ToggleMusic();
     }
+
+    public void ToggleSFX()
+    {
+        audioManager.ToggleSFX();
+    }
 }

@@ -43,14 +43,13 @@ public class VideoManager : MonoBehaviour
     public void PlayVideo(VideoClip video)
     {
         background.enabled = true;
-        isMusicMuted = audioManager.musicSource.volume == 0;
         if (!videoPlayer.enabled)
         {
             videoPlayer.clip = video;
             videoPlayer.enabled = true;
             image.enabled = true;
         }
-        if (!isMusicMuted)
+        if (!(PlayerPrefs.GetInt("MusicMuted", 1) == 0))
         {
             audioManager.PlayMusicWithFade("Story", musicCrossfadeTime);
         }

@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -9,10 +11,10 @@ public class PauseMenu : MonoBehaviour
     [Range(0, 1)]
     public float lerpSpeed;
     public Vector3 closedPos, openPos;
+    public Slider musicSlider, sFXSlider;
+    public MuteObjectsArray[] muteObjects;
 
-    public Animator rightPanel;
-
-    public float lerpPos = 0, lerpDir = -1;
+    private float lerpPos = 0, lerpDir = -1;
     private RectTransform rightPaneTransform;
     private AudioManager audioManager;
 
@@ -22,6 +24,10 @@ public class PauseMenu : MonoBehaviour
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         rightPaneTransform = transform.Find("RightPanel").GetComponent<RectTransform>();
         rightPaneTransform.localPosition = closedPos;
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
+        sFXSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1);
+        ToggleMute("Music");
+        ToggleMute("SFX");
     }
 
     // Update is called once per frame
@@ -94,5 +100,32 @@ public class PauseMenu : MonoBehaviour
     public void ResetGame()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    private void ToggleMute(string toggleType)
+    {
+        GameObject[] currentMuteObjects = null;
+        foreach (MuteObjectsArray muteObjectArray in muteObjects)
+        {
+            if (muteObjectArray.name == toggleType)
+            {
+                currentMuteObjects = muteObjectArray.buttons;
+                break;
+            }
+        }
+        foreach (GameObject muteObject in currentMuteObjects)
+        {
+            foreach (Transform buttonType in muteObject.transform)
+            {
+                buttonType.gameObject.SetActive((PlayerPrefs.GetInt(toggleType + "Muted", 1) == 0 ^ buttonType.gameObject.name == "Sound_Button") ? true : false);
+            }
+        }
+    }
+
+    [System.Serializable]
+    public struct MuteObjectsArray
+    {
+        public string name;
+        public GameObject[] buttons;
     }
 }

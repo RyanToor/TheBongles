@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
-    public AudioMixer audioMixer;
     public VideoManager videoManager;
 
     // Start is called before the first frame update
@@ -20,8 +18,7 @@ public class MainMenu : MonoBehaviour
             GameObject.Find("CloudCover").SetActive(false);
         }
         PlayerPrefs.SetInt("isLoaded", 0);
-        BongleIsland bongleIsland = GameObject.Find("BongleIsland").GetComponent<BongleIsland>();
-        bongleIsland.isInputEnabled = true;
+        GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = true;
         foreach  (Transform popup in GameObject.Find("UI/PopupsContainer").transform)
         {
             popup.gameObject.SetActive(true);
@@ -37,9 +34,5 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
         PlayerPrefs.SetInt("isLoaded", 1);
-    }
-    public void SetVolume (float volume)
-    {
-        audioMixer.SetFloat("masterVolume", volume);
     }
 }

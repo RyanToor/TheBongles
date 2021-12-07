@@ -35,14 +35,13 @@ public class Player : MonoBehaviour
     private float[] dryTime, jointLerpSpeeds;
     private Transform tailOffset;
     private bool isFlipping;
-    private Vector3 startTailOffset;
+    private Vector3 correctedTailOffset;
     //private Vector3 twinPrevPos;
 
     // Start is called before the first frame update
     void Start()
     {
         tailOffset = transform.Find("TailOffset");
-        startTailOffset = tailOffset.localPosition;
         uI = GameObject.Find("Canvas").GetComponent<VerticalScrollerUI>();
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -80,7 +79,6 @@ public class Player : MonoBehaviour
             CheckPhysics();
             moveRight = Input.GetAxis("Horizontal");
             moveUp = Input.GetAxis("Vertical");
-            tailOffset.localPosition = new Vector3(startTailOffset.x, startTailOffset.y * flipDir, startTailOffset.z);
             if (moveRight < 0)
             {
                 flipDir = -1;
@@ -89,12 +87,12 @@ public class Player : MonoBehaviour
             {
                 flipDir = 1;
             }
+            moveDir = new Vector3(moveRight, moveUp).normalized;
+            rb.AddForce(rb.mass * moveDir * moveForce * controlMultiplier * Time.deltaTime, ForceMode2D.Force);
+            rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxSpeed);
+            Animate();
+            UpdateTail();
         }
-        moveDir = new Vector3(moveRight, moveUp).normalized;
-        rb.AddForce(rb.mass * moveDir * moveForce * controlMultiplier * Time.deltaTime, ForceMode2D.Force);
-        rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxSpeed);
-        Animate();
-        UpdateTail();
     }
 
     private void CheckPhysics()
@@ -205,7 +203,7 @@ public class Player : MonoBehaviour
             }
         }
         //twinPrevPos = lerpJoints[lerpJoints.Length - 1];
-        joints[0] = transform.position + (tailOffset.position - transform.position) * spriteDir;
+        joints[0] = transform.position + transform.TransformVector(Vector3.Scale(tailOffset.localPosition, new Vector3(flipDir, 1, 1)));
         lerpJoints[0] = joints[0];
         for (int i = 1; i < joints.Length; i++)
         {

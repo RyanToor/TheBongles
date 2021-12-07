@@ -9,6 +9,7 @@ public class Region : MonoBehaviour
     public GameObject minigameMarker;
     public trashTypes trashType;
     public bossTypes bossEnum;
+    public int[] storyMeetPoints;
     public List<NameController> bossControllers = new List<NameController>();
 
     private Collider2D regionCollider;
@@ -48,7 +49,8 @@ public class Region : MonoBehaviour
         {
             EditorUpdate();
         }
-        bossAnimator.SetBool("isClean", isBossMet);
+        bossAnimator.SetBool("isMet", isBossMet);
+        bossAnimator.SetBool("isClean", isStoryCleared);
         rippleAnimator.SetBool("isClean", isStoryCleared);
     }
 
@@ -93,8 +95,8 @@ public class Region : MonoBehaviour
 
     public void RefreshSprites()
     {
-        isStoryCleared = PlayerPrefs.GetInt("maxRegion", 0) >= regionOrder;
-        isBossMet = PlayerPrefs.GetInt("storyPoint", 0) / 2 >= regionOrder;
+        isStoryCleared = PlayerPrefs.GetInt("maxRegion", 0) > regionOrder;
+        isBossMet = PlayerPrefs.GetInt("storyPoint", 0) >= storyMeetPoints[(int)bossEnum];
     }
 
     private void EditorUpdate()

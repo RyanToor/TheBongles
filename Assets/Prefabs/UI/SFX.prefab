@@ -1,48 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &337587830199817262
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6957577381141929285}
-  - component: {fileID: 4945492528024698872}
-  m_Layer: 0
-  m_Name: AudioInterface
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6957577381141929285
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337587830199817262}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 347.83414, y: 336.9914, z: -3546.6045}
-  m_LocalScale: {x: 1.8181818, y: 1.8181818, z: 1.8181818}
-  m_Children: []
-  m_Father: {fileID: 4836146610676569932}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4945492528024698872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337587830199817262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8c695a82b26a940b9f0288db44b4db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &649753352292777106
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +12,6 @@ GameObject:
   - component: {fileID: 2503988364644593615}
   - component: {fileID: 5466686040674825802}
   - component: {fileID: 6647801820113589400}
-  - component: {fileID: 1037492841662082462}
   m_Layer: 5
   m_Name: Sound_Button
   m_TagString: Untagged
@@ -165,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4945492528024698872}
+      - m_Target: {fileID: 6843490511543009314}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -177,9 +133,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6843490511543009314}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
-        m_MethodName: ToggleMusic
+        m_MethodName: ToggleSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -213,35 +169,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &1037492841662082462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649753352292777106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4945492528024698872}
-          m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &689171120494145239
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +181,6 @@ GameObject:
   - component: {fileID: 746339836682185706}
   - component: {fileID: 5886146855592805041}
   - component: {fileID: 5884182664097023057}
-  - component: {fileID: 2366907767694577011}
   m_Layer: 5
   m_Name: Sound_Cross
   m_TagString: Untagged
@@ -364,7 +290,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4945492528024698872}
+      - m_Target: {fileID: 6843490511543009314}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -376,9 +302,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6843490511543009314}
         m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
-        m_MethodName: ToggleMusic
+        m_MethodName: ToggleSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -412,35 +338,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2366907767694577011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 689171120494145239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4945492528024698872}
-          m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1311702320274498836
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,9 +497,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4836146610676569932}
+  - component: {fileID: 6843490511543009314}
   m_Layer: 5
   m_Name: SFX
-  m_TagString: Untagged
+  m_TagString: SFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -620,7 +518,6 @@ RectTransform:
   m_Children:
   - {fileID: 1386997613215634343}
   - {fileID: 3606691451023050491}
-  - {fileID: 6957577381141929285}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -629,3 +526,15 @@ RectTransform:
   m_AnchoredPosition: {x: -205.5, y: -341.3}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6843490511543009314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890252929110036470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8c695a82b26a940b9f0288db44b4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
