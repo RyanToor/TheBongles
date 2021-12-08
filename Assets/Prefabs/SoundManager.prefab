@@ -60,7 +60,7 @@ MonoBehaviour:
     loop: 1
   - name: Story
     clip: {fileID: 8300000, guid: 33e9bbe6d299c45448c200701fa4af23, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
@@ -145,3 +145,4 @@ MonoBehaviour:
     loop: 0
   musicSource: {fileID: 0}
   musicSource2: {fileID: 0}
+  sfxSource: {fileID: 0}

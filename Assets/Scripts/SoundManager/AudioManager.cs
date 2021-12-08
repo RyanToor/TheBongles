@@ -17,8 +17,7 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]
     public AudioSource musicSource2;
     
-    private AudioSource sfxSource;
-    private Slider volumeSlider;
+    public AudioSource sfxSource;
 
     private bool firstMusicSourceIsPlaying = true;
     #endregion

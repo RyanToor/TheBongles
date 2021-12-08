@@ -168,14 +168,11 @@ public class ChunkManager : MonoBehaviour
             case true: fillTiles = Enumerable.Repeat(ruleTile, chunkMatrix.Length).ToArray(); break;
             case false: fillTiles = Enumerable.Repeat<TileBase>(null, chunkMatrix.Length).ToArray(); break;
         }
-        for (int i = 0; i < Mathf.Ceil(chunkMatrix.Length / tilesPlacedPerFrame); i++)
+        for (int i = 0; i < Mathf.Ceil((float)chunkMatrix.Length / tilesPlacedPerFrame); i++)
         {
-            for (int j = numOps * tilesPlacedPerFrame; j < Mathf.Clamp((numOps + 1) * tilesPlacedPerFrame, 0, chunkMatrix.Length); j++)
-            {
-                Vector3Int[] currentTiles = new Vector3Int[tilesPlacedPerFrame];
-                Array.Copy(chunkMatrix, numOps * tilesPlacedPerFrame, currentTiles, 0, tilesPlacedPerFrame);
-                tilemap.SetTiles(currentTiles, fillTiles);
-            }
+            Vector3Int[] currentTiles = new Vector3Int[Mathf.Clamp(tilesPlacedPerFrame, 0, chunkMatrix.Length - numOps * tilesPlacedPerFrame)];
+            Array.Copy(chunkMatrix, numOps * tilesPlacedPerFrame, currentTiles, 0, Mathf.Clamp(tilesPlacedPerFrame, 0, chunkMatrix.Length - numOps * tilesPlacedPerFrame));
+            tilemap.SetTiles(currentTiles, fillTiles);
             numOps++;
             yield return null;
         }

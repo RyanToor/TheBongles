@@ -73,7 +73,7 @@ public class Map : MonoBehaviour
         if (region > PlayerPrefs.GetInt("maxRegion", 1))
         {
             PlayerPrefs.SetInt("maxRegion", region);
-            GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().RefreshStoryPanel();
+            GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().RefreshReadouts();
         }
         foreach (Transform regionTransform in GameObject.Find("BossRegions").transform)
         {
@@ -97,7 +97,7 @@ public class Map : MonoBehaviour
             }
             print("Max Region : " + PlayerPrefs.GetInt("maxRegion", 1));
             UpdateRegionsUnlocked(PlayerPrefs.GetInt("maxRegion", 1));
-            GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().RefreshStoryPanel();
+            GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().RefreshReadouts();
             RespawnTrash();
         }
         if (Input.GetKeyDown(KeyCode.M))

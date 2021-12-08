@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public GameObject gameOver;
     public GameObject pauseMenu;
     public GameObject plastic;
-    public float tailSegmentLength = 0.1f, tailWidth = 0.1f, tailGravity = 9.8f, underwaterTailGravity = 0.1f, jointLerpSpeed;
+    public float tailSegmentLength = 0.1f, tailWidth = 0.1f, tailGravity = 9.8f, underwaterTailGravity = 0.1f, minJointLerp;
 
     [HideInInspector]
     public int collectedPlastic;
@@ -32,10 +32,9 @@ public class Player : MonoBehaviour
     private Vector3[] joints, lerpJoints;
     private LineRenderer lineRenderer;
     private bool[] dry;
-    private float[] dryTime, jointLerpSpeeds;
+    private float[] dryTime;
     private Transform tailOffset;
     private bool isFlipping;
-    private Vector3 correctedTailOffset;
     //private Vector3 twinPrevPos;
 
     // Start is called before the first frame update
@@ -88,7 +87,7 @@ public class Player : MonoBehaviour
                 flipDir = 1;
             }
             moveDir = new Vector3(moveRight, moveUp).normalized;
-            rb.AddForce(rb.mass * moveDir * moveForce * controlMultiplier * Time.deltaTime, ForceMode2D.Force);
+            rb.AddForce(controlMultiplier * moveForce * rb.mass * Time.deltaTime * moveDir, ForceMode2D.Force);
             rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxSpeed);
             Animate();
             UpdateTail();
@@ -168,7 +167,6 @@ public class Player : MonoBehaviour
         lineRenderer.startWidth = tailWidth;
         lineRenderer.endWidth = tailWidth;
         lerpJoints = new Vector3[joints.Length];
-        jointLerpSpeeds = new float[joints.Length];
     }
 
     private void UpdateTail()
@@ -208,7 +206,7 @@ public class Player : MonoBehaviour
         for (int i = 1; i < joints.Length; i++)
         {
             joints[i] += (tailSegmentLength - (joints[i] - joints[i - 1]).magnitude) * (joints[i] - joints[i - 1]).normalized;
-            lerpJoints[i] = Vector3.Lerp(lerpJoints[i], joints[i], Mathf.Lerp(100, jointLerpSpeed, (float)i / jointLerpSpeeds.Length) * Time.deltaTime);
+            lerpJoints[i] = Vector3.Lerp(lerpJoints[i], joints[i], minJointLerp * (joints.Length - i) * Time.deltaTime);
         }
         lineRenderer.SetPositions(lerpJoints);
         twin.transform.position = lerpJoints[lerpJoints.Length - 1];

@@ -589,11 +589,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: 2DBuiltInRenderer
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: D:\Users\Ryan\Documents\Git\TheBongles\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: GPW_2021_Bongles
+  metroCertificateIssuer: GPW_2021_Bongles
+  metroCertificateNotAfter: 80d23dbda40ad901
   metroApplicationDescription: 2D_BuiltInRenderer
   wsaImages: {}
   metroTileShortName: TheBongles

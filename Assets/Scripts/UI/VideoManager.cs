@@ -12,7 +12,6 @@ public class VideoManager : MonoBehaviour
     private RawImage image;
     private AudioManager audioManager;
     private Image background;
-    private bool isMusicMuted;
 
     // Start is called before the first frame update
     void Awake()
@@ -43,6 +42,7 @@ public class VideoManager : MonoBehaviour
     public void PlayVideo(VideoClip video)
     {
         background.enabled = true;
+        videoPlayer.SetTargetAudioSource(0, audioManager.sfxSource);
         if (!videoPlayer.enabled)
         {
             videoPlayer.clip = video;
@@ -74,7 +74,7 @@ public class VideoManager : MonoBehaviour
         {
             yield return null;
         }
-        if (!isMusicMuted)
+        if (!(PlayerPrefs.GetInt("MusicMuted", 1) == 0))
         {
             audioManager.PlayMusicWithFade("Map", musicCrossfadeTime);
         }

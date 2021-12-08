@@ -7,7 +7,7 @@ public class UpgradeMenu : MonoBehaviour
     public VideoManager videoManager;
     public float lerpSpeed, lerpDir = -1;
     public Vector3 closedPos, openPos;
-    public Color upgradeAvailableColour, upgradeActiveColour;
+    public Color upgradeAvailableColour, upgradeActiveColour, barUnavailableColour, barAvailableColour;
     public List<Sprite> sprites;
     public List<Text> trashReadouts;
     public Button upgradeButton;
@@ -31,7 +31,6 @@ public class UpgradeMenu : MonoBehaviour
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         currentTabIndex = 0;
         RefreshReadouts();
-        RefreshStoryPanel();
         foreach (UpgradePanel panel in upgradeCosts)
         {
             foreach (Upgrade upgrade in panel.upgrades)
@@ -121,10 +120,6 @@ public class UpgradeMenu : MonoBehaviour
                 upgradeCosts[currentTabIndex].upgrades[i].button.color = Color.white;
             }
         }
-    }
-
-    public void RefreshStoryPanel()
-    {
         int currentLevel = PlayerPrefs.GetInt("maxRegion", 1);
         Vector3[] barFills = new Vector3[currentLevel];
         bool upgradeReady = true;
@@ -136,6 +131,7 @@ public class UpgradeMenu : MonoBehaviour
                 storyCostContainers[i].transform.Find("Text").GetComponent<Text>().text = storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost.ToString();
                 barFills[i] = new Vector3(Mathf.Clamp((float)PlayerPrefs.GetInt(trashNames[i], 0) / storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost, 0, 1), 1, 1);
                 storyCostContainers[i].transform.Find("BarFill").localScale = barFills[i];
+                storyCostContainers[i].transform.Find("BarFill").GetComponent<Image>().color = (barFills[i].x == 1) ? barAvailableColour : barUnavailableColour;
                 if (barFills[i].x < 1)
                 {
                     upgradeReady = false;
@@ -235,7 +231,6 @@ public class UpgradeMenu : MonoBehaviour
             PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(PlayerPrefs.GetInt("maxRegion", 1) + 1, 1, 3));
             GameObject.Find("Map").GetComponent<Map>().UpdateRegionsUnlocked(PlayerPrefs.GetInt("maxRegion", 1));
             PlayerPrefs.SetInt("storyPoint", PlayerPrefs.GetInt("storyPoint", 0) + 1);
-            RefreshStoryPanel();
             RefreshReadouts();
             print("Unlocked Next Region");
         }
