@@ -9981,7 +9981,7 @@ MonoBehaviour:
   chunkBuffer: 2
   width: 66
   height: 40
-  maxChasmDeviation: 25
+  maxChasmDeviation: 30
   maxIrregularity: 10
   rowsConvertedPerFrame: 1
   tilesPlacedPerFrame: 20
