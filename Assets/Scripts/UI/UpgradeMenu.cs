@@ -180,16 +180,19 @@ public class UpgradeMenu : MonoBehaviour
         {
             upgradeIndicies[i]--;
         }
-        if (UpgradeAffordabilityCheck(upgradeIndicies))
+        if (PlayerPrefs.GetInt("upgrade" + upgradeIndicies[0] + upgradeIndicies[1], 0) == 0)
         {
-            UpgradeCost[] prices = upgradeCosts[upgradeIndicies[0]].upgrades[upgradeIndicies[1]].upgradeCosts;
-            for (int i = 0; i < prices.Length; i++)
+            if (UpgradeAffordabilityCheck(upgradeIndicies))
             {
-                PlayerPrefs.SetInt(prices[i].type.ToString(), PlayerPrefs.GetInt(prices[i].type.ToString(), 0) - prices[i].cost);
+                UpgradeCost[] prices = upgradeCosts[upgradeIndicies[0]].upgrades[upgradeIndicies[1]].upgradeCosts;
+                for (int i = 0; i < prices.Length; i++)
+                {
+                    PlayerPrefs.SetInt(prices[i].type.ToString(), PlayerPrefs.GetInt(prices[i].type.ToString(), 0) - prices[i].cost);
+                }
+                PlayerPrefs.SetInt("upgrade" + upgradeIndicies[0] + upgradeIndicies[1], 1);
+                RefreshReadouts();
+                audioManager.PlaySFX("Twinkle");
             }
-            PlayerPrefs.SetInt("upgrade" + upgradeIndicies[0] + upgradeIndicies[1], 1);
-            RefreshReadouts();
-            audioManager.PlaySFX("Twinkle");
         }
     }
 

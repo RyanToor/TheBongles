@@ -90,7 +90,7 @@ public class FloatingObjects : MonoBehaviour
         public void Execute(int index, TransformAccess transform)
         {
             transform.position = startPosArray[index] + new float3(0, maxYDisplacement * math.sin(time + seeds[index]), 0);
-            transform.localRotation = Quaternion.SlerpUnclamped(Quaternion.AngleAxis(-maxAngle, Vector3.forward), Quaternion.AngleAxis(maxAngle, Vector3.forward), (math.cos(time + seeds[index]) + 1) / 2);
+            transform.localRotation = Quaternion.SlerpUnclamped(Quaternion.AngleAxis(-maxAngle, new Vector3(0, 2, 1)), Quaternion.AngleAxis(maxAngle, new Vector3(0, 2, 1)), (math.cos(time + seeds[index]) + 1) / 2);
         }
     }
 

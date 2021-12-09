@@ -145,10 +145,11 @@ public class TrashManager : MonoBehaviour
         if (!loadedTrash.ContainsKey(index))
         {
             loadedTrash.Add(index, new List<Trash>());
-            for (int i = 0; i < (UnityEngine.Random.Range(minTrash, ((float)index / maxTrashDepth) * maxTrash)); i++)
+            int chunkTrash = UnityEngine.Random.Range(minTrash, Mathf.FloorToInt(Mathf.Clamp((float)index / maxTrashDepth * maxTrash, minTrash, maxTrash)));
+            for (int i = 0; i < chunkTrash; i++)
             {
                 Sprite tempSprite;
-                bool isDangerous =  (UnityEngine.Random.Range(0, (float)index / maxDangerousTrashDepth) > (100f - maxIsDangerousChance) / 100);
+                bool isDangerous = UnityEngine.Random.Range(0, 100) > (100 - Mathf.Clamp(index, 0, maxIsDangerousChance));
                 if (!isDangerous)
                 {
                     tempSprite = trashSprites[UnityEngine.Random.Range(0, trashSprites.Count)];
