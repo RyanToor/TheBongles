@@ -15749,10 +15749,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicCrossfadeTime: 2.5
   fadeFramesBefore: 20
-  storyVideos:
-  - {fileID: 32900000, guid: 94d4478a9250dd444867cd1d706e3985, type: 3}
-  - {fileID: 32900000, guid: dbdba0186a1fa624b907f898b1a01616, type: 3}
-  - {fileID: 32900000, guid: 906274bc60c926941962f825ae594f7a, type: 3}
+  cutScenes:
+  - scenes:
+    - video: {fileID: 32900000, guid: 94d4478a9250dd444867cd1d706e3985, type: 3}
+      audio: {fileID: 0}
+      isLooping: 1
+  - scenes:
+    - video: {fileID: 32900000, guid: 49bbb0435c7579b4091ba6f9b22139b1, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+    - video: {fileID: 32900000, guid: 93b701c0d664bbf44975e660f052df79, type: 3}
+      audio: {fileID: 0}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 01872ebce608f8043820dca751085f93, type: 3}
+      audio: {fileID: 0}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: cf85ccc2f87a40c4e91a143124efa9e8, type: 3}
+      audio: {fileID: 0}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: f62613761a30bdb439d5b0d61e46076f, type: 3}
+      audio: {fileID: 0}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 4d61933805944384ba17542d08e794b8, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+  - scenes:
+    - video: {fileID: 32900000, guid: abdbdd7398a11ed428142ff037b289dc, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+    - video: {fileID: 32900000, guid: 7b065314b1e8d3543baa98d09e7ff89a, type: 3}
+      audio: {fileID: 0}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 0807152955aedd94eb470808f283dce6, type: 3}
+      audio: {fileID: 0}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 8fb8ab6f730445e4abb3c6b5003b2571, type: 3}
+      audio: {fileID: 0}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 1ade6992a8b6f5b4da1d97e9e60e60cd, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+  currentScene: 0
 --- !u!222 &6708069970092528579
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15803,13 +15840,15 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 1
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
   m_Url: 
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 1
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1

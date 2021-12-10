@@ -50,14 +50,14 @@ public class AudioManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Map")
         {
             GameObject.Find("UI/MainMenu/Settings/Music_Sound").GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
-            GameObject.Find("UI/MainMenu/Settings/SFX_Sound").GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume", 0.25f);
+            GameObject.Find("UI/MainMenu/Settings/SFX_Sound").GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
             foreach (Transform muteObject in GameObject.Find("UI/MainMenu/Settings/Music").transform)
             {
-                muteObject.gameObject.SetActive((PlayerPrefs.GetInt("MusicMuted", 1) == 0 ^ muteObject.gameObject.name == "Sound_Button") ? true : false);
+                muteObject.gameObject.SetActive((PlayerPrefs.GetInt("MusicMuted", 1) == 0 ^ muteObject.gameObject.name == "Sound_Button"));
             }
             foreach (Transform muteObject in GameObject.Find("UI/MainMenu/Settings/SFX").transform)
             {
-                muteObject.gameObject.SetActive((PlayerPrefs.GetInt("SFXMuted", 1) == 0 ^ muteObject.gameObject.name == "Sound_Button") ? true : false);
+                muteObject.gameObject.SetActive((PlayerPrefs.GetInt("SFXMuted", 1) == 0 ^ muteObject.gameObject.name == "Sound_Button"));
             }
         }
     }
@@ -137,6 +137,13 @@ public class AudioManager : MonoBehaviour
         sfxSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1));
         sfxSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
         sfxSource.PlayOneShot(newSound.clip, newSound.volume);
+    }
+
+    public void PlayVideoSFX(AudioClip videoAudio)
+    {
+        sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1);
+        sfxSource.pitch = 1;
+        sfxSource.PlayOneShot(videoAudio);
     }
 
     public void PlaySFXComplete(string sound)

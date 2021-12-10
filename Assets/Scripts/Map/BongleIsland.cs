@@ -139,7 +139,7 @@ public class BongleIsland : MonoBehaviour
                 pathObjects.RemoveAt(0);
             }
         }
-        if (Input.GetAxis("Jump") > 0)
+        if (Input.GetAxis("Jump") > 0 && isInputEnabled)
         {
             float minDist = 100f;
             GameObject currentMinPopup = null;
