@@ -291,7 +291,7 @@ RectTransform:
   m_GameObject: {fileID: 4168531505884191387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.19, y: 1.19, z: 1.19}
   m_Children:
   - {fileID: 4168531507225917983}
   - {fileID: 4168531507382824907}
@@ -302,7 +302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 155, y: -331}
+  m_AnchoredPosition: {x: 185, y: -392.6}
   m_SizeDelta: {x: 684.42114, y: 684.42114}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4168531505884191367
@@ -2165,8 +2165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadScreen: {fileID: 8501071293954850938, guid: 94454062a6294e2408b01b9ef78015c1, type: 3}
   lerpSpeed: 0.05
-  closedPos: {x: 1115, y: 211, z: 0}
-  openPos: {x: 730, y: 211, z: 0}
+  closedPos: {x: 1145, y: 150, z: 0}
+  openPos: {x: 690, y: 150, z: 0}
   musicSlider: {fileID: 4168531507058469073}
   sFXSlider: {fileID: 4168531506675836996}
   muteObjects:
@@ -2741,7 +2741,7 @@ RectTransform:
   m_GameObject: {fileID: 4168531507377271816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.7000005, y: 2.7000005, z: 2.7000005}
+  m_LocalScale: {x: 2.7, y: 2.7, z: 2.7}
   m_Children:
   - {fileID: 4168531505480350337}
   m_Father: {fileID: 4168531507382824907}
@@ -2749,7 +2749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 113.99988, y: -201.00009}
+  m_AnchoredPosition: {x: 37.1, y: -201.00009}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4168531507377272823
