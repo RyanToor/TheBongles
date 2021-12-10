@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Popup : MonoBehaviour
 {
@@ -7,6 +9,7 @@ public class Popup : MonoBehaviour
     public string trashType;
     public GameObject loadScreen;
     public AudioClip TrashHuntMusic;
+    public List<Stars> StarNum;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,11 @@ public class Popup : MonoBehaviour
     void Update()
     {
         transform.position = Camera.main.WorldToScreenPoint(minigameMarker.transform.position);
+
+       /* for (int i = 1; 1 <= Stars.Length; i++)
+        {
+            Stars[i - 1].SetActive(((PlayerPrefs.Get("Star1", 0) >= i) ? true : false)
+        }*/
     }
 
     public void LaunchMinigame()
@@ -45,5 +53,12 @@ public class Popup : MonoBehaviour
     public void OnHover()
     {
         GameObject.Find("SoundInterface").GetComponent<AudioInterface>().OnHover();
+    }
+    [System.Serializable]
+    public class Stars
+    {
+        //Initialise name and audioclip and source
+        public string StarNum;
+        public Image Star;
     }
 }
