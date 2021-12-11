@@ -109,9 +109,19 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
     - time: 0
-      value: {fileID: -8819947631498895616, guid: e2a7f0367bb478a4796fee9e21bf9f1f, type: 3}
+      value: {fileID: 1844644550660403079, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - time: 0.041666668
+      value: {fileID: -6726879107812519620, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - time: 0.083333336
+      value: {fileID: -8832136182749862318, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - time: 0.125
+      value: {fileID: -6784901159057949264, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - time: 0.16666667
+      value: {fileID: 1997548128363001115, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - time: 0.20833333
+      value: {fileID: -4599284684936061098, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
     - time: 0.25
-      value: {fileID: -8819947631498895616, guid: e2a7f0367bb478a4796fee9e21bf9f1f, type: 3}
+      value: {fileID: -8733652187040968701, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
     attribute: m_Sprite
     path: Upgrade1
     classID: 212
@@ -178,8 +188,13 @@ AnimationClip:
     - {fileID: 8601368843210033421, guid: 40146b76f1a2923439c960942199f05f, type: 3}
     - {fileID: -5710757027451005693, guid: 40146b76f1a2923439c960942199f05f, type: 3}
     - {fileID: 7300736996212438430, guid: 40146b76f1a2923439c960942199f05f, type: 3}
-    - {fileID: -8819947631498895616, guid: e2a7f0367bb478a4796fee9e21bf9f1f, type: 3}
-    - {fileID: -8819947631498895616, guid: e2a7f0367bb478a4796fee9e21bf9f1f, type: 3}
+    - {fileID: 1844644550660403079, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - {fileID: -6726879107812519620, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - {fileID: -8832136182749862318, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - {fileID: -6784901159057949264, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - {fileID: 1997548128363001115, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - {fileID: -4599284684936061098, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
+    - {fileID: -8733652187040968701, guid: 530bbc2396c80ec4a92d2fada3ef938f, type: 3}
     - {fileID: -4141850289687260160, guid: 638449d49db7583489a6e9a0eb77374b, type: 3}
     - {fileID: 577177160996980932, guid: 638449d49db7583489a6e9a0eb77374b, type: 3}
     - {fileID: -1038114454826938330, guid: 638449d49db7583489a6e9a0eb77374b, type: 3}

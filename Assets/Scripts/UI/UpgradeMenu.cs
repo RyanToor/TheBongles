@@ -191,6 +191,7 @@ public class UpgradeMenu : MonoBehaviour
                 }
                 PlayerPrefs.SetInt("upgrade" + upgradeIndicies[0] + upgradeIndicies[1], 1);
                 RefreshReadouts();
+                GameObject.Find("BongleIsland").GetComponent<BongleIsland>().RefreshUpgrades();
                 audioManager.PlaySFX("Twinkle");
             }
         }

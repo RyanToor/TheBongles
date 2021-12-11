@@ -6,18 +6,14 @@ public class Twin : MonoBehaviour
     public Player player;
 
     private AudioManager audioManager;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +33,7 @@ public class Twin : MonoBehaviour
             player.collectedPlastic++;
             trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
             audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position);
+            animator.SetTrigger("Grab");
         }
     }
 }

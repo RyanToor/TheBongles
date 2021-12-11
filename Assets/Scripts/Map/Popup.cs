@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,8 +7,9 @@ public class Popup : MonoBehaviour
     public GameObject minigameMarker;
     public string trashType;
     public GameObject loadScreen;
-    public AudioClip TrashHuntMusic;
-    public List<Stars> StarNum;
+    public GameObject[] stars;
+    public Color disabledStarColour;
+    public PopupInfo[] popupInfo;
 
     // Start is called before the first frame update
     void Start()
@@ -18,17 +18,28 @@ public class Popup : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+        for (int i = 1; i <= stars.Length; i++)
+         {
+            stars[i - 1].GetComponent<Image>().color = (PlayerPrefs.GetInt("Stars1", 0) >= i) ? Color.white : disabledStarColour;
+         }
+
+        foreach (PopupInfo info in popupInfo)
+        {
+            if (info.trashType == trashType)
+            {
+                transform.Find("Title").GetComponent<Text>().text = info.title;
+                transform.Find("Logo").GetComponent<Image>().sprite = info.logo;
+                transform.Find("Logo").GetComponent<Image>().color = Color.white;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = Camera.main.WorldToScreenPoint(minigameMarker.transform.position);
-
-       /* for (int i = 1; 1 <= Stars.Length; i++)
-        {
-            Stars[i - 1].SetActive(((PlayerPrefs.Get("Star1", 0) >= i) ? true : false)
-        }*/
     }
 
     public void LaunchMinigame()
@@ -54,11 +65,12 @@ public class Popup : MonoBehaviour
     {
         GameObject.Find("SoundInterface").GetComponent<AudioInterface>().OnHover();
     }
+
     [System.Serializable]
-    public class Stars
+    public struct PopupInfo
     {
-        //Initialise name and audioclip and source
-        public string StarNum;
-        public Image Star;
+        public string trashType;
+        public string title;
+        public Sprite logo;
     }
 }

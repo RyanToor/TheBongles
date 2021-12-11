@@ -8,11 +8,8 @@ public class Player : MonoBehaviour
     public SpriteRenderer[] spriteRenderers;
     public int maxHealth;
     public float chasmTopperForce, moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce, maxBagDistance, damagePulseCount, damagePulseSpeed;
-    public GameObject splash, twin;
-    public GameObject gameOver;
-    public GameObject pauseMenu;
-    public GameObject plastic;
-    public float tailSegmentLength = 0.1f, tailWidth = 0.1f, tailGravity = 9.8f, underwaterTailGravity = 0.1f, minJointLerp;
+    public GameObject splash, twin, gameOver, pauseMenu, plastic, endFade;
+    public float tailSegmentLength = 0.1f, tailWidth = 0.1f, tailGravity = 9.8f, underwaterTailGravity = 0.1f, minJointLerp, endSequenceLength, endSequenceShakeLength, endSequenceShakeMagnitute;
 
     [HideInInspector]
     public int collectedPlastic;
@@ -72,12 +69,11 @@ public class Player : MonoBehaviour
         {
             EditorUpdate();
         }
-        float moveUp = 0;
         if (isloaded)
         {
             CheckPhysics();
             moveRight = Input.GetAxis("Horizontal");
-            moveUp = Input.GetAxis("Vertical");
+            float moveUp = Input.GetAxis("Vertical");
             if (moveRight < 0)
             {
                 flipDir = -1;
@@ -89,9 +85,9 @@ public class Player : MonoBehaviour
             moveDir = new Vector3(moveRight, moveUp).normalized;
             rb.AddForce(controlMultiplier * moveForce * rb.mass * Time.deltaTime * moveDir, ForceMode2D.Force);
             rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxSpeed);
-            Animate();
-            UpdateTail();
         }
+        Animate();
+        UpdateTail();
     }
 
     private void CheckPhysics()
@@ -248,6 +244,23 @@ public class Player : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
+    IEnumerator EndSequence()
+    {
+        Vector3 cameraStartPosition = Camera.main.transform.position;
+        GameObject eel = GameObject.Find("Eel/EelHead");
+        Vector3 eelStartPos = eel.transform.localPosition;
+        float t = 0;
+        while (t < endSequenceLength)
+        {
+            Camera.main.transform.position = cameraStartPosition + Mathf.Sin(t * Mathf.PI/ endSequenceShakeLength) * endSequenceShakeMagnitute * Vector3.down;
+            endFade.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, t / endSequenceLength);
+            eel.transform.localPosition = Vector3.Lerp(eelStartPos, -eelStartPos, t / endSequenceLength);
+            t += Time.deltaTime;
+            yield return null;
+        }
+        SceneManager.LoadScene("Map");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("RandomTrash"))
@@ -283,6 +296,7 @@ public class Player : MonoBehaviour
                 trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
                 StopAllCoroutines();
                 StartCoroutine(DamagePulse());
+                animator.SetTrigger("Hit");
             }
         }
         if (collision.CompareTag("Region"))
@@ -306,11 +320,11 @@ public class Player : MonoBehaviour
             PlayerPrefs.SetInt("storyPoint", 2);
             rb.bodyType = RigidbodyType2D.Static;
             GetComponent<Collider2D>().enabled = false;
-            twin.GetComponent<Collider2D>().enabled = false;
+            //twin.GetComponent<Collider2D>().enabled = false;
             isloaded = false;
             pauseMenu.SetActive(false);
             plastic.SetActive(false);
-            SceneManager.LoadScene("Map");
+            StartCoroutine(EndSequence());
         }
     }
 

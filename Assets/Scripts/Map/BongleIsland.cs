@@ -23,10 +23,11 @@ public class BongleIsland : MonoBehaviour
     private Rigidbody2D rb2D;
     private Vector3 lastPathPos, pathOffset;
     private FloatingObjects floatingObjectsScript;
-    private Transform popupsContainer;
+    private Transform popupsContainer, upgradesContainer;
     private AudioManager audioManager;
     private bool prevFlipX;
     private float sailZ;
+    private GameObject[][] upgradeSprites;
 
     // Start is called before the first frame update
 
@@ -40,6 +41,20 @@ public class BongleIsland : MonoBehaviour
         floatingObjectsScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
         transform.position = new Vector3(PlayerPrefs.GetFloat("posX", 0), PlayerPrefs.GetFloat("posY", 0), PlayerPrefs.GetFloat("posZ", 0));
         lastPathPos = transform.position;
+        upgradeSprites = new GameObject[3][];
+        upgradesContainer = transform.Find("Upgrades");
+        for (int i = 1; i < 4; i++)
+        {
+            upgradeSprites[i - 1] = new GameObject[3];
+            for (int j = 1; j < 4; j++)
+            {
+                if (upgradesContainer.Find("Upgrade" + i + "-" + j) != null)
+                {
+                    upgradeSprites[i - 1][j - 1] = upgradesContainer.Find("Upgrade" + i + "-" + j).gameObject;
+                }
+            }
+        }
+        RefreshUpgrades();
     }
 
     // Update is called once per frame
@@ -159,6 +174,20 @@ public class BongleIsland : MonoBehaviour
         }
     }
 
+    public void RefreshUpgrades()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (upgradeSprites[i][j] != null)
+                {
+                    upgradeSprites[i][j].SetActive(PlayerPrefs.GetInt("upgrade" + i.ToString() + j.ToString(), 0) == 1);
+                }
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("RandomTrash"))
@@ -228,5 +257,11 @@ public class BongleIsland : MonoBehaviour
         PlayerPrefs.SetFloat("posX", transform.position.x);
         PlayerPrefs.SetFloat("posY", transform.position.y);
         PlayerPrefs.SetFloat("posZ", transform.position.z);
+    }
+
+    [System.Serializable]
+    public struct UpgradeSprites
+    {
+        public GameObject[] upgradeSprites;
     }
 }

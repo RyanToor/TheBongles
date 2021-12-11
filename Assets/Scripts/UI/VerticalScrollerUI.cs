@@ -69,6 +69,7 @@ public class VerticalScrollerUI : MonoBehaviour
             }
             yield return null;
         }
+        PlayerPrefs.SetInt("Stars1", starsScored);
         scoreText.text = score.ToString();
     }
 
