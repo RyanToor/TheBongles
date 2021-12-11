@@ -61,7 +61,9 @@ public class Map : MonoBehaviour
         GameObject newTrash = Instantiate(randomTrash, new Vector3(Random.Range(mapArea.min.x, mapArea.max.x), Random.Range(mapArea.min.y, mapArea.max.y), 0), Quaternion.identity, randomTrashContainer.transform);
         int trashType = Random.Range(0, PlayerPrefs.GetInt("maxRegion", 0));
         RandomTrash trashScript = newTrash.GetComponent<RandomTrash>();
-        trashScript.sprite = trashSprites[trashType].sprites[Random.Range(0, trashSprites[trashType].sprites.Length)];
+        int trashIndex = Random.Range(0, trashSprites[trashType].sprites.Length);
+        trashScript.sprite = trashSprites[trashType].sprites[trashIndex];
+        trashScript.spriteIndex = trashIndex;
         trashScript.trashType = trashSprites[trashType].name;
         trashScript.floatingObjectsScript = floatingObjectsScript;
         floatingObjectsScript.objectsToAdd.Add(newTrash);

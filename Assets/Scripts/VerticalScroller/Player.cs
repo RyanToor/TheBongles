@@ -117,6 +117,7 @@ public class Player : MonoBehaviour
     private void Animate()
     {
         transform.rotation = Quaternion.SlerpUnclamped(Quaternion.identity, Quaternion.AngleAxis(90, Vector3.forward), spriteDir * rb.velocity.y / maxSpeed);
+        animator.SetFloat("Angle", Mathf.Abs((transform.rotation.eulerAngles.z > 180) ? 360 - transform.rotation.eulerAngles.z : transform.rotation.eulerAngles.z));
         animator.SetFloat("Speed", rb.velocity.magnitude);
         twinAnimator.SetFloat("Speed", rb.velocity.magnitude);
         float currentSpeed = Mathf.Clamp(rb.velocity.magnitude / maxSpeed, 0.5f, 1);

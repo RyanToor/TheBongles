@@ -115,6 +115,12 @@ public class VideoManager : MonoBehaviour
         {
             GameObject.Find("CloudCover").SetActive(false);
         }
+        InputPrompts inputScript = GameObject.Find("UI/Prompts").GetComponent<InputPrompts>();
+        if (PlayerPrefs.GetInt("storyPoint", 0) == 0)
+        {
+            PlayerPrefs.SetInt("storyPoint", 1);
+            inputScript.StartPrompt();
+        }
         GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = true;
     }
 

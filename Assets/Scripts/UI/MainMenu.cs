@@ -10,7 +10,6 @@ public class MainMenu : MonoBehaviour
         if (PlayerPrefs.GetInt("storyPoint", 0) == 0)
         {
             videoManager.PlayCutscene(0);
-            PlayerPrefs.SetInt("storyPoint", 1);
             print("Story Point : " + PlayerPrefs.GetInt("storyPoint", 0));
         }
         else
