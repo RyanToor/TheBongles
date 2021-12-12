@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public int maxHealth;
     public float chasmTopperForce, moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce, maxBagDistance, damagePulseCount, damagePulseSpeed;
     public GameObject splash, twin, gameOver, pauseMenu, plastic, endFade;
-    public float tailSegmentLength = 0.1f, tailWidth = 0.1f, tailGravity = 9.8f, underwaterTailGravity = 0.1f, minJointLerp, endSequenceLength, endSequenceShakeLength, endSequenceShakeMagnitute;
+    public float tailSegmentLength = 0.1f, tailWidth = 0.1f, tailGravity = 9.8f, underwaterTailGravity = 0.1f, minJointLerp, endSequenceLength, endSequenceShakeLength, endSequenceShakeMagnitute, spinStarsDuration;
 
     [HideInInspector]
     public int collectedPlastic;
@@ -30,14 +30,18 @@ public class Player : MonoBehaviour
     private LineRenderer lineRenderer;
     private bool[] dry;
     private float[] dryTime;
-    private Transform tailOffset;
+    private Transform tailOffset, spinStarsOffset;
     private bool isFlipping;
+    private GameObject spinStars;
     //private Vector3 twinPrevPos;
 
     // Start is called before the first frame update
     void Start()
     {
+        spinStars = transform.Find("SpinStars").gameObject;
+        spinStars.SetActive(false);
         tailOffset = transform.Find("TailOffset");
+        spinStarsOffset = transform.Find("SpinStarsOffset");
         uI = GameObject.Find("Canvas").GetComponent<VerticalScrollerUI>();
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -128,11 +132,13 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Flip");
             isFlipping = true;
         }
+        spinStars.transform.localPosition = Vector3.Scale(spinStarsOffset.localPosition, new Vector3(flipDir, 1, 1));
     }
 
     public void Flip()
     {
         spriteRenderer.flipX = (flipDir != 1);
+        spinStars.GetComponent<SpriteRenderer>().flipX = (flipDir != 1);
         foreach (SpriteRenderer upgradeSpriteRenderer in spriteRenderers)
         {
             upgradeSpriteRenderer.flipX = spriteRenderer.flipX;
@@ -198,7 +204,7 @@ public class Player : MonoBehaviour
             }
         }
         //twinPrevPos = lerpJoints[lerpJoints.Length - 1];
-        joints[0] = transform.position + transform.TransformVector(Vector3.Scale(tailOffset.localPosition, new Vector3(flipDir, 1, 1)));
+        joints[0] = transform.position + transform.TransformVector(Vector3.Scale(tailOffset.localPosition, new Vector3((spriteRenderer.flipX == true) ? -1 : 1, 1, 1)));
         lerpJoints[0] = joints[0];
         for (int i = 1; i < joints.Length; i++)
         {
@@ -236,13 +242,20 @@ public class Player : MonoBehaviour
     IEnumerator DamagePulse()
     {
         float duration = 0;
-        while (duration < damagePulseCount * 2 * Mathf.PI)
+        spinStars.SetActive(true);
+        while (duration < damagePulseCount * 2 * Mathf.PI / damagePulseSpeed)
         {
-            spriteRenderer.color = Color.Lerp(Color.white, Color.red, (Mathf.Sin(duration) + 0.5f) / 2);
-            duration += Time.deltaTime * damagePulseSpeed;
+            spriteRenderer.color = Color.Lerp(Color.white, Color.red, (Mathf.Sin(duration * damagePulseSpeed) + 0.5f) / 2);
+            duration += Time.deltaTime;
             yield return null;
         }
         spriteRenderer.color = Color.white;
+        while (duration < spinStarsDuration)
+        {
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        spinStars.SetActive(false);
     }
 
     IEnumerator EndSequence()
@@ -321,7 +334,6 @@ public class Player : MonoBehaviour
             PlayerPrefs.SetInt("storyPoint", 2);
             rb.bodyType = RigidbodyType2D.Static;
             GetComponent<Collider2D>().enabled = false;
-            //twin.GetComponent<Collider2D>().enabled = false;
             isloaded = false;
             pauseMenu.SetActive(false);
             plastic.SetActive(false);

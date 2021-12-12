@@ -1,0 +1,587 @@
+fileFormatVersion: 2
+guid: 8312b744d941c954ea29d07f10c8083e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5221951007663455745
+    second: DangerousTrash_1_0
+  - first:
+      213: 2824673793554675198
+    second: DangerousTrash_1_1
+  - first:
+      213: -1326071130970143660
+    second: DangerousTrash_1_2
+  - first:
+      213: -3630662100863890893
+    second: DangerousTrash_1_3
+  - first:
+      213: -7571910191506385175
+    second: DangerousTrash_1_4
+  - first:
+      213: 5656032060023777338
+    second: DangerousTrash_1_5
+  - first:
+      213: -318703605416332390
+    second: DangerousTrash_1_6
+  - first:
+      213: -8161860954868674084
+    second: DangerousTrash_1_7
+  - first:
+      213: -2270978576779865727
+    second: DangerousTrash_1_8
+  - first:
+      213: 415106947460019703
+    second: DangerousTrash_1_9
+  - first:
+      213: -5867386444314176210
+    second: DangerousTrash_1_10
+  - first:
+      213: -8293934819655444
+    second: DangerousTrash_1_11
+  - first:
+      213: -5972923186598024860
+    second: DangerousTrash_1_12
+  - first:
+      213: -4078655226017568287
+    second: DangerousTrash_1_13
+  - first:
+      213: 8201829820311750956
+    second: DangerousTrash_1_14
+  - first:
+      213: 1024246151860867157
+    second: DangerousTrash_1_15
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DangerousTrash_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 147, y: -4}
+        - {x: 174, y: -44}
+        - {x: 190, y: -68}
+        - {x: 232, y: -47}
+        - {x: 225, y: 11}
+        - {x: 193, y: 75}
+        - {x: 160, y: 107}
+        - {x: 136, y: 132}
+        - {x: 109, y: 171}
+        - {x: 65, y: 184}
+        - {x: 29, y: 191}
+        - {x: -19, y: 200}
+        - {x: -35, y: 200}
+        - {x: -40, y: 182}
+        - {x: -92, y: 133}
+        - {x: -219, y: 16}
+        - {x: -242, y: 9}
+        - {x: -242, y: -22}
+        - {x: -235, y: -48}
+        - {x: -221, y: -71}
+        - {x: -188, y: -115}
+        - {x: -159, y: -146}
+        - {x: -102, y: -185}
+        - {x: -83, y: -187}
+        - {x: -60, y: -187}
+        - {x: -55, y: -185}
+        - {x: 72, y: -65}
+        - {x: 117, y: -25}
+      tessellationDetail: 0.1
+      bones: []
+      spriteID: ff10ab1c937e787b0800000000000000
+      internalID: -5221951007663455745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef57e2779d1433720800000000000000
+      internalID: 2824673793554675198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 454cf9b0559d89de0800000000000000
+      internalID: -1326071130970143660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33ac88a2e0c4d9dc0800000000000000
+      internalID: -3630662100863890893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e61a1c6ccb2be690800000000000000
+      internalID: -7571910191506385175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3820ff01334e7e40800000000000000
+      internalID: 5656032060023777338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -68, y: 181}
+        - {x: -140, y: 191}
+        - {x: -124, y: 86}
+        - {x: -124, y: -3}
+        - {x: -49, y: -91}
+        - {x: 21, y: -111}
+        - {x: 127, y: -148}
+        - {x: 166, y: -111}
+        - {x: 166, y: -5}
+        - {x: 48, y: 157}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a93f58a62ccb39bf0800000000000000
+      internalID: -318703605416332390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd11ce674be3bbe80800000000000000
+      internalID: -8161860954868674084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 181938e340ddb70e0800000000000000
+      internalID: -2270978576779865727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 112, y: -122}
+        - {x: 115, y: -126}
+        - {x: 117, y: -128}
+        - {x: 122, y: -128}
+        - {x: 128, y: -125}
+        - {x: 128, y: -115}
+        - {x: 126, y: -112}
+        - {x: 118, y: -112}
+        - {x: 112, y: -114}
+      - - {x: -9, y: 158}
+        - {x: -108, y: 184}
+        - {x: -124, y: 89}
+        - {x: -124, y: 6}
+        - {x: -69, y: -84}
+        - {x: -9, y: -96}
+        - {x: 65, y: -109}
+        - {x: 147, y: -109}
+        - {x: 170, y: -89}
+        - {x: 170, y: -58}
+        - {x: 157, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f5b623c191c2c500800000000000000
+      internalID: 415106947460019703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_10
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 120, y: 122}
+        - {x: 96, y: 141}
+        - {x: 64, y: 158}
+        - {x: 41, y: 175}
+        - {x: 9, y: 186}
+        - {x: -47, y: 192}
+        - {x: -107, y: 171}
+        - {x: -150, y: 83}
+        - {x: -132, y: -228}
+        - {x: -85, y: -228}
+        - {x: -59, y: -207}
+        - {x: 128, y: -86}
+        - {x: 139, y: 94}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2516ba9d1bd29ea0800000000000000
+      internalID: -5867386444314176210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce0c841d5b882eff0800000000000000
+      internalID: -8293934819655444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4696128f10aeb1da0800000000000000
+      internalID: -5972923186598024860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_13
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e9aeeb7ea4b567c0800000000000000
+      internalID: -4078655226017568287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2943e334c0c2d170800000000000000
+      internalID: 8201829820311750956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DangerousTrash_1_15
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5505a3cc27ad63e00800000000000000
+      internalID: 1024246151860867157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

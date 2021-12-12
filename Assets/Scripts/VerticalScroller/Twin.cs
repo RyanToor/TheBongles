@@ -14,6 +14,7 @@ public class Twin : MonoBehaviour
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
         animator = GetComponent<Animator>();
+        GetComponent<Collider2D>().enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

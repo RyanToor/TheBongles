@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d70db7d5427146e4fafcb468f78c9fe7
+guid: 76f585ed635f09f418184ef9cb7f1b52
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -8,24 +8,6 @@ TextureImporter:
   - first:
       213: -7984511630379135844
     second: Eel_Clean_Idle_1
-  - first:
-      213: -2892218989116528305
-    second: Eel_Clean_Idle_2
-  - first:
-      213: 6866227506775265451
-    second: Eel_Clean_Idle_3
-  - first:
-      213: 6340812237359910486
-    second: Eel_Clean_Idle_4
-  - first:
-      213: 8484675121927159472
-    second: Eel_Clean_Idle_5
-  - first:
-      213: 2675061390876888812
-    second: Eel_Clean_Idle_6
-  - first:
-      213: -3377877171177506539
-    second: Eel_Clean_Idle_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -89,7 +71,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -101,7 +83,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,7 +95,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -125,7 +107,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -143,7 +125,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3072
+        y: 1024
         width: 1024
         height: 1024
       alignment: 9
@@ -164,7 +146,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 3072
+        y: 1024
         width: 1024
         height: 1024
       alignment: 9
@@ -176,132 +158,6 @@ TextureImporter:
       bones: []
       spriteID: c9cc646d9f0513190800000000000000
       internalID: -7984511630379135844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_2
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 3072
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f49e11d2726ccd7d0800000000000000
-      internalID: -2892218989116528305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_3
-      rect:
-        serializedVersion: 2
-        x: 3072
-        y: 3072
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba01b50e98db94f50800000000000000
-      internalID: 6866227506775265451
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2048
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65e894382271ff750800000000000000
-      internalID: 6340812237359910486
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_5
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 2048
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0beff05d11f9fb570800000000000000
-      internalID: 8484675121927159472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_6
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 2048
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cee4493792abf1520800000000000000
-      internalID: 2675061390876888812
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Clean_Idle_7
-      rect:
-        serializedVersion: 2
-        x: 3072
-        y: 2048
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.35, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 519301d0c9e5f11d0800000000000000
-      internalID: -3377877171177506539
       vertices: []
       indices: 
       edges: []

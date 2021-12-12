@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fa8708b15b88bf44da7447210277064d
+guid: b56a954a4f25ecd4f8b261490f0f3d6f
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -8,15 +8,6 @@ TextureImporter:
   - first:
       213: -1591629073154091472
     second: Eel_Trashy_Idle_1
-  - first:
-      213: -4286776962041349730
-    second: Eel_Trashy_Idle_2
-  - first:
-      213: 3333840535338107679
-    second: Eel_Trashy_Idle_3
-  - first:
-      213: 2230170103985054778
-    second: Eel_Trashy_Idle_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -80,7 +71,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -92,7 +83,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -104,7 +95,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -116,7 +107,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -134,11 +125,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3072
+        y: 1024
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+      pivot: {x: 0.35, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,11 +146,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 3072
+        y: 1024
         width: 1024
         height: 1024
       alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+      pivot: {x: 0.35, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -167,69 +158,6 @@ TextureImporter:
       bones: []
       spriteID: 03657707ac569e9e0800000000000000
       internalID: -1591629073154091472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Trashy_Idle_2
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 3072
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e99723ab01f4284c0800000000000000
-      internalID: -4286776962041349730
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Trashy_Idle_3
-      rect:
-        serializedVersion: 2
-        x: 3072
-        y: 3072
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1340aead4e244e20800000000000000
-      internalID: 3333840535338107679
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Eel_Trashy_Idle_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2048
-        width: 1024
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a34a9b4c4e723fe10800000000000000
-      internalID: 2230170103985054778
       vertices: []
       indices: 
       edges: []

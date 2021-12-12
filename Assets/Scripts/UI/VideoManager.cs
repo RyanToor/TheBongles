@@ -7,6 +7,7 @@ public class VideoManager : MonoBehaviour
 {
     public float musicCrossfadeTime, fadeFramesBefore;
     public Cutscene[] cutScenes;
+    public int testScene;
 
     private VideoPlayer videoPlayer;
     private RawImage image;
@@ -23,6 +24,7 @@ public class VideoManager : MonoBehaviour
         videoPlayer = GetComponent<VideoPlayer>();
         image = GetComponent<RawImage>();
         videoPlayer.targetTexture.Release();
+        videoPlayer.SetTargetAudioSource(0, audioManager.sfxSource);
     }
 
     private void Start()
@@ -33,7 +35,6 @@ public class VideoManager : MonoBehaviour
             PlayerPrefs.SetInt("eelMet", 1);
             GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().FlipLerpDir();
         }
-        videoPlayer.SetTargetAudioSource(0, audioManager.sfxSource);
     }
 
     private void Update()
@@ -51,12 +52,17 @@ public class VideoManager : MonoBehaviour
         }
         isPlayingCutscene = true;
         StartCoroutine(PlayVideo(cutscene));
+
     }
 
     public IEnumerator PlayVideo(int cutScene)
     {
         if (isPlayingCutscene)
         {
+            if (cutScenes[cutScene].scenes[currentScene].isLooping && currentScene == 1)
+            {
+                GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().VideoPrompt();
+            }
             if (cutScenes[cutScene].scenes[currentScene].audio != null)
             {
                 audioManager.PlayVideoSFX(cutScenes[cutScene].scenes[currentScene].audio);
@@ -116,10 +122,14 @@ public class VideoManager : MonoBehaviour
             GameObject.Find("CloudCover").SetActive(false);
         }
         InputPrompts inputScript = GameObject.Find("UI/Prompts").GetComponent<InputPrompts>();
-        if (PlayerPrefs.GetInt("storyPoint", 0) == 0)
+        switch (PlayerPrefs.GetInt("storyPoint", 0))
         {
-            PlayerPrefs.SetInt("storyPoint", 1);
-            inputScript.StartPrompt();
+            case 0:
+                PlayerPrefs.SetInt("storyPoint", 1);
+                inputScript.StartPrompt();
+                break;
+            default:
+                break;
         }
         GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = true;
     }
@@ -128,7 +138,7 @@ public class VideoManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            PlayCutscene(1);
+            PlayCutscene(testScene);
         }
     }
 

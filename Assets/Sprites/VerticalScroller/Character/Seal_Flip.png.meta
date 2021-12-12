@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: 5673197526260575969
     second: Seal_Flip_2
+  - first:
+      213: -293443756949054607
+    second: Seal_Flip_3
+  - first:
+      213: -981870638225628678
+    second: Seal_Flip_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -182,6 +188,48 @@ TextureImporter:
       bones: []
       spriteID: 1eee26d971f3bbe40800000000000000
       internalID: 5673197526260575969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seal_Flip_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17bde71357a7debf0800000000000000
+      internalID: -293443756949054607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seal_Flip_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af1ec215bd1bf52f0800000000000000
+      internalID: -981870638225628678
       vertices: []
       indices: 
       edges: []

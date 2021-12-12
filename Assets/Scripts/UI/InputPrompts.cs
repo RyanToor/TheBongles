@@ -8,11 +8,13 @@ public class InputPrompts : MonoBehaviour
 
     private bool startPrompted;
     private Image storyPromptImage;
+    private Transform videoPromptParentTransform;
 
     // Start is called before the first frame update
     void Start()
     {
         storyPromptImage = transform.Find("StartPrompt").GetComponent<Image>();
+        videoPromptParentTransform = transform.Find("VideoPrompt");
     }
 
     public void StartPrompt()
@@ -21,6 +23,17 @@ public class InputPrompts : MonoBehaviour
         {
             StartCoroutine(InputDelay(storyPromptImage));
             startPrompted = true;
+        }
+    }
+
+    public void VideoPrompt()
+    {
+        if (!videoPromptParentTransform.Find("Space").gameObject.activeInHierarchy)
+        {
+            foreach (Transform childTransform in videoPromptParentTransform)
+            {
+                StartCoroutine(InputDelay(childTransform.gameObject.GetComponent<Image>()));
+            }
         }
     }
 
@@ -65,9 +78,8 @@ public class InputPrompts : MonoBehaviour
     {
         while (true)
         {
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Jump") == 1 || Input.GetMouseButtonDown(0))
             {
-                StopAllCoroutines();
                 StartCoroutine(Fade(image, -1, fadeTime));
                 yield break;
             }

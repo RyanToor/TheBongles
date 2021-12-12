@@ -148,15 +148,15 @@ public class TrashManager : MonoBehaviour
             int chunkTrash = UnityEngine.Random.Range(minTrash, Mathf.FloorToInt(Mathf.Clamp((float)index / maxTrashDepth * maxTrash, minTrash, maxTrash)));
             for (int i = 0; i < chunkTrash; i++)
             {
-                Sprite tempSprite;
+                int tempSpriteIndex = 0;
                 bool isDangerous = UnityEngine.Random.Range(0, 100) > (100 - Mathf.Clamp(index, 0, maxIsDangerousChance));
                 if (!isDangerous)
                 {
-                    tempSprite = trashSprites[UnityEngine.Random.Range(0, trashSprites.Count)];
+                    tempSpriteIndex = UnityEngine.Random.Range(0, trashSprites.Count);
                 }
                 else
                 {
-                    tempSprite = dangerousTrashSprites[UnityEngine.Random.Range(0, dangerousTrashSprites.Count)];
+                    tempSpriteIndex = UnityEngine.Random.Range(0, dangerousTrashSprites.Count);
                 }
                 loadedTrash[index].Add(new Trash()
                 {
@@ -164,9 +164,10 @@ public class TrashManager : MonoBehaviour
                     startSide = Mathf.Sign(UnityEngine.Random.value - 0.5f),
                     yPos = (UnityEngine.Random.value + index) * chunkHeight,
                     isDangerous = isDangerous,
-                    sprite = tempSprite,
+                    spriteIndex = tempSpriteIndex,
                     offset = UnityEngine.Random.value * 360f,
-                }); ;
+
+                });
             }
         }
         foreach (Trash trash in loadedTrash[index])
@@ -183,7 +184,15 @@ public class TrashManager : MonoBehaviour
             currentTrash[chunkIndex] = new List<GameObject>();
         }
         currentTrash[chunkIndex].Add(newTrash);
-        newTrash.GetComponent<SpriteRenderer>().sprite = loadedTrash[chunkIndex][currentTrash[chunkIndex].Count - 1].sprite;
+        newTrash.GetComponent<SpriteRenderer>().sprite = (trash.isDangerous) ? dangerousTrashSprites[trash.spriteIndex] : trashSprites[trash.spriteIndex];
+        if (trash.isDangerous)
+        {
+            newTrash.GetComponent<Animator>().SetInteger("TrashIndex", trash.spriteIndex + 1);
+        }
+        else
+        {
+            newTrash.GetComponent<Animator>().enabled = false;
+        }
         PolygonCollider2D newCollider = newTrash.AddComponent<PolygonCollider2D>();
         newCollider.isTrigger = true;
     }
@@ -211,6 +220,6 @@ public struct Trash
     public float startSide;
     public float yPos;
     public bool isDangerous;
-    public Sprite sprite;
+    public int spriteIndex;
     public float offset;
 }
