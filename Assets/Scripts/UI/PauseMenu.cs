@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
         rightPaneTransform = transform.Find("RightPanel").GetComponent<RectTransform>();
         rightPaneTransform.localPosition = closedPos;
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
-        sFXSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1);
+        sFXSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
         ToggleMute("Music");
         ToggleMute("SFX");
     }
@@ -100,6 +100,8 @@ public class PauseMenu : MonoBehaviour
     public void ResetGame()
     {
         PlayerPrefs.DeleteAll();
+        GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isReseting = true;
+        SceneManager.LoadScene("Map");
     }
 
     private void ToggleMute(string toggleType)

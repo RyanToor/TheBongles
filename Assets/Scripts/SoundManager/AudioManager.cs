@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        SceneManager.sceneLoaded += OnSceneLoad;
         // Make sure there isn't already an AudioManager in the scene
         if (instance == null)
         {
@@ -37,7 +38,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-
         // Create audio sources, and save them as references
         musicSource = gameObject.AddComponent<AudioSource>();
         musicSource2 = gameObject.AddComponent<AudioSource>();
@@ -46,8 +46,11 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 0.25f) * PlayerPrefs.GetInt("MusicMuted", 1);
         musicSource2.volume = PlayerPrefs.GetFloat("MusicVolume", 0.25f) * PlayerPrefs.GetInt("MusicMuted", 1);
         sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume", 0.5f) * PlayerPrefs.GetInt("SFXMuted", 1);
+    }
 
-        if (SceneManager.GetActiveScene().name == "Map")
+    private void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Map")
         {
             GameObject.Find("UI/MainMenu/Settings/Music_Sound").GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
             GameObject.Find("UI/MainMenu/Settings/SFX_Sound").GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
@@ -92,7 +95,7 @@ public class AudioManager : MonoBehaviour
 
         activeSource.clip = musicSound.clip;
         activeSource.pitch = musicSound.pitch;
-        activeSource.volume = musicSound.volume * PlayerPrefs.GetFloat("MusicVolume", 1) * PlayerPrefs.GetInt("MusicMuted", 1);
+        activeSource.volume = musicSound.volume * PlayerPrefs.GetFloat("MusicVolume", 0.25f) * PlayerPrefs.GetInt("MusicMuted", 1);
         activeSource.loop = musicSound.loop;
         activeSource.Play();
     }

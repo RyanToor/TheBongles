@@ -47,6 +47,7 @@ public class InputPrompts : MonoBehaviour
             yield return null;
         }
         StartCoroutine(Fade(image, 1, fadeTime));
+        StartCoroutine(ConfirmInput(image));
     }
 
     private IEnumerator Fade(Image image, int direction, float delay)
@@ -76,7 +77,8 @@ public class InputPrompts : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Jump") == 1 || Input.GetMouseButtonDown(0))
             {
-                StopAllCoroutines();
+                StopCoroutine(Fade(storyPromptImage, 1, fadeTime));
+                StopCoroutine(Fade(videoPromptImage, 1, fadeTime));
                 StartCoroutine(Fade(image, -1, fadeTime));
                 yield break;
             }

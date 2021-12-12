@@ -14,7 +14,7 @@ public class BongleIsland : MonoBehaviour
     public GameObject[] flipObjects;
 
     [HideInInspector]
-    public bool isInputEnabled = false;
+    public bool isInputEnabled = false, isReseting = false;
     [HideInInspector]
     public Dictionary<GameObject, GameObject> activePopups = new Dictionary<GameObject, GameObject>();
     [HideInInspector]
@@ -254,9 +254,12 @@ public class BongleIsland : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerPrefs.SetFloat("posX", transform.position.x);
-        PlayerPrefs.SetFloat("posY", transform.position.y);
-        PlayerPrefs.SetFloat("posZ", transform.position.z);
+        if (!isReseting)
+        {
+            PlayerPrefs.SetFloat("posX", transform.position.x);
+            PlayerPrefs.SetFloat("posY", transform.position.y);
+            PlayerPrefs.SetFloat("posZ", transform.position.z);
+        }
     }
 
     [System.Serializable]

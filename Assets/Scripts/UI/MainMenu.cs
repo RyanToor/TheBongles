@@ -12,6 +12,11 @@ public class MainMenu : MonoBehaviour
             videoManager.PlayCutscene(0);
             print("Story Point : " + PlayerPrefs.GetInt("storyPoint", 0));
         }
+        else if (PlayerPrefs.GetInt("storyPoint", 0) == 1)
+        {
+            GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().StartPrompt();
+            GameObject.Find("CloudCover").SetActive(false);
+        }
         else
         {
             GameObject.Find("CloudCover").SetActive(false);
