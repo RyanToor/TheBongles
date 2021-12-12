@@ -7,14 +7,13 @@ public class InputPrompts : MonoBehaviour
     public float inputDelayWindow, fadeTime;
 
     private bool startPrompted;
-    private Image storyPromptImage;
-    private Transform videoPromptParentTransform;
+    private Image storyPromptImage, videoPromptImage;
 
     // Start is called before the first frame update
     void Start()
     {
         storyPromptImage = transform.Find("StartPrompt").GetComponent<Image>();
-        videoPromptParentTransform = transform.Find("VideoPrompt");
+        videoPromptImage = transform.Find("VideoPrompt").GetComponent<Image>();
     }
 
     public void StartPrompt()
@@ -28,12 +27,10 @@ public class InputPrompts : MonoBehaviour
 
     public void VideoPrompt()
     {
-        if (!videoPromptParentTransform.Find("Space").gameObject.activeInHierarchy)
+        if (!videoPromptImage.gameObject.activeInHierarchy)
         {
-            foreach (Transform childTransform in videoPromptParentTransform)
-            {
-                StartCoroutine(InputDelay(childTransform.gameObject.GetComponent<Image>()));
-            }
+            StartCoroutine(InputDelay(videoPromptImage));
+            StartCoroutine(ConfirmInput(videoPromptImage));
         }
     }
 
@@ -50,7 +47,6 @@ public class InputPrompts : MonoBehaviour
             yield return null;
         }
         StartCoroutine(Fade(image, 1, fadeTime));
-        StartCoroutine(ConfirmInput(image));
     }
 
     private IEnumerator Fade(Image image, int direction, float delay)
@@ -80,6 +76,7 @@ public class InputPrompts : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Jump") == 1 || Input.GetMouseButtonDown(0))
             {
+                StopAllCoroutines();
                 StartCoroutine(Fade(image, -1, fadeTime));
                 yield break;
             }
