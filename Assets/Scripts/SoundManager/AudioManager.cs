@@ -137,9 +137,9 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(string sound)
     {
         Sound newSound = FindSound(sFX, sound);
-        sfxSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1));
         if (!sfxSource.isPlaying)
         {
+            sfxSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1));
             sfxSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
         }
         sfxSource.PlayOneShot(newSound.clip, newSound.volume);
@@ -205,11 +205,14 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetInt("MusicMuted", Mathf.Abs(PlayerPrefs.GetInt("MusicMuted", 1) - 1));
         musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 0.25f) * PlayerPrefs.GetInt("MusicMuted", 1);
         musicSource2.volume = musicSource.volume;
+        musicSource.pitch = 1;
+        musicSource2.pitch = 1;
     }
     public void ToggleSFX()
     {
         PlayerPrefs.SetInt("SFXMuted", Mathf.Abs(PlayerPrefs.GetInt("SFXMuted", 1) - 1));
-        sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1);
+        sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume", 0.5f) * PlayerPrefs.GetInt("SFXMuted", 1);
+        sfxSource.pitch = 1;
     }
     private float RandomiseValue(float baseValue, float deviation)
     {
