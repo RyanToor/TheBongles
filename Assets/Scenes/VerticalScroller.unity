@@ -2949,6 +2949,7 @@ MonoBehaviour:
   maxSpeed: 1.5
   maxBob: 0.5
   bobSpeed: 4
+  rotationSpeed: 60
   maxIsDangerousChance: 80
   trashPrefab: {fileID: 8870397535284736555, guid: ec5d13b914272cc40aaa68c8d2822dda, type: 3}
   trashSprites:

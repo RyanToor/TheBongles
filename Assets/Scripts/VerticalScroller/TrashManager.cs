@@ -10,7 +10,7 @@ using Unity.Jobs;
 public class TrashManager : MonoBehaviour
 {
     public int minTrash, maxTrash, maxTrashDepth, maxDangerousTrashDepth;
-    public float minSpeed, maxSpeed, maxBob, bobSpeed;
+    public float minSpeed, maxSpeed, maxBob, bobSpeed, rotationSpeed;
     [Range(0, 100)]
     public float maxIsDangerousChance;
     public GameObject trashPrefab;
@@ -98,7 +98,7 @@ public class TrashManager : MonoBehaviour
         trashTransforms.SetTransforms(transforms);
         TrashScroller trashScroller = new TrashScroller
         {
-            speeds = speeds, startSides = startSides, yPos = yPos, time = Time.time, offsets = offsets, maxBob = maxBob, bobSpeed = bobSpeed
+            speeds = speeds, startSides = startSides, yPos = yPos, time = Time.time, offsets = offsets, maxBob = maxBob, bobSpeed = bobSpeed, rotationSpeed = rotationSpeed
         };
         JobHandle trashScrollerJob = trashScroller.Schedule(trashTransforms);
         trashScrollerJob.Complete();
@@ -165,8 +165,7 @@ public class TrashManager : MonoBehaviour
                     yPos = (UnityEngine.Random.value + index) * chunkHeight,
                     isDangerous = isDangerous,
                     spriteIndex = tempSpriteIndex,
-                    offset = UnityEngine.Random.value * 360f,
-
+                    offset = UnityEngine.Random.value * 360f
                 });
             }
         }
@@ -202,11 +201,12 @@ public class TrashManager : MonoBehaviour
     public struct TrashScroller : IJobParallelForTransform
     {
         public NativeArray<float> speeds, startSides, yPos, offsets;
-        public float time, maxBob, bobSpeed;
+        public float time, maxBob, bobSpeed, rotationSpeed;
 
         public void Execute(int index, TransformAccess transform)
         {
             transform.position = new float3(startSides[index] * 32 * math.sin(time * speeds[index] + offsets[index]), -yPos[index] + maxBob * math.sin(offsets[index] + bobSpeed * time), 0);
+            transform.rotation = Quaternion.AngleAxis(time * rotationSpeed * speeds[index], new float3(0, 0, (offsets[index] - 180f) / math.abs(offsets[index] - 180f)));
         }
     }
 
