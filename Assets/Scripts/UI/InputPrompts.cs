@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InputPrompts : MonoBehaviour
@@ -7,13 +8,28 @@ public class InputPrompts : MonoBehaviour
     public float inputDelayWindow, fadeTime;
 
     private bool startPrompted;
-    private Image storyPromptImage, videoPromptImage;
+    private Image storyPromptImage, videoPromptImage, trashHuntPromptImage;
 
     // Start is called before the first frame update
     void Start()
     {
-        storyPromptImage = transform.Find("StartPrompt").GetComponent<Image>();
-        videoPromptImage = transform.Find("VideoPrompt").GetComponent<Image>();
+        if (SceneManager.GetActiveScene().name == "Map")
+        {
+            storyPromptImage = transform.Find("StartPrompt").GetComponent<Image>();
+            videoPromptImage = transform.Find("VideoPrompt").GetComponent<Image>();
+        }
+        else if (SceneManager.GetActiveScene().name == "VerticalScroller")
+        {
+            trashHuntPromptImage = transform.Find("TrashHuntPrompt").GetComponent<Image>();
+            if (PlayerPrefs.GetInt("storyPoint", 0) == 1)
+            {
+                if (!trashHuntPromptImage.gameObject.activeInHierarchy)
+                {
+                    trashHuntPromptImage.gameObject.SetActive(true);
+                    StartCoroutine(ConfirmInput(trashHuntPromptImage));
+                }
+            }
+        }
     }
 
     public void StartPrompt()
@@ -30,7 +46,6 @@ public class InputPrompts : MonoBehaviour
         if (!videoPromptImage.gameObject.activeInHierarchy)
         {
             StartCoroutine(InputDelay(videoPromptImage));
-            StartCoroutine(ConfirmInput(videoPromptImage));
         }
     }
 
@@ -39,7 +54,7 @@ public class InputPrompts : MonoBehaviour
         float t = 0;
         while (t < inputDelayWindow)
         {
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Jump") == 1 || Input.GetMouseButtonDown(0))
             {
                 yield break;
             }
@@ -79,6 +94,7 @@ public class InputPrompts : MonoBehaviour
             {
                 StopCoroutine(Fade(storyPromptImage, 1, fadeTime));
                 StopCoroutine(Fade(videoPromptImage, 1, fadeTime));
+                StopCoroutine(InputDelay(videoPromptImage));
                 StartCoroutine(Fade(image, -1, fadeTime));
                 yield break;
             }

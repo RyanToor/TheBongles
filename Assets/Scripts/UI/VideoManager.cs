@@ -59,7 +59,7 @@ public class VideoManager : MonoBehaviour
     {
         if (isPlayingCutscene)
         {
-            if (cutScenes[cutScene].scenes[currentScene].isLooping && currentScene == 1)
+            if (cutScenes[cutScene].scenes[currentScene].isLooping)
             {
                 GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().VideoPrompt();
             }
