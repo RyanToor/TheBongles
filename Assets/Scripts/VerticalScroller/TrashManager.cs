@@ -188,6 +188,7 @@ public class TrashManager : MonoBehaviour
         if (trash.isDangerous)
         {
             newTrash.GetComponent<Animator>().SetInteger("TrashIndex", trash.spriteIndex + 1);
+            newTrash.GetComponent<SpriteRenderer>().sortingOrder = 6;
         }
         else
         {

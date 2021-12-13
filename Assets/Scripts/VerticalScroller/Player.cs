@@ -255,7 +255,10 @@ public class Player : MonoBehaviour
             duration += Time.deltaTime;
             yield return null;
         }
-        spinStars.SetActive(false);
+        if (health > 0)
+        {
+            spinStars.SetActive(false);
+        }
     }
 
     IEnumerator EndSequence()

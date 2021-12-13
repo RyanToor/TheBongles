@@ -138,7 +138,10 @@ public class AudioManager : MonoBehaviour
     {
         Sound newSound = FindSound(sFX, sound);
         sfxSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1));
-        sfxSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
+        if (!sfxSource.isPlaying)
+        {
+            sfxSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
+        }
         sfxSource.PlayOneShot(newSound.clip, newSound.volume);
     }
 
@@ -153,7 +156,10 @@ public class AudioManager : MonoBehaviour
     {
         Sound newSound = FindSound(sFX, sound);
         sfxSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1));
-        sfxSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
+        if (!sfxSource.isPlaying)
+        {
+            sfxSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
+        }
         if (!sfxSource.isPlaying)
         {
             sfxSource.PlayOneShot(newSound.clip, newSound.volume);
