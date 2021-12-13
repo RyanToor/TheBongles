@@ -13,9 +13,10 @@ public class UpgradeMenu : MonoBehaviour
     public Button upgradeButton;
     public GameObject[] tabs, storyCostContainers;
     public UpgradePanel[] upgradeCosts;
-    public Sprite[] StorySprites;
+    public Sprite[] storySprites;
     public Upgrade[] storyUpgradeCosts;
     public GameObject[][] upgradeButtons;
+    public Sprite[] enabledSprites;
 
     [HideInInspector]
     public int currentlyVisibleUpgrades;
@@ -141,6 +142,20 @@ public class UpgradeMenu : MonoBehaviour
             {
                 storyCostContainers[i].SetActive(false);
             }
+        }
+        transform.Find("LeftPanel/UpgradeBackground/Story").GetComponent<Image>().sprite = storySprites[currentLevel - 1];
+        switch (currentLevel)
+        {
+            case 3:
+                transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageCrab").GetComponent<Image>().sprite = enabledSprites[0];
+                transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];
+                transform.Find("LeftPanel/UpgradeBackground/CrabTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];
+                break;
+            case 2:
+                transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageCrab").GetComponent<Image>().sprite = enabledSprites[0];
+                break;
+            default:
+                break;
         }
         upgradeButton.interactable = upgradeReady;
     }

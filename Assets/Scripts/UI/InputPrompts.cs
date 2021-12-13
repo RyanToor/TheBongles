@@ -21,7 +21,7 @@ public class InputPrompts : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "VerticalScroller")
         {
             trashHuntPromptImage = transform.Find("TrashHuntPrompt").GetComponent<Image>();
-            if (PlayerPrefs.GetInt("storyPoint", 0) == 1)
+            if (PlayerPrefs.GetInt("storyPoint", 0) < 2)
             {
                 if (!trashHuntPromptImage.gameObject.activeInHierarchy)
                 {

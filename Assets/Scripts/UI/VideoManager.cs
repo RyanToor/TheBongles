@@ -14,7 +14,7 @@ public class VideoManager : MonoBehaviour
     private AudioManager audioManager;
     private Image background;
     private bool isPlayingCutscene;
-    public int currentScene = 0;
+    public int currentScene = 0, currentCutscene = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -44,6 +44,7 @@ public class VideoManager : MonoBehaviour
 
     public void PlayCutscene(int cutscene)
     {
+        currentCutscene = cutscene;
         GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = false;
         background.enabled = true;
         if (PlayerPrefs.GetInt("MusicMuted", 1) == 1)
@@ -51,33 +52,33 @@ public class VideoManager : MonoBehaviour
             audioManager.PlayMusicWithFade("Story", musicCrossfadeTime);
         }
         isPlayingCutscene = true;
-        StartCoroutine(PlayVideo(cutscene));
+        StartCoroutine(PlayVideo());
 
     }
 
-    public IEnumerator PlayVideo(int cutScene)
+    public IEnumerator PlayVideo()
     {
         if (isPlayingCutscene)
         {
-            if (cutScenes[cutScene].scenes[currentScene].isLooping)
+            if (cutScenes[currentCutscene].scenes[currentScene].isLooping)
             {
                 GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().VideoPrompt();
             }
-            if (cutScenes[cutScene].scenes[currentScene].audio != null)
+            if (cutScenes[currentCutscene].scenes[currentScene].audio != null)
             {
-                audioManager.PlayVideoSFX(cutScenes[cutScene].scenes[currentScene].audio);
+                audioManager.PlayVideoSFX(cutScenes[currentCutscene].scenes[currentScene].audio);
             }
-            VideoClip video = cutScenes[cutScene].scenes[currentScene].video;
+            VideoClip video = cutScenes[currentCutscene].scenes[currentScene].video;
             if (!videoPlayer.enabled)
             {
                 videoPlayer.enabled = true;
                 image.enabled = true;
             }
             videoPlayer.clip = video;
-            videoPlayer.isLooping = cutScenes[cutScene].scenes[currentScene].isLooping;
+            videoPlayer.isLooping = cutScenes[currentCutscene].scenes[currentScene].isLooping;
             videoPlayer.frame = 0;
             videoPlayer.Play();
-            if (currentScene == cutScenes[cutScene].scenes.Length - 1)
+            if (currentScene == cutScenes[currentCutscene].scenes.Length - 1)
             {
                 StartCoroutine(CheckEnd(video));
                 currentScene = 0;
@@ -94,7 +95,11 @@ public class VideoManager : MonoBehaviour
                     videoPlayer.isLooping = false;
                 }
             }
-            StartCoroutine(PlayVideo(cutScene));
+            StartCoroutine(PlayVideo());
+        }
+        else
+        {
+            yield break;
         }
     }
 

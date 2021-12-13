@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 14940757}
   - component: {fileID: 14940756}
   m_Layer: 5
-  m_Name: ImageCrabDis
+  m_Name: ImageCrab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -497,7 +497,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 766896fc8184f0442a93b9dddb70f5b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 905f7f4b1e2585e45974e9e3ba360a37, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8939,7 +8939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1209135809
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9092,7 +9092,7 @@ GameObject:
   - component: {fileID: 1211994599}
   - component: {fileID: 1211994598}
   m_Layer: 5
-  m_Name: ImageWhaleDis
+  m_Name: ImageWhale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9544,7 +9544,7 @@ GameObject:
   - component: {fileID: 1288254504}
   - component: {fileID: 1288254503}
   m_Layer: 5
-  m_Name: ImageWhaleDis
+  m_Name: ImageWhale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10564,10 +10564,10 @@ MonoBehaviour:
       - text: {fileID: 276483233}
         type: 2
         cost: 50
-  StorySprites:
+  storySprites:
   - {fileID: 21300000, guid: 98d46dd69f75d3948bf101fdd7c2a84a, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 4675d208bf571524fa2f9dba883c4651, type: 3}
+  - {fileID: 21300000, guid: 4675d208bf571524fa2f9dba883c4651, type: 3}
   storyUpgradeCosts:
   - button: {fileID: 0}
     image: {fileID: 0}
@@ -10596,6 +10596,9 @@ MonoBehaviour:
     - text: {fileID: 0}
       type: 2
       cost: 50
+  enabledSprites:
+  - {fileID: 21300000, guid: 905f7f4b1e2585e45974e9e3ba360a37, type: 3}
+  - {fileID: 21300000, guid: d5e7d94254ffdca4c8410ed749c95481, type: 3}
   currentlyVisibleUpgrades: 0
 --- !u!1 &1473768430
 GameObject:
@@ -11649,7 +11652,7 @@ GameObject:
   - component: {fileID: 1598214393}
   - component: {fileID: 1598214392}
   m_Layer: 5
-  m_Name: ImageCrabDis
+  m_Name: ImageCrab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
