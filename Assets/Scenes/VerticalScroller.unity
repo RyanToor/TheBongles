@@ -2384,7 +2384,7 @@ MonoBehaviour:
   minDistance: 0.1
   backgroundPlateSeparation: 0
   deepColourDepth: 1500
-  backgroundPlatesPerLevel: 5
+  backgroundPlatesPerLevel: 6
   backgroundSprites:
   - name: Sandy
     sprites:
