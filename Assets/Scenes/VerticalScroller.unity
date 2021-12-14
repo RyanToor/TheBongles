@@ -10481,7 +10481,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 273911315}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: backToMap
+        m_MethodName: BackToMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -35,14 +35,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            OpenCloseMenu();
             audioManager.PlaySFX("Click");
         }
 
@@ -52,16 +45,14 @@ public class PauseMenu : MonoBehaviour
             rightPaneTransform.localPosition = Vector3.Lerp(closedPos, openPos, lerpPos);
         }
     }
-    public void Resume()
+    /*public void Resume()
     {
-        OpenCloseMenu();
         Time.timeScale = 1f;
-        GameIsPaused = false;
+        //GameIsPaused = false;
     }
 
     void Pause()
     {
-        OpenCloseMenu();
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
@@ -76,11 +67,19 @@ public class PauseMenu : MonoBehaviour
         {
             Pause();
         }
-    }
+    }*/
 
     public void OpenCloseMenu()
     {
         lerpDir *= -1;
+        if (lerpDir == -1)
+        {
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Time.timeScale = 0f;
+        }
     }
 
     public void QuitGame()
@@ -89,7 +88,7 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetInt("isLoaded", 1);
     }
 
-    public void backToMap()
+    public void BackToMap()
     {
         Time.timeScale = 1f;
         GameIsPaused = false;
