@@ -87,7 +87,7 @@ public class VideoManager : MonoBehaviour
             {
                 currentScene++;
             }
-            while (videoPlayer.frame < System.Convert.ToInt64(video.frameCount) || videoPlayer.isLooping)
+            while (videoPlayer.frame < System.Convert.ToInt64(video.frameCount) - 1 || videoPlayer.isLooping)
             {
                 yield return null;
                 if (Input.GetAxis("Jump") == 1 || Input.GetMouseButtonDown(0))
