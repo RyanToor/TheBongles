@@ -148,7 +148,7 @@ public class TrashManager : MonoBehaviour
             int chunkTrash = UnityEngine.Random.Range(minTrash, Mathf.FloorToInt(Mathf.Clamp((float)index / maxTrashDepth * maxTrash, minTrash, maxTrash)));
             for (int i = 0; i < chunkTrash; i++)
             {
-                int tempSpriteIndex = 0;
+                int tempSpriteIndex;
                 bool isDangerous = UnityEngine.Random.Range(0, 100) > (100 - Mathf.Clamp(index, 0, maxIsDangerousChance));
                 if (!isDangerous)
                 {

@@ -1,13 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject loadScreen;
-
-    public static bool GameIsPaused = false;
     [Range(0, 1)]
     public float lerpSpeed;
     public Vector3 closedPos, openPos;
@@ -24,8 +20,8 @@ public class PauseMenu : MonoBehaviour
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         rightPaneTransform = transform.Find("RightPanel").GetComponent<RectTransform>();
         rightPaneTransform.localPosition = closedPos;
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
-        sFXSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+        musicSlider.value = GameManager.Instance.musicVolume;
+        sFXSlider.value = GameManager.Instance.sFXVolume;
         ToggleMute("Music");
         ToggleMute("SFX");
     }
@@ -45,62 +41,23 @@ public class PauseMenu : MonoBehaviour
             rightPaneTransform.localPosition = Vector3.Lerp(closedPos, openPos, lerpPos);
         }
     }
-    /*public void Resume()
-    {
-        Time.timeScale = 1f;
-        //GameIsPaused = false;
-    }
-
-    void Pause()
-    {
-        Time.timeScale = 0f;
-        GameIsPaused = true;
-    }
-
-    public void pauseGame()
-    {
-        if (GameIsPaused)
-        {
-            Resume();
-        }
-        else
-        {
-            Pause();
-        }
-    }*/
 
     public void OpenCloseMenu()
     {
         lerpDir *= -1;
         if (lerpDir == -1)
         {
-            Time.timeScale = 1f;
+            GameManager.Instance.PauseGame(false);
         }
         else
         {
-            Time.timeScale = 0f;
+            GameManager.Instance.PauseGame(true);
         }
     }
 
     public void QuitGame()
     {
         Application.Quit();
-        PlayerPrefs.SetInt("isLoaded", 1);
-    }
-
-    public void BackToMap()
-    {
-        Time.timeScale = 1f;
-        GameIsPaused = false;
-        GameObject newLoadScreen = Instantiate(loadScreen, new Vector3(960, 540, 0), Quaternion.identity);
-        DontDestroyOnLoad(newLoadScreen);
-        SceneManager.LoadScene("Map");
-    }
-    public void ResetGame()
-    {
-        PlayerPrefs.DeleteAll();
-        GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isReseting = true;
-        SceneManager.LoadScene("Map");
     }
 
     private void ToggleMute(string toggleType)
@@ -118,7 +75,14 @@ public class PauseMenu : MonoBehaviour
         {
             foreach (Transform buttonType in muteObject.transform)
             {
-                buttonType.gameObject.SetActive((PlayerPrefs.GetInt(toggleType + "Muted", 1) == 0 ^ buttonType.gameObject.name == "Sound_Button") ? true : false);
+                if (toggleType == "Music")
+                {
+                    buttonType.gameObject.SetActive(((GameManager.Instance.musicMuted == 0) ^ (buttonType.gameObject.name == "Sound_Button")) ? true : false);
+                }
+                else
+                {
+                    buttonType.gameObject.SetActive(((GameManager.Instance.sFXMuted == 0) ^ (buttonType.gameObject.name == "Sound_Button")) ? true : false);
+                }
             }
         }
     }

@@ -14,16 +14,13 @@ public class UpgradeMenu : MonoBehaviour
     public GameObject[] tabs, storyCostContainers;
     public UpgradePanel[] upgradeCosts;
     public Sprite[] storySprites;
-    public Upgrade[] storyUpgradeCosts;
-    public GameObject[][] upgradeButtons;
+    public StoryUpgradeCosts[] storyUpgradeCosts;
     public Sprite[] enabledSprites;
-
-    [HideInInspector]
-    public int currentlyVisibleUpgrades;
+    public UpgradeButton[] upgradeButtons;
 
     private AudioManager audioManager;
     private float lerpPos = 0;
-    private string[] trashNames = new string[] { "Plastic", "Metal", "Glass" };
+    private readonly string[] trashNames = new string[] { "Plastic", "Metal", "Glass" };
     private int currentTabIndex;
 
     // Start is called before the first frame update
@@ -31,24 +28,6 @@ public class UpgradeMenu : MonoBehaviour
     {
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         currentTabIndex = 0;
-        RefreshReadouts();
-        foreach (UpgradePanel panel in upgradeCosts)
-        {
-            foreach (Upgrade upgrade in panel.upgrades)
-            {
-                foreach (UpgradeCost cost in upgrade.upgradeCosts)
-                {
-                    cost.text.text = cost.cost.ToString();
-                }
-            }
-        }
-        for (int i = 0; i < upgradeCosts.Length; i++)
-        {
-            for (int j = 0; j < upgradeCosts[i].upgrades.Length; j++)
-            {
-                upgradeCosts[i].upgrades[j].button.alphaHitTestMinimumThreshold = 0.5f;
-            }
-        }
     }
 
     private void Update()
@@ -58,6 +37,10 @@ public class UpgradeMenu : MonoBehaviour
             lerpPos = Mathf.Clamp(Mathf.Lerp(0, 1, lerpPos + lerpDir * lerpSpeed), 0, 1);
             transform.localPosition = Vector3.Lerp(closedPos, openPos, lerpPos);
         }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            FlipLerpDir();
+        }
         if (Application.isEditor)
         {
             EditorUpdate();
@@ -66,8 +49,12 @@ public class UpgradeMenu : MonoBehaviour
 
     public void RefreshReadouts()
     {
+        foreach (UpgradeButton button in upgradeButtons)
+        {
+            button.upgradeMenu = this;
+        }
         int trashToRefresh;
-        if (PlayerPrefs.GetInt("Glass", 0) > 0)
+        if (GameManager.Instance.trashCounts["Glass"] > 0)
         {
             trashToRefresh = 2;
             foreach (Text readout in trashReadouts)
@@ -75,7 +62,7 @@ public class UpgradeMenu : MonoBehaviour
                 readout.enabled = true;
             }
         }
-        else if (PlayerPrefs.GetInt("Metal", 0) > 0)
+        else if (GameManager.Instance.trashCounts["Metal"] > 0)
         {
             trashToRefresh = 1;
             for (int i = 0; i < 2; i++)
@@ -96,44 +83,29 @@ public class UpgradeMenu : MonoBehaviour
         transform.Find("LeftPanel/TrashCount").GetComponent<Image>().sprite = sprites[trashToRefresh];
         for (int i = 0; i <= trashToRefresh; i++)
         {
-            trashReadouts[i].text = PlayerPrefs.GetInt(trashReadouts[i].gameObject.name, 0).ToString();
+            trashReadouts[i].text = GameManager.Instance.trashCounts[trashReadouts[i].gameObject.name].ToString();
         }
         transform.Find("LeftPanel/TrashCount").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
-        for (int i = 0; i < upgradeCosts[currentTabIndex].upgrades.Length; i++)
+        for (int i = 0; i < upgradeButtons.Length; i++)
         {
-            if (UpgradeAffordabilityCheck(new int[2] { currentTabIndex, i }) && PlayerPrefs.GetInt("upgrade" + currentTabIndex + i, 0) == 0)
-            {
-                upgradeCosts[currentTabIndex].upgrades[i].button.color = upgradeAvailableColour;
-            }
-            else if (PlayerPrefs.GetInt("upgrade" + currentTabIndex + i, 0) == 1)
-            {
-                upgradeCosts[currentTabIndex].upgrades[i].button.color = upgradeActiveColour;
-                foreach (Transform child in upgradeCosts[currentTabIndex].upgrades[i].button.gameObject.transform)
-                {
-                    if (child.gameObject != upgradeCosts[currentTabIndex].upgrades[i].image)
-                    {
-                        child.gameObject.SetActive(false);
-                    }
-                }
-            }
-            else
-            {
-                upgradeCosts[currentTabIndex].upgrades[i].button.color = Color.white;
-            }
+            int upgradeTier = GameManager.Instance.upgrades[currentTabIndex][i];
+            upgradeButtons[i].upgradeIndicies = new int[] { currentTabIndex, i, upgradeTier};
+            upgradeButtons[i].upgrade = upgradeCosts[currentTabIndex].upgrades[i];
+            upgradeButtons[i].UpdateContents(GameManager.Instance.upgrades[currentTabIndex][i], UpgradeAffordabilityCheck(new int[3] { currentTabIndex, i, upgradeTier }));
         }
-        int currentLevel = PlayerPrefs.GetInt("maxRegion", 1);
-        Vector3[] barFills = new Vector3[currentLevel];
+        int currentLevel = GameManager.Instance.MaxRegion();
         bool upgradeReady = true;
         for (int i = 0; i < storyCostContainers.Length; i++)
         {
             if (i < currentLevel)
             {
+                Vector3 barFill;
                 storyCostContainers[i].SetActive(true);
                 storyCostContainers[i].transform.Find("Text").GetComponent<Text>().text = storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost.ToString();
-                barFills[i] = new Vector3(Mathf.Clamp((float)PlayerPrefs.GetInt(trashNames[i], 0) / storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost, 0, 1), 1, 1);
-                storyCostContainers[i].transform.Find("BarFill").localScale = barFills[i];
-                storyCostContainers[i].transform.Find("BarFill").GetComponent<Image>().color = (barFills[i].x == 1) ? barAvailableColour : barUnavailableColour;
-                if (barFills[i].x < 1)
+                barFill = new Vector3(Mathf.Clamp((float)GameManager.Instance.trashCounts[trashNames[i]] / storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost, 0, 1), 1, 1);
+                storyCostContainers[i].transform.Find("BarFill").localScale = barFill;
+                storyCostContainers[i].transform.Find("BarFill").GetComponent<Image>().color = (barFill.x == 1) ? barAvailableColour : barUnavailableColour;
+                if (barFill.x < 1)
                 {
                     upgradeReady = false;
                 }
@@ -162,7 +134,7 @@ public class UpgradeMenu : MonoBehaviour
 
     public void FlipLerpDir()
     {
-        if (PlayerPrefs.GetInt("storyPoint", 0) > 1)
+        if (GameManager.Instance.storyPoint > 1)
         {
             print("Upgrade Menu Dir Flipped");
             lerpDir *= -1;
@@ -172,7 +144,7 @@ public class UpgradeMenu : MonoBehaviour
     public void SwitchTab(GameObject newTab)
     {
         int newTabIndex = System.Array.IndexOf(tabs, newTab);
-        if (newTabIndex < PlayerPrefs.GetInt("maxRegion", 1))
+        if (newTabIndex < GameManager.Instance.MaxRegion())
         {
             currentTabIndex = newTabIndex;
             foreach (GameObject tab in tabs)
@@ -183,59 +155,52 @@ public class UpgradeMenu : MonoBehaviour
         }
     }
 
-    public void UpgradeButton(string upgradeLocation)
+    public void Upgrade(int[] upgradeIndicies)
     {
-        string[] splitUpgradeLocation = upgradeLocation.Split('-');
-        int[] upgradeIndicies = new int[splitUpgradeLocation.Length];
-        for (int i = 0; i < splitUpgradeLocation.Length; i++)
+        if (UpgradeAffordabilityCheck(upgradeIndicies))
         {
-            int.TryParse(splitUpgradeLocation[i], out upgradeIndicies[i]);
-        }
-        for (int i = 0; i < upgradeIndicies.Length; i++)
-        {
-            upgradeIndicies[i]--;
-        }
-        if (PlayerPrefs.GetInt("upgrade" + upgradeIndicies[0] + upgradeIndicies[1], 0) == 0)
-        {
-            if (UpgradeAffordabilityCheck(upgradeIndicies))
+            UpgradeCost[] prices = upgradeCosts[upgradeIndicies[0]].upgrades[upgradeIndicies[1]].upgradeTiers[upgradeIndicies[2]].upgradeCosts;
+            for (int i = 0; i < prices.Length; i++)
             {
-                UpgradeCost[] prices = upgradeCosts[upgradeIndicies[0]].upgrades[upgradeIndicies[1]].upgradeCosts;
-                for (int i = 0; i < prices.Length; i++)
-                {
-                    PlayerPrefs.SetInt(prices[i].type.ToString(), PlayerPrefs.GetInt(prices[i].type.ToString(), 0) - prices[i].cost);
-                }
-                PlayerPrefs.SetInt("upgrade" + upgradeIndicies[0] + upgradeIndicies[1], 1);
-                RefreshReadouts();
-                GameObject.Find("BongleIsland").GetComponent<BongleIsland>().RefreshUpgrades();
-                audioManager.PlaySFX("Twinkle");
+                GameManager.Instance.trashCounts[prices[i].type.ToString()] -= prices[i].cost;
             }
+            GameManager.Instance.upgrades[upgradeIndicies[0]][upgradeIndicies[1]] ++;
+            RefreshReadouts();
+            GameObject.Find("BongleIsland").GetComponent<BongleIsland>().RefreshUpgrades();
+            audioManager.PlaySFX("Twinkle");
         }
     }
 
     private bool UpgradeAffordabilityCheck(int[] upgradeIndicies)
     {
-        UpgradeCost[] upgradeCost = upgradeCosts[upgradeIndicies[0]].upgrades[upgradeIndicies[1]].upgradeCosts;
-        bool canAffordUpgrade = true;
-        for (int i = 0; i < upgradeCost.Length; i++)
+        if (upgradeIndicies[2] < upgradeCosts[upgradeIndicies[0]].upgrades[upgradeIndicies[1]].upgradeTiers.Length)
         {
-            //print(upgradeCost[i].type.ToString() + " : " + PlayerPrefs.GetInt(upgradeCost[i].type.ToString(), 0) + " / " + upgradeCost[i].cost);
-            if (PlayerPrefs.GetInt(upgradeCost[i].type.ToString(), 0) < upgradeCost[i].cost)
+            UpgradeCost[] upgradeCost = upgradeCosts[upgradeIndicies[0]].upgrades[upgradeIndicies[1]].upgradeTiers[upgradeIndicies[2]].upgradeCosts;
+            bool canAffordUpgrade = true;
+            for (int i = 0; i < upgradeCost.Length; i++)
             {
-                canAffordUpgrade = false;
+                //print(upgradeCost[i].type.ToString() + " : " + GameManager.Instance.trashCounts[upgradeCost[i].type.ToString()] + " / " + upgradeCost[i].cost);
+                if (GameManager.Instance.trashCounts[upgradeCost[i].type.ToString()] < upgradeCost[i].cost)
+                {
+                    canAffordUpgrade = false;
+                }
             }
+            //print(canAffordUpgrade);
+            return canAffordUpgrade;
         }
-        //print(canAffordUpgrade);
-        return canAffordUpgrade;
+        else
+        {
+            return false;
+        }
     }
 
     public void StoryUpgradeButton()
     {
         bool affordable = true;
-        UpgradeCost[] prices = storyUpgradeCosts[PlayerPrefs.GetInt("maxRegion", 1) - 1].upgradeCosts;
+        UpgradeCost[] prices = storyUpgradeCosts[GameManager.Instance.MaxRegion() - 1].upgradeCosts;
         for (int i = 0; i < prices.Length; i++)
         {
-            print(prices[i].type.ToString() + " : " + PlayerPrefs.GetInt(prices[i].type.ToString(), 0) + " / " + prices[i].cost);
-            if (PlayerPrefs.GetInt(prices[i].type.ToString(), 0) < prices[i].cost)
+            if (GameManager.Instance.trashCounts[prices[i].type.ToString()] < prices[i].cost)
             {
                 affordable = false;
             }
@@ -244,13 +209,10 @@ public class UpgradeMenu : MonoBehaviour
         {
             for (int i = 0; i < prices.Length; i++)
             {
-                PlayerPrefs.SetInt(prices[i].type.ToString(), PlayerPrefs.GetInt(prices[i].type.ToString(), 0) - prices[i].cost);
+                GameManager.Instance.trashCounts[prices[i].type.ToString()] -= prices[i].cost;
             }
-            videoManager.PlayCutscene(PlayerPrefs.GetInt("maxRegion", 1) * 2);
-            PlayerPrefs.SetInt("maxRegion", Mathf.Clamp(PlayerPrefs.GetInt("maxRegion", 1) + 1, 1, 3));
-            GameObject.Find("Map").GetComponent<Map>().UpdateRegionsUnlocked(PlayerPrefs.GetInt("maxRegion", 1));
-            PlayerPrefs.SetInt("storyPoint", PlayerPrefs.GetInt("storyPoint", 0) + 1);
-            RefreshReadouts();
+            GameManager.Instance.storyPoint++;
+            videoManager.CheckCutscene();
             print("Unlocked Next Region");
         }
         foreach (Transform bossRegion in GameObject.Find("BossRegions").transform)
@@ -267,44 +229,44 @@ public class UpgradeMenu : MonoBehaviour
             {
                 for (int j = 0; j < upgradeCosts[i].upgrades.Length; j++)
                 {
-                    PlayerPrefs.SetInt("upgrade" + i + j, 0);
-                    foreach (Transform child in upgradeCosts[i].upgrades[j].button.gameObject.transform)
-                    {
-                        child.gameObject.SetActive(true);
-                    }
+                    GameManager.Instance.upgrades[i][j] = 0;
+                    RefreshReadouts();
                 }
             }
             print("Upgrades Reset");
             RefreshReadouts();
         }
     }
+}
 
-    [System.Serializable]
-    public class UpgradeCost
-    {
-        public Text text;
-        public TrashType type;
-        public int cost;
-    }
+[System.Serializable]
+public struct UpgradeCost
+{
+    public TrashType type;
+    public int cost;
+}
 
-    [System.Serializable]
-    public struct Upgrade
-    {
-        public Image button;
-        public GameObject image;
-        public UpgradeCost[] upgradeCosts;
-    }
+[System.Serializable]
+public struct UpgradeTier
+{
+    public Sprite upgradeTierImage;
+    public UpgradeCost[] upgradeCosts;
+}
 
-    [System.Serializable]
-    public struct UpgradePanel
-    {
-        public Upgrade[] upgrades;
-    }
+[System.Serializable]
+public struct Upgrade
+{
+    public UpgradeTier[] upgradeTiers;
+}
 
-    public enum TrashType
-    {
-        Plastic,
-        Metal,
-        Glass
-    }
+[System.Serializable]
+public struct UpgradePanel
+{
+    public Upgrade[] upgrades;
+}
+
+[System.Serializable]
+public struct StoryUpgradeCosts
+{
+    public UpgradeCost[] upgradeCosts;
 }

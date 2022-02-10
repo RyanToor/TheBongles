@@ -6,22 +6,18 @@ using UnityEngine.UI;
 public class InputPrompts : MonoBehaviour
 {
     public float inputDelayWindow, fadeTime;
+    public Image storyPromptImage, videoPromptImage;
 
     private bool startPrompted;
-    private Image storyPromptImage, videoPromptImage, trashHuntPromptImage;
+    private Image trashHuntPromptImage;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Map")
-        {
-            storyPromptImage = transform.Find("StartPrompt").GetComponent<Image>();
-            videoPromptImage = transform.Find("VideoPrompt").GetComponent<Image>();
-        }
-        else if (SceneManager.GetActiveScene().name == "VerticalScroller")
+        if (SceneManager.GetActiveScene().name == "VerticalScroller")
         {
             trashHuntPromptImage = transform.Find("TrashHuntPrompt").GetComponent<Image>();
-            if (PlayerPrefs.GetInt("storyPoint", 0) < 2)
+            if (GameManager.Instance.storyPoint < 2)
             {
                 if (!trashHuntPromptImage.gameObject.activeInHierarchy)
                 {

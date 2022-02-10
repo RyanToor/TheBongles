@@ -9,6 +9,7 @@ public class VerticalScrollerUI : MonoBehaviour
     public GameObject[] stars, healthObjects;
 
     private Player player;
+    private LevelManager levelManager;
     private Text plasticCounterText, depthCounterText, scoreText;
     private float plasticCount, depthCount, score;
     private Slider fillBar;
@@ -25,15 +26,16 @@ public class VerticalScrollerUI : MonoBehaviour
             star.SetActive(false);
         }
         player = GameObject.Find("Player").GetComponent<Player>();
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        //GetComponent<Collider2D>().enabled = false;
         plasticCounterText = transform.Find("ReadoutPanel/Plastic").GetComponent<Text>();
         depthCounterText = transform.Find("ReadoutPanel/DepthPanel/Depth").GetComponent<Text>();
-        print(plasticCounterText.text);
     }
 
     // Update is called once per frame
     void Update()
     {
-        plasticCount = player.collectedPlastic;
+        plasticCount = levelManager.plastic;
         plasticCounterText.text = plasticCount.ToString();
         depthCount = Mathf.Abs(Mathf.Clamp(Mathf.Ceil(player.transform.position.y), -Mathf.Infinity, 0));
         depthCounterText.text = depthCount.ToString();
@@ -69,7 +71,10 @@ public class VerticalScrollerUI : MonoBehaviour
             }
             yield return null;
         }
-        PlayerPrefs.SetInt("Stars1", starsScored);
+        if (starsScored > GameManager.Instance.highscoreStars[0])
+        {
+            GameManager.Instance.highscoreStars[0] = starsScored;
+        }
         scoreText.text = score.ToString();
     }
 

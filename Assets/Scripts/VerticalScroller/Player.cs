@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
     public float tailSegmentLength = 0.1f, tailWidth = 0.1f, tailGravity = 9.8f, underwaterTailGravity = 0.1f, minJointLerp, endSequenceLength, endSequenceShakeLength, endSequenceShakeMagnitute, spinStarsDuration;
 
     [HideInInspector]
-    public int collectedPlastic;
-    [HideInInspector]
     public float gravity, health = 3;
     [HideInInspector]
     public bool isloaded;
@@ -55,24 +53,19 @@ public class Player : MonoBehaviour
         health = maxHealth;
         for (int i = 0; i < 3; i++)
         {
-            if (PlayerPrefs.GetInt("upgrade0" + i, 0) == 1)
+            if (GameManager.Instance.upgrades[0][i] > 0)
             {
-                if (transform.Find("Upgrade" + (i + 1)) != null)
+                if (transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[0][i]) != null)
                 {
-                    transform.Find("Upgrade" + (i + 1)).gameObject.SetActive(true);
-                    Upgrade(i + 1);
+                    transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[0][i]).gameObject.SetActive(true);
+                    Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[0][i]));
                 }
             }
         }
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void FixedUpdate()
     {
-        if (Application.isEditor)
-        {
-            EditorUpdate();
-        }
         if (isloaded)
         {
             CheckPhysics();
@@ -90,8 +83,17 @@ public class Player : MonoBehaviour
             rb.AddForce(controlMultiplier * moveForce * rb.mass * Time.deltaTime * moveDir, ForceMode2D.Force);
             rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxSpeed);
         }
-        Animate();
         UpdateTail();
+    }
+
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        if (Application.isEditor)
+        {
+            EditorUpdate();
+        }
+        Animate();
     }
 
     private void CheckPhysics()
@@ -216,13 +218,25 @@ public class Player : MonoBehaviour
         twin.transform.rotation = /*Quaternion.Slerp(Quaternion.identity, */Quaternion.LookRotation(Vector3.forward, lerpJoints[lerpJoints.Length - 1] - lerpJoints[lerpJoints.Length - 2])/*, (lerpJoints[lerpJoints.Length - 1] - twinPrevPos).magnitude / 0.01f)*/;
     }
 
-    private void Upgrade(int upgradeNumber)
+    private void Upgrade(Vector2Int upgradeNumber)
     {
-        switch (upgradeNumber)
+        switch (upgradeNumber.x)
         {
             case 1:
-                health += 2;
-                break;
+                if (upgradeNumber.y == 1)
+                {
+                    health += 2;
+                    break;
+                }
+                else if (upgradeNumber.y == 2)
+                {
+                    health += 1;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             case 2:
                 health += 1;
                 break;
@@ -231,11 +245,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void RemoveArmour(int armourIndex)
+    private void RemoveArmour(string armourIndex)
     {
-        if (transform.Find("Upgrade" + (armourIndex)) != null)
+        if (transform.Find("Upgrade" + armourIndex) != null)
         {
-            transform.Find("Upgrade" + (armourIndex)).gameObject.SetActive(false);
+            transform.Find("Upgrade" + armourIndex).gameObject.SetActive(false);
         }
     }
 
@@ -302,10 +316,10 @@ public class Player : MonoBehaviour
                 }
                 if (health < maxHealth + 3)
                 {
-                    RemoveArmour(2);
+                    RemoveArmour("1-2");
                     if (health < maxHealth + 1)
                     {
-                        RemoveArmour(1);
+                        RemoveArmour("1-1");
                     }
                 }
                 audioManager.PlaySFXAtLocation("Hit1", collision.transform.position);
@@ -334,7 +348,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Boss"))
         {
-            PlayerPrefs.SetInt("storyPoint", 2);
+            GameManager.Instance.storyPoint = 2;
             rb.bodyType = RigidbodyType2D.Static;
             GetComponent<Collider2D>().enabled = false;
             isloaded = false;
@@ -370,16 +384,10 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Equals))
         {
-            collectedPlastic += 20;
+            GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_VerticalScroller>().plastic++;
         }
     }
 
-    private void OnDestroy()
-    {
-        int plastic = PlayerPrefs.GetInt("Plastic", 0);
-        plastic += collectedPlastic;
-        PlayerPrefs.SetInt("Plastic", plastic);
-    }
     private void Dead()
     {
         rb.bodyType = RigidbodyType2D.Static;
@@ -390,7 +398,7 @@ public class Player : MonoBehaviour
         gameOver.SetActive(true);
         pauseMenu.SetActive(false);
         plastic.SetActive(false);
-        gameOver.transform.Find("EndScreen/Score/Plastic").GetComponent<Text>().text = collectedPlastic.ToString();
+        gameOver.transform.Find("EndScreen/Score/Plastic").GetComponent<Text>().text = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().plastic.ToString();
         gameOver.transform.Find("EndScreen/Score/Depth").GetComponent<Text>().text = Mathf.Abs(Mathf.Ceil(transform.position.y)).ToString();
         uI.EndGame();
     }

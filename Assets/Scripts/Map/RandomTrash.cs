@@ -7,9 +7,12 @@ public class RandomTrash : MonoBehaviour
     public string trashType;
     public FloatingObjects floatingObjectsScript;
 
+    private LevelManager_Map levelManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>();
         Animator rippleAnimator = transform.Find("Ripples").GetComponent<Animator>();
         transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = sprite;
         rippleAnimator.SetBool("Plastic", trashType == "Plastic");
@@ -24,7 +27,7 @@ public class RandomTrash : MonoBehaviour
         {
             if (!collision.CompareTag("Region") || collision.CompareTag("Region") && !collision.gameObject.GetComponent<Region>().isUnlocked)
             {
-                GameObject.Find("Map").GetComponent<Map>().SpawnRandomTrash();
+                levelManager.SpawnRandomTrash();
                 floatingObjectsScript.objectsToRemove.Add(gameObject);
             }
         }

@@ -2163,7 +2163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2def72f400326d49b317266790c4749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadScreen: {fileID: 8501071293954850938, guid: 94454062a6294e2408b01b9ef78015c1, type: 3}
   lerpSpeed: 0.05
   closedPos: {x: 1145, y: 150, z: 0}
   openPos: {x: 690, y: 150, z: 0}

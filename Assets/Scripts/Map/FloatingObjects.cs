@@ -26,7 +26,6 @@ public class FloatingObjects : MonoBehaviour
         seeds = new NativeList<float>(0, Allocator.Persistent);
         for (int i = 0; i < floatingObjects.Count; i++)
         {
-            Vector3 floatingObjectPosition = floatingObjects[i].transform.position;
             startPosList.Add(new float3(floatingObjects[i].transform.position));
             seeds.Add(UnityEngine.Random.value * 2 * math.PI);
         }

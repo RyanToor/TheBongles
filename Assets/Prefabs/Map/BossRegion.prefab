@@ -422,13 +422,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48590847ef70b824f92f4aabcc1c52f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regionOrder: 0
   isUnlocked: 1
   minigameSpawnCount: 2
+  regionOrder: 0
   minigameMarker: {fileID: 5340263978038331420, guid: d4e42f8411db8e041998318216fd89c7, type: 3}
   trashType: 0
   bossEnum: 0
-  storyMeetPoints: 020000000300000005000000
+  storyMeetPoints: 030000000500000007000000
   bossControllers:
   - name: Eel
     bossController: {fileID: 9100000, guid: d274efafb27ab274c9dedcc1c6e3de80, type: 2}

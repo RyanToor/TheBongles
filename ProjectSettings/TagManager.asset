@@ -10,6 +10,11 @@ TagManager:
   - Minigame
   - UpgradeButton
   - Boss
+  - SFX
+  - Music
+  - LevelManager
+  - GameManager
+  - Emergency
   layers:
   - Default
   - TransparentFX

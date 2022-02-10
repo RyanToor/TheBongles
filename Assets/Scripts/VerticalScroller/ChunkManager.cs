@@ -15,10 +15,10 @@ public class ChunkManager : MonoBehaviour
     public TileBase ruleTile;
     public GameObject player;
     public Transform chasmToppers;
-    public int chunkBuffer, width, height, maxChasmDeviation, maxIrregularity, rowsConvertedPerFrame, tilesPlacedPerFrame;
+    public int chunksLoaded, chunkBuffer, width, height, maxChasmDeviation, maxIrregularity, rowsConvertedPerFrame, tilesPlacedPerFrame;
     public float chasmStartWidth, chasmMinWidth, chasmWidthAsymptoteLevel, chasmFrequency, irregularityFrequency, waterSurfaceScrollSpeed;
 
-    private int widthSeed, irregularitySeedL, irregularitySeedR, currentChunk, chunksLoaded;
+    private int widthSeed, irregularitySeedL, irregularitySeedR, currentChunk;
     private List<int> enabledChunks = new List<int>();
     private List<Vector3Int[]> chunkMatrices = new List<Vector3Int[]>();
     private Transform[] waterSurfaces;
@@ -28,7 +28,7 @@ public class ChunkManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!(PlayerPrefs.GetInt("storyPoint", 0) < 2))
+        if (!(GameManager.Instance.storyPoint < 2))
         {
             GameObject.Find("Eel").SetActive(false);
         }
@@ -44,42 +44,33 @@ public class ChunkManager : MonoBehaviour
         CheckChunks(0);
     }
 
+    public void InitialiseToppers()
+    {
+        float l = 0, r = 0;
+        foreach (Vector3Int tilePosition in chunkMatrices[0])
+        {
+            if (tilePosition.y == 0)
+            {
+                if (tilePosition.x < 0)
+                {
+                    l++;
+                }
+                else
+                {
+                    r++;
+                }
+            }
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            Transform currentTopper = chasmToppers.Find("ChasmTopper_" + (i + 1));
+            currentTopper.position += Vector3.right * (((i == 1) ? 1 : -1) * ((width / 2) - ((i == 0) ? l : r)));
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (!isLoaded)
-        {
-            if (chunksLoaded > chunkBuffer)
-            {
-                Destroy(GameObject.Find("LoadingCanvas(Clone)"));
-                player.GetComponent<Player>().isloaded = true;
-                player.GetComponent<Player>().twin.GetComponent<Collider2D>().enabled = true;
-
-                GameObject.Find("SoundManager").GetComponent<AudioManager>().PlayMusic("Trash Hunt");
-
-                float l = 0, r = 0;
-                foreach (Vector3Int tilePosition in chunkMatrices[0])
-                {
-                    if (tilePosition.y == 0)
-                    {
-                        if (tilePosition.x < 0)
-                        {
-                            l++;
-                        }
-                        else
-                        {
-                            r++;
-                        }
-                    }
-                }
-                for (int i = 0; i < 2; i++)
-                {
-                    Transform currentTopper = chasmToppers.Find("ChasmTopper_" + (i + 1));
-                    currentTopper.position += Vector3.right * (((i == 1) ? 1 : -1) * ((width / 2) - ((i == 0) ? l : r)));
-                }
-                isLoaded = true;
-            }
-        }
         int newChunk = (int)Mathf.Floor(Mathf.Abs(player.transform.position.y) / height);
         if (newChunk != currentChunk)
         {
@@ -231,10 +222,5 @@ public class ChunkManager : MonoBehaviour
             int rThickness = (int)math.clamp((width - centrePoint - chasmWidth / 2 - maxIrregularity + math.ceil((noise.cnoise(new float2(irregularitySeedR, (chunkIndex * height + (float)index / height) * irregularityFrequency)) / 2 + 0.5f) * maxIrregularity)), (width - 60) / 2 + 1, width);
             lRThickness[index] = new int2(lThickness, rThickness);
         }
-    }
-
-    public void OnApplicationQuit()
-    {
-        PlayerPrefs.SetInt("isLoaded", 1);
     }
 }

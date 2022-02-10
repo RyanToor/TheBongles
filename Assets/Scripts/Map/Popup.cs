@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Popup : MonoBehaviour
 {
     public GameObject minigameMarker;
-    public string trashType;
+    public TrashType trashType;
     public GameObject loadScreen;
     public GameObject[] stars;
     public Color disabledStarColour;
@@ -14,14 +14,14 @@ public class Popup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetInt("isLoaded", 1) == 1)
+        if (!GameManager.Instance.gameStarted)
         {
             gameObject.SetActive(false);
         }
 
         for (int i = 1; i <= stars.Length; i++)
          {
-            stars[i - 1].GetComponent<Image>().color = (PlayerPrefs.GetInt("Stars1", 0) >= i) ? Color.white : disabledStarColour;
+            stars[i - 1].GetComponent<Image>().color = (GameManager.Instance.highscoreStars[(int)trashType] >= i) ? Color.white : disabledStarColour;
          }
 
         foreach (PopupInfo info in popupInfo)
@@ -44,16 +44,7 @@ public class Popup : MonoBehaviour
 
     public void LaunchMinigame()
     {
-        switch (trashType)
-        {
-            case "Plastic":
-                GameObject newLoadScreen = Instantiate(loadScreen, new Vector3(960, 540, 0), Quaternion.identity);
-                DontDestroyOnLoad(newLoadScreen);
-                SceneManager.LoadScene("VerticalScroller");
-                break;
-            default:
-                break;
-        }
+        GameManager.Instance.LoadMinigame(trashType);
     }
 
     public void OnClick()
@@ -69,7 +60,7 @@ public class Popup : MonoBehaviour
     [System.Serializable]
     public struct PopupInfo
     {
-        public string trashType;
+        public TrashType trashType;
         public string title;
         public Sprite logo;
     }

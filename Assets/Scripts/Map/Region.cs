@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class Region : MonoBehaviour
 {
-    public float regionOrder;
     public bool isUnlocked;
-    public int minigameSpawnCount;
+    public int minigameSpawnCount, regionOrder;
     public GameObject minigameMarker;
-    public trashTypes trashType;
+    public TrashType trashType;
     public bossTypes bossEnum;
     public int[] storyMeetPoints;
     public List<NameController> bossControllers = new List<NameController>();
@@ -21,18 +20,17 @@ public class Region : MonoBehaviour
 
     private void Awake()
     {
-        floatingObjectScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
+        boss = bossEnum.ToString();
+        floatingObjectScript = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<FloatingObjects>();
         int minigameSpawnsCount = transform.Find("MinigameSpawns").childCount;
         if (minigameSpawnCount > minigameSpawnsCount)
         {
             minigameSpawnCount = minigameSpawnsCount;
         }
         regionCollider = GetComponent<Collider2D>();
-        RefreshSprites();
-        boss = bossEnum.ToString();
         foreach (NameController bossType in bossControllers)
         {
-            if (bossType.name == boss)
+            if (bossType.name == bossEnum.ToString())
             {
                 bossAnimator = transform.Find("BossIsland/SpriteBoss").GetComponent<Animator>();
                 rippleAnimator = transform.Find("BossIsland/SpriteRipples").GetComponent<Animator>();
@@ -40,6 +38,11 @@ public class Region : MonoBehaviour
                 rippleAnimator.runtimeAnimatorController = bossType.rippleController;
             }
         }        
+    }
+
+    private void Start()
+    {
+        RefreshSprites();
     }
 
     private void Update()
@@ -54,12 +57,10 @@ public class Region : MonoBehaviour
         rippleAnimator.SetBool("isClean", isStoryCleared);
     }
 
-    public void Unlock(bool state)
+    public void Unlock(bool isUnlocked)
     {
-        isUnlocked = state;
-        regionCollider.enabled = !state;
-        print(bossEnum.ToString() + " Story Point : " + PlayerPrefs.GetInt("storyPoint", 0));
-        if (isUnlocked && PlayerPrefs.GetInt("storyPoint", 0) / 2 >= regionOrder)
+        regionCollider.enabled = !isUnlocked;
+        if (isUnlocked && GameManager.Instance.storyPoint > GameManager.Instance.regionStoryPoints[regionOrder] && GameManager.Instance.storyPoint != 1)
         {
             SpawnMinigames();
         }
@@ -70,6 +71,7 @@ public class Region : MonoBehaviour
                 floatingObjectScript.objectsToRemove.Add(minigame.gameObject);
             }
         }
+        RefreshSprites();
     }
 
     private void SpawnMinigames()
@@ -85,7 +87,7 @@ public class Region : MonoBehaviour
             {
                 int j = Random.Range(0, minigameSpawnPoints.Count);
                 MinigameMarker newMarker = Instantiate(minigameMarker, minigameSpawnPoints[j].position, Quaternion.identity, transform.Find("Minigames")).GetComponent<MinigameMarker>();
-                newMarker.trashType = trashType.ToString();
+                newMarker.trashType = trashType;
                 floatingObjectScript.objectsToAdd.Add(newMarker.gameObject);
                 minigameSpawnPoints.RemoveAt(j);
                 minigameSpawnPoints.TrimExcess();
@@ -95,8 +97,10 @@ public class Region : MonoBehaviour
 
     public void RefreshSprites()
     {
-        isStoryCleared = PlayerPrefs.GetInt("maxRegion", 0) > regionOrder;
-        isBossMet = PlayerPrefs.GetInt("storyPoint", 0) >= storyMeetPoints[(int)bossEnum];
+        isStoryCleared = GameManager.Instance.storyPoint >= GameManager.Instance.regionStoryPoints[Mathf.Clamp(regionOrder, 0, int.MaxValue)];
+        isBossMet = GameManager.Instance.storyPoint >= storyMeetPoints[(int)bossEnum];
+        bossAnimator.Rebind();
+        bossAnimator.Update(0f);
     }
 
     private void EditorUpdate()
@@ -111,13 +115,6 @@ public class Region : MonoBehaviour
             isStoryCleared = !isStoryCleared;
             print("Story Cleared :" + boss + " = " + isStoryCleared);
         }
-    }
-
-    public enum trashTypes
-    {
-        Plastic,
-        Metal,
-        Glass
     }
 
     public enum bossTypes

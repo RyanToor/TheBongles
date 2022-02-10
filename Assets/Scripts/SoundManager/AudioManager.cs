@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance { get; private set;}
+    public static AudioManager instance { get; private set; }
 
     #region Fields
     public List<Sound> music;
@@ -24,7 +24,6 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        SceneManager.sceneLoaded += OnSceneLoad;
         // Make sure there isn't already an AudioManager in the scene
         if (instance == null)
         {
@@ -42,25 +41,28 @@ public class AudioManager : MonoBehaviour
         musicSource = gameObject.AddComponent<AudioSource>();
         musicSource2 = gameObject.AddComponent<AudioSource>();
         sfxSource = gameObject.AddComponent<AudioSource>();
-
-        musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 0.25f) * PlayerPrefs.GetInt("MusicMuted", 1);
-        musicSource2.volume = PlayerPrefs.GetFloat("MusicVolume", 0.25f) * PlayerPrefs.GetInt("MusicMuted", 1);
-        sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume", 0.5f) * PlayerPrefs.GetInt("SFXMuted", 1);
     }
 
-    private void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    private void Start()
+    {
+        musicSource.volume = GameManager.Instance.musicVolume * GameManager.Instance.musicMuted;
+        musicSource2.volume = GameManager.Instance.musicVolume * GameManager.Instance.musicMuted;
+        sfxSource.volume = GameManager.Instance.sFXVolume * GameManager.Instance.sFXMuted;
+    }
+
+    public void Load(Scene scene)
     {
         if (scene.name == "Map")
         {
-            GameObject.Find("UI/MainMenu/Settings/Music_Sound").GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume", 0.25f);
-            GameObject.Find("UI/MainMenu/Settings/SFX_Sound").GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+            GameObject.Find("UI/MainMenu/Settings/Music_Sound").GetComponent<Slider>().value = GameManager.Instance.musicVolume;
+            GameObject.Find("UI/MainMenu/Settings/SFX_Sound").GetComponent<Slider>().value = GameManager.Instance.sFXVolume;
             foreach (Transform muteObject in GameObject.Find("UI/MainMenu/Settings/Music").transform)
             {
-                muteObject.gameObject.SetActive((PlayerPrefs.GetInt("MusicMuted", 1) == 0 ^ muteObject.gameObject.name == "Sound_Button"));
+                muteObject.gameObject.SetActive(GameManager.Instance.musicMuted == 0 ^ muteObject.gameObject.name == "Sound_Button");
             }
             foreach (Transform muteObject in GameObject.Find("UI/MainMenu/Settings/SFX").transform)
             {
-                muteObject.gameObject.SetActive((PlayerPrefs.GetInt("SFXMuted", 1) == 0 ^ muteObject.gameObject.name == "Sound_Button"));
+                muteObject.gameObject.SetActive(GameManager.Instance.sFXMuted == 0 ^ muteObject.gameObject.name == "Sound_Button");
             }
         }
     }
@@ -95,7 +97,7 @@ public class AudioManager : MonoBehaviour
 
         activeSource.clip = musicSound.clip;
         activeSource.pitch = musicSound.pitch;
-        activeSource.volume = musicSound.volume * PlayerPrefs.GetFloat("MusicVolume", 0.25f) * PlayerPrefs.GetInt("MusicMuted", 1);
+        activeSource.volume = musicSound.volume * GameManager.Instance.musicVolume * GameManager.Instance.musicMuted;
         activeSource.loop = musicSound.loop;
         activeSource.Play();
     }
@@ -116,7 +118,7 @@ public class AudioManager : MonoBehaviour
             innactiveSource.clip = newSound.clip;
             innactiveSource.pitch = newSound.pitch;
             innactiveSource.loop = newSound.loop;
-            float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1) * PlayerPrefs.GetInt("MusicMuted", 1);
+            float musicVolume = GameManager.Instance.musicVolume * GameManager.Instance.musicMuted;
 
             // Fade out
             for (t = 0; t < transitionTime; t += Time.deltaTime)
@@ -139,7 +141,7 @@ public class AudioManager : MonoBehaviour
         Sound newSound = FindSound(sFX, sound);
         if (!sfxSource.isPlaying)
         {
-            sfxSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1));
+            sfxSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, GameManager.Instance.sFXVolume * GameManager.Instance.sFXMuted);
             sfxSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
         }
         sfxSource.PlayOneShot(newSound.clip, newSound.volume);
@@ -147,7 +149,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayVideoSFX(AudioClip videoAudio)
     {
-        sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1);
+        sfxSource.volume = GameManager.Instance.sFXVolume * GameManager.Instance.sFXMuted;
         sfxSource.pitch = 1;
         sfxSource.PlayOneShot(videoAudio);
     }
@@ -155,7 +157,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySFXComplete(string sound)
     {
         Sound newSound = FindSound(sFX, sound);
-        sfxSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1));
+        sfxSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, GameManager.Instance.sFXVolume * GameManager.Instance.sFXMuted);
         if (!sfxSource.isPlaying)
         {
             sfxSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
@@ -175,52 +177,48 @@ public class AudioManager : MonoBehaviour
         AudioSource tempSource = tempObj.AddComponent<AudioSource>();
         tempSource.clip = newSound.clip;
         tempSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
-        tempSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1));
+        tempSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, GameManager.Instance.sFXVolume * GameManager.Instance.sFXMuted);
         tempSource.Play();
         Destroy(tempObj, newSound.clip.length);
         return tempSource;
     }
 
-    public void SetMasterVolume(float volume)
-    {
-        PlayerPrefs.SetFloat("MasterVolume", volume);
-        musicSource.volume = volume * PlayerPrefs.GetFloat("MusicVolume", 1) * PlayerPrefs.GetInt("MusicMuted", 1);
-        musicSource2.volume = volume * PlayerPrefs.GetFloat("MusicVolume", 1) * PlayerPrefs.GetInt("MusicMuted", 1);
-        sfxSource.volume = volume * PlayerPrefs.GetFloat("SFXVolume", 1) * PlayerPrefs.GetInt("SFXMuted", 1);
-    }
-
     public void SetMusicVolume(float volume)
     {
-        PlayerPrefs.SetFloat("MusicVolume", volume);
-        musicSource.volume = volume * PlayerPrefs.GetInt("MusicMuted", 1) * PlayerPrefs.GetFloat("MasterVolume", 1);
-        musicSource2.volume = volume * PlayerPrefs.GetInt("MusicMuted", 1) * PlayerPrefs.GetFloat("MasterVolume", 1);
+        GameManager.Instance.musicVolume =  volume;
+        musicSource.volume = volume * GameManager.Instance.musicMuted;
+        musicSource2.volume = volume * GameManager.Instance.musicMuted;
+        GameManager.Instance.SaveSettings();
     }
     public void SetSFXVolume(float volume)
     {
-        PlayerPrefs.SetFloat("SFXVolume", volume);
-        sfxSource.volume = volume * PlayerPrefs.GetInt("SFXMuted", 1) * PlayerPrefs.GetFloat("MasterVolume", 1);
+        GameManager.Instance.sFXVolume = volume;
+        sfxSource.volume = volume * GameManager.Instance.sFXMuted;
+        GameManager.Instance.SaveSettings();
     }
     public void ToggleMusic()
     {
-        PlayerPrefs.SetInt("MusicMuted", Mathf.Abs(PlayerPrefs.GetInt("MusicMuted", 1) - 1));
-        musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 0.25f) * PlayerPrefs.GetInt("MusicMuted", 1);
+        GameManager.Instance.musicMuted = Mathf.Abs(GameManager.Instance.musicMuted - 1);
+        musicSource.volume = GameManager.Instance.musicVolume * GameManager.Instance.musicMuted;
         musicSource2.volume = musicSource.volume;
         musicSource.pitch = 1;
         musicSource2.pitch = 1;
+        GameManager.Instance.SaveSettings();
     }
     public void ToggleSFX()
     {
-        PlayerPrefs.SetInt("SFXMuted", Mathf.Abs(PlayerPrefs.GetInt("SFXMuted", 1) - 1));
-        sfxSource.volume = PlayerPrefs.GetFloat("SFXVolume", 0.5f) * PlayerPrefs.GetInt("SFXMuted", 1);
+        GameManager.Instance.sFXMuted = Mathf.Abs(GameManager.Instance.sFXMuted - 1);
+        sfxSource.volume = GameManager.Instance.sFXVolume * GameManager.Instance.sFXMuted;
         sfxSource.pitch = 1;
+        GameManager.Instance.SaveSettings();
     }
     private float RandomiseValue(float baseValue, float deviation)
     {
-        return (baseValue + Random.Range(-deviation / 2, deviation / 2)) * PlayerPrefs.GetInt("SFXMuted", 1);
+        return (baseValue + Random.Range(-deviation / 2, deviation / 2)) * GameManager.Instance.sFXMuted;
     }
     private float RandomiseValue(float baseValue, float deviation, float soundTypeVolume)
     {
-        return (PlayerPrefs.GetFloat("MasterVolume", 1) * PlayerPrefs.GetFloat("MasterVolume", 1) * soundTypeVolume * baseValue + Random.Range(-deviation / 2, deviation / 2)) * PlayerPrefs.GetInt("SFXMuted", 1);
+        return (soundTypeVolume * baseValue + Random.Range(-deviation / 2, deviation / 2)) * GameManager.Instance.sFXMuted;
     }
 }
 

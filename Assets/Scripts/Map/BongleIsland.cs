@@ -12,9 +12,10 @@ public class BongleIsland : MonoBehaviour
     public VideoManager videoManager;
     public Animator sailAnimator, islandAnimator, waveAnimator;
     public GameObject[] flipObjects;
+    public UpgradeSprites[] upgradeSprites;
 
     [HideInInspector]
-    public bool isInputEnabled = false, isReseting = false;
+    public bool isInputEnabled = false;
     [HideInInspector]
     public Dictionary<GameObject, GameObject> activePopups = new Dictionary<GameObject, GameObject>();
     [HideInInspector]
@@ -27,7 +28,7 @@ public class BongleIsland : MonoBehaviour
     private AudioManager audioManager;
     private bool prevFlipX;
     private float sailZ;
-    private GameObject[][] upgradeSprites;
+    private GameObject[][] upgradeSpriteObjects;
 
     // Start is called before the first frame update
 
@@ -38,19 +39,18 @@ public class BongleIsland : MonoBehaviour
         popupsContainer = GameObject.Find("UI/PopupsContainer").transform;
         rb2D = GetComponent<Rigidbody2D>();
         pathOffset = new Vector3(0, pathYOffset, 0);
-        floatingObjectsScript = GameObject.Find("Map").GetComponent<FloatingObjects>();
-        transform.position = new Vector3(PlayerPrefs.GetFloat("posX", 0), PlayerPrefs.GetFloat("posY", 0), PlayerPrefs.GetFloat("posZ", 0));
+        floatingObjectsScript = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<FloatingObjects>();
         lastPathPos = transform.position;
-        upgradeSprites = new GameObject[3][];
+        upgradeSpriteObjects = new GameObject[3][];
         upgradesContainer = transform.Find("Upgrades");
         for (int i = 1; i < 4; i++)
         {
-            upgradeSprites[i - 1] = new GameObject[3];
+            upgradeSpriteObjects[i - 1] = new GameObject[3];
             for (int j = 1; j < 4; j++)
             {
                 if (upgradesContainer.Find("Upgrade" + i + "-" + j) != null)
                 {
-                    upgradeSprites[i - 1][j - 1] = upgradesContainer.Find("Upgrade" + i + "-" + j).gameObject;
+                    upgradeSpriteObjects[i - 1][j - 1] = upgradesContainer.Find("Upgrade" + i + "-" + j).gameObject;
                 }
             }
         }
@@ -180,9 +180,10 @@ public class BongleIsland : MonoBehaviour
         {
             for (int j = 0; j < 3; j++)
             {
-                if (upgradeSprites[i][j] != null)
+                if (upgradeSpriteObjects[i][j] != null)
                 {
-                    upgradeSprites[i][j].SetActive(PlayerPrefs.GetInt("upgrade" + i.ToString() + j.ToString(), 0) == 1);
+                    upgradeSpriteObjects[i][j].SetActive(GameManager.Instance.upgrades[i][j] != 0);
+                    upgradeSpriteObjects[i][j].GetComponent<SpriteRenderer>().sprite = upgradeSprites[i].upgradeSprites[j].sprites[Mathf.Clamp(GameManager.Instance.upgrades[i][j] - 1, 0, int.MaxValue)];
                 }
             }
         }
@@ -194,7 +195,7 @@ public class BongleIsland : MonoBehaviour
         {
             string trashType = collision.GetComponent<RandomTrash>().trashType;
             print("Collected " + trashType);
-            PlayerPrefs.SetInt(trashType, PlayerPrefs.GetInt(trashType, 0) + 1);
+            GameManager.Instance.trashCounts[trashType]++;
             floatingObjectsScript.objectsToRemove.Add(collision.gameObject);
             upgradeMenu.GetComponent<UpgradeMenu>().RefreshReadouts();
             audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position);
@@ -215,6 +216,16 @@ public class BongleIsland : MonoBehaviour
             Destroy(activePopups[collision.gameObject]);
             activePopups.Remove(collision.gameObject);
         }
+        else if (collision.gameObject.CompareTag("Emergency"))
+        {
+            transform.position = Vector3.zero + (transform.position - collision.gameObject.transform.parent.position);
+            string[] keys = new string[GameManager.Instance.trashCounts.Count];
+            GameManager.Instance.trashCounts.Keys.CopyTo(keys, 0);
+            for (int i = 0; i < GameManager.Instance.MaxRegion(); i++)
+            {
+                GameManager.Instance.trashCounts[keys[i]] += 30;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -224,47 +235,25 @@ public class BongleIsland : MonoBehaviour
             switch (collision.transform.parent.name)
             {
                 case "Eel":
-                    if (PlayerPrefs.GetInt("storyPoint", 1) == 1)
+                    if (GameManager.Instance.storyPoint == 1)
                     {
-                        GameObject newLoadScreen = Instantiate(loadScreen, new Vector3(960, 540, 0), Quaternion.identity);
-                        DontDestroyOnLoad(newLoadScreen);
-                        SceneManager.LoadScene("VerticalScroller");
+                        GameManager.Instance.LoadMinigame(TrashType.Plastic);
                     }
                     break;
                 default:
                     break;
             }
-            print("Story Point : " + PlayerPrefs.GetInt("storyPoint", 0));
         }
     }
 
     private void EditorUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            print("Plastic : " + PlayerPrefs.GetInt("Plastic", 0));
-            print("Metal : " + PlayerPrefs.GetInt("Metal", 0));
-            print("Glass : " + PlayerPrefs.GetInt("Glass", 0));
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            print("Current Story Point : " + PlayerPrefs.GetInt("storyPoint"));
-        }
-    }
 
-    private void OnDestroy()
-    {
-        if (!isReseting)
-        {
-            PlayerPrefs.SetFloat("posX", transform.position.x);
-            PlayerPrefs.SetFloat("posY", transform.position.y);
-            PlayerPrefs.SetFloat("posZ", transform.position.z);
-        }
     }
 
     [System.Serializable]
     public struct UpgradeSprites
     {
-        public GameObject[] upgradeSprites;
+        public NameSpriteArray[] upgradeSprites;
     }
 }
