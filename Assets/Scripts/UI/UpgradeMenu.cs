@@ -213,7 +213,7 @@ public class UpgradeMenu : MonoBehaviour
             }
             GameManager.Instance.storyPoint++;
             videoManager.CheckCutscene();
-            print("Unlocked Next Region");
+            Debug.Log("Unlocked Next Region");
         }
         foreach (Transform bossRegion in GameObject.Find("BossRegions").transform)
         {

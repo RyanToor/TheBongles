@@ -2,16 +2,14 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    public float moveForce, jumpForce;
-    public float fireForce, underwaterDrag, waterHitVelocityMultiplier, maxDraw;
-    public CapsuleCollider2D groundCheck;
+    public float moveForce, jumpForce, airControlMultiplier;
+    public float waterHitVelocityMultiplier;
 
     [HideInInspector]
     public bool isLaunched;
 
-    Vector3 pos1, startPos;
-    Rigidbody2D rb;
-    private bool inWater;
+    private Vector3 startPos;
+    private Rigidbody2D rb;
     private int groundContacts;
     private LevelManager_Robot levelManager;
 
@@ -28,13 +26,13 @@ public class Robot : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (levelManager.isLaunched && inWater)
+        if (levelManager.isLaunched)
         {
-            rb.AddForce(Vector2.right * moveForce * Input.GetAxis("Horizontal"), ForceMode2D.Force);
-        }
-        if (groundContacts > 0 && Input.GetAxisRaw("Jump") == 1)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+            rb.AddForce(Input.GetAxis("Horizontal") * moveForce * Vector2.right * (groundContacts > 0? 1 : airControlMultiplier), ForceMode2D.Force);
+            if (groundContacts > 0 && Input.GetAxisRaw("Jump") == 1)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+            }
         }
         if (Application.isEditor)
         {
@@ -42,9 +40,10 @@ public class Robot : MonoBehaviour
         }
     }
 
-    public void Launch()
+    public void Launch(Vector2 force)
     {
-        //rb.AddForce()
+        rb.gravityScale = 1;
+        rb.AddForce(force);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -65,7 +64,6 @@ public class Robot : MonoBehaviour
             rb.gravityScale = 0;
             rb.velocity = Vector3.zero;
             rb.drag = 0;
-            inWater = false;
             transform.position = startPos;
             levelManager.isLaunched = false;
         }

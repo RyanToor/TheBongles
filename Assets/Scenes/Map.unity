@@ -811,7 +811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 231.30005, y: -142}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &147333963
@@ -1767,9 +1767,14 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 231.30005, y: -142}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &342148953 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8161915668416156819, guid: 36fe779a32eced642bf6a853c9128822, type: 3}
+  m_PrefabInstance: {fileID: 1609285491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &351327485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,6 +3676,53 @@ Transform:
   m_Father: {fileID: 904234730}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &617597682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 617597683}
+  - component: {fileID: 617597684}
+  m_Layer: 7
+  m_Name: CloudScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &617597683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617597682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 342148953}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &617597684
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617597682}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05, y: 0}
+  m_Size: {x: 9.9, y: 2.2}
+  m_Direction: 1
 --- !u!1001 &656928597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7484,7 +7536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -146.3, y: 104}
+  m_AnchoredPosition: {x: 85, y: -38}
   m_SizeDelta: {x: 45, y: 39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1183189991
@@ -9094,7 +9146,7 @@ MonoBehaviour:
     - upgradeTiers: []
   storySprites:
   - {fileID: 21300000, guid: 98d46dd69f75d3948bf101fdd7c2a84a, type: 3}
-  - {fileID: 21300000, guid: 4675d208bf571524fa2f9dba883c4651, type: 3}
+  - {fileID: 21300000, guid: 5887b5b08da98624484202a2ae093dd0, type: 3}
   - {fileID: 21300000, guid: 4675d208bf571524fa2f9dba883c4651, type: 3}
   storyUpgradeCosts:
   - upgradeCosts:
@@ -11659,7 +11711,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 231.30005, y: -142}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1805592192
@@ -12968,8 +13020,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 735, y: 512}
+  m_AnchoredPosition: {x: -233, y: 144}
+  m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1964784719
 MonoBehaviour:
@@ -14101,6 +14153,57 @@ MonoBehaviour:
       audio: {fileID: 8300000, guid: 538aa6a0567b0d242b77faa2d5d48dc2, type: 3}
       isLooping: 1
     - video: {fileID: 32900000, guid: 1ade6992a8b6f5b4da1d97e9e60e60cd, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+  - storyPoint: 6
+    scenes:
+    - video: {fileID: 32900000, guid: 7c32e2cae9137b0429b418ce63ce8b43, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+    - video: {fileID: 32900000, guid: e3654f3765c264849ad35b0263341eb5, type: 3}
+      audio: {fileID: 8300000, guid: d0e60388a39fa514a8ea7a7def0b67d2, type: 3}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: b5c9e206da9675a4a93b6daad4f9cba8, type: 3}
+      audio: {fileID: 8300000, guid: 1eeb0d0cc1565f840909c6aa0820f6d0, type: 3}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 78c0f7202677eed489b1938ff3854a2f, type: 3}
+      audio: {fileID: 8300000, guid: d0ba6c331c4477b479f007a7df2fe803, type: 3}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: e01688fa07c0cdc4394b44a164b4d328, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+  - storyPoint: 8
+    scenes:
+    - video: {fileID: 32900000, guid: 1834aef251250424face163eadc8b109, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+    - video: {fileID: 32900000, guid: 3be8203b28a46a74bbb8dec56ba264c6, type: 3}
+      audio: {fileID: 8300000, guid: 878f162155549414c975c03256a35942, type: 3}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 73d557f37c4eab24d891bde177331511, type: 3}
+      audio: {fileID: 8300000, guid: 03d55e6dc9185a748aa50e648e0d1e68, type: 3}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 4a761a0cb3511c8419ff4f137f890fd6, type: 3}
+      audio: {fileID: 8300000, guid: f6b6e1ae20cf4324b867a50faf643a6c, type: 3}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 1b406193bc4a378419a2ffa940912846, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+  - storyPoint: 10
+    scenes:
+    - video: {fileID: 32900000, guid: 94753d1eedda3a447b57032e06adb9bc, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+    - video: {fileID: 32900000, guid: c3b4557315c2782439acbd96436fd748, type: 3}
+      audio: {fileID: 8300000, guid: 878f162155549414c975c03256a35942, type: 3}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 2de3fc5f27954c248bcf59c39bf3d682, type: 3}
+      audio: {fileID: 8300000, guid: 03d55e6dc9185a748aa50e648e0d1e68, type: 3}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: a55bb4aa4ec082b4982eb9474be0f61a, type: 3}
+      audio: {fileID: 8300000, guid: f6b6e1ae20cf4324b867a50faf643a6c, type: 3}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 9718422d7ef2d16428e8a25922485c77, type: 3}
       audio: {fileID: 0}
       isLooping: 0
   testScene: 2

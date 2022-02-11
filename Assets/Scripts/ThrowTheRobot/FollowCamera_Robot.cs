@@ -7,12 +7,17 @@ public class FollowCamera_Robot : MonoBehaviour
     public float cameraLerpSpeed;
 
     private GameObject robot;
-    private Vector3 startOffset, desiredOffset;
-    private LevelManager_Robot levelManager;
+    private Transform backgroundPlateContainer;
+    private Vector3 startOffset, desiredOffset, startPos, backgroundStartPos;
+    private float backgroundParallaxFactor;
 
     private void Awake()
     {
-        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
+        startPos = transform.position;
+        Transform level = GameObject.Find("Level").transform;
+        backgroundParallaxFactor = level.gameObject.GetComponent<LevelBuilder>().backgroundParallaxFactor;
+        backgroundPlateContainer = level.Find("Backgrounds");
+        backgroundStartPos = backgroundPlateContainer.position;
     }
 
     // Start is called before the first frame update
@@ -26,9 +31,7 @@ public class FollowCamera_Robot : MonoBehaviour
     void FixedUpdate()
     {
         desiredOffset = robot.transform.position + startOffset;
-        if (levelManager.isLaunched)
-        {
-            transform.position = Vector3.Lerp(transform.position, desiredOffset, cameraLerpSpeed);
-        }
+        transform.position = Vector3.Lerp(transform.position, desiredOffset, cameraLerpSpeed);
+        backgroundPlateContainer.position = backgroundStartPos + new Vector3((transform.position.x - startPos.x) * backgroundParallaxFactor, 0, 0);
     }
 }

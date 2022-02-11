@@ -5,7 +5,7 @@ public class Region : MonoBehaviour
 {
     public bool isUnlocked;
     public int minigameSpawnCount, regionOrder;
-    public GameObject minigameMarker;
+    public GameObject minigameMarker, cloudScreen;
     public TrashType trashType;
     public bossTypes bossEnum;
     public int[] storyMeetPoints;
@@ -63,6 +63,10 @@ public class Region : MonoBehaviour
         if (isUnlocked && GameManager.Instance.storyPoint > GameManager.Instance.regionStoryPoints[regionOrder] && GameManager.Instance.storyPoint != 1)
         {
             SpawnMinigames();
+            if (transform.Find("BossIsland/CloudScreen") != null && GameManager.Instance.storyPoint > storyMeetPoints[regionOrder] + 1)
+            {
+                transform.Find("BossIsland/CloudScreen").gameObject.SetActive(false);
+            }
         }
         else
         {

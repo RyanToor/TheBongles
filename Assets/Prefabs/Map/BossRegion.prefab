@@ -426,9 +426,10 @@ MonoBehaviour:
   minigameSpawnCount: 2
   regionOrder: 0
   minigameMarker: {fileID: 5340263978038331420, guid: d4e42f8411db8e041998318216fd89c7, type: 3}
+  cloudScreen: {fileID: 0}
   trashType: 0
   bossEnum: 0
-  storyMeetPoints: 030000000500000007000000
+  storyMeetPoints: 03000000060000000a000000
   bossControllers:
   - name: Eel
     bossController: {fileID: 9100000, guid: d274efafb27ab274c9dedcc1c6e3de80, type: 2}

@@ -23,7 +23,7 @@ public class RandomTrash : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Player")
+        if (!collision.gameObject.CompareTag("Player"))
         {
             if (!collision.CompareTag("Region") || collision.CompareTag("Region") && !collision.gameObject.GetComponent<Region>().isUnlocked)
             {

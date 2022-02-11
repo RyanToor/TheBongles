@@ -240,6 +240,20 @@ public class BongleIsland : MonoBehaviour
                         GameManager.Instance.LoadMinigame(TrashType.Plastic);
                     }
                     break;
+                case "Crab":
+                    if (GameManager.Instance.storyPoint == 5)
+                    {
+                        GameManager.Instance.storyPoint++;
+                        GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().CheckCutscene();
+                    }
+                    break;
+                case "Whale":
+                    if (GameManager.Instance.storyPoint == 9)
+                    {
+                        GameManager.Instance.storyPoint++;
+                        GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().CheckCutscene();
+                    }
+                    break;
                 default:
                     break;
             }

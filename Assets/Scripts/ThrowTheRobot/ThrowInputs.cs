@@ -6,8 +6,7 @@ public class ThrowInputs : MonoBehaviour
     public GameObject powerWheel, powerPointer, anglePointer;
     public float powerMin, powerMax, angleMin, angleMax, powerSpeedMin, powerSpeedMax, angleSpeedMin, angleSpeedMax;
 
-    private bool valueCollected;
-    public float power, powerAngle, angle;
+    public float power, angle;
 
     public void ResetDials()
     {
@@ -16,58 +15,37 @@ public class ThrowInputs : MonoBehaviour
         anglePointer.transform.localRotation = Quaternion.Euler(Vector3.forward * Random.Range(-45, 45));
     }
 
-    public void GenerateThrowData()
+    public IEnumerator Spin(string type, System.Action<float> callback)
     {
-        StartCoroutine(GetThrowInputs());
-    }
-
-    public IEnumerator GetThrowInputs()
-    {
-        valueCollected = false;
-        StartCoroutine(Spin(anglePointer, Random.Range(powerSpeedMin, powerSpeedMax)));
-        while (!valueCollected)
-        {
-            yield return null;
-        }
-        valueCollected = false;
-        while (Input.GetAxis("Jump") == 1)
-        {
-            yield return null;
-        }
-        StartCoroutine(Spin(powerPointer, Random.Range(angleSpeedMin, angleSpeedMax)));
-        while (!valueCollected)
-        {
-            yield return null;
-        }
-    }
-
-    private IEnumerator Spin(GameObject pointer, float speed)
-    {
+        float speed = type == "power" ? Random.Range(powerSpeedMin, powerSpeedMax) : Random.Range(angleSpeedMin, angleSpeedMax);
+        GameObject pointer = type == "power" ? powerPointer : anglePointer;
         int spinDir = 1;
-        while (!valueCollected)
+        while (true)
         {
             if (Input.GetAxis("Jump") == 1)
             {
+                while (Input.GetAxis("Jump") == 1)
+                {
+                    yield return null;
+                }
                 if (pointer == powerPointer)
                 {
-                    print(Mathf.DeltaAngle(pointer.transform.rotation.eulerAngles.z, powerWheel.transform.rotation.eulerAngles.z));
-                    power = Mathf.Lerp(powerMax, powerMin, Mathf.Abs(Mathf.DeltaAngle(pointer.transform.rotation.eulerAngles.z, powerWheel.transform.rotation.eulerAngles.z)) / 180);
+                    callback(Mathf.Lerp(powerMax, powerMin, Mathf.Abs(Mathf.DeltaAngle(pointer.transform.rotation.eulerAngles.z, powerWheel.transform.rotation.eulerAngles.z)) / 180));
                 }
                 else
                 {
                     if (pointer.transform.rotation.eulerAngles.z < 180)
                     {
-                        angle = 45 + Mathf.Clamp(pointer.transform.rotation.eulerAngles.z, 0, 45);
+                        callback(45 + Mathf.Clamp(pointer.transform.rotation.eulerAngles.z, 0, 45));
                     }
                     else
                     {
-                        angle = 45 - Mathf.Clamp(360 - pointer.transform.rotation.eulerAngles.z, 0, 45);
+                        callback(45 - Mathf.Clamp(360 - pointer.transform.rotation.eulerAngles.z, 0, 45));
                     }
                 }
-                valueCollected = true;
                 break;
             }
-            pointer.transform.Rotate(speed * spinDir * Vector3.back);
+            pointer.transform.Rotate(speed * spinDir * Vector3.back * Time.deltaTime);
             if (pointer == anglePointer)
             {
                 if (pointer.transform.rotation.eulerAngles.z < 180 && pointer.transform.rotation.eulerAngles.z > 45 - (90 - angleMax))
