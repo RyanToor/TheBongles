@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &78266278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 78266279}
+  m_Layer: 0
+  m_Name: Bubbles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &78266279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78266278}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.678564, y: 3.7065096, z: -36.81003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &497553475
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraLerpSpeed: 0.2
+  maxWaterOffset: 2
 --- !u!1 &1134117665
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +511,7 @@ MonoBehaviour:
   backgroundParallaxFactor: 0.6
   offset: {x: -9.6, y: -3, z: 0}
   tilePrefab: {fileID: 8373276652658738681, guid: f9a32f027532c1740b591090c9e144af, type: 3}
+  bubblePrefab: {fileID: 6010698024634007259, guid: 193f411603e6dc241b129083f8069fb3, type: 3}
   backgroundTileOffset: 2
   backgroundYOffset: 2
   biomeLengths: 050000000500000003000000
@@ -693,7 +725,6 @@ GameObject:
   - component: {fileID: 1818866233}
   - component: {fileID: 1818866236}
   - component: {fileID: 1818866237}
-  - component: {fileID: 1818866238}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Player
@@ -714,8 +745,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForce: 10
-  jumpForce: 3
-  airControlMultiplier: 0.2
+  jumpForce: 5
+  airControlMultiplier: 0.5
+  groundCastOffset: 0.05
   waterHitVelocityMultiplier: 0.2
   isLaunched: 0
 --- !u!212 &1818866234
@@ -818,25 +850,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.24858749}
-  m_Size: {x: 1, y: 1.497175}
+  m_Offset: {x: 0, y: -0.13956775}
+  m_Size: {x: 1, y: 1.2791355}
   m_Direction: 0
---- !u!70 &1818866238
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818866232}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1}
-  m_Size: {x: 0.7, y: 0.2}
-  m_Direction: 1
 --- !u!1 &1826258437
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class LevelBuilder : MonoBehaviour
 {
     public float backgroundParallaxFactor;
     public Vector3 offset;
-    public GameObject tilePrefab;
+    public GameObject tilePrefab, bubblePrefab;
     public int backgroundTileOffset, backgroundYOffset;
     public int[] biomeLengths;
     public BiomeTiles levelTileLibrary;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    public float moveForce, jumpForce, airControlMultiplier;
+    public float moveForce, jumpForce, airControlMultiplier, groundCastOffset;
     public float waterHitVelocityMultiplier;
 
     [HideInInspector]
@@ -10,12 +10,15 @@ public class Robot : MonoBehaviour
 
     private Vector3 startPos;
     private Rigidbody2D rb;
-    private int groundContacts;
     private LevelManager_Robot levelManager;
+    private bool isGrounded;
+    private float colliderWidth, colliderHeight;
 
     private void Awake()
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
+        colliderWidth = GetComponent<CapsuleCollider2D>().bounds.extents.x;
+        colliderHeight = GetComponent<CapsuleCollider2D>().bounds.extents.y;
     }
 
     private void Start()
@@ -28,10 +31,20 @@ public class Robot : MonoBehaviour
     {
         if (levelManager.isLaunched)
         {
-            rb.AddForce(Input.GetAxis("Horizontal") * moveForce * Vector2.right * (groundContacts > 0? 1 : airControlMultiplier), ForceMode2D.Force);
-            if (groundContacts > 0 && Input.GetAxisRaw("Jump") == 1)
+            isGrounded = Physics2D.CircleCast((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, colliderWidth, -transform.up, colliderHeight - colliderWidth + groundCastOffset);
+            Debug.DrawLine((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, (Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset - (Vector2)transform.up * (colliderHeight + groundCastOffset), Color.red);
+            rb.AddForce((isGrounded? 1 : airControlMultiplier) * Input.GetAxis("Horizontal") * moveForce * Vector2.right, ForceMode2D.Force);
+            if (isGrounded)
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+                rb.gravityScale = 1 - Mathf.Abs(Input.GetAxisRaw("Horizontal"));
+                if (Input.GetAxisRaw("Jump") == 1)
+                {
+                    rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+                }
+            }
+            else
+            {
+                rb.gravityScale = 1;
             }
         }
         if (Application.isEditor)
@@ -44,16 +57,6 @@ public class Robot : MonoBehaviour
     {
         rb.gravityScale = 1;
         rb.AddForce(force);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        groundContacts++;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        groundContacts--;
     }
 
     void EditorUpdate()

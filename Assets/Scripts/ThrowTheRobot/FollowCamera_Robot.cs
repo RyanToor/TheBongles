@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class FollowCamera_Robot : MonoBehaviour
 {
-    public float cameraLerpSpeed;
+    public float cameraLerpSpeed, maxWaterOffset;
 
     private GameObject robot;
+    private Camera cameraComponent;
     private Transform backgroundPlateContainer;
     private Vector3 startOffset, desiredOffset, startPos, backgroundStartPos;
-    private float backgroundParallaxFactor;
+    private float backgroundParallaxFactor, initialOrthographicSize;
 
     private void Awake()
     {
         startPos = transform.position;
+        cameraComponent = GetComponent<Camera>();
+        initialOrthographicSize = cameraComponent.orthographicSize;
         Transform level = GameObject.Find("Level").transform;
         backgroundParallaxFactor = level.gameObject.GetComponent<LevelBuilder>().backgroundParallaxFactor;
         backgroundPlateContainer = level.Find("Backgrounds");
@@ -32,6 +35,7 @@ public class FollowCamera_Robot : MonoBehaviour
     {
         desiredOffset = robot.transform.position + startOffset;
         transform.position = Vector3.Lerp(transform.position, desiredOffset, cameraLerpSpeed);
-        backgroundPlateContainer.position = backgroundStartPos + new Vector3((transform.position.x - startPos.x) * backgroundParallaxFactor, 0, 0);
+        cameraComponent.orthographicSize = Mathf.Clamp(transform.position.y + maxWaterOffset, initialOrthographicSize, int.MaxValue);
+        backgroundPlateContainer.position = backgroundStartPos + new Vector3((transform.position.x - startPos.x) * backgroundParallaxFactor, (Mathf.Clamp(transform.position.y, int.MinValue, startPos.y) - startPos.y) * backgroundParallaxFactor, 0);
     }
 }
