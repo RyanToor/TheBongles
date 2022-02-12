@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5726413bd9d97e84da4518f84257ebc4
+guid: 1a993cbde2d81fb4a99ca5bc8d1c15d6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -65,7 +65,19 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -80,27 +92,29 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape:
-    - - {x: -43, y: -42}
-      - {x: -24, y: -36}
-      - {x: -8, y: -41}
-      - {x: 15, y: -43}
-      - {x: 33, y: -47}
-      - {x: 38, y: -54}
-      - {x: 42, y: -54}
-      - {x: 50, y: -51}
-      - {x: 86, y: -49}
-      - {x: 119, y: -32}
-      - {x: 125, y: -29}
-      - {x: 128, y: -13}
-      - {x: 125, y: 0}
-      - {x: -125, y: 0}
-      - {x: -123, y: -17}
-      - {x: -96, y: -50}
-      - {x: -90, y: -54}
-      - {x: -84, y: -54}
-      - {x: -71, y: -45}
-      - {x: -66, y: -41}
-      - {x: -60, y: -42}
+    - - {x: 64, y: -85}
+      - {x: 107, y: -74}
+      - {x: 118, y: -80}
+      - {x: 148, y: -67}
+      - {x: 189, y: -63}
+      - {x: 233, y: 16}
+      - {x: -205, y: 15}
+      - {x: -253, y: -9}
+      - {x: -253, y: -22}
+      - {x: -249, y: -33}
+      - {x: -237, y: -36}
+      - {x: -159, y: -39}
+      - {x: -139, y: -62}
+      - {x: -131, y: -65}
+      - {x: -117, y: -63}
+      - {x: -74, y: -107}
+      - {x: -68, y: -111}
+      - {x: -58, y: -117}
+      - {x: -54, y: -117}
+      - {x: -50, y: -116}
+      - {x: 4, y: -102}
+      - {x: 21, y: -102}
+      - {x: 36, y: -95}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0

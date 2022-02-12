@@ -514,7 +514,7 @@ MonoBehaviour:
   bubblePrefab: {fileID: 6010698024634007259, guid: 193f411603e6dc241b129083f8069fb3, type: 3}
   backgroundTileOffset: 2
   backgroundYOffset: 2
-  biomeLengths: 0a0000000500000003000000
+  biomeLengths: 060000000600000006000000
   levelTileLibrary:
     floorTiles:
     - sprite: {fileID: 21300000, guid: 407b9a97f35b973479f53947c8c8346c, type: 3}
@@ -523,6 +523,8 @@ MonoBehaviour:
       yDifference: 91
     - sprite: {fileID: 21300000, guid: c9b8982ad57a42b4eb7ac5c027944c1f, type: 3}
       yDifference: 165
+    - sprite: {fileID: 21300000, guid: a1958bce60bbc5345821a19b1b8855bb, type: 3}
+      yDifference: 162
     backgroundPlates:
     - name: Sand
       plates:
@@ -552,6 +554,7 @@ MonoBehaviour:
     - {fileID: 8373276652658738681, guid: a03437d6e1e622b4d93b89da66cebd74, type: 3}
     - {fileID: 8373276652658738681, guid: f4980b5b55bdcf542bfe8aeda032d740, type: 3}
     - {fileID: 8373276652658738681, guid: d3334588727b62b44875fd15c64fe099, type: 3}
+    - {fileID: 8373276652658738681, guid: 111c29653682c3748810bdd1f1ebffd9, type: 3}
   - name: Rock
     puzzlePrefabs:
     - {fileID: 8373276652658738681, guid: f001b68993334e146972270bdd65d919, type: 3}
