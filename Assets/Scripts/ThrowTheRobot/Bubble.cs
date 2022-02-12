@@ -18,12 +18,7 @@ public class Bubble : MonoBehaviour
 
     private void Pop()
     {
-        Destroy();
-    }
-
-    public void Destroy()
-    {
-        Destroy(gameObject);
+        GetComponent<Animator>().SetTrigger("Pop");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

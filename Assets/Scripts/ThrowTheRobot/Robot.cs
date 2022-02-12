@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    public float moveForce, jumpForce, airControlMultiplier, groundCastOffset;
+    public float moveForce, jumpForce, airControlMultiplier, groundCastOffset, decelerationMultiplier;
     public float waterHitVelocityMultiplier;
 
     [HideInInspector]
@@ -33,7 +33,7 @@ public class Robot : MonoBehaviour
         {
             isGrounded = Physics2D.CircleCast((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, colliderWidth, -transform.up, colliderHeight - colliderWidth + groundCastOffset);
             Debug.DrawLine((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, (Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset - (Vector2)transform.up * (colliderHeight + groundCastOffset), Color.red);
-            rb.AddForce((isGrounded? 1 : airControlMultiplier) * Input.GetAxis("Horizontal") * moveForce * Vector2.right, ForceMode2D.Force);
+            rb.AddForce((isGrounded? 1 : airControlMultiplier) * Input.GetAxis("Horizontal") * moveForce * (Mathf.Sign(rb.velocity.x) != Mathf.Sign(Input.GetAxisRaw("Horizontal"))? decelerationMultiplier : 1) * Vector2.right, ForceMode2D.Force);
             if (isGrounded)
             {
                 rb.gravityScale = 1 - Mathf.Abs(Input.GetAxisRaw("Horizontal"));
