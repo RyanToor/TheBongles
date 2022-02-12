@@ -88,7 +88,7 @@ public class LevelBuilder : MonoBehaviour
             int currentBiome = biomeEndPoints.Length - 1;
             for (int j = 0; j < biomeEndPoints.Length; j++)
             {
-                if (Mathf.Ceil((i + 2 * (transitionsPlaced + 1)) / backgroundParallaxFactor) < biomeEndPoints[j])
+                if (Mathf.Ceil((i + biomeEndPoints[transitionsPlaced] / 5) / backgroundParallaxFactor) < biomeEndPoints[j])
                 {
                     currentBiome = j;
                     break;

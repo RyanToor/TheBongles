@@ -514,7 +514,7 @@ MonoBehaviour:
   bubblePrefab: {fileID: 6010698024634007259, guid: 193f411603e6dc241b129083f8069fb3, type: 3}
   backgroundTileOffset: 2
   backgroundYOffset: 2
-  biomeLengths: 050000000500000003000000
+  biomeLengths: 0a0000000500000003000000
   levelTileLibrary:
     floorTiles:
     - sprite: {fileID: 21300000, guid: 407b9a97f35b973479f53947c8c8346c, type: 3}
