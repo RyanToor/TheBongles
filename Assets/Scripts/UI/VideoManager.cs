@@ -34,7 +34,7 @@ public class VideoManager : MonoBehaviour
             if (cutScenes[i].storyPoint == GameManager.Instance.storyPoint)
             {
                 PlayCutscene(i);
-                if (GameManager.Instance.storyPoint == 2)
+                if (GameManager.Instance.storyPoint == 2 || GameManager.Instance.storyPoint == 6 || GameManager.Instance.storyPoint == 10)
                 {
                     GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().FlipLerpDir();
                 }

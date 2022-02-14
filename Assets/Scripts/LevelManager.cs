@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public int plastic;
-    public int metal;
-    public int glass;
+    public int plastic = 0;
+    public int metal = 0;
+    public int glass = 0;
 
     protected virtual void Awake()
     {

@@ -38,12 +38,10 @@ public class LevelManager_Robot : LevelManager
     private void GetThrowInputs(System.Action<Vector2> callback)
     {
         Vector2 throwValues = Vector2.zero;
-        Debug.Log("Collecting Angle");
         StartCoroutine(throwParameters.Spin("angle", valueCollected => 
         {
             Debug.Log("Angle Collected : " + valueCollected);
             throwValues.x = valueCollected;
-            Debug.Log("Collecting Power");
             StartCoroutine(throwParameters.Spin("power", valueCollected => 
             {
                 Debug.Log("Power Collected : " + valueCollected);
@@ -71,7 +69,6 @@ public class LevelManager_Robot : LevelManager
             yield return null;
             duration += Time.deltaTime;
         }
-        Debug.Log(throwVector);
         robot.GetComponent<Robot>().Launch(throwVector);
         isLaunched = true;
     }

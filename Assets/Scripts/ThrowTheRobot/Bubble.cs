@@ -6,10 +6,15 @@ public class Bubble : MonoBehaviour
 {
     public float floatSpeed, boostForce;
 
+    private bool isPopping;
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position += floatSpeed * Time.deltaTime * Vector3.up;
+        if (!isPopping)
+        {
+            transform.position += floatSpeed * Time.deltaTime * Vector3.up;
+        }
         if (transform.position.y > 0 - GetComponent<SpriteRenderer>().bounds.extents.y)
         {
             Pop();
@@ -18,6 +23,7 @@ public class Bubble : MonoBehaviour
 
     private void Pop()
     {
+        isPopping = true;
         GetComponent<Animator>().SetTrigger("Pop");
     }
 

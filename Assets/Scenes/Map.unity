@@ -14157,7 +14157,7 @@ MonoBehaviour:
       isLooping: 0
   - storyPoint: 6
     scenes:
-    - video: {fileID: 32900000, guid: 7c32e2cae9137b0429b418ce63ce8b43, type: 3}
+    - video: {fileID: 32900000, guid: 03b63ba23be86ab4dac9a9aef9ee8087, type: 3}
       audio: {fileID: 0}
       isLooping: 0
     - video: {fileID: 32900000, guid: e3654f3765c264849ad35b0263341eb5, type: 3}
@@ -14169,7 +14169,7 @@ MonoBehaviour:
     - video: {fileID: 32900000, guid: 78c0f7202677eed489b1938ff3854a2f, type: 3}
       audio: {fileID: 8300000, guid: d0ba6c331c4477b479f007a7df2fe803, type: 3}
       isLooping: 1
-    - video: {fileID: 32900000, guid: e01688fa07c0cdc4394b44a164b4d328, type: 3}
+    - video: {fileID: 32900000, guid: a247d4acd147f5744bd41f91f6dacab4, type: 3}
       audio: {fileID: 0}
       isLooping: 0
   - storyPoint: 8
@@ -14191,7 +14191,7 @@ MonoBehaviour:
       isLooping: 0
   - storyPoint: 10
     scenes:
-    - video: {fileID: 32900000, guid: 94753d1eedda3a447b57032e06adb9bc, type: 3}
+    - video: {fileID: 32900000, guid: bd0d35668e823eb4abcf62b13a84864d, type: 3}
       audio: {fileID: 0}
       isLooping: 0
     - video: {fileID: 32900000, guid: c3b4557315c2782439acbd96436fd748, type: 3}
@@ -14206,7 +14206,7 @@ MonoBehaviour:
     - video: {fileID: 32900000, guid: 9718422d7ef2d16428e8a25922485c77, type: 3}
       audio: {fileID: 0}
       isLooping: 0
-  testScene: 2
+  testScene: 3
   currentScene: 0
   currentCutscene: 0
 --- !u!222 &6708069970092528579

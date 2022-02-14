@@ -4,9 +4,20 @@ using UnityEngine;
 public class ProximityElement : MonoBehaviour
 {
     public ProximityElementType type;
-    public float bubbleFrequency, bubbleSpeed;
+    public float bubbleFrequency, speed;
 
-    private bool randomChanceRunning = false, shyClosed = false;
+    private bool randomChanceRunning = false, shyClosed = false, isFlipping = false;
+    private Transform anchor1, anchor2;
+
+    private void Awake()
+    {
+        if (type == ProximityElementType.turtle)
+        {
+            anchor1 = transform.parent.Find("Anchor1");
+            anchor2 = transform.parent.Find("Anchor2");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -17,12 +28,23 @@ public class ProximityElement : MonoBehaviour
                     StartCoroutine(BlastBubbles());
                     break;
                 case ProximityElementType.turtle:
+                    StartCoroutine(Turtle());
                     break;
                 case ProximityElementType.randomAnim:
                     StartCoroutine(RandomChance());
                     break;
                 case ProximityElementType.shy:
                     Shy(true);
+                    break;
+                case ProximityElementType.mussel:
+                    if (randomChanceRunning)
+                    {
+                        Shy(true);
+                    }
+                    else
+                    {
+                        StartCoroutine(RandomChance());
+                    }
                     break;
                 default:
                     break;
@@ -34,16 +56,19 @@ public class ProximityElement : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            StopAllCoroutines();
-            if (randomChanceRunning)
+            if (shyClosed)
             {
+                Shy(false);
+            }
+            else if (randomChanceRunning)
+            {
+                StopCoroutine(nameof(RandomChance));
                 GetComponent<Animator>().SetFloat("RandomChance", 0);
                 randomChanceRunning = false;
             }
-            else if (shyClosed)
+            else
             {
-                Shy(false);
-                shyClosed = false;
+                StopAllCoroutines();
             }
         }
     }
@@ -55,7 +80,7 @@ public class ProximityElement : MonoBehaviour
         while (true)
         {
             Bubble newBubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity, GameObject.Find("Bubbles").transform).GetComponent<Bubble>();
-            newBubble.floatSpeed = bubbleSpeed;
+            newBubble.floatSpeed = speed;
             while (duration < bubbleFrequency)
             {
                 duration += Time.deltaTime;
@@ -67,6 +92,7 @@ public class ProximityElement : MonoBehaviour
 
     private IEnumerator RandomChance()
     {
+        randomChanceRunning = true;
         while (true)
         {
             GetComponent<Animator>().SetFloat("RandomChance", Random.Range(0, 100));
@@ -77,7 +103,47 @@ public class ProximityElement : MonoBehaviour
     private void Shy(bool isNear)
     {
         GetComponent<Animator>().SetBool("Near", isNear);
-        shyClosed = true;
+        shyClosed = isNear;
+    }
+
+    private IEnumerator Turtle()
+    {
+        float pathLength = (anchor2.position - anchor1.position).magnitude;
+        float lapDistance = Time.realtimeSinceStartup * speed % (2 * pathLength);
+        bool isFirstLeg = lapDistance < pathLength;
+        bool isPrevFrameFlipped = true;
+        if (isFirstLeg ^ anchor1.position.x < anchor2.position.x)
+        {
+            isPrevFrameFlipped = false;
+        }
+        GetComponent<SpriteRenderer>().flipX = isPrevFrameFlipped;
+        while (true)
+        {
+            lapDistance = Time.realtimeSinceStartup * speed % (2 * pathLength);
+            isFirstLeg = lapDistance < pathLength;
+            bool isFrameFlipped = !(isFirstLeg ^ anchor1.position.x < anchor2.position.x);
+            if (isFrameFlipped != isPrevFrameFlipped && !isFlipping)
+            {
+                GetComponent<Animator>().SetTrigger("Flip");
+                isFlipping = true;
+            }
+            isPrevFrameFlipped = isFrameFlipped;
+            if (isFirstLeg)
+            {
+                transform.position = Vector2.Lerp(anchor1.position, anchor2.position, lapDistance / pathLength);
+            }
+            else
+            {
+                transform.position = Vector2.Lerp(anchor2.position, anchor1.position, (lapDistance - pathLength) / pathLength);
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    public void Flip()
+    {
+        GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
+        isFlipping = false;
     }
 
     [System.Serializable]
@@ -86,6 +152,7 @@ public class ProximityElement : MonoBehaviour
         bubbleBlaster,
         turtle,
         randomAnim,
-        shy
+        shy,
+        mussel
     }
 }
