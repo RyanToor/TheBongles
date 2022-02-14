@@ -76,7 +76,13 @@ public class FloatingObjects : MonoBehaviour
 
     public void RemoveAll()
     {
-        objectsToRemove.AddRange(floatingObjects);
+        foreach (GameObject floatingObject in floatingObjects)
+        {
+            if (!floatingObject.CompareTag("Minigame"))
+            {
+                objectsToRemove.Add(floatingObject);
+            }
+        }
     }
 
     [BurstCompile]

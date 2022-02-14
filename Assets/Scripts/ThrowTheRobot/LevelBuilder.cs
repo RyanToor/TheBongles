@@ -12,6 +12,8 @@ public class LevelBuilder : MonoBehaviour
     public BiomeTiles levelTileLibrary;
     public PuzzlePrefabArray[] biomePuzzlePrefabs;
 
+    [HideInInspector] public bool isLevelBuilt = false;
+
     private List<int> floorDisplacements = new List<int>(), backgroundDisplacements = new List<int>();
     private int levelLength = 0;
     private int[] biomeEndPoints;
@@ -106,6 +108,7 @@ public class LevelBuilder : MonoBehaviour
             newBackground.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
             backgroundDisplacements.Add(newBackgroundTile.yDifference);
         }
+        isLevelBuilt = true;
     }
 
     [System.Serializable]

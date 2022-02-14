@@ -5,16 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: ebe4a3aec33f8fe4a8497615a72be9d0
   - enabled: 1
     path: Assets/Scenes/VerticalScroller.unity
     guid: e5e1901371ffb384ba7bd6f62c5c73f5
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/ThrowTheRobot.unity
+    guid: 807ccb4f7a318cd478bb03098f4552e3
   m_configObjects: {}

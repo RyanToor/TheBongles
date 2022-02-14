@@ -187,12 +187,15 @@ public class GameManager : MonoBehaviour
     public void LoadMinigame(TrashType trashType)
     {
         SaveGame();
+        GameObject newLoadScreen = Instantiate(loadScreenPrefab, new Vector3(960, 540, 0), Quaternion.identity);
+        DontDestroyOnLoad(newLoadScreen);
         switch (trashType)
         {
             case TrashType.Plastic:
-                GameObject newLoadScreen = Instantiate(loadScreenPrefab, new Vector3(960, 540, 0), Quaternion.identity);
-                DontDestroyOnLoad(newLoadScreen);
                 SceneManager.LoadScene("VerticalScroller");
+                break;
+            case TrashType.Metal:
+                SceneManager.LoadScene("ThrowTheRobot");
                 break;
             default:
                 break;

@@ -9,11 +9,14 @@ public class LevelManager_Robot : LevelManager
     public float drawDistance, drawPause;
 
     private GameObject robot;
+    private LevelBuilder levelbuilder;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         robot = GameObject.FindGameObjectWithTag("Player");
+        levelbuilder = GameObject.Find("Level").GetComponent<LevelBuilder>();
+        StartCoroutine(CheckLoaded());
         throwParameters.ResetDials();
         Throw();
     }
@@ -71,6 +74,16 @@ public class LevelManager_Robot : LevelManager
         }
         robot.GetComponent<Robot>().Launch(throwVector);
         isLaunched = true;
+    }
+
+    private IEnumerator CheckLoaded()
+    {
+        while (!levelbuilder.isLevelBuilt)
+        {
+            yield return null;
+        }
+        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
+        AudioManager.instance.PlayMusic("Trash Hunt");
     }
 
     private void EditorUpdate()

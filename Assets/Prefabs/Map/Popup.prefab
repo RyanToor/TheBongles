@@ -741,7 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameMarker: {fileID: 0}
-  trashType: 
+  trashType: 0
   loadScreen: {fileID: 8501071293954850938, guid: 94454062a6294e2408b01b9ef78015c1, type: 3}
   stars:
   - {fileID: 2155892212232042713}
@@ -749,6 +749,9 @@ MonoBehaviour:
   - {fileID: 2638374646725659781}
   disabledStarColour: {r: 1, g: 1, b: 1, a: 0.2509804}
   popupInfo:
-  - trashType: Plastic
+  - trashType: 0
     title: Trash Hunt
+    logo: {fileID: 21300000, guid: 145ed424612b60645b7e2261df644536, type: 3}
+  - trashType: 1
+    title: Throw the Robot
     logo: {fileID: 21300000, guid: 145ed424612b60645b7e2261df644536, type: 3}
