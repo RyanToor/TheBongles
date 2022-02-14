@@ -916,6 +916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundParallaxFactor: 0.6
+  tilePixelWidth: 1024
   offset: {x: -9.6, y: -16, z: 0}
   tilePrefab: {fileID: 8373276652658738681, guid: f9a32f027532c1740b591090c9e144af, type: 3}
   bubblePrefab: {fileID: 6010698024634007259, guid: 193f411603e6dc241b129083f8069fb3, type: 3}

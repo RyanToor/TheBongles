@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelBuilder : MonoBehaviour
 {
-    public float backgroundParallaxFactor;
+    public float backgroundParallaxFactor, tilePixelWidth;
     public Vector3 offset;
     public GameObject tilePrefab, bubblePrefab;
     public int backgroundTileOffset, backgroundYOffset;
@@ -61,7 +61,7 @@ public class LevelBuilder : MonoBehaviour
             {
                 totalDisplacement += displacement;
             }
-            GameObject newTile = Instantiate(biomePuzzlePrefabs[currentBiome].puzzlePrefabs[randPuzzleIndex], new Vector3(i * 10.24f, totalDisplacement * -0.01f, 0) + offset, Quaternion.identity, gameObject.transform.Find("Puzzles"));
+            GameObject newTile = Instantiate(biomePuzzlePrefabs[currentBiome].puzzlePrefabs[randPuzzleIndex], new Vector3(i * tilePixelWidth / 100, totalDisplacement * -0.01f, 0) + offset, Quaternion.identity, gameObject.transform.Find("Puzzles"));
             Sprite newTileSprite = newTile.transform.Find("Ground").GetComponent<SpriteRenderer>().sprite;
             newTile.transform.Find("Ground").gameObject.AddComponent<PolygonCollider2D>();
             foreach (Tile tile in levelTileLibrary.floorTiles)
@@ -100,7 +100,7 @@ public class LevelBuilder : MonoBehaviour
                 transitionsPlaced = currentBiome;
                 currentBackgroundIndex--;
             }
-            GameObject newBackground = Instantiate(tilePrefab, new Vector3(i * 10.24f, backgroundYOffset + totalDisplacement * -0.01f, 0) + offset, Quaternion.identity, transform.Find("Backgrounds"));
+            GameObject newBackground = Instantiate(tilePrefab, new Vector3(i * tilePixelWidth / 100, backgroundYOffset + totalDisplacement * -0.01f, 0) + offset, Quaternion.identity, transform.Find("Backgrounds"));
             Tile newBackgroundTile = levelTileLibrary.backgroundPlates[currentBackgroundIndex].plates[Random.Range(0, Mathf.Clamp(levelTileLibrary.backgroundPlates[currentBackgroundIndex].plates.Length - 1, 0, int.MaxValue))];
             newBackground.GetComponent<SpriteRenderer>().sprite = newBackgroundTile.sprite;
             newBackground.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
