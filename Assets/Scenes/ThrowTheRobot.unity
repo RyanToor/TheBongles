@@ -886,6 +886,259 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1378948913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1378948915}
+  - component: {fileID: 1378948914}
+  - component: {fileID: 1378948916}
+  m_Layer: 0
+  m_Name: Sand_End Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1378948914
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378948913}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: a1c4a3283b2b04a3abc7437d0fc62d07, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 20.48, y: 20.48}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1378948915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378948913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.8, y: -17.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &1378948916
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378948913}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0.26220703}
+    oldSize: {x: 20.48, y: 20.48}
+    newSize: {x: 20.48, y: 20.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 20.21, y: 0.01}
+      - {x: 20.1, y: 0.07}
+      - {x: 20.02, y: 0.08}
+      - {x: 19.63, y: 0.19999999}
+      - {x: 19.529999, y: 0.24}
+      - {x: 19.35, y: 0.26}
+      - {x: 19.199999, y: 0.19999999}
+      - {x: 19.16, y: 0.17}
+      - {x: 19, y: 0.17}
+      - {x: 18.89, y: 0.14}
+      - {x: 18.73, y: 0.099999994}
+      - {x: 18.64, y: 0}
+      - {x: 18.41, y: -0.11}
+      - {x: 18.289999, y: -0.17999999}
+      - {x: 18.14, y: -0.19999999}
+      - {x: 17.97, y: -0.22}
+      - {x: 17.789999, y: -0.34}
+      - {x: 17.58, y: -0.32999998}
+      - {x: 17.49, y: -0.34}
+      - {x: 17.279999, y: -0.35}
+      - {x: 17.279999, y: -0.34}
+      - {x: 17.02, y: -0.29999998}
+      - {x: 16.68, y: -0.21}
+      - {x: 16.49, y: -0.22999999}
+      - {x: 16.15, y: -0.26999998}
+      - {x: 16.08, y: -0.26}
+      - {x: 16.05, y: -0.22}
+      - {x: 15.929999, y: -0.21}
+      - {x: 15.7699995, y: -0.14}
+      - {x: 15.78, y: -0.07}
+      - {x: 15.69, y: 0}
+      - {x: 15.639999, y: 0.07}
+      - {x: 15.61, y: 0.22999999}
+      - {x: 15.49, y: 0.34}
+      - {x: 15.48, y: 0.41}
+      - {x: 15.41, y: 0.48999998}
+      - {x: 15.259999, y: 0.53999996}
+      - {x: 15.21, y: 0.48}
+      - {x: 15.21, y: 0.55}
+      - {x: 15.059999, y: 0.66999996}
+      - {x: 15.049999, y: 0.71999997}
+      - {x: 14.99, y: 0.78999996}
+      - {x: 14.74, y: 0.78999996}
+      - {x: 14.63, y: 0.83}
+      - {x: 14.54, y: 0.83}
+      - {x: 14.48, y: 0.78999996}
+      - {x: 14.429999, y: 0.77}
+      - {x: 14.44, y: 0.84999996}
+      - {x: 14.429999, y: 0.96}
+      - {x: 14.4, y: 1.09}
+      - {x: 14.37, y: 1.25}
+      - {x: 14.29, y: 1.4}
+      - {x: 14.2699995, y: 1.48}
+      - {x: 14.2, y: 1.67}
+      - {x: 14.099999, y: 1.76}
+      - {x: 13.99, y: 1.81}
+      - {x: 13.96, y: 1.87}
+      - {x: 13.889999, y: 1.93}
+      - {x: 13.73, y: 1.9499999}
+      - {x: 13.49, y: 1.99}
+      - {x: 13.34, y: 1.99}
+      - {x: 13.23, y: 2}
+      - {x: 13.04, y: 2.01}
+      - {x: 12.66, y: 2.01}
+      - {x: 12.29, y: 2}
+      - {x: 12.29, y: 2.01}
+      - {x: 12.11, y: 2.01}
+      - {x: 11.9, y: 1.99}
+      - {x: 11.639999, y: 1.7099999}
+      - {x: 11.61, y: 1.64}
+      - {x: 11.48, y: 1.4599999}
+      - {x: 11.349999, y: 1.38}
+      - {x: 11.23, y: 1.28}
+      - {x: 11.139999, y: 1.15}
+      - {x: 10.91, y: 0.90999997}
+      - {x: 10.86, y: 0.81}
+      - {x: 10.82, y: 0.71}
+      - {x: 10.679999, y: 0.56}
+      - {x: 10.61, y: 0.5}
+      - {x: 10.55, y: 0.42999998}
+      - {x: 10.53, y: 0.31}
+      - {x: 10.429999, y: 0.19}
+      - {x: 10.4, y: 0.22}
+      - {x: 10.26, y: 0.19999999}
+      - {x: 10.16, y: 0.16}
+      - {x: 9.95, y: 0.19}
+      - {x: 9.809999, y: 0.25}
+      - {x: 9.66, y: 0.29999998}
+      - {x: 9.429999, y: 0.39999998}
+      - {x: 9.34, y: 0.42}
+      - {x: 9.21, y: 0.41}
+      - {x: 9.139999, y: 0.38}
+      - {x: 8.889999, y: 0.37}
+      - {x: 8.59, y: 0.35999998}
+      - {x: 8.28, y: 0.44}
+      - {x: 8.139999, y: 0.47}
+      - {x: 7.98, y: 0.55}
+      - {x: 7.8199997, y: 0.59999996}
+      - {x: 7.73, y: 0.62}
+      - {x: 7.49, y: 0.61}
+      - {x: 7.2799997, y: 0.58}
+      - {x: 7.2, y: 0.59}
+      - {x: 6.95, y: 0.59}
+      - {x: 6.95, y: 0.57}
+      - {x: 6.73, y: 0.56}
+      - {x: 6.39, y: 0.53}
+      - {x: 6.1, y: 0.51}
+      - {x: 5.87, y: 0.48999998}
+      - {x: 5.73, y: 0.51}
+      - {x: 5.42, y: 0.51}
+      - {x: 5.2999997, y: 0.48999998}
+      - {x: 4.93, y: 0.48}
+      - {x: 4.92, y: 0.48999998}
+      - {x: 4.5899997, y: 0.5}
+      - {x: 4.52, y: 0.53999996}
+      - {x: 4.27, y: 0.56}
+      - {x: 4.04, y: 0.56}
+      - {x: 3.78, y: 0.51}
+      - {x: 3.58, y: 0.47}
+      - {x: 3.35, y: 0.41}
+      - {x: 3.22, y: 0.39}
+      - {x: 3.03, y: 0.35}
+      - {x: 2.9199998, y: 0.32999998}
+      - {x: 2.79, y: 0.29}
+      - {x: 2.6399999, y: 0.29}
+      - {x: 2.57, y: 0.31}
+      - {x: 2.4099998, y: 0.34}
+      - {x: 2.29, y: 0.35999998}
+      - {x: 2.19, y: 0.39999998}
+      - {x: 1.88, y: 0.45}
+      - {x: 1.73, y: 0.47}
+      - {x: 1.55, y: 0.5}
+      - {x: 1.4, y: 0.53999996}
+      - {x: 1.05, y: 0.57}
+      - {x: 0.56, y: 0.55}
+      - {x: 0.22999999, y: 0.55}
+      - {x: 0.21, y: 0.57}
+      - {x: 0.14999999, y: 0.59}
+      - {x: 0.11, y: 0.59}
+      - {x: 0, y: 0.58}
+      - {x: 0, y: -5.37}
+      - {x: 20.48, y: -5.37}
+      - {x: 20.48, y: 0.02}
+      - {x: 20.279999, y: 0.02}
 --- !u!1 &1548698678
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,13 +1169,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundParallaxFactor: 0.6
-  tilePixelWidth: 1024
-  offset: {x: -9.6, y: -16, z: 0}
+  tilePixelWidth: 2048
+  offset: {x: 10.68, y: -17.5, z: 0}
   tilePrefab: {fileID: 8373276652658738681, guid: f9a32f027532c1740b591090c9e144af, type: 3}
   bubblePrefab: {fileID: 6010698024634007259, guid: 193f411603e6dc241b129083f8069fb3, type: 3}
   backgroundTileOffset: 2
-  backgroundYOffset: 2
-  biomeLengths: 060000000600000006000000
+  backgroundYOffset: 20
+  biomeLengths: 010000000400000004000000
   levelTileLibrary:
     floorTiles:
     - sprite: {fileID: 21300000, guid: 407b9a97f35b973479f53947c8c8346c, type: 3}
@@ -931,49 +1184,60 @@ MonoBehaviour:
       yDifference: 91
     - sprite: {fileID: 21300000, guid: c9b8982ad57a42b4eb7ac5c027944c1f, type: 3}
       yDifference: 165
-    - sprite: {fileID: 21300000, guid: a1958bce60bbc5345821a19b1b8855bb, type: 3}
+    - sprite: {fileID: -7428399867375930319, guid: 0f0605f70a97a4a5ca851b91ab005ff6, type: 3}
+      yDifference: 203
+    - sprite: {fileID: -2930592507985041812, guid: 0f0605f70a97a4a5ca851b91ab005ff6, type: 3}
       yDifference: 162
+    - sprite: {fileID: 2855494528351217244, guid: 7af2e793048bf4635856afb722c09bde, type: 3}
+      yDifference: 303
+    - sprite: {fileID: 7828843198547213537, guid: 7af2e793048bf4635856afb722c09bde, type: 3}
+      yDifference: 96
     backgroundPlates:
     - name: Sand
       plates:
-      - sprite: {fileID: 21300000, guid: 31d59fd97571296408f79b29e942eaef, type: 3}
-        yDifference: 0
-      - sprite: {fileID: 21300000, guid: 0784275241f9a96429dcd46ceb76b150, type: 3}
-        yDifference: 157
+      - sprite: {fileID: 6074519793684748852, guid: 19da5a67bf2804f969196eda7644afde, type: 3}
+        yDifference: 257
+      - sprite: {fileID: -5141035087964068863, guid: 19da5a67bf2804f969196eda7644afde, type: 3}
+        yDifference: 298
     - name: Sand-Rock
       plates:
-      - sprite: {fileID: 21300000, guid: 6158bd325e7c2e949ad7938faf85c6a2, type: 3}
-        yDifference: -13
+      - sprite: {fileID: 8156448847643371684, guid: 8a707fbf937a541afa00afc46d3e6816, type: 3}
+        yDifference: 22
     - name: Rock
       plates:
-      - sprite: {fileID: 21300000, guid: b0f84d6fd42e39b46993088a04590d7a, type: 3}
-        yDifference: -58
+      - sprite: {fileID: 6074519793684748852, guid: 19da5a67bf2804f969196eda7644afde, type: 3}
+        yDifference: 257
+      - sprite: {fileID: -5141035087964068863, guid: 19da5a67bf2804f969196eda7644afde, type: 3}
+        yDifference: 298
     - name: Rock-Crablantis
       plates:
-      - sprite: {fileID: 21300000, guid: d98425782443e554898dd99ae9b48068, type: 3}
-        yDifference: -224
+      - sprite: {fileID: 8156448847643371684, guid: 8a707fbf937a541afa00afc46d3e6816, type: 3}
+        yDifference: 22
     - name: Crablantis
       plates:
-      - sprite: {fileID: 21300000, guid: c98520b0130d1894aa06578647e601a0, type: 3}
-        yDifference: 1
+      - sprite: {fileID: 3935276384070913960, guid: 8a707fbf937a541afa00afc46d3e6816, type: 3}
+        yDifference: 332
+      - sprite: {fileID: 8156448847643371684, guid: 8a707fbf937a541afa00afc46d3e6816, type: 3}
+        yDifference: 22
   biomePuzzlePrefabs:
   - name: Sand
     puzzlePrefabs:
-    - {fileID: 8373276652658738681, guid: a03437d6e1e622b4d93b89da66cebd74, type: 3}
-    - {fileID: 8373276652658738681, guid: f4980b5b55bdcf542bfe8aeda032d740, type: 3}
-    - {fileID: 8373276652658738681, guid: d3334588727b62b44875fd15c64fe099, type: 3}
-    - {fileID: 8373276652658738681, guid: 111c29653682c3748810bdd1f1ebffd9, type: 3}
+    - {fileID: 8373276652658738681, guid: 0b2930432920b46ce9e794c26ba92195, type: 3}
+    - {fileID: 8373276652658738681, guid: 272215a0cc52e4ec5957107b7cad0127, type: 3}
+    - {fileID: 8373276652658738681, guid: bdf3555b4abf2499aa3b8dc0fc718565, type: 3}
+    - {fileID: 8373276652658738681, guid: aee4ef952588e46faae6e17ab89fdd40, type: 3}
   - name: Rock
     puzzlePrefabs:
-    - {fileID: 8373276652658738681, guid: f001b68993334e146972270bdd65d919, type: 3}
-    - {fileID: 8373276652658738681, guid: 51bedecbfc805f6448635fe1682c08c8, type: 3}
-    - {fileID: 8373276652658738681, guid: 06d1dafadab9e1142b5a376005939fe8, type: 3}
+    - {fileID: 8373276652658738681, guid: 0b2930432920b46ce9e794c26ba92195, type: 3}
+    - {fileID: 8373276652658738681, guid: 272215a0cc52e4ec5957107b7cad0127, type: 3}
+    - {fileID: 8373276652658738681, guid: bdf3555b4abf2499aa3b8dc0fc718565, type: 3}
   - name: Crablantis
     puzzlePrefabs:
-    - {fileID: 8373276652658738681, guid: df966b46ecd397d4797e48328b8d60c5, type: 3}
-    - {fileID: 8373276652658738681, guid: 7ad4c33328904024e98b17649da86ab2, type: 3}
-    - {fileID: 8373276652658738681, guid: ccd00408f173038418a083035e75508c, type: 3}
-    - {fileID: 8373276652658738681, guid: be7f89cdd7f8a9446ac76605f70b6285, type: 3}
+    - {fileID: 8373276652658738681, guid: 0b2930432920b46ce9e794c26ba92195, type: 3}
+    - {fileID: 8373276652658738681, guid: 272215a0cc52e4ec5957107b7cad0127, type: 3}
+    - {fileID: 8373276652658738681, guid: bdf3555b4abf2499aa3b8dc0fc718565, type: 3}
+    - {fileID: 8373276652658738681, guid: aee4ef952588e46faae6e17ab89fdd40, type: 3}
+  isLevelBuilt: 0
 --- !u!4 &1548698680
 Transform:
   m_ObjectHideFlags: 0
