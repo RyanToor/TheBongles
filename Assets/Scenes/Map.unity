@@ -10702,6 +10702,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8161915670004869163, guid: 36fe779a32eced642bf6a853c9128822, type: 3}
+      propertyPath: cloudScreen
+      value: 
+      objectReference: {fileID: 617597682}
+    - target: {fileID: 8161915670004869163, guid: 36fe779a32eced642bf6a853c9128822, type: 3}
       propertyPath: regionOrder
       value: 2
       objectReference: {fileID: 0}
@@ -12611,11 +12615,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5786167024573015595, guid: 6b07a591aa13f874a9df136289e0e89c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.683989
+      value: -25.49
       objectReference: {fileID: 0}
     - target: {fileID: 5786167024573015595, guid: 6b07a591aa13f874a9df136289e0e89c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -37.790676
+      value: -46.89
       objectReference: {fileID: 0}
     - target: {fileID: 5786167024573015595, guid: 6b07a591aa13f874a9df136289e0e89c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14169,6 +14173,9 @@ MonoBehaviour:
     - video: {fileID: 32900000, guid: 78c0f7202677eed489b1938ff3854a2f, type: 3}
       audio: {fileID: 8300000, guid: d0ba6c331c4477b479f007a7df2fe803, type: 3}
       isLooping: 1
+    - video: {fileID: 32900000, guid: a9908a781538918428c774c19086fd4a, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
     - video: {fileID: 32900000, guid: a247d4acd147f5744bd41f91f6dacab4, type: 3}
       audio: {fileID: 0}
       isLooping: 0
@@ -14204,6 +14211,9 @@ MonoBehaviour:
       audio: {fileID: 8300000, guid: f6b6e1ae20cf4324b867a50faf643a6c, type: 3}
       isLooping: 1
     - video: {fileID: 32900000, guid: 9718422d7ef2d16428e8a25922485c77, type: 3}
+      audio: {fileID: 0}
+      isLooping: 1
+    - video: {fileID: 32900000, guid: 1d68a513250e6f242822300e46e7b8d2, type: 3}
       audio: {fileID: 0}
       isLooping: 0
   testScene: 3

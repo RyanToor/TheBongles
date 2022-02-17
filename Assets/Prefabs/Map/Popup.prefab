@@ -755,3 +755,6 @@ MonoBehaviour:
   - trashType: 1
     title: Throw the Robot
     logo: {fileID: 21300000, guid: 145ed424612b60645b7e2261df644536, type: 3}
+  - trashType: 2
+    title: Throw the Robot
+    logo: {fileID: 21300000, guid: 145ed424612b60645b7e2261df644536, type: 3}

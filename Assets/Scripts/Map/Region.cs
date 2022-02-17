@@ -103,6 +103,10 @@ public class Region : MonoBehaviour
     {
         isStoryCleared = GameManager.Instance.storyPoint >= GameManager.Instance.regionStoryPoints[Mathf.Clamp(regionOrder, 0, int.MaxValue)];
         isBossMet = GameManager.Instance.storyPoint >= storyMeetPoints[(int)bossEnum];
+        if (transform.Find("BossIsland/CloudScreen") != null)
+        {
+            cloudScreen.SetActive(!isBossMet);
+        }
         bossAnimator.Rebind();
         bossAnimator.Update(0f);
     }
