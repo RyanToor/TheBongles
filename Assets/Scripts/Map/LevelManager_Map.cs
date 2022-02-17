@@ -5,9 +5,11 @@ using UnityEngine;
 public class LevelManager_Map : LevelManager
 {
     public NameSpriteArray[] trashSprites;
-    public int randomTrashAmount;
-    public GameObject map, randomTrashContainer, randomTrashPrefab;
+    public int randomTrashAmount, castleStoryPoint;
+    public GameObject map, randomTrashContainer, randomTrashPrefab, castle;
     public float trashClearBorder;
+    public Sprite castleBefore, castleAfter;
+    public CapsuleCollider2D castleSmallCollider, castleBigCollider;
 
     [HideInInspector]
     public GameObject upgradesUI;
@@ -76,6 +78,10 @@ public class LevelManager_Map : LevelManager
             Debug.Log("Max Region : " + GameManager.Instance.MaxRegion());
             regionScript.Unlock(GameManager.Instance.MaxRegion() > regionScript.regionOrder);
         }
+        int storyPoint = GameManager.Instance.storyPoint;
+        castle.GetComponent<SpriteRenderer>().sprite = storyPoint > castleStoryPoint? castleAfter: castleBefore;
+        castleSmallCollider.enabled = storyPoint <= castleStoryPoint;
+        castleBigCollider.enabled = storyPoint > castleStoryPoint;
     }
 
     public void RespawnTrash()
