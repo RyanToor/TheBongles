@@ -90,6 +90,7 @@ public class LevelManager_Robot : LevelManager
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            StopAllCoroutines();
             Throw();
         }
     }
