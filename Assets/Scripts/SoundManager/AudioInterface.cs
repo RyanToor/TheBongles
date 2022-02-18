@@ -2,35 +2,29 @@ using UnityEngine;
 
 public class AudioInterface : MonoBehaviour
 {
-    AudioManager audioManager;
-    private void Awake()
-    {
-        audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
-    }
-
     public void OnClick()
     {
-        audioManager.PlaySFX("Click");
+        AudioManager.instance.PlaySFX("Click");
     }
     public void OnHover()
     {
-        audioManager.PlaySFXComplete("Hover");
+        AudioManager.instance.PlaySFXComplete("Hover");
     }
     public void SetMusicVolume(float volume)
     {
-        GameObject.Find("SoundManager").GetComponent<AudioManager>().SetMusicVolume(volume);
+        AudioManager.instance.SetMusicVolume(volume);
     }
     public void SetSFXVolume(float volume)
     {
-        GameObject.Find("SoundManager").GetComponent<AudioManager>().SetSFXVolume(volume);
+        AudioManager.instance.SetSFXVolume(volume);
     }
     public void ToggleMusic()
     {
-        audioManager.ToggleMusic();
+        AudioManager.instance.ToggleMusic();
     }
 
     public void ToggleSFX()
     {
-        audioManager.ToggleSFX();
+        AudioManager.instance.ToggleSFX();
     }
 }

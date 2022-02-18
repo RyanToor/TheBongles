@@ -4,7 +4,7 @@ using UnityEngine;
 public class Robot : MonoBehaviour
 {
     public bool doubleJump;
-    public LayerMask legLayerMask;
+    public LayerMask groundLayerMask, legLayerMask;
     public int legRays;
     public float moveForce, jumpForce, airControlMultiplier, groundCastOffset, decelerationMultiplier, 
         boostForce, skimMinVelocity, skimVelocityMultiplier, waterHitVelocityMultiplier, musselForce, jellyfishBoost,
@@ -14,7 +14,9 @@ public class Robot : MonoBehaviour
     public GameObject waterSurface, splashPrefab;
 
     [HideInInspector]
-    public bool isLaunched;
+    public bool isLanded = false;
+    [HideInInspector]
+    public int rightmostChunk = int.MaxValue;
 
     private Vector3 startPos;
     private Transform legL, legR;
@@ -58,6 +60,10 @@ public class Robot : MonoBehaviour
             }
             if (isGrounded)
             {
+                if (levelManager.isLaunched && ! isLanded)
+                {
+                    isLanded = true;
+                }
                 isJumping = false;
                 isDoubleJumping = false;
                 canDoubleJump = false;
@@ -181,6 +187,7 @@ public class Robot : MonoBehaviour
             rb.drag = 0;
             transform.position = startPos;
             levelManager.isLaunched = false;
+            isLanded = false;
         }
     }
 

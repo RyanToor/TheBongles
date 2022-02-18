@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class FollowCamera_Robot : MonoBehaviour
 {
+    public bool stopRightMovement;
     public float cameraLerpSpeed, maxWaterOffset, deepWaterDepth;
     public Color[] waterPlateDeepColours;
 
     private GameObject robot;
+    private int robotMinChunk = int.MaxValue;
     private Camera cameraComponent;
     private Transform backgroundPlateContainer, waterPlates;
-    private Vector3 startOffset, desiredOffset, startPos, backgroundStartPos, waterStartOffset;
-    private float backgroundParallaxFactor, initialOrthographicSize;
+    private Vector3 startOffset, desiredPosition, startPos, backgroundStartPos, waterStartOffset;
+    private float backgroundParallaxFactor, initialOrthographicSize, chunkWidth;
     private Color[] waterPlateShallowColours;
 
     private void Awake()
     {
+        chunkWidth = GameObject.Find("Level").GetComponent<LevelBuilder>().tilePixelWidth / 100;
+        stopRightMovement = !Application.isEditor;
         startPos = transform.position;
         cameraComponent = GetComponent<Camera>();
         initialOrthographicSize = cameraComponent.orthographicSize;
@@ -41,12 +45,14 @@ public class FollowCamera_Robot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        desiredOffset = robot.transform.position + startOffset;
-        if (desiredOffset.x < 0)
+        int robotCurrentChunk = robot.GetComponent<Robot>().isLanded? Mathf.CeilToInt(robot.transform.position.x / chunkWidth) : int.MaxValue;
+        if (robotCurrentChunk < robotMinChunk)
         {
-            desiredOffset = Vector3.Scale(desiredOffset, new Vector3(0, 1, 1));
+            robotMinChunk = robotCurrentChunk;
         }
-        transform.position = Vector3.Lerp(transform.position, desiredOffset, cameraLerpSpeed);
+        desiredPosition = robot.transform.position + startOffset;
+        desiredPosition = new Vector3(Mathf.Clamp(desiredPosition.x, 0, stopRightMovement? robotMinChunk * chunkWidth + 0.64f : float.MaxValue), desiredPosition.y, desiredPosition.z);
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraLerpSpeed);
         float cameraZoom = Mathf.Clamp(transform.position.y + maxWaterOffset, initialOrthographicSize, int.MaxValue);
         cameraComponent.orthographicSize = cameraZoom;
         backgroundPlateContainer.position = backgroundStartPos + new Vector3((transform.position.x - startPos.x) * backgroundParallaxFactor, (Mathf.Clamp(transform.position.y, int.MinValue, startPos.y) - startPos.y) * backgroundParallaxFactor, 0);

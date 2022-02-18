@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelBuilder : MonoBehaviour
 {
-    public float backgroundParallaxFactor, tilePixelWidth;
+    public float backgroundParallaxFactor, tilePixelWidth, backgroundVerticalBuffer;
     public Vector3 offset;
     public GameObject tilePrefab, bubblePrefab;
     public int backgroundTileOffset, backgroundYOffset;
@@ -80,14 +80,18 @@ public class LevelBuilder : MonoBehaviour
     private void PlaceBackground()
     {
         int transitionsPlaced = 0;
+        Tile lastBackgroundTile = default(Tile);
         for (int i = -backgroundTileOffset; i < levelLength * backgroundParallaxFactor; i++)
         {
-            int totalDisplacement = 0;
+            int totalDisplacement = 0, totalLevelDisplacement = 0, currentBiome = biomeEndPoints.Length - 1;
             foreach (int displacement in backgroundDisplacements)
             {
                 totalDisplacement += displacement;
             }
-            int currentBiome = biomeEndPoints.Length - 1;
+            for (int j = 0; j < i / backgroundParallaxFactor; j++)
+            {
+                totalLevelDisplacement += floorDisplacements[j];
+            }
             for (int j = 0; j < biomeEndPoints.Length; j++)
             {
                 if (Mathf.Ceil((i + biomeEndPoints[transitionsPlaced] / 5) / backgroundParallaxFactor) < biomeEndPoints[j])
@@ -103,10 +107,28 @@ public class LevelBuilder : MonoBehaviour
                 currentBackgroundIndex--;
             }
             GameObject newBackground = Instantiate(tilePrefab, new Vector3(i * tilePixelWidth / 100, backgroundYOffset + totalDisplacement * -0.01f, 0) + offset, Quaternion.identity, transform.Find("Backgrounds"));
-            Tile newBackgroundTile = levelTileLibrary.backgroundPlates[currentBackgroundIndex].plates[Random.Range(0, Mathf.Clamp(levelTileLibrary.backgroundPlates[currentBackgroundIndex].plates.Length - 1, 0, int.MaxValue))];
+            List<Tile> currentBiomeTiles = new List<Tile>(levelTileLibrary.backgroundPlates[currentBackgroundIndex].plates);
+            if (currentBiomeTiles.Count > 1 && !lastBackgroundTile.Equals(default(Tile)))
+            {
+                currentBiomeTiles.Remove(lastBackgroundTile);
+            }
+            List<Tile> fittingBackgroundTiles = new List<Tile>();
+            foreach (Tile tile in currentBiomeTiles)
+            {
+                if (totalDisplacement + tile.yDifference - totalLevelDisplacement < backgroundVerticalBuffer)
+                {
+                    fittingBackgroundTiles.Add(tile);
+                }
+            }
+            if (fittingBackgroundTiles.Count > 0)
+            {
+                currentBiomeTiles = fittingBackgroundTiles;
+            }
+            Tile newBackgroundTile = currentBiomeTiles[Random.Range(0, Mathf.Clamp(currentBiomeTiles.Count - 1, 0, int.MaxValue))];
             newBackground.GetComponent<SpriteRenderer>().sprite = newBackgroundTile.sprite;
             newBackground.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
             backgroundDisplacements.Add(newBackgroundTile.yDifference);
+            lastBackgroundTile = newBackgroundTile;
         }
         isLevelBuilt = true;
     }
