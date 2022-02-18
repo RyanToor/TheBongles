@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 530823669582665891}
   - component: {fileID: 530823669582665890}
   - component: {fileID: 195911074631845805}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mussel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6331208259653700799}
   - component: {fileID: 177440548606705891}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

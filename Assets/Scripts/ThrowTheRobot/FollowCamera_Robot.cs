@@ -11,8 +11,8 @@ public class FollowCamera_Robot : MonoBehaviour
     private GameObject robot;
     private int robotMinChunk = int.MaxValue;
     private Camera cameraComponent;
-    private Transform backgroundPlateContainer, waterPlates;
-    private Vector3 startOffset, desiredPosition, startPos, backgroundStartPos, waterStartOffset;
+    private Transform backgroundPlateContainer, waterPlates, skyPlate;
+    private Vector3 startOffset, desiredPosition, startPos, backgroundStartPos, waterStartOffset, initialSkyPlateScale, skyPlateOffset;
     private float backgroundParallaxFactor, initialOrthographicSize, chunkWidth;
     private Color[] waterPlateShallowColours;
 
@@ -24,6 +24,9 @@ public class FollowCamera_Robot : MonoBehaviour
         cameraComponent = GetComponent<Camera>();
         initialOrthographicSize = cameraComponent.orthographicSize;
         waterPlates = transform.Find("WaterPlates");
+        skyPlate = transform.Find("SkyPlate");
+        initialSkyPlateScale = skyPlate.localScale;
+        skyPlateOffset = transform.position - skyPlate.position;
         Transform level = GameObject.Find("Level").transform;
         backgroundParallaxFactor = level.gameObject.GetComponent<LevelBuilder>().backgroundParallaxFactor;
         backgroundPlateContainer = level.Find("Backgrounds");
@@ -57,6 +60,8 @@ public class FollowCamera_Robot : MonoBehaviour
         cameraComponent.orthographicSize = cameraZoom;
         backgroundPlateContainer.position = backgroundStartPos + new Vector3((transform.position.x - startPos.x) * backgroundParallaxFactor, (Mathf.Clamp(transform.position.y, int.MinValue, startPos.y) - startPos.y) * backgroundParallaxFactor, 0);
         waterPlates.localScale = Vector3.one * (cameraZoom / initialOrthographicSize);
+        skyPlate.localScale = (cameraZoom / initialOrthographicSize) * initialSkyPlateScale;
+        skyPlate.position = Vector3.Scale(transform.position, new Vector3(1, 0, -1));
         waterPlates.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, float.MinValue, -5.4f * (cameraZoom / initialOrthographicSize))) + waterStartOffset;
         for (int i = 0; i < waterPlateDeepColours.Length; i++)
         {
