@@ -2024,7 +2024,7 @@ MonoBehaviour:
   skimVelocityMultiplier: 0.9
   waterHitVelocityMultiplier: 0.2
   musselForce: 10
-  jellyfishBoost: 1.5
+  jellyfishBoost: 1.2
   legMaxLength: 0.6
   legLerpSpeed: 0.2
   rotationSpeed: 3
@@ -2034,6 +2034,8 @@ MonoBehaviour:
   legMaxAngle: 30
   waterSurface: {fileID: 255889774}
   splashPrefab: {fileID: 3127932473184676390, guid: 90f6ae0d0a6b6e54f9c9e93a66c6b625, type: 3}
+  wheelL: {fileID: 2104725029}
+  wheelR: {fileID: 2099039802}
   isLanded: 0
   rightmostChunk: 2147483647
 --- !u!212 &1818866234

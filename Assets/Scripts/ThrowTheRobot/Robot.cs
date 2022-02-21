@@ -12,6 +12,7 @@ public class Robot : MonoBehaviour
     [Range(0, 90)]
     public float skimMaxAngle, musselAngle, maxJellyfishAngle, legMaxAngle;
     public GameObject waterSurface, splashPrefab;
+    public SpriteRenderer wheelL, wheelR;
 
     [HideInInspector]
     public bool isLanded = false;
@@ -27,9 +28,11 @@ public class Robot : MonoBehaviour
     private float colliderWidth, colliderHeight;
     private List<Animator> clouds = new List<Animator>();
     private LineRenderer legLine;
+    private Animator animator;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
         colliderWidth = GetComponent<CapsuleCollider2D>().bounds.extents.x;
         colliderHeight = GetComponent<CapsuleCollider2D>().bounds.extents.y;
@@ -71,6 +74,7 @@ public class Robot : MonoBehaviour
                 if (Input.GetAxisRaw("Jump") == 1 && !isJumping)
                 {
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+                    animator.SetTrigger("Jump");
                     isJumping = true;
                 }
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, groundHit.normal, Vector3.forward)), rotationSpeed);
@@ -80,6 +84,7 @@ public class Robot : MonoBehaviour
                 if (canDoubleJump && !isDoubleJumping && Input.GetAxisRaw("Jump") == 1)
                 {
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+                    animator.SetTrigger("Jump");
                     isDoubleJumping = true;
                 }
                 else if (clouds.Count > 0 && Input.GetAxisRaw("Jump") == 1)
@@ -105,6 +110,7 @@ public class Robot : MonoBehaviour
     private void LateUpdate()
     {
         DrawLegs();
+        Animate();
     }
 
     public void Launch(Vector2 force)
@@ -171,11 +177,21 @@ public class Robot : MonoBehaviour
         legLine.SetPositions(new Vector3[5]
         {
             legL.position + legL.transform.up * 0.3f,
-            transform.TransformPoint(legStartL),
+            transform.TransformPoint(legStartL + (isGrounded? Vector2.zero : Vector2.up * 0.3f)),
             transform.position,
-            transform.TransformPoint(legStartR),
+            transform.TransformPoint(legStartR + (isGrounded? Vector2.zero : Vector2.up * 0.3f)),
             legR.position + legL.transform.up * 0.3f
         });
+    }
+
+    private void Animate()
+    {
+        animator.SetFloat("HorizontalSpeed", rb.velocity.x);
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetFloat("VerticalSpeed", rb.velocity.y);
+        animator.speed = Mathf.Clamp(rb.velocity.magnitude / 10f, 1, float.MaxValue);
+        wheelL.flipX = rb.velocity.x < 0;
+        wheelR.flipX = rb.velocity.x < 0;
     }
     void EditorUpdate()
     {
