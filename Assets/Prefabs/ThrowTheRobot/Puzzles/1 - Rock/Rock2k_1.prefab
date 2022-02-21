@@ -430,6 +430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurtlePlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 695142655475636058, guid: 8fb2fefb1dd1e334cb8ba6f2727477cd, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fb2fefb1dd1e334cb8ba6f2727477cd, type: 3}
 --- !u!4 &3806495857208449233 stripped
