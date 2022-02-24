@@ -780,6 +780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAngle: 10
   maxYDisplacement: 0.2
+  mapRotate: 1
   objectsToRemove: []
   objectsToAdd: []
 --- !u!1 &146924964
@@ -5232,7 +5233,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 6}
-  m_Size: {x: 16, y: 6}
+  m_Size: {x: 18, y: 6}
   m_Direction: 1
 --- !u!50 &902878139
 Rigidbody2D:
