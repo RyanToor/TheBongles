@@ -84,7 +84,6 @@ public class Robot : MonoBehaviour
                 if (canDoubleJump && !isDoubleJumping && Input.GetAxisRaw("Jump") == 1)
                 {
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
-                    animator.SetTrigger("Jump");
                     isDoubleJumping = true;
                 }
                 else if (clouds.Count > 0 && Input.GetAxisRaw("Jump") == 1)
@@ -219,6 +218,13 @@ public class Robot : MonoBehaviour
         else if (collision.CompareTag("Cloud"))
         {
             clouds.Add(collision.gameObject.GetComponent<Animator>());
+            collision.gameObject.GetComponent<Animator>().SetTrigger("Bounce");
+            rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
+        }
+        else if (collision.gameObject.CompareTag("RandomTrash"))
+        {
+            levelManager.metal++;
+            levelManager.floatingTrash.objectsToRemove.Add(collision.gameObject);
         }
     }
 

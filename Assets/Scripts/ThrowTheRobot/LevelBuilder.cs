@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LevelBuilder : MonoBehaviour
 {
-    public float backgroundParallaxFactor, tilePixelWidth, backgroundVerticalBuffer;
+    public float tilePixelWidth, backgroundVerticalBuffer;
     public Vector3 offset;
     public GameObject tilePrefab, bubblePrefab;
-    public int backgroundTileOffset, backgroundYOffset;
     public int[] biomeLengths;
+    public Sprite[] trashSprites;
     public BiomeTiles levelTileLibrary;
     public PuzzlePrefabArray[] biomePuzzlePrefabs;
 
@@ -75,60 +75,88 @@ public class LevelBuilder : MonoBehaviour
                 }
             }
         }
+        LevelManager_Robot levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager_Robot>();
+        levelManager.floatingDecorations.objectsToAdd.AddRange(GameObject.FindGameObjectsWithTag("UpgradeButton"));
+        foreach (GameObject trash in GameObject.FindGameObjectsWithTag("RandomTrash"))
+        {
+            trash.GetComponent<SpriteRenderer>().sprite = trashSprites[Random.Range(0, trashSprites.Length)];
+            trash.AddComponent<PolygonCollider2D>();
+            trash.GetComponent<PolygonCollider2D>().isTrigger = true;
+            levelManager.floatingTrash.objectsToAdd.Add(trash);
+        }
     }
 
     private void PlaceBackground()
     {
-        int transitionsPlaced = 0;
-        Tile lastBackgroundTile = default(Tile);
-        for (int i = -backgroundTileOffset; i < levelLength * backgroundParallaxFactor; i++)
+        for (int parallaxLevel = 0; parallaxLevel < levelTileLibrary.backgroundParralaxLevels.Length; parallaxLevel++)
         {
-            int totalDisplacement = 0, totalLevelDisplacement = 0, currentBiome = biomeEndPoints.Length - 1;
-            foreach (int displacement in backgroundDisplacements)
+            int transitionsPlaced = 0;
+            Tile lastBackgroundTile = default;
+            for (int i = levelTileLibrary.backgroundParralaxLevels[parallaxLevel].startOffset.x; i < Mathf.Ceil(levelLength * levelTileLibrary.backgroundParralaxLevels[parallaxLevel].parallaxMultiplier) + 1; i++)
             {
-                totalDisplacement += displacement;
-            }
-            for (int j = 0; j < i / backgroundParallaxFactor; j++)
-            {
-                totalLevelDisplacement += floorDisplacements[j];
-            }
-            for (int j = 0; j < biomeEndPoints.Length; j++)
-            {
-                if (Mathf.Ceil((i + biomeEndPoints[transitionsPlaced] / 5) / backgroundParallaxFactor) < biomeEndPoints[j])
+                int totalDisplacement = 0, totalLevelDisplacement = 0, currentBiome = 0;
+                foreach (int displacement in backgroundDisplacements)
                 {
-                    currentBiome = j;
-                    break;
+                    totalDisplacement += displacement;
                 }
-            }
-            int currentBackgroundIndex = 2 * currentBiome;
-            if (currentBiome > transitionsPlaced)
-            {
-                transitionsPlaced = currentBiome;
-                currentBackgroundIndex--;
-            }
-            GameObject newBackground = Instantiate(tilePrefab, new Vector3(i * tilePixelWidth / 100, backgroundYOffset + totalDisplacement * -0.01f, 0) + offset, Quaternion.identity, transform.Find("Backgrounds"));
-            List<Tile> currentBiomeTiles = new List<Tile>(levelTileLibrary.backgroundPlates[currentBackgroundIndex].plates);
-            if (currentBiomeTiles.Count > 1 && !lastBackgroundTile.Equals(default(Tile)))
-            {
-                currentBiomeTiles.Remove(lastBackgroundTile);
-            }
-            List<Tile> fittingBackgroundTiles = new List<Tile>();
-            foreach (Tile tile in currentBiomeTiles)
-            {
-                if (totalDisplacement + tile.yDifference - totalLevelDisplacement < backgroundVerticalBuffer)
+                for (int j = 0; j < i / levelTileLibrary.backgroundParralaxLevels[parallaxLevel].parallaxMultiplier; j++)
                 {
-                    fittingBackgroundTiles.Add(tile);
+                    if (j <= floorDisplacements.Count - 1)
+                    {
+                        totalLevelDisplacement += floorDisplacements[j];
+                    }
                 }
+                for (int j = biomeLengths.Length - 1; j > 0; j--)
+                {
+                    int prevBiomeTiles = 0;
+                    for (int biomeNumber = 0; biomeNumber < j; biomeNumber++)
+                    {
+                        prevBiomeTiles += biomeLengths[biomeNumber];
+                    }
+                    float parallaxI = i / levelTileLibrary.backgroundParralaxLevels[parallaxLevel].parallaxMultiplier;
+                    if (parallaxI > prevBiomeTiles)
+                    {
+                        currentBiome = j;
+                        break;
+                    }
+                }
+                int currentBackgroundIndex = 2 * currentBiome;
+                if (currentBiome > transitionsPlaced)
+                {
+                    transitionsPlaced = currentBiome;
+                    currentBackgroundIndex--;
+                }
+                if (transform.Find("Backgrounds/" + parallaxLevel.ToString()) == null)
+                {
+                    GameObject newContainer = new GameObject(parallaxLevel.ToString());
+                    newContainer.transform.parent = transform.Find("Backgrounds");
+                    newContainer.transform.localPosition = Vector3.zero;
+                }
+                GameObject newBackground = Instantiate(tilePrefab, offset.y * Vector3.up + new Vector3(i * tilePixelWidth / 100, levelTileLibrary.backgroundParralaxLevels[parallaxLevel].startOffset.y + (levelTileLibrary.backgroundParralaxLevels[parallaxLevel].isTileable? totalDisplacement : totalLevelDisplacement * levelTileLibrary.backgroundParralaxLevels[parallaxLevel].parallaxMultiplier) * -0.01f, 0), Quaternion.identity, transform.Find("Backgrounds/" + parallaxLevel.ToString()));
+                List<Tile> currentBiomeTiles = new List<Tile>(levelTileLibrary.backgroundParralaxLevels[parallaxLevel].backgroundPlates[currentBackgroundIndex].plates);
+                if (currentBiomeTiles.Count > 1 && !lastBackgroundTile.Equals(default(Tile)))
+                {
+                    currentBiomeTiles.Remove(lastBackgroundTile);
+                }
+                List<Tile> fittingBackgroundTiles = new List<Tile>();
+                foreach (Tile tile in currentBiomeTiles)
+                {
+                    if (totalDisplacement + tile.yDifference - totalLevelDisplacement < backgroundVerticalBuffer)
+                    {
+                        fittingBackgroundTiles.Add(tile);
+                    }
+                }
+                if (fittingBackgroundTiles.Count > 0)
+                {
+                    currentBiomeTiles = fittingBackgroundTiles;
+                }
+                Tile newBackgroundTile = currentBiomeTiles[Random.Range(0, Mathf.Clamp(currentBiomeTiles.Count - 1, 0, int.MaxValue))];
+                newBackground.GetComponent<SpriteRenderer>().sprite = newBackgroundTile.sprite;
+                newBackground.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
+                newBackground.GetComponent<SpriteRenderer>().sortingOrder = parallaxLevel;
+                backgroundDisplacements.Add(newBackgroundTile.yDifference);
+                lastBackgroundTile = newBackgroundTile;
             }
-            if (fittingBackgroundTiles.Count > 0)
-            {
-                currentBiomeTiles = fittingBackgroundTiles;
-            }
-            Tile newBackgroundTile = currentBiomeTiles[Random.Range(0, Mathf.Clamp(currentBiomeTiles.Count - 1, 0, int.MaxValue))];
-            newBackground.GetComponent<SpriteRenderer>().sprite = newBackgroundTile.sprite;
-            newBackground.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
-            backgroundDisplacements.Add(newBackgroundTile.yDifference);
-            lastBackgroundTile = newBackgroundTile;
         }
         isLevelBuilt = true;
     }
@@ -141,17 +169,26 @@ public class LevelBuilder : MonoBehaviour
     }
 
     [System.Serializable]
-    public struct backgroundPlateArray
+    public struct BackgroundPlateArray
     {
         public string name;
         public Tile[] plates;
     }
 
     [System.Serializable]
+    public struct BackgroundParallaxLevel
+    {
+        public bool isTileable;
+        public float parallaxMultiplier;
+        public Vector3Int startOffset;
+        public BackgroundPlateArray[] backgroundPlates;
+    }
+
+    [System.Serializable]
     public struct BiomeTiles
     {
         public Tile[] floorTiles;
-        public backgroundPlateArray[] backgroundPlates;
+        public BackgroundParallaxLevel[] backgroundParralaxLevels;
     }
 
     [System.Serializable]

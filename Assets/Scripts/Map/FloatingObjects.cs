@@ -9,6 +9,7 @@ using Unity.Burst;
 public class FloatingObjects : MonoBehaviour
 {
     public float maxAngle, maxYDisplacement;
+    public bool mapRotate = true;
 
     [HideInInspector]
     public List<GameObject> objectsToRemove = new List<GameObject>(), objectsToAdd = new List<GameObject>();
@@ -44,7 +45,8 @@ public class FloatingObjects : MonoBehaviour
         {
             time = Time.time, maxAngle = maxAngle, maxYDisplacement = maxYDisplacement,
             startPosArray = startPosList,
-            seeds = seeds
+            seeds = seeds,
+            axis = mapRotate ? new Vector3(0, 2, 1) : Vector3.forward
         };
         JobHandle floatingObjectsJob = calculateFloatTransform.Schedule(transformAccessArray);
         floatingObjectsJob.Complete();
@@ -91,11 +93,12 @@ public class FloatingObjects : MonoBehaviour
         [ReadOnly]public NativeArray<float3> startPosArray;
         [ReadOnly]public NativeList<float> seeds;
         public float maxAngle, maxYDisplacement, time;
+        public Vector3 axis;
 
         public void Execute(int index, TransformAccess transform)
         {
             transform.position = startPosArray[index] + new float3(0, maxYDisplacement * math.sin(time + seeds[index]), 0);
-            transform.localRotation = Quaternion.SlerpUnclamped(Quaternion.AngleAxis(-maxAngle, new Vector3(0, 2, 1)), Quaternion.AngleAxis(maxAngle, new Vector3(0, 2, 1)), (math.cos(time + seeds[index]) + 1) / 2);
+            transform.localRotation = Quaternion.SlerpUnclamped(Quaternion.AngleAxis(-maxAngle, axis), Quaternion.AngleAxis(maxAngle, axis), (math.cos(time + seeds[index]) + 1) / 2);
         }
     }
 

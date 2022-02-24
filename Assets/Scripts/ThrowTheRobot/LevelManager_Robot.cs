@@ -7,6 +7,8 @@ public class LevelManager_Robot : LevelManager
     public bool isLaunched;
     public ThrowInputs throwParameters;
     public float drawDistance, drawPause;
+    public int pies;
+    public FloatingObjects floatingDecorations, floatingTrash;
 
     private GameObject robot;
     private LevelBuilder levelbuilder;
