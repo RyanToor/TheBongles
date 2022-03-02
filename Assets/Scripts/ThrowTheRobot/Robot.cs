@@ -11,11 +11,9 @@ public class Robot : MonoBehaviour
         legMaxLength, legLerpSpeed, rotationSpeed;
     [Range(0, 90)]
     public float skimMaxAngle, musselAngle, maxJellyfishAngle, legMaxAngle;
-    public GameObject waterSurface, splashPrefab;
+    public GameObject waterSurface, splashPrefab, jumpCloudPrefab;
     public SpriteRenderer wheelL, wheelR;
 
-    [HideInInspector]
-    public bool isLanded = false;
     [HideInInspector]
     public int rightmostChunk = int.MaxValue;
 
@@ -25,13 +23,16 @@ public class Robot : MonoBehaviour
     private Rigidbody2D rb;
     private LevelManager_Robot levelManager;
     private bool isGrounded, isJumping, isDoubleJumping, canDoubleJump = false;
-    private float colliderWidth, colliderHeight;
+    private float colliderWidth, colliderHeight, startDrag;
     private List<Animator> clouds = new List<Animator>();
     private LineRenderer legLine;
     private Animator animator;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
+        startPos = transform.position;
+        startDrag = rb.drag;
         animator = GetComponent<Animator>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
         colliderWidth = GetComponent<CapsuleCollider2D>().bounds.extents.x;
@@ -45,13 +46,12 @@ public class Robot : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        startPos = transform.position;
+
     }
 
     void FixedUpdate()
     {
-        if (levelManager.isLaunched)
+        if (levelManager.State == LevelState.fly || levelManager.State == LevelState.move)
         {
             RaycastHit2D groundHit = Physics2D.CircleCast((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, colliderWidth, -transform.up, colliderHeight - colliderWidth + groundCastOffset, groundLayerMask);
             isGrounded = groundHit.collider != null;
@@ -63,9 +63,9 @@ public class Robot : MonoBehaviour
             }
             if (isGrounded)
             {
-                if (levelManager.isLaunched && ! isLanded)
+                if (levelManager.State == LevelState.fly)
                 {
-                    isLanded = true;
+                    levelManager.State = LevelState.move;
                 }
                 isJumping = false;
                 isDoubleJumping = false;
@@ -84,6 +84,7 @@ public class Robot : MonoBehaviour
                 if (canDoubleJump && !isDoubleJumping && Input.GetAxisRaw("Jump") == 1)
                 {
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+                    Instantiate(jumpCloudPrefab, transform.position, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, groundHit.normal, Vector3.forward)));
                     isDoubleJumping = true;
                 }
                 else if (clouds.Count > 0 && Input.GetAxisRaw("Jump") == 1)
@@ -192,17 +193,46 @@ public class Robot : MonoBehaviour
         wheelL.flipX = rb.velocity.x < 0;
         wheelR.flipX = rb.velocity.x < 0;
     }
+
+    public void SetState(LevelState state)
+    {
+        switch (state)
+        {
+            case LevelState.launch:
+                SetPhysics(0, 0);
+                break;
+            case LevelState.fly:
+                SetPhysics(1, 0);
+                break;
+            case LevelState.move:
+                SetPhysics(1, startDrag);
+                break;
+            case LevelState.reel:
+                SetPhysics(0, 0);
+                rb.velocity = Vector3.zero;
+                transform.position = startPos;
+                transform.rotation = Quaternion.identity;
+                levelManager.State = LevelState.launch;
+                animator.SetBool("isGrounded", true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void SetPhysics(float gravity, float drag)
+    {
+        rb.gravityScale = gravity;
+        rb.drag = drag;
+    }
+
     void EditorUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            transform.position = new Vector3(-4, 1, 0);
-            rb.gravityScale = 0;
             rb.velocity = Vector3.zero;
-            rb.drag = 0;
             transform.position = startPos;
-            levelManager.isLaunched = false;
-            isLanded = false;
+            levelManager.State = LevelState.launch;
         }
     }
 
@@ -225,6 +255,11 @@ public class Robot : MonoBehaviour
         {
             levelManager.metal++;
             levelManager.floatingTrash.objectsToRemove.Add(collision.gameObject);
+        }
+        else if (collision.CompareTag("Boss"))
+        {
+            levelManager.pies++;
+            Destroy(collision.gameObject);
         }
     }
 

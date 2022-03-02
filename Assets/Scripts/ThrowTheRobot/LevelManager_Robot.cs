@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class LevelManager_Robot : LevelManager
 {
-    public bool isLaunched;
     public ThrowInputs throwParameters;
-    public float drawDistance, drawPause;
     public int pies;
     public FloatingObjects floatingDecorations, floatingTrash;
 
-    private GameObject robot;
+    [HideInInspector]
+    LevelState state;
+
     private LevelBuilder levelbuilder;
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        robot = GameObject.FindGameObjectWithTag("Player");
         levelbuilder = GameObject.Find("Level").GetComponent<LevelBuilder>();
         StartCoroutine(CheckLoaded());
         throwParameters.ResetDials();
-        Throw();
+        ChangeState(0);
     }
 
     // Update is called once per frame
@@ -30,52 +29,6 @@ public class LevelManager_Robot : LevelManager
         {
             EditorUpdate();
         }
-    }
-
-    private void Throw()
-    {
-        GetThrowInputs(throwValues => 
-        {
-            StartCoroutine(DrawAndHold(throwValues));
-        });
-    }
-
-    private void GetThrowInputs(System.Action<Vector2> callback)
-    {
-        Vector2 throwValues = Vector2.zero;
-        StartCoroutine(throwParameters.Spin("angle", valueCollected => 
-        {
-            Debug.Log("Angle Collected : " + valueCollected);
-            throwValues.x = valueCollected;
-            StartCoroutine(throwParameters.Spin("power", valueCollected => 
-            {
-                Debug.Log("Power Collected : " + valueCollected);
-                throwValues.y = valueCollected;
-                callback(throwValues);
-            }));
-        }));
-    }
-
-    private IEnumerator DrawAndHold(Vector2 powerAngle)
-    {
-        float duration = 0;
-        Vector3 startPoint = robot.transform.position;
-        Vector3 throwVector = powerAngle.y * new Vector2(Mathf.Cos(Mathf.Deg2Rad * powerAngle.x), Mathf.Sin(Mathf.Deg2Rad * powerAngle.x));
-        Vector3 drawPoint = startPoint - powerAngle.y / throwParameters.powerMax * drawDistance * throwVector.normalized;
-        while (robot.transform.position != drawPoint)
-        {
-            robot.transform.position = Vector3.Lerp(startPoint, drawPoint, duration);
-            duration += Time.deltaTime;
-            yield return null;
-        }
-        duration = 0;
-        while (duration < drawPause)
-        {
-            yield return null;
-            duration += Time.deltaTime;
-        }
-        robot.GetComponent<Robot>().Launch(throwVector);
-        isLaunched = true;
     }
 
     private IEnumerator CheckLoaded()
@@ -88,12 +41,70 @@ public class LevelManager_Robot : LevelManager
         AudioManager.instance.PlayMusic("Trash Hunt");
     }
 
-    private void EditorUpdate()
+    public void ChangeState(LevelState newState)
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>().SetState(newState);
+        switch (newState)
         {
-            StopAllCoroutines();
-            Throw();
+            case LevelState.launch:
+                if (pies > 0)
+                {
+                    pies--;
+                    throwParameters.StopAllCoroutines();
+                    throwParameters.Throw();
+                }
+                else
+                {
+                    EndLevel();
+                }
+                break;
+            case LevelState.fly:
+                break;
+            case LevelState.move:
+                break;
+            case LevelState.reel:
+                break;
+            default:
+                break;
         }
     }
+
+    private void EndLevel()
+    {
+        pies = 3;
+        ChangeState(LevelState.launch);
+    }
+
+    public LevelState State
+    {
+        get
+        {
+            return state;
+        }
+        set
+        {
+            if (state == value)
+            {
+                return;
+            }
+            state = value;
+            ChangeState(value);
+        }
+    }
+
+    private void EditorUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            ChangeState(LevelState.launch);
+        }
+    }
+}
+
+public enum LevelState
+{
+    launch,
+    fly,
+    move,
+    reel
 }

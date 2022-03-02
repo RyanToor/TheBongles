@@ -3,10 +3,64 @@ using UnityEngine;
 
 public class ThrowInputs : MonoBehaviour
 {
-    public GameObject powerWheel, powerPointer, anglePointer;
-    public float powerMin, powerMax, angleMin, angleMax, powerSpeedMin, powerSpeedMax, angleSpeedMin, angleSpeedMax;
+    public LevelManager_Robot levelManager;
+    public GameObject robot, powerWheel, powerPointer, anglePointer;
+    public float drawDistance, drawPause, powerMin, powerMax, angleMin, angleMax, powerSpeedMin, powerSpeedMax, angleSpeedMin, angleSpeedMax;
 
+    [HideInInspector]
     public float power, angle;
+
+    private void Awake()
+    {
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
+        robot = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void Throw()
+    {
+        GetThrowInputs(throwValues =>
+        {
+            StartCoroutine(DrawAndHold(throwValues));
+        });
+    }
+
+    private void GetThrowInputs(System.Action<Vector2> callback)
+    {
+        Vector2 throwValues = Vector2.zero;
+        StartCoroutine(Spin("angle", valueCollected =>
+        {
+            Debug.Log("Angle Collected : " + valueCollected);
+            throwValues.x = valueCollected;
+            StartCoroutine(Spin("power", valueCollected =>
+            {
+                Debug.Log("Power Collected : " + valueCollected);
+                throwValues.y = valueCollected;
+                callback(throwValues);
+            }));
+        }));
+    }
+
+    private IEnumerator DrawAndHold(Vector2 powerAngle)
+    {
+        float duration = 0;
+        Vector3 startPoint = robot.transform.position;
+        Vector3 throwVector = powerAngle.y * new Vector2(Mathf.Cos(Mathf.Deg2Rad * powerAngle.x), Mathf.Sin(Mathf.Deg2Rad * powerAngle.x));
+        Vector3 drawPoint = startPoint - powerAngle.y / powerMax * drawDistance * throwVector.normalized;
+        while (robot.transform.position != drawPoint)
+        {
+            robot.transform.position = Vector3.Lerp(startPoint, drawPoint, duration);
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        duration = 0;
+        while (duration < drawPause)
+        {
+            yield return null;
+            duration += Time.deltaTime;
+        }
+        robot.GetComponent<Robot>().Launch(throwVector);
+        levelManager.State = LevelState.fly;
+    }
 
     public void ResetDials()
     {
@@ -45,7 +99,7 @@ public class ThrowInputs : MonoBehaviour
                 }
                 break;
             }
-            pointer.transform.Rotate(speed * spinDir * Vector3.back * Time.deltaTime);
+            pointer.transform.Rotate(speed * spinDir * Time.deltaTime * Vector3.back);
             if (pointer == anglePointer)
             {
                 if (pointer.transform.rotation.eulerAngles.z < 180 && pointer.transform.rotation.eulerAngles.z > 45 - (90 - angleMax))
@@ -58,6 +112,14 @@ public class ThrowInputs : MonoBehaviour
                 }
             }
             yield return null;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            levelManager.ChangeState(LevelState.reel);
         }
     }
 }

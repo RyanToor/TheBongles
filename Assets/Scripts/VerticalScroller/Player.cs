@@ -330,7 +330,7 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("Hit");
             }
         }
-        if (collision.CompareTag("Region"))
+        else if (collision.CompareTag("Region"))
         {
             Instantiate(splash, transform.position + Vector3.up * 1.5f, Quaternion.identity);
         }

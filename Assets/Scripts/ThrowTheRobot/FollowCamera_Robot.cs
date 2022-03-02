@@ -18,9 +18,11 @@ public class FollowCamera_Robot : MonoBehaviour
     private Color[] waterPlateShallowColours;
     private LevelBuilder levelBuilder;
     private float[] parallaxMultipliers;
+    private LevelManager_Robot levelManager;
 
     private void Awake()
     {
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
         chunkWidth = GameObject.Find("Level").GetComponent<LevelBuilder>().tilePixelWidth / 100;
         stopRightMovement = !Application.isEditor;
         startPos = transform.position;
@@ -60,7 +62,7 @@ public class FollowCamera_Robot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        int robotCurrentChunk = robot.GetComponent<Robot>().isLanded? Mathf.CeilToInt(robot.transform.position.x / chunkWidth) : int.MaxValue;
+        int robotCurrentChunk = levelManager.State == LevelState.move? Mathf.CeilToInt(robot.transform.position.x / chunkWidth) : int.MaxValue;
         if (robotCurrentChunk < robotMinChunk)
         {
             robotMinChunk = robotCurrentChunk;
