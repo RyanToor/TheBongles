@@ -4,9 +4,9 @@ using UnityEngine;
 public class ProximityElement : MonoBehaviour
 {
     public ProximityElementType type;
-    public float bubbleFrequency, speed;
+    public float bubbleFrequency, speed, birdMaxAngle, birdKnockbeck, birdSpeed;
 
-    private bool randomChanceRunning = false, shyClosed = false, isFlipping = false;
+    private bool randomChanceRunning = false, shyClosed = false, isFlipping = false, hit = false;
     private Transform anchor1, anchor2;
 
     private void Awake()
@@ -44,6 +44,25 @@ public class ProximityElement : MonoBehaviour
                     else
                     {
                         StartCoroutine(RandomChance());
+                    }
+                    break;
+                case ProximityElementType.bird:
+                    if (!shyClosed)
+                    {
+                        Shy(true);
+                        GetComponent<Animator>().SetTrigger("Scare");
+                    }
+                    else
+                    {
+                        hit = true;
+                        if (Vector3.Angle(Vector3.up, collision.transform.position - transform.position) < birdMaxAngle)
+                        {
+                            collision.GetComponent<Rigidbody2D>().velocity = Vector3.Reflect(collision.GetComponent<Rigidbody2D>().velocity, Vector3.up);
+                        }
+                        else
+                        {
+                            collision.GetComponent<Rigidbody2D>().AddForce(-Mathf.Sign(collision.GetComponent<Rigidbody2D>().velocity.x) * birdKnockbeck * Vector2.right, ForceMode2D.Impulse);
+                        }
                     }
                     break;
                 default:
@@ -140,6 +159,33 @@ public class ProximityElement : MonoBehaviour
         }
     }
 
+    public IEnumerator BirdFly()
+    {
+        float angle = Random.Range(20, 70);
+        GameObject robot = GameObject.FindGameObjectWithTag("Player");
+        while (!hit)
+        {
+            Vector3 offset = transform.position - robot.transform.position;
+            if (offset.magnitude > 40)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                float flightMagnitude = Mathf.Sign(offset.x) * birdSpeed * Time.deltaTime;
+                transform.position += new Vector3(flightMagnitude * Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Abs(flightMagnitude) * Mathf.Sin(Mathf.Deg2Rad * angle));
+                GetComponent<SpriteRenderer>().flipX = offset.x > 0;
+            }
+            yield return null;
+        }
+        GetComponent<Animator>().SetTrigger("Hit");
+    }
+
+    public void BirdFall()
+    {
+        gameObject.AddComponent<Rigidbody2D>();
+    }
+
     public void Flip()
     {
         GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
@@ -153,6 +199,7 @@ public class ProximityElement : MonoBehaviour
         turtle,
         randomAnim,
         shy,
-        mussel
+        mussel,
+        bird
     }
 }
