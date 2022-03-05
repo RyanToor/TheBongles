@@ -8,7 +8,6 @@ public class LevelBuilder : MonoBehaviour
     public Vector3 offset;
     public GameObject tilePrefab, bubblePrefab;
     public int[] biomeLengths;
-    public Sprite[] trashSprites;
     public GameObject birdPrefab;
     public BiomeTiles levelTileLibrary;
     public PuzzlePrefabArray[] biomePuzzlePrefabs;
@@ -71,12 +70,12 @@ public class LevelBuilder : MonoBehaviour
         }
         LevelManager_Robot levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager_Robot>();
         levelManager.floatingDecorations.objectsToAdd.AddRange(GameObject.FindGameObjectsWithTag("UpgradeButton"));
-        foreach (GameObject trash in GameObject.FindGameObjectsWithTag("RandomTrash"))
+        if (levelManager.isTrashRandom)
         {
-            trash.GetComponent<SpriteRenderer>().sprite = trashSprites[Random.Range(0, trashSprites.Length)];
-            trash.AddComponent<PolygonCollider2D>();
-            trash.GetComponent<PolygonCollider2D>().isTrigger = true;
-            levelManager.floatingTrash.objectsToAdd.Add(trash);
+            foreach (GameObject trash in GameObject.FindGameObjectsWithTag("RandomTrash"))
+            {
+                levelManager.floatingTrash.objectsToAdd.Add(trash);
+            }
         }
         PlaceBackground();
     }

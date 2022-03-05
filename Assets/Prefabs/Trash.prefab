@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 2704555252262892625}
   - component: {fileID: 2704555252262892626}
   - component: {fileID: 2704555252262892627}
-  - component: {fileID: 2704555252262892624}
   m_Layer: 0
-  m_Name: Glass
+  m_Name: Trash
   m_TagString: RandomTrash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,12 +44,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58419d008e4c2574baef1bea74027944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 0
+  trashName: 
   sprites:
-  - {fileID: 21300000, guid: 9214f8a8bf7170f4f90ca98a706a441e, type: 3}
-  - {fileID: 21300000, guid: e01ca6e5f7b0b3842b340b0c1d7c23e1, type: 3}
-  - {fileID: 21300000, guid: 2a44558fa22e6134fa3f3e880e8ad5be, type: 3}
-  - {fileID: 21300000, guid: be35b523140db2946ab39df86e33e7bb, type: 3}
+  - type: 0
+    sprites:
+    - name: Bag
+      sprite: {fileID: 21300000, guid: 0b855ca9a0d0bd041a640b665fce0b64, type: 3}
+    - name: Rings
+      sprite: {fileID: 21300000, guid: b0ccd3f7bfa590947998662828176770, type: 3}
+    - name: CrispPacket
+      sprite: {fileID: 21300000, guid: 0e8ca79227b4e6740a79bbc35ca6df4d, type: 3}
+    - name: Bottle
+      sprite: {fileID: 21300000, guid: 14ac477d49578554a994874407a5bf22, type: 3}
+  - type: 1
+    sprites:
+    - name: Bucket
+      sprite: {fileID: 21300000, guid: 0ef457cbf01a38a41aa158c57c3919f8, type: 3}
+    - name: Can
+      sprite: {fileID: 21300000, guid: f41f35905b89c9c4d9b1f76964a82c65, type: 3}
+    - name: SprayCan
+      sprite: {fileID: 21300000, guid: a87c3a67d56acfa4bbf60e96866347d4, type: 3}
+    - name: Tin
+      sprite: {fileID: 21300000, guid: 23195d255b19b794095bfd147c7099e2, type: 3}
+  - type: 2
+    sprites:
+    - name: Bottle
+      sprite: {fileID: 21300000, guid: 9214f8a8bf7170f4f90ca98a706a441e, type: 3}
+    - name: Bottle_Broken
+      sprite: {fileID: 21300000, guid: e01ca6e5f7b0b3842b340b0c1d7c23e1, type: 3}
+    - name: Jar
+      sprite: {fileID: 21300000, guid: 2a44558fa22e6134fa3f3e880e8ad5be, type: 3}
+    - name: Bulb
+      sprite: {fileID: 21300000, guid: be35b523140db2946ab39df86e33e7bb, type: 3}
 --- !u!212 &2704555252262892627
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -103,19 +129,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2704555252262892624
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2704555252262892636}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.041755795, y: -0.027837276}
-  serializedVersion: 2
-  m_Radius: 0.28608143

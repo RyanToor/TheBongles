@@ -2647,11 +2647,6 @@ MonoBehaviour:
   tilePrefab: {fileID: 8373276652658738681, guid: f9a32f027532c1740b591090c9e144af, type: 3}
   bubblePrefab: {fileID: 6010698024634007259, guid: 193f411603e6dc241b129083f8069fb3, type: 3}
   biomeLengths: 050000000500000005000000
-  trashSprites:
-  - {fileID: 21300000, guid: f41f35905b89c9c4d9b1f76964a82c65, type: 3}
-  - {fileID: 21300000, guid: 0ef457cbf01a38a41aa158c57c3919f8, type: 3}
-  - {fileID: 21300000, guid: a87c3a67d56acfa4bbf60e96866347d4, type: 3}
-  - {fileID: 21300000, guid: 23195d255b19b794095bfd147c7099e2, type: 3}
   birdPrefab: {fileID: 2304258094415399874, guid: 2f856d36806c2fc47b353685d6a3c12d, type: 3}
   levelTileLibrary:
     floorTiles:
@@ -2806,6 +2801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a688d6dc1b4ae04fb10776a6b240dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTrashTrigger: 1
+  isTrashRandom: 1
   plastic: 0
   metal: 0
   glass: 0

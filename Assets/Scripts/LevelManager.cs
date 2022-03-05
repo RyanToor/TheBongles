@@ -5,9 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public int plastic = 0;
-    public int metal = 0;
-    public int glass = 0;
+    public bool isTrashTrigger, isTrashRandom;
+    public int plastic = 0, metal = 0, glass = 0;
 
     protected virtual void Awake()
     {

@@ -22,7 +22,6 @@ public class ChunkManager : MonoBehaviour
     private List<int> enabledChunks = new List<int>();
     private List<Vector3Int[]> chunkMatrices = new List<Vector3Int[]>();
     private Transform[] waterSurfaces;
-    private bool isLoaded;
     private TrashManager trashManagerScript;
 
     // Start is called before the first frame update

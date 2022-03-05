@@ -106,16 +106,13 @@ public class Claw : MonoBehaviour
                 GetComponent<Animator>().SetBool("Closed", false);
                 foreach (GameObject trash in collectedTrash)
                 {
-                    switch (trash.name)
+                    if (trash.name == "Fuel")
                     {
-                        case "Fuel":
-                            levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + fuelTime, 0, levelManager.maxTime);
-                            break;
-                        case "Glass":
-                            levelManager.glass++;
-                            break;
-                        default:
-                            break;
+                        levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + fuelTime, 0, levelManager.maxTime);
+                    }
+                    else
+                    {
+                        levelManager.glass++;
                     }
                     Destroy(trash);
                 }

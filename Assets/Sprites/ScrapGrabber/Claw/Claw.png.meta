@@ -1,37 +1,43 @@
 fileFormatVersion: 2
-guid: cc79ae3d93d78024c868efb04b365a42
+guid: 7537059b9eaba7440a2f29b1657732be
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5343602912726691657
-    second: Claw closing_0
+      213: -7410066023671653019
+    second: Claw_0
   - first:
-      213: -1321141653518313562
-    second: Claw closing_1
+      213: -1311602187163818665
+    second: Claw_1
   - first:
-      213: -6961242361597443472
-    second: Claw closing_2
+      213: 3722726833728493705
+    second: Claw_2
   - first:
-      213: 2506620979685749226
-    second: Claw closing_3
+      213: 8385789592201207747
+    second: Claw_3
   - first:
-      213: -4748014081293410620
-    second: Claw closing_4
+      213: 2711849115807529852
+    second: Claw_4
   - first:
-      213: 8492871267286696334
-    second: Claw closing_5
+      213: 3985744167400343280
+    second: Claw_5
   - first:
-      213: -685342120303234312
-    second: Claw closing_6
+      213: -8069699419112339193
+    second: Claw_6
   - first:
-      213: 281720470043839524
-    second: Claw closing_7
+      213: -510239921195578409
+    second: Claw_7
   - first:
-      213: 9160487116446726229
-    second: Claw closing_8
+      213: 360161525221587157
+    second: Claw_8
   - first:
-      213: -8753029628084710810
-    second: Claw closing_9
+      213: -6521321879509986983
+    second: Claw_9
+  - first:
+      213: -8804423233493726293
+    second: Claw_10
+  - first:
+      213: 8244475583213240745
+    second: Claw_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -145,7 +151,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Claw closing_0
+      name: Claw_0
       rect:
         serializedVersion: 2
         x: 0
@@ -159,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b0de266675b7d5b0800000000000000
-      internalID: -5343602912726691657
+      spriteID: 56d1cd036382a2990800000000000000
+      internalID: -7410066023671653019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Claw closing_1
+      name: Claw_1
       rect:
         serializedVersion: 2
         x: 256
@@ -180,14 +186,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a791147aac5aade0800000000000000
-      internalID: -1321141653518313562
+      spriteID: 755a97b82c04ccde0800000000000000
+      internalID: -1311602187163818665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Claw closing_2
+      name: Claw_2
       rect:
         serializedVersion: 2
         x: 512
@@ -201,14 +207,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 072459154f2b46f90800000000000000
-      internalID: -6961242361597443472
+      spriteID: 9889338d458c9a330800000000000000
+      internalID: 3722726833728493705
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Claw closing_3
+      name: Claw_3
       rect:
         serializedVersion: 2
         x: 768
@@ -222,14 +228,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae1f5b8108e49c220800000000000000
-      internalID: 2506620979685749226
+      spriteID: 3cf125c443f406470800000000000000
+      internalID: 8385789592201207747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Claw closing_4
+      name: Claw_4
       rect:
         serializedVersion: 2
         x: 0
@@ -243,14 +249,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ce14ff595aab1eb0800000000000000
-      internalID: -4748014081293410620
+      spriteID: c7b3a20276c62a520800000000000000
+      internalID: 2711849115807529852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Claw closing_5
+      name: Claw_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.575}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f68b7fe335305730800000000000000
+      internalID: 3985744167400343280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Claw_6
       rect:
         serializedVersion: 2
         x: 0
@@ -264,14 +291,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e81ceb1ab6dbcd570800000000000000
-      internalID: 8492871267286696334
+      spriteID: 70902a7222ba20090800000000000000
+      internalID: -8069699419112339193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Claw closing_6
+      name: Claw_7
       rect:
         serializedVersion: 2
         x: 256
@@ -285,14 +312,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f276b109fc2d76f0800000000000000
-      internalID: -685342120303234312
+      spriteID: 7db0aeabe734be8f0800000000000000
+      internalID: -510239921195578409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Claw closing_7
+      name: Claw_8
       rect:
         serializedVersion: 2
         x: 512
@@ -306,14 +333,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42c4bee564fd8e300800000000000000
-      internalID: 281720470043839524
+      spriteID: 5d8789cbffc8ff400800000000000000
+      internalID: 360161525221587157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Claw closing_8
+      name: Claw_9
       rect:
         serializedVersion: 2
         x: 768
@@ -327,14 +354,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55879518f76902f70800000000000000
-      internalID: 9160487116446726229
+      spriteID: 95113d15d4c9f75a0800000000000000
+      internalID: -6521321879509986983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Claw closing_9
+      name: Claw_10
       rect:
         serializedVersion: 2
         x: 0
@@ -348,8 +375,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6629a85cdedf68680800000000000000
-      internalID: -8753029628084710810
+      spriteID: bab096b87b760d580800000000000000
+      internalID: -8804423233493726293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Claw_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.575}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a18ec0acd24a6270800000000000000
+      internalID: 8244475583213240745
       vertices: []
       indices: 
       edges: []

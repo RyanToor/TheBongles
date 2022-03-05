@@ -6838,6 +6838,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc40ab042378b2a418ddc6928b17b63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTrashTrigger: 1
+  isTrashRandom: 1
   plastic: 0
   metal: 0
   glass: 0
