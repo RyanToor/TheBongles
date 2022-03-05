@@ -5,13 +5,22 @@ using UnityEngine;
 public class LevelManager_Robot : LevelManager
 {
     public ThrowInputs throwParameters;
+    public SpriteRenderer piesSprite;
+    public Sprite[] pieSprites;
     public int pies;
     public FloatingObjects floatingDecorations, floatingTrash;
 
-    [HideInInspector]
-    LevelState state;
-
+    private LevelState state;
     private LevelBuilder levelbuilder;
+
+    protected override void Awake()
+    {
+        if (!Application.isEditor)
+        {
+            floatingDecorations.enabled = true;
+            floatingTrash.enabled = true;
+        }
+    }
 
     // Start is called before the first frame update
     protected override void Start()
@@ -20,6 +29,7 @@ public class LevelManager_Robot : LevelManager
         StartCoroutine(CheckLoaded());
         throwParameters.ResetDials();
         ChangeState(0);
+        Pies = pies;
     }
 
     // Update is called once per frame
@@ -38,10 +48,10 @@ public class LevelManager_Robot : LevelManager
             yield return null;
         }
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
-        AudioManager.instance.PlayMusic("Trash Hunt");
+        AudioManager.instance.PlayMusic("Throw the Robot");
     }
 
-    public void ChangeState(LevelState newState)
+    private void ChangeState(LevelState newState)
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>().SetState(newState);
         switch (newState)
@@ -49,7 +59,7 @@ public class LevelManager_Robot : LevelManager
             case LevelState.launch:
                 if (pies > 0)
                 {
-                    pies--;
+                    Pies--;
                     throwParameters.StopAllCoroutines();
                     throwParameters.Throw();
                 }
@@ -59,19 +69,34 @@ public class LevelManager_Robot : LevelManager
                 }
                 break;
             case LevelState.fly:
+                GameObject.Find("Launcher").GetComponent<Launcher>().Reel();
                 break;
             case LevelState.move:
                 break;
             case LevelState.reel:
+                GameObject.Find("Launcher").GetComponent<Launcher>().Reel();
                 break;
             default:
                 break;
         }
     }
 
+    public int Pies
+    {
+        get
+        {
+            return pies;
+        }
+        set
+        {
+            pies = value;
+            piesSprite.sprite = pies > 0? pieSprites[Mathf.Clamp(value - 1, 0, pieSprites.Length - 1)] : null;
+        }
+    }
+
     private void EndLevel()
     {
-        pies = 3;
+        Pies = 3;
         ChangeState(LevelState.launch);
     }
 

@@ -45,14 +45,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music:
   - name: Map
-    clip: {fileID: 8300000, guid: d3416157b2751044cbc887695b8c685c, type: 3}
+    clip: {fileID: 8300000, guid: 849216d2478509d44a440aad2aa6509a, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 1
   - name: Trash Hunt
-    clip: {fileID: 8300000, guid: 3a863e08dd14f9343b05a5c8490c785f, type: 3}
+    clip: {fileID: 8300000, guid: 425a2c35b59f252428b3a3116325f136, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
@@ -61,6 +61,13 @@ MonoBehaviour:
   - name: Story
     clip: {fileID: 8300000, guid: 33e9bbe6d299c45448c200701fa4af23, type: 3}
     volume: 0.5
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Throw the Robot
+    clip: {fileID: 8300000, guid: cbaaa1b1652d1d34b83c337f77d39f88, type: 3}
+    volume: 0.8
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0

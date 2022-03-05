@@ -122,7 +122,7 @@ MonoBehaviour:
   bubbleFrequency: 0
   speed: 0
   birdMaxAngle: 45
-  birdKnockbeck: 5
+  birdKnockbeck: 10
   birdSpeed: 3
 --- !u!70 &2304258094415399880
 CapsuleCollider2D:

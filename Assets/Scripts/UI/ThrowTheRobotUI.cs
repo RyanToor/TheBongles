@@ -19,6 +19,6 @@ public class ThrowTheRobotUI : MonoBehaviour
     void Update()
     {
         metalReadout.text = levelManager.metal.ToString();
-        pieReadout.text = levelManager.pies.ToString();
+        pieReadout.text = levelManager.Pies.ToString();
     }
 }

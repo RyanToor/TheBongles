@@ -50,7 +50,6 @@ public class ProximityElement : MonoBehaviour
                     if (!shyClosed)
                     {
                         Shy(true);
-                        GetComponent<Animator>().SetTrigger("Scare");
                     }
                     else
                     {
@@ -147,14 +146,7 @@ public class ProximityElement : MonoBehaviour
                 isFlipping = true;
             }
             isPrevFrameFlipped = isFrameFlipped;
-            if (isFirstLeg)
-            {
-                transform.position = Vector2.Lerp(anchor1.position, anchor2.position, lapDistance / pathLength);
-            }
-            else
-            {
-                transform.position = Vector2.Lerp(anchor2.position, anchor1.position, (lapDistance - pathLength) / pathLength);
-            }
+            transform.position = Vector2.Lerp(anchor1.position, anchor2.position, (isFirstLeg? lapDistance : (2 * pathLength - lapDistance)) / pathLength);
             yield return new WaitForFixedUpdate();
         }
     }

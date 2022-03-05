@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class LevelBuilder : MonoBehaviour
 {
-    public float tilePixelWidth, backgroundVerticalBuffer;
+    public float tilePixelWidth, backgroundVerticalBuffer, birdInitialOffset, birdMinSeparation, birdMaxSeparation;
     public Vector3 offset;
     public GameObject tilePrefab, bubblePrefab;
     public int[] biomeLengths;
     public Sprite[] trashSprites;
+    public GameObject birdPrefab;
     public BiomeTiles levelTileLibrary;
     public PuzzlePrefabArray[] biomePuzzlePrefabs;
 
@@ -34,17 +35,10 @@ public class LevelBuilder : MonoBehaviour
                 biomeEndPoints[i] += biomeLengths[j];
             }
         }
-        PlaceFloor();
-        PlaceBackground();
+        PlaceLevel();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void PlaceFloor()
+    private void PlaceLevel()
     {
         for (int i = 0; i < levelLength; i++)
         {
@@ -84,6 +78,7 @@ public class LevelBuilder : MonoBehaviour
             trash.GetComponent<PolygonCollider2D>().isTrigger = true;
             levelManager.floatingTrash.objectsToAdd.Add(trash);
         }
+        PlaceBackground();
     }
 
     private void PlaceBackground()
@@ -157,6 +152,17 @@ public class LevelBuilder : MonoBehaviour
                 backgroundDisplacements.Add(newBackgroundTile.yDifference);
                 lastBackgroundTile = newBackgroundTile;
             }
+        }
+        PlaceElements();
+    }
+
+    private void PlaceElements()
+    {
+        float birdCoverage = birdInitialOffset;
+        while (birdCoverage < levelLength * tilePixelWidth / 100f)
+        {
+            birdCoverage += Random.Range(birdMinSeparation, birdMaxSeparation);
+            Instantiate(birdPrefab, Vector3.right * birdCoverage, Quaternion.identity, transform.Find("Birds"));
         }
         isLevelBuilt = true;
     }

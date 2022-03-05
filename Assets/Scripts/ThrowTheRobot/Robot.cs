@@ -199,7 +199,10 @@ public class Robot : MonoBehaviour
         switch (state)
         {
             case LevelState.launch:
+                transform.parent = null;
+                transform.position = startPos;
                 SetPhysics(0, 0);
+                animator.SetBool("isGrounded", true);
                 break;
             case LevelState.fly:
                 SetPhysics(1, 0);
@@ -210,9 +213,7 @@ public class Robot : MonoBehaviour
             case LevelState.reel:
                 SetPhysics(0, 0);
                 rb.velocity = Vector3.zero;
-                transform.position = startPos;
                 transform.rotation = Quaternion.identity;
-                levelManager.State = LevelState.launch;
                 animator.SetBool("isGrounded", true);
                 break;
             default:
@@ -258,8 +259,13 @@ public class Robot : MonoBehaviour
         }
         else if (collision.CompareTag("Boss"))
         {
-            levelManager.pies++;
+            levelManager.Pies++;
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.name == "Hook")
+        {
+            transform.parent = collision.transform;
+            levelManager.State = LevelState.reel;
         }
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 public class ThrowInputs : MonoBehaviour
+
 {
     public LevelManager_Robot levelManager;
     public GameObject robot, powerWheel, powerPointer, anglePointer;
@@ -112,14 +113,6 @@ public class ThrowInputs : MonoBehaviour
                 }
             }
             yield return null;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            levelManager.ChangeState(LevelState.reel);
         }
     }
 }
