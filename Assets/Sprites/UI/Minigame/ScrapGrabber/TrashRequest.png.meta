@@ -1,43 +1,34 @@
 fileFormatVersion: 2
-guid: 280b04f1c79d8c04c80483bbeaf099e0
+guid: 50524fabcc480f144938aeb0531289da
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8135663367076951168
-    second: Mine_0
+      213: 5332947693997933953
+    second: TrashRequest_0
   - first:
-      213: -6017924223876201014
-    second: Mine_1
+      213: -8627476188792816914
+    second: TrashRequest_1
   - first:
-      213: 8499149524133847469
-    second: Mine_2
+      213: -6496313548152782708
+    second: TrashRequest_2
   - first:
-      213: 4794421619490200746
-    second: Mine_3
+      213: -2612759364699882916
+    second: TrashRequest_3
   - first:
-      213: 1917121962522567632
-    second: Mine_4
+      213: 7448431599891676437
+    second: TrashRequest_4
   - first:
-      213: 7993118658028749949
-    second: Mine_5
+      213: -4210496789582502463
+    second: TrashRequest_5
   - first:
-      213: -3427511043743841258
-    second: Mine_6
+      213: -5490684235763550556
+    second: TrashRequest_6
   - first:
-      213: 1810727289037282230
-    second: Mine_7
+      213: 3379741217089723744
+    second: TrashRequest_7
   - first:
-      213: -3508065680650599227
-    second: Mine_8
-  - first:
-      213: -8519845312992403026
-    second: Mine_9
-  - first:
-      213: -1643512374743595597
-    second: Mine_10
-  - first:
-      213: -7883642987448332988
-    second: Mine_11
+      213: -2494706164969011527
+    second: TrashRequest_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -101,7 +92,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,7 +104,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -125,7 +116,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -137,7 +128,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -151,13 +142,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mine_0
+      name: TrashRequest_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,41 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 084b7ce4abea7e070800000000000000
-      internalID: 8135663367076951168
+      spriteID: 1854c7a2caf620a40800000000000000
+      internalID: 5332947693997933953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mine_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac504ae7dc90c7ca0800000000000000
-      internalID: -6017924223876201014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mine_2
+      name: TrashRequest_1
       rect:
         serializedVersion: 2
         x: 512
-        y: 768
-        width: 256
-        height: 256
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,20 +177,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da1ade6367b03f570800000000000000
-      internalID: 8499149524133847469
+      spriteID: eeafcdadd1c054880800000000000000
+      internalID: -8627476188792816914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mine_3
+      name: TrashRequest_2
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,20 +198,125 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aac9a2d9f05398240800000000000000
-      internalID: 4794421619490200746
+      spriteID: c80cbc43f3578d5a0800000000000000
+      internalID: -6496313548152782708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mine_4
+      name: TrashRequest_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5afc77633d9dbbd0800000000000000
+      internalID: -2612759364699882916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrashRequest_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51d765d93152e5760800000000000000
+      internalID: 7448431599891676437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrashRequest_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c523016a7f4195c0800000000000000
+      internalID: -4210496789582502463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrashRequest_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a6f97947cb2dc3b0800000000000000
+      internalID: -5490684235763550556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrashRequest_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d1165fab047ee20800000000000000
+      internalID: 3379741217089723744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrashRequest_8
       rect:
         serializedVersion: 2
         x: 0
         y: 512
-        width: 256
-        height: 256
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,155 +324,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d3e14f744cfa9a10800000000000000
-      internalID: 1917121962522567632
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mine_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d74c953f1134dee60800000000000000
-      internalID: 7993118658028749949
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mine_6
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6148bed8dd80f60d0800000000000000
-      internalID: -3427511043743841258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mine_7
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6bb5c2030eef02910800000000000000
-      internalID: 1810727289037282230
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mine_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c4051899d8d05fc0800000000000000
-      internalID: -3508065680650599227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mine_9
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ea1afc1f3dd63c980800000000000000
-      internalID: -8519845312992403026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mine_10
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b5037fe3321139e0800000000000000
-      internalID: -1643512374743595597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mine_11
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44d8425e87ca79290800000000000000
-      internalID: -7883642987448332988
+      spriteID: 9b68b02e5f5016dd0800000000000000
+      internalID: -2494706164969011527
       vertices: []
       indices: 
       edges: []

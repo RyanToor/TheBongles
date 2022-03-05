@@ -15,13 +15,23 @@ public class TrashSelector : Editor
             nameChoices[i] = targetScript.sprites[(int)newType].sprites[i].name;
         }
         int trashNameIndex = EditorGUILayout.Popup("Trash Name", Array.IndexOf(nameChoices, targetScript.trashName), nameChoices);
+        if (trashNameIndex < 0)
+        {
+            trashNameIndex = 0;
+            UpdateEditor(targetScript, newType, nameChoices, trashNameIndex);
+        }
         if (GUI.changed)
         {
-            targetScript.type = newType;
-            targetScript.gameObject.GetComponent<SpriteRenderer>().sprite = targetScript.sprites[(int)targetScript.type].sprites[trashNameIndex].sprite;
-            targetScript.trashName = nameChoices[trashNameIndex];
-            EditorUtility.SetDirty(targetScript);
+            UpdateEditor(targetScript, newType, nameChoices, trashNameIndex);
         }
         DrawDefaultInspector();
+    }
+
+    private void UpdateEditor(CollectableTrash targetScript, TrashType newType, string[] nameChoices, int trashNameIndex)
+    {
+        targetScript.type = newType;
+        targetScript.gameObject.GetComponent<SpriteRenderer>().sprite = targetScript.sprites[(int)targetScript.type].sprites[trashNameIndex].sprite;
+        targetScript.trashName = nameChoices[trashNameIndex];
+        EditorUtility.SetDirty(targetScript);
     }
 }

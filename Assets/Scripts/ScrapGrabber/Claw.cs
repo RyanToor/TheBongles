@@ -5,16 +5,18 @@ using UnityEngine;
 public class Claw : MonoBehaviour
 {
     public float maxAimAngle, aimSpeed, fireSpeed, turnSpeed, linePointSeparation, maxLineLength, reelSpeed, reelRotateSpeed, fuelTime;
+    public int trashCatchLimit;
     public GameObject fuelBar;
     public GameObject[] lineLengthIndicators;
+    public TrashRequests trashRequestScript;
 
     private ClawState state;
     private LineRenderer lineRenderer;
     private List<Vector3> linePoints = new List<Vector3>();
     private bool isReleasing;
-    private List<GameObject> collectedTrash = new List<GameObject>();
     private LevelManager_ScrapGrabber levelManager;
     private float fuelBarStartLength, lineLength, lineLengthIndicatorPortion;
+    private int currentTrash;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,7 @@ public class Claw : MonoBehaviour
         if (Input.GetAxis("Jump") > 0)
         {
             state = ClawState.fire;
+            linePoints.Insert(linePoints.Count - 1, transform.position);
             isReleasing = true;
         }
         linePoints[linePoints.Count - 1] = transform.position;
@@ -88,6 +91,7 @@ public class Claw : MonoBehaviour
         lineRenderer.SetPositions(linePoints.ToArray());
         if (lineRenderer.positionCount * linePointSeparation > maxLineLength || (Input.GetAxis("Jump") > 0 && !isReleasing))
         {
+            currentTrash = 0;
             state = ClawState.reel;
             GetComponent<Animator>().SetBool("Closed", true);
         }
@@ -104,7 +108,8 @@ public class Claw : MonoBehaviour
                 transform.position = linePoints[1];
                 state = ClawState.aim;
                 GetComponent<Animator>().SetBool("Closed", false);
-                foreach (GameObject trash in collectedTrash)
+                List<string> collectedTrash = new List<string>();
+                foreach (Transform trash in transform.Find("TrashContainer"))
                 {
                     if (trash.name == "Fuel")
                     {
@@ -113,10 +118,11 @@ public class Claw : MonoBehaviour
                     else
                     {
                         levelManager.glass++;
+                        collectedTrash.Add(trash.gameObject.GetComponent<CollectableTrash>().trashName);
                     }
-                    Destroy(trash);
+                    Destroy(trash.gameObject);
                 }
-                collectedTrash.Clear();
+                trashRequestScript.CheckCatch(collectedTrash);
             }
             else
             {
@@ -127,7 +133,7 @@ public class Claw : MonoBehaviour
         }
         else
         {
-            transform.position += (linePoints[linePoints.Count - 2] - transform.position).normalized * Time.deltaTime * reelSpeed;
+            transform.position += reelSpeed * Time.deltaTime * (linePoints[linePoints.Count - 2] - transform.position).normalized;
         }
         linePoints[linePoints.Count - 1] = transform.position;
         Quaternion desiredRotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, linePoints[linePoints.Count - 2] - transform.position, Vector3.forward));
@@ -148,14 +154,24 @@ public class Claw : MonoBehaviour
     {
         if (collision.CompareTag("RandomTrash"))
         {
-            collision.transform.parent = transform;
-            collectedTrash.Add(collision.gameObject);
+            collision.transform.parent = transform.Find("TrashContainer");
             foreach (Transform trash in collision.transform)
             {
-                collectedTrash.Add(trash.gameObject);
+                trash.transform.parent = transform.Find("TrashContainer");
             }
+            currentTrash++;
+            if (currentTrash >= trashCatchLimit)
+            {
+                state = ClawState.reel;
+                GetComponent<Animator>().SetBool("Closed", true);
+                currentTrash = 0;
+            }
+        }
+        else if (collision.gameObject.name == "Mine")
+        {
+            currentTrash = 0;
+            collision.gameObject.GetComponent<Obstacle>().MineHit();
             state = ClawState.reel;
-            GetComponent<Animator>().SetBool("Closed", true);
         }
     }
 
