@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2704555252262892625}
   - component: {fileID: 2704555252262892626}
   - component: {fileID: 2704555252262892627}
+  - component: {fileID: 7204635438917728457}
   m_Layer: 0
   m_Name: Trash
   m_TagString: RandomTrash
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  trashName: 
+  trashName: Bag
   sprites:
   - type: 0
     sprites:
@@ -97,7 +98,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,7 +119,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9214f8a8bf7170f4f90ca98a706a441e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0b855ca9a0d0bd041a640b665fce0b64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,3 +130,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7204635438917728457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2704555252262892636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 57979662bb17260400000000d738ee41
+  m_ShapePath:
+  - {x: -0.1, y: -0.1, z: 0}
+  - {x: -0.1, y: 0.1, z: 0}
+  - {x: 0.1, y: 0.1, z: 0}
+  - {x: 0.1, y: -0.1, z: 0}
+  m_ShapePathHash: 638390369
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 163166

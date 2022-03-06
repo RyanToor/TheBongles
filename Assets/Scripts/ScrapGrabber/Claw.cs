@@ -6,7 +6,7 @@ public class Claw : MonoBehaviour
 {
     public float maxAimAngle, aimSpeed, fireSpeed, turnSpeed, linePointSeparation, maxLineLength, reelSpeed, reelRotateSpeed, fuelTime;
     public int trashCatchLimit;
-    public GameObject fuelBar;
+    public GameObject fuelBar, spotLight;
     public GameObject[] lineLengthIndicators;
     public TrashRequests trashRequestScript;
 
@@ -15,7 +15,7 @@ public class Claw : MonoBehaviour
     private List<Vector3> linePoints = new List<Vector3>();
     private bool isReleasing;
     private LevelManager_ScrapGrabber levelManager;
-    private float fuelBarStartLength, lineLength, lineLengthIndicatorPortion;
+    private float fuelBarStartLength, lineLength, lineLengthIndicatorPortion, lightOffset;
     private int currentTrash;
 
     // Start is called before the first frame update
@@ -28,6 +28,7 @@ public class Claw : MonoBehaviour
         fuelBarStartLength = fuelBar.transform.localScale.x;
         lineLength = (transform.position - transform.parent.position).magnitude;
         lineLengthIndicatorPortion = maxLineLength / lineLengthIndicators.Length;
+        lightOffset = (spotLight.transform.position - transform.parent.position).magnitude;
     }
 
     // Update is called once per frame
@@ -48,6 +49,7 @@ public class Claw : MonoBehaviour
                 break;
         }
         UpdateInstruments();
+        UpdateLight();
     }
 
     private void Aim()
@@ -108,21 +110,7 @@ public class Claw : MonoBehaviour
                 transform.position = linePoints[1];
                 state = ClawState.aim;
                 GetComponent<Animator>().SetBool("Closed", false);
-                List<string> collectedTrash = new List<string>();
-                foreach (Transform trash in transform.Find("TrashContainer"))
-                {
-                    if (trash.name == "Fuel")
-                    {
-                        levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + fuelTime, 0, levelManager.maxTime);
-                    }
-                    else
-                    {
-                        levelManager.glass++;
-                        collectedTrash.Add(trash.gameObject.GetComponent<CollectableTrash>().trashName);
-                    }
-                    Destroy(trash.gameObject);
-                }
-                trashRequestScript.CheckCatch(collectedTrash);
+                StoreTrash();
             }
             else
             {
@@ -142,6 +130,25 @@ public class Claw : MonoBehaviour
         lineRenderer.SetPositions(linePoints.ToArray());
     }
 
+    private void StoreTrash()
+    {
+        List<string> collectedTrash = new List<string>();
+        foreach (Transform trash in transform.Find("TrashContainer"))
+        {
+            if (trash.name == "Fuel")
+            {
+                levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + fuelTime, 0, levelManager.maxTime);
+            }
+            else
+            {
+                levelManager.glass++;
+                collectedTrash.Add(trash.gameObject.GetComponent<CollectableTrash>().trashName);
+            }
+            Destroy(trash.gameObject);
+        }
+        trashRequestScript.CheckCatch(collectedTrash);
+    }
+
     private void UpdateInstruments()
     {
         fuelBar.transform.localScale = new Vector3(Mathf.Clamp(levelManager.remainingTime * fuelBarStartLength / levelManager.maxTime, 0, fuelBarStartLength), fuelBar.transform.localScale.y, 1);
@@ -150,6 +157,13 @@ public class Claw : MonoBehaviour
             lineLengthIndicators[i].SetActive(lineLength < (lineLengthIndicators.Length - i + 1) * lineLengthIndicatorPortion);
         }
     }
+
+    private void UpdateLight()
+    {
+        spotLight.transform.position = transform.parent.position + (transform.position - transform.parent.position).normalized * lightOffset;
+        spotLight.transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, transform.parent.position - transform.position, Vector3.forward));
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("RandomTrash"))
@@ -159,19 +173,29 @@ public class Claw : MonoBehaviour
             {
                 trash.transform.parent = transform.Find("TrashContainer");
             }
-            currentTrash++;
-            if (currentTrash >= trashCatchLimit)
+            if (state == ClawState.fire)
             {
-                state = ClawState.reel;
-                GetComponent<Animator>().SetBool("Closed", true);
-                currentTrash = 0;
+                currentTrash++;
+                if (currentTrash >= trashCatchLimit)
+                {
+                    state = ClawState.reel;
+                    GetComponent<Animator>().SetBool("Closed", true);
+                    currentTrash = 0;
+                }
+            }
+            else
+            {
+                StoreTrash();
             }
         }
         else if (collision.gameObject.name == "Mine")
         {
             currentTrash = 0;
             collision.gameObject.GetComponent<Obstacle>().MineHit();
-            state = ClawState.reel;
+            if (state == ClawState.fire)
+            {
+                state = ClawState.reel;
+            }
         }
     }
 

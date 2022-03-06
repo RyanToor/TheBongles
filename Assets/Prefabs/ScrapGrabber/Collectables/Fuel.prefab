@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4936212187722108117}
   - component: {fileID: 4936212187722108118}
   - component: {fileID: 4936212187722108119}
+  - component: {fileID: 7683695610664890408}
   m_Layer: 0
   m_Name: Fuel
   m_TagString: RandomTrash
@@ -52,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,3 +111,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7683695610664890408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936212187722108112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 57979662bb17260400000000d738ee41
+  m_ShapePath:
+  - {x: -0.37896252, y: -0.49022484, z: 0}
+  - {x: -0.43031406, y: 0.41747665, z: 0}
+  - {x: 0.38324213, y: 0.46454906, z: 0}
+  - {x: 0.44743156, y: -0.4559903, z: 0}
+  m_ShapePathHash: 1451071141
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -288552

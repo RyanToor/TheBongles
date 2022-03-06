@@ -256,7 +256,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 7e0dc697b1b1cdf42b3c38c767be289c, type: 3}
   - name: Glass
     sprite: {fileID: 21300000, guid: 7027a137a397fe94dba04855fb88185a, type: 3}
-  trashType: 
+  trashType: 0
 --- !u!58 &8853108375887957828
 CircleCollider2D:
   m_ObjectHideFlags: 0
