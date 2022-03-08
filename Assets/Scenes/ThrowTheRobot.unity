@@ -4576,6 +4576,9 @@ MonoBehaviour:
     - {fileID: 8373276652658738681, guid: bdf3555b4abf2499aa3b8dc0fc718565, type: 3}
     - {fileID: 8373276652658738681, guid: aee4ef952588e46faae6e17ab89fdd40, type: 3}
     - {fileID: 8373276652658738681, guid: 39b58def4822a6f4b99bfb958e96ad46, type: 3}
+    - {fileID: 8373276652658738681, guid: a7ec9c47834da614fa91959ebce45ebe, type: 3}
+    - {fileID: 8373276652658738681, guid: 8a8e3cca5bde27946862943153b40fcc, type: 3}
+    - {fileID: 8373276652658738681, guid: 9a512be75b10ee34aa61874034b7ea3b, type: 3}
   - name: Rock
     puzzlePrefabs:
     - {fileID: 8373276652658738681, guid: 20d0e1b89e4884c32a05b7cf6bf554ab, type: 3}
@@ -4583,6 +4586,9 @@ MonoBehaviour:
     - {fileID: 8373276652658738681, guid: 056ff98533e384a9e9447f888a6951c3, type: 3}
     - {fileID: 8373276652658738681, guid: f8addef41e72e48838d9b1d493bb9773, type: 3}
     - {fileID: 8373276652658738681, guid: c3a90ef627af1724c9fb42974efce369, type: 3}
+    - {fileID: 8373276652658738681, guid: 4527654c41ebd774ba8790c70fa6c464, type: 3}
+    - {fileID: 8373276652658738681, guid: e6bbd6ceb2a031042880be5436f251e1, type: 3}
+    - {fileID: 8373276652658738681, guid: 910c8c28a92522841965395b2ad2ef00, type: 3}
   - name: Crablantis
     puzzlePrefabs:
     - {fileID: 8373276652658738681, guid: 354636fd581cb4332bc09ec76f3ba056, type: 3}
@@ -4590,6 +4596,9 @@ MonoBehaviour:
     - {fileID: 8373276652658738681, guid: 55d59ae5b088d44a1ad57639b0bb70d7, type: 3}
     - {fileID: 8373276652658738681, guid: 10a255aedf51c4832845a07f6a1248f4, type: 3}
     - {fileID: 8373276652658738681, guid: af6fd4b1606ca4f42935929d406171fd, type: 3}
+    - {fileID: 8373276652658738681, guid: 22d8f69cbfb4dba4b9f6f173233137a0, type: 3}
+    - {fileID: 8373276652658738681, guid: b6bafdf763f74de4da49f173e9384a3f, type: 3}
+    - {fileID: 8373276652658738681, guid: bed0e2e319f8c384fba6dae05cff96a8, type: 3}
   isLevelBuilt: 0
 --- !u!4 &1548698680
 Transform:
@@ -5160,7 +5169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d100de16063270d4bae5f3d82e7bfffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopRightMovement: 1
+  stopRightMovement: 0
   doubleJump: 0
   groundLayerMask:
     serializedVersion: 2
