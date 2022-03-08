@@ -61,7 +61,7 @@ public class FollowCamera_Robot : MonoBehaviour
     void FixedUpdate()
     {
         desiredPosition = robot.transform.position + startOffset;
-        desiredPosition = new Vector3(Mathf.Clamp(desiredPosition.x, 0, levelManager.State == LevelState.move? Mathf.Clamp(robotScript.rightMostPoint - 9.6f, 0, cameraMaxX) : cameraMaxX), desiredPosition.y, desiredPosition.z);
+        desiredPosition = new Vector3(Mathf.Clamp(desiredPosition.x, 0, levelManager.State == LevelState.move && robot.GetComponent<Robot>().stopRightMovement? Mathf.Clamp(robotScript.rightMostPoint - 9.6f, 0, cameraMaxX) : cameraMaxX), desiredPosition.y, desiredPosition.z);
         transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraLerpSpeed);
         float cameraZoom = Mathf.Clamp(transform.position.y + maxWaterOffset, initialOrthographicSize, int.MaxValue);
         cameraComponent.orthographicSize = cameraZoom;

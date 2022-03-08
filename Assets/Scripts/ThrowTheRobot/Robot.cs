@@ -122,10 +122,6 @@ public class Robot : MonoBehaviour
                 rightMostPoint -= reelSpeed * Time.deltaTime;
             }
             Debug.DrawLine(Vector3.right * rightMostPoint, Vector3.right * rightMostPoint + Vector3.down * 50f);
-            if (transform.position.x > rightMostPoint)
-            {
-                transform.position = new Vector3(rightMostPoint, transform.position.y, transform.position.z);
-            }
         }
         legL.localPosition = Vector2.Lerp(legL.localPosition, Legs(legStartL), legLerpSpeed);
         legR.localPosition = Vector2.Lerp(legR.localPosition, Legs(legStartR), legLerpSpeed);
