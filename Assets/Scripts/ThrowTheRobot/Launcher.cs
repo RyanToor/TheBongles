@@ -12,15 +12,15 @@ public class Launcher : MonoBehaviour
 
     private LevelManager_Robot levelManager;
     private Vector3 reelBottom, reelTop;
-    private GameObject hook;
-    private bool reelStarted, reelUp = true;
+    private GameObject robot;
+    private bool reelStarted;
 
     private void Awake()
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
-        hook = transform.Find("Bubba/FishingPole/Hook").gameObject;
-        reelBottom = hook.transform.position;
-        reelTop = transform.Find("Bubba/FishingPole/LineStop").position;
+        robot = GameObject.FindGameObjectWithTag("Player").gameObject;
+        reelBottom = transform.Find("Bubba/LineBottom").transform.position;
+        reelTop = transform.Find("Bubba/LineStop").position;
         isReeling = true;
     }
 
@@ -34,51 +34,28 @@ public class Launcher : MonoBehaviour
 
     public void Reel()
     {
-        reelUp = !reelUp;
         if (!reelStarted)
         {
-            StartCoroutine(ReelInOut());
+            StartCoroutine(ReelIn());
             reelStarted = true;
         }
     }
 
-    public IEnumerator ReelInOut()
+    public IEnumerator ReelIn()
     {
-        transform.Find("Bubba/FishingPole").gameObject.SetActive(true);
         float progress = 0;
         transform.Find("Bubba").GetComponent<Animator>().SetTrigger("Reel");
-        LineRenderer fishingLine;
-        if (GetComponent<LineRenderer>() == null)
-        {
-            fishingLine = gameObject.AddComponent<LineRenderer>();
-            fishingLine.startWidth = lineWidth;
-            fishingLine.startColor = Color.black;
-            fishingLine.endColor = Color.black;
-            fishingLine.positionCount = 2;
-            fishingLine.SetPosition(0, transform.Find("Bubba/FishingPole").transform.position);
-            fishingLine.material = lineMaterial;
-        }
-        else
-        {
-            fishingLine = GetComponent<LineRenderer>();
-        }
         while (progress != 1)
         {
             if (isReeling)
             {
                 progress += reelSpeed * Time.deltaTime;
                 progress = Mathf.Clamp(progress, 0, 1);
-                hook.transform.position = Vector3.Lerp(reelUp? reelBottom : reelTop, reelUp? reelTop : reelBottom, progress);
-                fishingLine.SetPosition(1, hook.transform.position);
+                robot.transform.position = Vector3.Lerp(reelBottom, reelTop, progress);
                 yield return new WaitForFixedUpdate();
             }
         }
-        if (reelUp)
-        {
-            levelManager.State = LevelState.launch;
-            Destroy(fishingLine);
-            transform.Find("Bubba/FishingPole").gameObject.SetActive(false);
-        }
+        levelManager.State = LevelState.launch;
         transform.Find("Bubba").GetComponent<Animator>().SetTrigger("Eat");
         reelStarted = false;
     }

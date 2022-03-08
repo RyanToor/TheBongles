@@ -54,7 +54,7 @@ public class Claw : MonoBehaviour
 
     private void Aim()
     {
-        transform.RotateAround(transform.parent.position, Vector3.forward, Input.GetAxis("Horizontal") * aimSpeed * Time.deltaTime);
+        transform.RotateAround(transform.parent.position, Vector3.forward, Input.GetAxis("Horizontal") * aimSpeed * Time.deltaTime * (Time.timeScale != 0 ? 1 / Time.timeScale : 1));
         float currentAngle = Vector3.SignedAngle(transform.position - transform.parent.position, Vector3.down, Vector3.forward);
         if (Mathf.Abs(currentAngle) > maxAimAngle)
         {
@@ -76,13 +76,13 @@ public class Claw : MonoBehaviour
         {
             isReleasing = false;
         }
-        transform.Rotate(Vector3.forward, Input.GetAxisRaw("Horizontal") * turnSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.forward, Input.GetAxisRaw("Horizontal") * turnSpeed * Time.deltaTime * (Time.timeScale != 0 ? 1 / Time.timeScale : 1));
         float currentAngle = transform.rotation.eulerAngles.z < 180? transform.rotation.eulerAngles.z : -(360 - transform.rotation.eulerAngles.z);
         if (Mathf.Abs(currentAngle) > maxAimAngle)
         {
             transform.Rotate(Mathf.Sign(currentAngle) > 0 ? Vector3.back : Vector3.forward, Mathf.Abs(currentAngle) - maxAimAngle);
         }
-        transform.position += fireSpeed * Time.deltaTime * -transform.up;
+        transform.position += fireSpeed * Time.deltaTime * -transform.up * (Time.timeScale != 0? 1 / Time.timeScale : 1);
         linePoints[linePoints.Count - 1] = transform.position;
         if ((linePoints[linePoints.Count - 1] - linePoints[linePoints.Count - 2]).magnitude > linePointSeparation)
         {
@@ -102,7 +102,7 @@ public class Claw : MonoBehaviour
     private void Reel()
     {
         float segmentLength = (linePoints[linePoints.Count - 2] - transform.position).magnitude;
-        if (segmentLength < reelSpeed * Time.deltaTime)
+        if (segmentLength < reelSpeed * Time.deltaTime * (Time.timeScale != 0 ? 1 / Time.timeScale : 1))
         {
             lineLength -= (linePoints[linePoints.Count - 2] - linePoints[linePoints.Count - 3]).magnitude;
             if (linePoints.Count == 3)
@@ -121,7 +121,7 @@ public class Claw : MonoBehaviour
         }
         else
         {
-            transform.position += reelSpeed * Time.deltaTime * (linePoints[linePoints.Count - 2] - transform.position).normalized;
+            transform.position += reelSpeed * Time.deltaTime * (linePoints[linePoints.Count - 2] - transform.position).normalized * (Time.timeScale != 0 ? 1 / Time.timeScale : 1);
         }
         linePoints[linePoints.Count - 1] = transform.position;
         Quaternion desiredRotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, linePoints[linePoints.Count - 2] - transform.position, Vector3.forward));

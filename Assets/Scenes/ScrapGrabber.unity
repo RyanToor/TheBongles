@@ -1826,6 +1826,10 @@ PrefabInstance:
       propertyPath: trashName
       value: Bottle
       objectReference: {fileID: 0}
+    - target: {fileID: 2704555252262892627, guid: 6b5ede6ff0c89814ab1dc18e3c7dad36, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9214f8a8bf7170f4f90ca98a706a441e, type: 3}
     - target: {fileID: 2704555252262892636, guid: 6b5ede6ff0c89814ab1dc18e3c7dad36, type: 3}
       propertyPath: m_Name
       value: Trash (1)

@@ -2810,9 +2810,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '0
-
-'
+  m_Text: 0
 --- !u!222 &404408027
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8583,10 +8581,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trashScore: 5
-  scoreBarRate: 3
+  scoreBarRate: 5
   starPulsePeriod: 0.5
   starPulseMaxScale: 1.5
-  starValues: 0000000064000000dc050000d0070000
+  starValues: 00000000e8030000dc050000d0070000
   stars:
   - {fileID: 583576675}
   - {fileID: 1553980897}

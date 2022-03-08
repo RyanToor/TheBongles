@@ -10,8 +10,8 @@ public class VerticalScrollerUI : MonoBehaviour
 
     private Player player;
     private LevelManager levelManager;
-    private Text plasticCounterText, depthCounterText, scoreText;
-    private float plasticCount, depthCount, score;
+    private Text trashCounterText, depthCounterText, scoreText;
+    private float trashCount, depthCount, score;
     private Slider fillBar;
 
     // Start is called before the first frame update
@@ -28,15 +28,15 @@ public class VerticalScrollerUI : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         //GetComponent<Collider2D>().enabled = false;
-        plasticCounterText = transform.Find("ReadoutPanel/Plastic").GetComponent<Text>();
+        trashCounterText = transform.Find("ReadoutPanel/Plastic").GetComponent<Text>();
         depthCounterText = transform.Find("ReadoutPanel/DepthPanel/Depth").GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        plasticCount = levelManager.plastic;
-        plasticCounterText.text = plasticCount.ToString();
+        trashCount = levelManager.plastic;
+        trashCounterText.text = trashCount.ToString();
         depthCount = Mathf.Abs(Mathf.Clamp(Mathf.Ceil(player.transform.position.y), -Mathf.Infinity, 0));
         depthCounterText.text = depthCount.ToString();
         for (int i = 0; i < healthObjects.Length; i++)
@@ -47,7 +47,9 @@ public class VerticalScrollerUI : MonoBehaviour
 
     public void EndGame()
     {
-        score = trashScore * plasticCount + depthCount;
+        transform.Find("GameOver/EndScreen/Score/Plastic").GetComponent<Text>().text = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().plastic.ToString();
+        transform.Find("GameOver/EndScreen/Score/Depth").GetComponent<Text>().text = depthCount.ToString();
+        score = trashScore * trashCount + depthCount;
         StartCoroutine(FillBar());
     }
 
@@ -57,9 +59,9 @@ public class VerticalScrollerUI : MonoBehaviour
         int starsScored = 0;
         while (currentValue < score)
         {
-            scoreText.text = currentValue.ToString();
+            scoreText.text = Mathf.Ceil(currentValue).ToString();
             fillBar.value = Mathf.Clamp((currentValue - starValues[starsScored]) / (starValues[Mathf.Clamp(starsScored + 1, 0, 3)] - starValues[starsScored]), 0, 1);
-            currentValue += scoreBarRate;
+            currentValue += (scoreBarRate * (starValues[starsScored + 1] - starValues[starsScored]) / 1000f);
             if (starsScored < 3)
             {
                 if (currentValue > starValues[starsScored + 1])

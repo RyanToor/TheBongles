@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class FollowCamera_Robot : MonoBehaviour
 {
-    public bool stopRightMovement;
     public float cameraLerpSpeed, maxWaterOffset, deepWaterDepth, waterSurfaceScrollSpeed;
     public Color[] waterPlateDeepColours;
     public Transform[] waterSurfaces;
 
     private GameObject robot;
-    private int robotMinChunk = int.MaxValue;
     private Camera cameraComponent;
     private Transform backgroundPlateContainer, waterPlates, skyPlate, backdrop;
     private Vector3 startOffset, desiredPosition, startPos, initialSkyPlateScale;
-    private float initialOrthographicSize, chunkWidth; public float cameraMaxX;
+    private float initialOrthographicSize, cameraMaxX;
     private Color[] waterPlateShallowColours;
     private LevelBuilder levelBuilder;
     private float[] parallaxMultipliers;
     private LevelManager_Robot levelManager;
+    private Robot robotScript;
 
     private void Awake()
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
-        chunkWidth = GameObject.Find("Level").GetComponent<LevelBuilder>().tilePixelWidth / 100;
-        stopRightMovement = !Application.isEditor;
+        robot = GameObject.FindGameObjectWithTag("Player");
+        robotScript = robot.GetComponent<Robot>();
         startPos = transform.position;
         cameraComponent = GetComponent<Camera>();
         initialOrthographicSize = cameraComponent.orthographicSize;
@@ -55,20 +54,14 @@ public class FollowCamera_Robot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        robot = GameObject.FindGameObjectWithTag("Player");
         startOffset = transform.position - robot.transform.position;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        int robotCurrentChunk = levelManager.State == LevelState.move? Mathf.CeilToInt(robot.transform.position.x / chunkWidth) : int.MaxValue;
-        if (robotCurrentChunk < robotMinChunk)
-        {
-            robotMinChunk = robotCurrentChunk;
-        }
         desiredPosition = robot.transform.position + startOffset;
-        desiredPosition = new Vector3(Mathf.Clamp(desiredPosition.x, 0, stopRightMovement? robotMinChunk * chunkWidth + 0.64f : cameraMaxX), desiredPosition.y, desiredPosition.z);
+        desiredPosition = new Vector3(Mathf.Clamp(desiredPosition.x, 0, levelManager.State == LevelState.move? Mathf.Clamp(robotScript.rightMostPoint - 9.6f, 0, cameraMaxX) : cameraMaxX), desiredPosition.y, desiredPosition.z);
         transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraLerpSpeed);
         float cameraZoom = Mathf.Clamp(transform.position.y + maxWaterOffset, initialOrthographicSize, int.MaxValue);
         cameraComponent.orthographicSize = cameraZoom;

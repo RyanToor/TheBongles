@@ -398,8 +398,6 @@ public class Player : MonoBehaviour
         gameOver.SetActive(true);
         pauseMenu.SetActive(false);
         plastic.SetActive(false);
-        gameOver.transform.Find("EndScreen/Score/Plastic").GetComponent<Text>().text = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().plastic.ToString();
-        gameOver.transform.Find("EndScreen/Score/Depth").GetComponent<Text>().text = Mathf.Abs(Mathf.Ceil(transform.position.y)).ToString();
         uI.EndGame();
     }
 }

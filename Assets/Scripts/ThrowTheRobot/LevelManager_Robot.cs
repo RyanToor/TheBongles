@@ -10,8 +10,12 @@ public class LevelManager_Robot : LevelManager
     public int pies;
     public FloatingObjects floatingDecorations, floatingTrash;
 
+    [HideInInspector]
+    public float totalThrowDistance;
+
     private LevelState state;
     private LevelBuilder levelbuilder;
+    private ThrowTheRobotUI uI;
 
     protected override void Awake()
     {
@@ -25,6 +29,7 @@ public class LevelManager_Robot : LevelManager
     // Start is called before the first frame update
     protected override void Start()
     {
+        uI = GameObject.Find("Canvas").GetComponent<ThrowTheRobotUI>();
         levelbuilder = GameObject.Find("Level").GetComponent<LevelBuilder>();
         StartCoroutine(CheckLoaded());
         throwParameters.ResetDials();
@@ -69,7 +74,6 @@ public class LevelManager_Robot : LevelManager
                 }
                 break;
             case LevelState.fly:
-                GameObject.Find("Launcher").GetComponent<Launcher>().Reel();
                 break;
             case LevelState.move:
                 break;
@@ -96,8 +100,7 @@ public class LevelManager_Robot : LevelManager
 
     private void EndLevel()
     {
-        Pies = 3;
-        ChangeState(LevelState.launch);
+        uI.EndGame();
     }
 
     public LevelState State

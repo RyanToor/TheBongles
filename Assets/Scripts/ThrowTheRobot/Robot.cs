@@ -1,24 +1,26 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    public bool doubleJump;
+    public bool stopRightMovement, doubleJump;
     public LayerMask groundLayerMask, legLayerMask;
-    public int legRays;
-    public float moveForce, jumpForce, airControlMultiplier, groundCastOffset, decelerationMultiplier, 
+    public int legRays, onScreenLinePoints;
+    public float reelSpeed, moveForce, jumpForce, airControlMultiplier, groundCastOffset, decelerationMultiplier, 
         boostForce, skimMinVelocity, skimVelocityMultiplier, waterHitVelocityMultiplier, musselForce, jellyfishBoost,
-        legMaxLength, legLerpSpeed, rotationSpeed;
+        legMaxLength, legLerpSpeed, rotationSpeed, maxLineSag, hookOffset;
     [Range(0, 90)]
     public float skimMaxAngle, musselAngle, maxJellyfishAngle, legMaxAngle;
     public GameObject waterSurface, splashPrefab, jumpCloudPrefab;
     public SpriteRenderer wheelL, wheelR;
+    public Transform fishingPole, hookPoint;
 
     [HideInInspector]
-    public int rightmostChunk = int.MaxValue;
+    public float rightMostPoint = float.MaxValue;
 
     private Vector3 startPos;
-    private Transform legL, legR;
+    private Transform legL, legR, hook;
     private Vector2 legStartL, legStartR;
     private Rigidbody2D rb;
     private LevelManager_Robot levelManager;
@@ -27,6 +29,7 @@ public class Robot : MonoBehaviour
     private List<Animator> clouds = new List<Animator>();
     private LineRenderer legLine;
     private Animator animator;
+    private LineRenderer returnLine;
 
     private void Awake()
     {
@@ -42,6 +45,18 @@ public class Robot : MonoBehaviour
         legStartL = legL.localPosition;
         legStartR = legR.localPosition;
         legLine = GetComponent<LineRenderer>();
+        hook = transform.Find("Hook");
+        hookPoint = transform.Find("HookPoint");
+        returnLine = hookPoint.gameObject.GetComponent<LineRenderer>();
+        if (!Application.isEditor)
+        {
+            stopRightMovement = true;
+        }
+    }
+
+    private void OnEnable()
+    {
+        Application.onBeforeRender += CalculateReturnLine;
     }
 
     private void Start()
@@ -66,6 +81,8 @@ public class Robot : MonoBehaviour
                 if (levelManager.State == LevelState.fly)
                 {
                     levelManager.State = LevelState.move;
+                    levelManager.totalThrowDistance += transform.position.x;
+                    rightMostPoint = transform.position.x + 19.2f;
                 }
                 isJumping = false;
                 isDoubleJumping = false;
@@ -96,6 +113,18 @@ public class Robot : MonoBehaviour
                     rb.gravityScale = 1;
                 }
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, rb.velocity.magnitude > 1f ? Quaternion.Euler(0, 0, Mathf.Clamp(Vector2.SignedAngle(Vector2.right, new Vector2(Mathf.Abs(rb.velocity.x), Mathf.Sign(rb.velocity.x) * rb.velocity.y)), -20, 20)) : Quaternion.identity, rotationSpeed);
+            }
+        }
+        if (levelManager.State == LevelState.move)
+        {
+            if (rightMostPoint > 10.8 && stopRightMovement)
+            {
+                rightMostPoint -= reelSpeed * Time.deltaTime;
+            }
+            Debug.DrawLine(Vector3.right * rightMostPoint, Vector3.right * rightMostPoint + Vector3.down * 50f);
+            if (transform.position.x > rightMostPoint)
+            {
+                transform.position = new Vector3(rightMostPoint, transform.position.y, transform.position.z);
             }
         }
         legL.localPosition = Vector2.Lerp(legL.localPosition, Legs(legStartL), legLerpSpeed);
@@ -203,6 +232,7 @@ public class Robot : MonoBehaviour
                 transform.position = startPos;
                 SetPhysics(0, 0);
                 animator.SetBool("isGrounded", true);
+                rightMostPoint = float.MaxValue;
                 break;
             case LevelState.fly:
                 SetPhysics(1, 0);
@@ -225,6 +255,40 @@ public class Robot : MonoBehaviour
     {
         rb.gravityScale = gravity;
         rb.drag = drag;
+    }
+
+    private void CalculateReturnLine()
+    {
+        float lineSag = levelManager.State == LevelState.fly? 0 : Mathf.Clamp(maxLineSag * (rightMostPoint - transform.position.x) / 9.6f, 0.1f, maxLineSag) * Mathf.Clamp((transform.position.x - fishingPole.position.x - 9.6f) / 20f, 0, 1);
+        Vector3[] tempReturnLinePoints = new Vector3[onScreenLinePoints + 1];
+        Vector3 firstPoint = hookPoint.transform.InverseTransformPoint(fishingPole.position);
+        Vector3 midPoint = hookPoint.InverseTransformPoint(fishingPole.position) / 2 + hookPoint.InverseTransformDirection(Vector3.down) * lineSag;
+        Vector3 lastPoint = Vector3.zero;
+        for (int i = 0; i < onScreenLinePoints + 1; i++)
+        {
+            float fac = (float) i / onScreenLinePoints;
+            Vector3 aB = Vector3.Lerp(firstPoint, midPoint, fac);
+            Vector3 bC = Vector3.Lerp(midPoint, lastPoint, fac);
+            tempReturnLinePoints[i] = Vector3.Lerp(aB, bC, fac);
+        }
+        Vector3[] returnLinePoints = tempReturnLinePoints;
+        for (int i = onScreenLinePoints - 1; i > 1; i--)
+        {
+            if (tempReturnLinePoints[i].magnitude > hookOffset)
+            {
+                tempReturnLinePoints[i + 1] += (tempReturnLinePoints[i + 1] - tempReturnLinePoints[i]).normalized * (tempReturnLinePoints[i + 1].magnitude - hookOffset);
+                returnLinePoints = new Vector3[i + 2];
+                Array.Copy(tempReturnLinePoints, 0, returnLinePoints, 0, i + 2);
+                break;
+            }
+        }
+        hook.position = hookPoint.TransformPoint(returnLinePoints[returnLinePoints.Length - 1]);
+        hook.transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(Vector3.down, hookPoint.position - hook.position));
+        returnLine.positionCount = returnLinePoints.Length;
+        returnLine.SetPositions(returnLinePoints);
+        Debug.DrawLine(hookPoint.TransformPoint(firstPoint), hookPoint.TransformPoint(midPoint));
+        Debug.DrawLine(hookPoint.TransformPoint(midPoint), hookPoint.TransformPoint(lastPoint));
+        Debug.DrawLine(hookPoint.TransformPoint(firstPoint), hookPoint.TransformPoint(lastPoint));
     }
 
     void EditorUpdate()
@@ -262,7 +326,7 @@ public class Robot : MonoBehaviour
             levelManager.Pies++;
             Destroy(collision.gameObject);
         }
-        else if (collision.gameObject.name == "Hook")
+        else if (collision.gameObject.name == "SandCollectionTile")
         {
             transform.parent = collision.transform;
             levelManager.State = LevelState.reel;
@@ -304,5 +368,10 @@ public class Robot : MonoBehaviour
         {
             transform.parent = null;
         }
+    }
+
+    private void OnDisable()
+    {
+        Application.onBeforeRender -= CalculateReturnLine;
     }
 }
