@@ -8,8 +8,9 @@ public class Robot : MonoBehaviour
     public LayerMask groundLayerMask, legLayerMask;
     public int legRays, onScreenLinePoints;
     public float reelSpeed, moveForce, jumpForce, airControlMultiplier, groundCastOffset, decelerationMultiplier, 
-        boostForce, skimMinVelocity, skimVelocityMultiplier, waterHitVelocityMultiplier, musselForce, jellyfishBoost,
-        legMaxLength, legLerpSpeed, rotationSpeed, maxLineSag, hookOffset;
+        cloudBoostForce, boostForce, skimMinVelocity, skimVelocityMultiplier, waterHitVelocityMultiplier, musselForce, jellyfishBoost,
+        legMaxLength, legLerpSpeed, rotationSpeed, maxLineSag, hookOffset,
+        cloudBoostFuel, maxBoostFuel, boostFuel, boostCostPerSecond;
     [Range(0, 90)]
     public float skimMaxAngle, musselAngle, maxJellyfishAngle, legMaxAngle;
     public GameObject waterSurface, splashPrefab, jumpCloudPrefab;
@@ -104,7 +105,7 @@ public class Robot : MonoBehaviour
                     Instantiate(jumpCloudPrefab, transform.position, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, groundHit.normal, Vector3.forward)));
                     isDoubleJumping = true;
                 }
-                else if (clouds.Count > 0 && Input.GetAxisRaw("Jump") == 1)
+                else if (levelManager.State == LevelState.fly && Input.GetAxisRaw("Jump") == 1)
                 {
                     Boost();
                 }
@@ -146,13 +147,16 @@ public class Robot : MonoBehaviour
 
     private void Boost()
     {
-        //Temp Code
-        rb.AddForce(Vector3.up * boostForce, ForceMode2D.Impulse);
-        foreach (Animator cloud in clouds)
+        if (boostFuel > 0)
         {
-            cloud.SetTrigger("Bounce");
+            rb.AddForce(Vector3.up * boostForce * 10 * Time.deltaTime, ForceMode2D.Impulse);
+            boostFuel = Mathf.Clamp(boostFuel - Time.deltaTime, 0, maxBoostFuel);
+            foreach (Animator cloud in clouds)
+            {
+                cloud.SetTrigger("Bounce");
+            }
+            clouds.Clear();
         }
-        clouds.Clear();
     }
 
     private void Skim()
@@ -310,7 +314,8 @@ public class Robot : MonoBehaviour
         {
             clouds.Add(collision.gameObject.GetComponent<Animator>());
             collision.gameObject.GetComponent<Animator>().SetTrigger("Bounce");
-            rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
+            rb.AddForce(cloudBoostForce * Vector2.up, ForceMode2D.Impulse);
+            boostFuel = Mathf.Clamp(boostFuel + cloudBoostFuel, 0, maxBoostFuel);
         }
         else if (collision.gameObject.CompareTag("RandomTrash"))
         {
@@ -351,7 +356,7 @@ public class Robot : MonoBehaviour
         }
         else if (name[0] == "Jellyfish")
         {
-            if (Vector3.Angle(collision.transform.position - transform.position, Vector3.down) < maxJellyfishAngle)
+            if (Vector3.Angle(collision.transform.position - transform.position, Vector3.down) < maxJellyfishAngle && levelManager.State == LevelState.move)
             {
                 rb.velocity = jellyfishBoost * Vector3.Reflect(rb.velocity, collision.contacts[0].normal);
                 collision.gameObject.GetComponent<Animator>().SetTrigger("Bounce");

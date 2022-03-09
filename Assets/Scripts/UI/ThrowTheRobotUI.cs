@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ThrowTheRobotUI : MonoBehaviour
 {
-    public float scoreBarRate, starPulseMaxScale, starPulsePeriod;
+    public Transform boostFill;
+    public float scoreBarRate, starPulseMaxScale, starPulsePeriod, boostFadeRate, boostLerpSpeed;
     public int trashScore;
     public int[] starValues;
     public GameObject[] stars;
@@ -14,8 +15,10 @@ public class ThrowTheRobotUI : MonoBehaviour
     private Text metalReadout, pieReadout, scoreText;
     private Slider fillBar;
     private LevelManager_Robot levelManager;
-    private float score;
+    private Robot robotScript;
+    private float score, boostDesiredXScale;
     private int trashCount;
+    private Vector3 initialBoostFillScale;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,8 @@ public class ThrowTheRobotUI : MonoBehaviour
         {
             star.SetActive(false);
         }
+        initialBoostFillScale = boostFill.localScale;
+        robotScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
     }
 
     // Update is called once per frame
@@ -40,6 +45,12 @@ public class ThrowTheRobotUI : MonoBehaviour
         trashCount = levelManager.metal;
         metalReadout.text = trashCount.ToString();
         pieReadout.text = levelManager.Pies.ToString();
+        Color currentColour = boostFill.gameObject.GetComponent<Image>().color;
+        boostFill.gameObject.GetComponent<Image>().color = new Color(currentColour.r, currentColour.g, currentColour.b, Mathf.Clamp(currentColour.a + ((levelManager.State == LevelState.launch || levelManager.State == LevelState.fly)? 1 : -1) * boostFadeRate * Time.deltaTime, 0, 1));
+        currentColour = boostFill.parent.gameObject.GetComponent<Image>().color;
+        boostFill.parent.gameObject.GetComponent<Image>().color = new Color(currentColour.r, currentColour.g, currentColour.b, Mathf.Clamp(currentColour.a + ((levelManager.State == LevelState.launch || levelManager.State == LevelState.fly)? 1 : -1) * boostFadeRate * Time.deltaTime, 0, 1));
+        boostDesiredXScale = initialBoostFillScale.x * robotScript.boostFuel / robotScript.maxBoostFuel;
+        boostFill.localScale = new Vector3(Mathf.Lerp(boostFill.localScale.x, boostDesiredXScale, boostLerpSpeed * Time.deltaTime), initialBoostFillScale.y, initialBoostFillScale.z);
     }
 
     public void EndGame()
