@@ -28,6 +28,10 @@ public class ThrowTheRobotUI : MonoBehaviour
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager_Robot>();
         metalReadout = transform.Find("ReadoutPanel/Metal Panel/Metal").GetComponent<Text>();
         pieReadout = transform.Find("ReadoutPanel/Pie Panel/Pies").GetComponent<Text>();
+        foreach (GameObject star in stars)
+        {
+            star.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -71,7 +75,7 @@ public class ThrowTheRobotUI : MonoBehaviour
         }
         if (starsScored > GameManager.Instance.highscoreStars[0])
         {
-            GameManager.Instance.highscoreStars[0] = starsScored;
+            GameManager.Instance.highscoreStars[1] = starsScored;
         }
         scoreText.text = score.ToString();
     }

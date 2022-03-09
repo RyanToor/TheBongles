@@ -339,6 +339,7 @@ public class Robot : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        string[] name = collision.gameObject.name.Split(' ');
         if (collision.gameObject.name == "Lid")
         {
             rb.AddForce(new Vector3(-Mathf.Sign(collision.gameObject.transform.lossyScale.x) * musselForce * Mathf.Cos(Mathf.Deg2Rad * musselAngle), musselForce * Mathf.Sin(Mathf.Deg2Rad * musselAngle)), ForceMode2D.Impulse);
@@ -348,7 +349,7 @@ public class Robot : MonoBehaviour
         {
             transform.parent = collision.transform;
         }
-        else if (collision.gameObject.name == "Jellyfish")
+        else if (name[0] == "Jellyfish")
         {
             if (Vector3.Angle(collision.transform.position - transform.position, Vector3.down) < maxJellyfishAngle)
             {

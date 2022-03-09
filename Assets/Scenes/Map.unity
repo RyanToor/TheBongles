@@ -11652,7 +11652,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 57979662bb17260400000000d738ee41
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -14515,6 +14515,16 @@ MonoBehaviour:
     - video: {fileID: 32900000, guid: 1d68a513250e6f242822300e46e7b8d2, type: 3}
       audio: {fileID: 0}
       isLooping: 0
+  - storyPoint: 10
+    scenes: []
+  - storyPoint: 10
+    scenes:
+    - video: {fileID: 32900000, guid: abc0aa5ef6eb11d49961795199e564c3, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+    - video: {fileID: 32900000, guid: 539982a4263b9a64484aadea47f83269, type: 3}
+      audio: {fileID: 0}
+      isLooping: 1
   testScene: 3
   currentScene: 0
   currentCutscene: 0

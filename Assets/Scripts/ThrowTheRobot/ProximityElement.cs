@@ -50,6 +50,7 @@ public class ProximityElement : MonoBehaviour
                     if (!shyClosed)
                     {
                         Shy(true);
+                        StartCoroutine(CheckBirdOffscreen());
                     }
                     else
                     {
@@ -158,19 +159,28 @@ public class ProximityElement : MonoBehaviour
         while (!hit)
         {
             Vector3 offset = transform.position - robot.transform.position;
-            if (offset.magnitude > 40)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                float flightMagnitude = Mathf.Sign(offset.x) * birdSpeed * Time.deltaTime;
-                transform.position += new Vector3(flightMagnitude * Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Abs(flightMagnitude) * Mathf.Sin(Mathf.Deg2Rad * angle));
-                GetComponent<SpriteRenderer>().flipX = offset.x > 0;
-            }
+            float flightMagnitude = Mathf.Sign(offset.x) * birdSpeed * Time.deltaTime;
+            transform.position += new Vector3(flightMagnitude * Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Abs(flightMagnitude) * Mathf.Sin(Mathf.Deg2Rad * angle));
+            GetComponent<SpriteRenderer>().flipX = offset.x > 0;
             yield return null;
         }
         GetComponent<Animator>().SetTrigger("Hit");
+    }
+
+    public IEnumerator CheckBirdOffscreen()
+    {
+        while (true)
+        {
+            if ((transform.position - GameObject.FindGameObjectWithTag("Player").transform.position).magnitude > 40)
+            {
+                Destroy(gameObject);
+                break;
+            }
+            else
+            {
+                yield return null;
+            }
+        }
     }
 
     public void BirdFall()

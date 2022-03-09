@@ -8,7 +8,8 @@ public class LevelBuilder : MonoBehaviour
     public Vector3 offset;
     public GameObject tilePrefab, bubblePrefab;
     public int[] biomeLengths;
-    public GameObject birdPrefab;
+    public GameObject birdPrefab, piePrefab, blockerPrefab;
+    public Sprite[] blockerSprites;
     public BiomeTiles levelTileLibrary;
     public PuzzlePrefabArray[] biomePuzzlePrefabs;
 
@@ -17,10 +18,12 @@ public class LevelBuilder : MonoBehaviour
     private List<int> floorDisplacements = new List<int>(), backgroundDisplacements = new List<int>();
     private int levelLength = 0;
     private int[] biomeEndPoints;
+    LevelManager_Robot levelManager;
 
     // Start is called before the first frame update
     void Awake()
     {
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
         foreach (int biomeLength in biomeLengths)
         {
             levelLength += biomeLength;
@@ -68,7 +71,7 @@ public class LevelBuilder : MonoBehaviour
                 }
             }
         }
-        LevelManager_Robot levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager_Robot>();
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager_Robot>();
         levelManager.floatingDecorations.objectsToAdd.AddRange(GameObject.FindGameObjectsWithTag("UpgradeButton"));
         if (levelManager.isTrashRandom)
         {
@@ -76,6 +79,10 @@ public class LevelBuilder : MonoBehaviour
             {
                 levelManager.floatingTrash.objectsToAdd.Add(trash);
             }
+        }
+        for (int i = 0; i < Mathf.Min(5 - levelManager.pies, biomeEndPoints.Length); i++)
+        {
+            GameObject.Instantiate(piePrefab, new Vector3(Random.Range(biomeEndPoints.Length - 2 - i < 0? 4 : biomeEndPoints[biomeEndPoints.Length - 2 - i] + 1, biomeEndPoints[biomeEndPoints.Length - 1 - i] - 1) * tilePixelWidth / 100, 0, 0), Quaternion.identity, transform);
         }
         PlaceBackground();
     }
@@ -163,6 +170,13 @@ public class LevelBuilder : MonoBehaviour
             birdCoverage += Random.Range(birdMinSeparation, birdMaxSeparation);
             Instantiate(birdPrefab, Vector3.right * birdCoverage, Quaternion.identity, transform.Find("Birds"));
         }
+        for (int i = 0; i < blockerSprites.Length; i++)
+        {
+            GameObject newBlocker = GameObject.Instantiate(blockerPrefab, new Vector3(biomeEndPoints[i] * tilePixelWidth / 100, 0, 0), Quaternion.identity, transform);
+            newBlocker.GetComponent<SpriteRenderer>().sprite = blockerSprites[i];
+            newBlocker.AddComponent<PolygonCollider2D>();
+        }
+        levelManager.floatingSurface.objectsToAdd.AddRange(GameObject.FindGameObjectsWithTag("Minigame"));
         isLevelBuilt = true;
     }
 

@@ -8,7 +8,7 @@ public class LevelManager_Robot : LevelManager
     public SpriteRenderer piesSprite;
     public Sprite[] pieSprites;
     public int pies;
-    public FloatingObjects floatingDecorations, floatingTrash;
+    public FloatingObjects floatingDecorations, floatingTrash, floatingSurface;
 
     [HideInInspector]
     public float totalThrowDistance;
@@ -23,6 +23,7 @@ public class LevelManager_Robot : LevelManager
         {
             floatingDecorations.enabled = true;
             floatingTrash.enabled = true;
+            floatingSurface.enabled = true;
         }
     }
 

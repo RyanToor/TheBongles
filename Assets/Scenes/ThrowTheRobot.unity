@@ -1746,9 +1746,9 @@ MonoBehaviour:
   drawDistance: 1
   drawPause: 1
   powerMin: 400
-  powerMax: 1000
-  angleMin: 0
-  angleMax: 90
+  powerMax: 1300
+  angleMin: 5
+  angleMax: 85
   powerSpeedMin: 150
   powerSpeedMax: 300
   angleSpeedMin: 100
@@ -2712,6 +2712,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &981613551 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6303193922672213156, guid: 9af2e31f55fa3774ab055d6ccf2ca666, type: 3}
+  m_PrefabInstance: {fileID: 1771223256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8c695a82b26a940b9f0288db44b4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1012221510
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,7 +3202,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 981613551}
           m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
           m_MethodName: OnHover
           m_Mode: 1
@@ -3259,9 +3270,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
-        m_MethodName: OnClick
+      - m_Target: {fileID: 1670249916}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: LoadMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3271,9 +3282,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadMap
+      - m_Target: {fileID: 981613551}
+        m_TargetAssemblyTypeName: AudioInterface, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4487,6 +4498,11 @@ MonoBehaviour:
   bubblePrefab: {fileID: 6010698024634007259, guid: 193f411603e6dc241b129083f8069fb3, type: 3}
   biomeLengths: 050000000500000005000000
   birdPrefab: {fileID: 2304258094415399874, guid: 2f856d36806c2fc47b353685d6a3c12d, type: 3}
+  piePrefab: {fileID: 8031443626121875508, guid: 25cbac4a6596c774a862fbbb459fb2e4, type: 3}
+  blockerPrefab: {fileID: 3127311548312755156, guid: f11f81a7d05a12c47a4cc591a5e3611b, type: 3}
+  blockerSprites:
+  - {fileID: 21300000, guid: 13257224dccc6d142a35dbbeb0bb222f, type: 3}
+  - {fileID: 21300000, guid: 11b722f7a6590254da65979d92475f2f, type: 3}
   levelTileLibrary:
     floorTiles:
     - sprite: {fileID: 21300000, guid: 407b9a97f35b973479f53947c8c8346c, type: 3}
@@ -4718,6 +4734,7 @@ GameObject:
   - component: {fileID: 1670249916}
   - component: {fileID: 1670249919}
   - component: {fileID: 1670249918}
+  - component: {fileID: 1670249920}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: LevelManager
@@ -4752,6 +4769,7 @@ MonoBehaviour:
   pies: 3
   floatingDecorations: {fileID: 1670249919}
   floatingTrash: {fileID: 1670249918}
+  floatingSurface: {fileID: 1670249920}
   totalThrowDistance: 0
 --- !u!4 &1670249917
 Transform:
@@ -4798,6 +4816,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAngle: 20
   maxYDisplacement: 0.5
+  mapRotate: 0
+  objectsToRemove: []
+  objectsToAdd: []
+--- !u!114 &1670249920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670249915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b57a67e20959b44a7b51e113e71ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngle: 2
+  maxYDisplacement: 0.1
   mapRotate: 0
   objectsToRemove: []
   objectsToAdd: []
@@ -5169,7 +5204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d100de16063270d4bae5f3d82e7bfffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopRightMovement: 0
+  stopRightMovement: 1
   doubleJump: 0
   groundLayerMask:
     serializedVersion: 2
