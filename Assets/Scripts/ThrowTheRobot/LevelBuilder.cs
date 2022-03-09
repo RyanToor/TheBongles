@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class LevelBuilder : MonoBehaviour
 {
-    public float tilePixelWidth, backgroundVerticalBuffer, birdInitialOffset, birdMinSeparation, birdMaxSeparation;
+    public float tilePixelWidth, backgroundVerticalBuffer, birdInitialOffset, birdMinSeparation, birdMaxSeparation,
+        cloudRadius, cloudMinHeight, cloudMaxHeight, cloudBorder;
     public Vector3 offset;
     public GameObject tilePrefab, bubblePrefab;
     public int[] biomeLengths;
-    public GameObject birdPrefab, piePrefab, blockerPrefab;
+    public GameObject birdPrefab, piePrefab, blockerPrefab, cloudPrefab;
     public Sprite[] blockerSprites;
     public BiomeTiles levelTileLibrary;
     public PuzzlePrefabArray[] biomePuzzlePrefabs;
@@ -42,6 +43,7 @@ public class LevelBuilder : MonoBehaviour
 
     private void PlaceLevel()
     {
+        int lastTileIndex = int.MaxValue;
         for (int i = 0; i < levelLength; i++)
         {
             int currentBiome = biomeEndPoints.Length - 1;
@@ -53,7 +55,19 @@ public class LevelBuilder : MonoBehaviour
                     break;
                 }
             }
-            int randPuzzleIndex = Random.Range(0, biomePuzzlePrefabs[currentBiome].puzzlePrefabs.Length);
+            int randPuzzleIndex = 0;
+            if (biomePuzzlePrefabs[currentBiome].puzzlePrefabs.Length > 1)
+            {
+                while (true)
+                {
+                    randPuzzleIndex = Random.Range(0, biomePuzzlePrefabs[currentBiome].puzzlePrefabs.Length);
+                    if (randPuzzleIndex != lastTileIndex)
+                    {
+                        lastTileIndex = randPuzzleIndex;
+                        break;
+                    }
+                }
+            }
             int totalDisplacement = 0;
             foreach (int displacement in floorDisplacements)
             {
@@ -82,7 +96,7 @@ public class LevelBuilder : MonoBehaviour
         }
         for (int i = 0; i < Mathf.Min(5 - levelManager.pies, biomeEndPoints.Length); i++)
         {
-            GameObject.Instantiate(piePrefab, new Vector3(Random.Range(biomeEndPoints.Length - 2 - i < 0? 4 : biomeEndPoints[biomeEndPoints.Length - 2 - i] + 1, biomeEndPoints[biomeEndPoints.Length - 1 - i] - 1) * tilePixelWidth / 100, 0, 0), Quaternion.identity, transform);
+            Instantiate(piePrefab, new Vector3(Random.Range(biomeEndPoints.Length - 2 - i < 0? 4 : biomeEndPoints[biomeEndPoints.Length - 2 - i] + 1, biomeEndPoints[biomeEndPoints.Length - 1 - i] - 1) * tilePixelWidth / 100, 0, 0), Quaternion.identity, transform);
         }
         PlaceBackground();
     }
@@ -170,11 +184,20 @@ public class LevelBuilder : MonoBehaviour
             birdCoverage += Random.Range(birdMinSeparation, birdMaxSeparation);
             Instantiate(birdPrefab, Vector3.right * birdCoverage, Quaternion.identity, transform.Find("Birds"));
         }
-        for (int i = 0; i < blockerSprites.Length; i++)
+        for (int i = 0; i < blockerSprites.Length + 1; i++)
         {
-            GameObject newBlocker = GameObject.Instantiate(blockerPrefab, new Vector3(biomeEndPoints[i] * tilePixelWidth / 100, 0, 0), Quaternion.identity, transform);
-            newBlocker.GetComponent<SpriteRenderer>().sprite = blockerSprites[i];
-            newBlocker.AddComponent<PolygonCollider2D>();
+            if (i < blockerSprites.Length)
+            {
+                GameObject newBlocker = Instantiate(blockerPrefab, new Vector3(biomeEndPoints[i] * tilePixelWidth / 100, 0, 0), Quaternion.identity, transform);
+                newBlocker.GetComponent<SpriteRenderer>().sprite = blockerSprites[i];
+                newBlocker.AddComponent<PolygonCollider2D>();
+            }
+            PoissonDiscSampler sampler = new PoissonDiscSampler(biomeEndPoints[i] * tilePixelWidth / 100 - (i > 0? biomeEndPoints[i - 1] * tilePixelWidth / 100 : 0) - (2 * cloudBorder), cloudMaxHeight - cloudMinHeight, cloudRadius);
+            foreach (Vector2 sample in sampler.Samples())
+            {
+                Vector2 samplePos = new Vector2(sample.x + (i > 0 ? biomeEndPoints[i - 1] * tilePixelWidth / 100 : 0) + cloudBorder, sample.y + cloudMinHeight);
+                Instantiate(cloudPrefab, samplePos, Quaternion.identity, transform.Find("Clouds"));
+            }
         }
         levelManager.floatingSurface.objectsToAdd.AddRange(GameObject.FindGameObjectsWithTag("Minigame"));
         isLevelBuilt = true;
