@@ -3852,7 +3852,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reelSpeed: 0.5
   lineWidth: 0.04
-  centreForceMultiplier: 0.1
   lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   isReeling: 0
 --- !u!1 &1221990760
@@ -4778,6 +4777,8 @@ MonoBehaviour:
           yDifference: 0
         - sprite: {fileID: -6823849534871334912, guid: 21d81dc48b2249948a1ff15af27c37bb, type: 3}
           yDifference: 0
+        - sprite: {fileID: 505782957876445254, guid: 2b074ce7f5688422f9bbf2f1235162c8, type: 3}
+          yDifference: 0
       - name: Sand-Rock
         plates:
         - sprite: {fileID: 4116113099813015601, guid: 21d81dc48b2249948a1ff15af27c37bb, type: 3}
@@ -4787,6 +4788,18 @@ MonoBehaviour:
         - sprite: {fileID: -8948700313162591840, guid: 708ddb7b242bc86408431ee115f5b86d, type: 3}
           yDifference: 0
         - sprite: {fileID: -350034498895759948, guid: 708ddb7b242bc86408431ee115f5b86d, type: 3}
+          yDifference: 0
+        - sprite: {fileID: 8053671560509710543, guid: 91211407fc8454a50873693fb84df7c5, type: 3}
+          yDifference: 0
+        - sprite: {fileID: 7033544400146016335, guid: 91211407fc8454a50873693fb84df7c5, type: 3}
+          yDifference: 0
+        - sprite: {fileID: -1616014481900788539, guid: afc8a828579c842709f065fb0a3900ee, type: 3}
+          yDifference: 0
+        - sprite: {fileID: -268639658380969007, guid: afc8a828579c842709f065fb0a3900ee, type: 3}
+          yDifference: 0
+        - sprite: {fileID: -2722229043469525026, guid: 625e0ae3e1a404e24b179345d795e314, type: 3}
+          yDifference: 0
+        - sprite: {fileID: -6422026550151672459, guid: 625e0ae3e1a404e24b179345d795e314, type: 3}
           yDifference: 0
       - name: Rock-Crablantis
         plates:
@@ -5456,7 +5469,7 @@ MonoBehaviour:
   maxJellyfishAngle: 30
   legMaxAngle: 30
   waterSurface: {fileID: 255889774}
-  splashPrefab: {fileID: 3127932473184676390, guid: 90f6ae0d0a6b6e54f9c9e93a66c6b625, type: 3}
+  splashPrefab: {fileID: 8177281313740949006, guid: 06c0b0ac2fbe44d26920979cc55c88ef, type: 3}
   jumpCloudPrefab: {fileID: 9005692429438452024, guid: 711847659e5b4fc4dbedfc0dc1c88436, type: 3}
   wheelL: {fileID: 2104725029}
   wheelR: {fileID: 2099039802}
