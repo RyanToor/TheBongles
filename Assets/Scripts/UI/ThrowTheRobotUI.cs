@@ -37,6 +37,11 @@ public class ThrowTheRobotUI : MonoBehaviour
         }
         initialBoostFillScale = boostFill.localScale;
         robotScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
+        Color currentColour = boostFill.gameObject.GetComponent<Image>().color;
+        boostFill.gameObject.GetComponent<Image>().color = new Color(currentColour.r, currentColour.g, currentColour.b, ((levelManager.State == LevelState.launch || levelManager.State == LevelState.fly) && robotScript.maxBoostFuel > 0) ? 1 : 0);
+        currentColour = boostFill.parent.gameObject.GetComponent<Image>().color;
+        boostFill.parent.gameObject.GetComponent<Image>().color = new Color(currentColour.r, currentColour.g, currentColour.b, ((levelManager.State == LevelState.launch || levelManager.State == LevelState.fly) && robotScript.maxBoostFuel > 0) ? 1 : 0);
+        boostFill.localScale = new Vector3(robotScript.maxBoostFuel > 0 ? initialBoostFillScale.x * robotScript.boostFuel / robotScript.maxBoostFuel : 0, initialBoostFillScale.y, initialBoostFillScale.z);
     }
 
     // Update is called once per frame
@@ -46,10 +51,10 @@ public class ThrowTheRobotUI : MonoBehaviour
         metalReadout.text = trashCount.ToString();
         pieReadout.text = levelManager.Pies.ToString();
         Color currentColour = boostFill.gameObject.GetComponent<Image>().color;
-        boostFill.gameObject.GetComponent<Image>().color = new Color(currentColour.r, currentColour.g, currentColour.b, Mathf.Clamp(currentColour.a + ((levelManager.State == LevelState.launch || levelManager.State == LevelState.fly)? 1 : -1) * boostFadeRate * Time.deltaTime, 0, 1));
+        boostFill.gameObject.GetComponent<Image>().color = new Color(currentColour.r, currentColour.g, currentColour.b, Mathf.Clamp(currentColour.a + (((levelManager.State == LevelState.launch || levelManager.State == LevelState.fly) && robotScript.maxBoostFuel > 0)? 1 : -1) * boostFadeRate * Time.deltaTime, 0, 1));
         currentColour = boostFill.parent.gameObject.GetComponent<Image>().color;
-        boostFill.parent.gameObject.GetComponent<Image>().color = new Color(currentColour.r, currentColour.g, currentColour.b, Mathf.Clamp(currentColour.a + ((levelManager.State == LevelState.launch || levelManager.State == LevelState.fly)? 1 : -1) * boostFadeRate * Time.deltaTime, 0, 1));
-        boostDesiredXScale = initialBoostFillScale.x * robotScript.boostFuel / robotScript.maxBoostFuel;
+        boostFill.parent.gameObject.GetComponent<Image>().color = new Color(currentColour.r, currentColour.g, currentColour.b, Mathf.Clamp(currentColour.a + (((levelManager.State == LevelState.launch || levelManager.State == LevelState.fly) && robotScript.maxBoostFuel > 0)? 1 : -1) * boostFadeRate * Time.deltaTime, 0, 1));
+        boostDesiredXScale = robotScript.maxBoostFuel > 0? initialBoostFillScale.x * robotScript.boostFuel / robotScript.maxBoostFuel : 0;
         boostFill.localScale = new Vector3(Mathf.Lerp(boostFill.localScale.x, boostDesiredXScale, boostLerpSpeed * Time.deltaTime), initialBoostFillScale.y, initialBoostFillScale.z);
     }
 
@@ -84,7 +89,7 @@ public class ThrowTheRobotUI : MonoBehaviour
             }
             yield return null;
         }
-        if (starsScored > GameManager.Instance.highscoreStars[0])
+        if (starsScored > GameManager.Instance.highscoreStars[1])
         {
             GameManager.Instance.highscoreStars[1] = starsScored;
         }

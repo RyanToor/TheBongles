@@ -3852,6 +3852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reelSpeed: 0.5
   lineWidth: 0.04
+  centreForceMultiplier: 0.1
   lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   isReeling: 0
 --- !u!1 &1221990760
@@ -4702,7 +4703,7 @@ MonoBehaviour:
   birdMaxSeparation: 25
   cloudRadius: 8
   cloudMinHeight: 10
-  cloudMaxHeight: 30
+  cloudMaxHeight: 23
   cloudBorder: 5
   offset: {x: 10.24, y: -17.5, z: 0}
   tilePrefab: {fileID: 8373276652658738681, guid: f9a32f027532c1740b591090c9e144af, type: 3}
@@ -4712,6 +4713,7 @@ MonoBehaviour:
   piePrefab: {fileID: 8031443626121875508, guid: 25cbac4a6596c774a862fbbb459fb2e4, type: 3}
   blockerPrefab: {fileID: 3127311548312755156, guid: f11f81a7d05a12c47a4cc591a5e3611b, type: 3}
   cloudPrefab: {fileID: 6411922806360862028, guid: 3d6bfd0c9375f7b479f0a3f200d32042, type: 3}
+  anchorPrefab: {fileID: 2608901402215253239, guid: f62e427b301ed854dbd4dc39abdac793, type: 3}
   blockerSprites:
   - {fileID: 21300000, guid: 13257224dccc6d142a35dbbeb0bb222f, type: 3}
   - {fileID: 21300000, guid: 11b722f7a6590254da65979d92475f2f, type: 3}
@@ -5431,7 +5433,7 @@ MonoBehaviour:
   moveForce: 10
   jumpForce: 8
   airControlMultiplier: 0.4
-  groundCastOffset: 0.05
+  groundCastOffset: 0.1
   decelerationMultiplier: 2
   cloudBoostForce: 2
   boostForce: 3
@@ -5443,13 +5445,13 @@ MonoBehaviour:
   legMaxLength: 0.6
   legLerpSpeed: 0.2
   rotationSpeed: 3
-  maxLineSag: 15
+  maxLineSag: 25
   hookOffset: 0.9
   cloudBoostFuel: 0.1
-  maxBoostFuel: 1
+  maxBoostFuel: 0
   boostFuel: 0.2
   boostCostPerSecond: 0.3
-  skimMaxAngle: 30
+  skimMaxAngle: 20
   musselAngle: 60
   maxJellyfishAngle: 30
   legMaxAngle: 30
@@ -5460,6 +5462,11 @@ MonoBehaviour:
   wheelR: {fileID: 2099039802}
   fishingPole: {fileID: 890296750}
   hookPoint: {fileID: 119701638}
+  fuelUpgrades:
+  - startFuel: 0.2
+    maxFuel: 1
+  - startFuel: 1
+    maxFuel: 3
   rightMostPoint: 0
 --- !u!212 &1818866234
 SpriteRenderer:

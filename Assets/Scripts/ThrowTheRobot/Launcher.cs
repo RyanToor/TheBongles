@@ -11,7 +11,7 @@ public class Launcher : MonoBehaviour
     public bool isReeling;
 
     private LevelManager_Robot levelManager;
-    private Vector3 reelBottom, reelTop;
+    private Transform reelBottom, reelTop;
     private GameObject robot;
     private bool reelStarted;
 
@@ -19,8 +19,8 @@ public class Launcher : MonoBehaviour
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
         robot = GameObject.FindGameObjectWithTag("Player").gameObject;
-        reelBottom = transform.Find("Bubba/LineBottom").transform.position;
-        reelTop = transform.Find("Bubba/LineStop").position;
+        reelBottom = transform.Find("Bubba/LineBottom");
+        reelTop = transform.Find("Bubba/LineStop");
         isReeling = true;
     }
 
@@ -43,15 +43,18 @@ public class Launcher : MonoBehaviour
 
     public IEnumerator ReelIn()
     {
+        Vector3 robotStartPos = robot.transform.position;
         float progress = 0;
         transform.Find("Bubba").GetComponent<Animator>().SetTrigger("Reel");
+        reelBottom.position = new Vector3(reelBottom.position.x, robot.transform.position.y, reelBottom.position.z);
         while (progress != 1)
         {
             if (isReeling)
             {
                 progress += reelSpeed * Time.deltaTime;
                 progress = Mathf.Clamp(progress, 0, 1);
-                robot.transform.position = Vector3.Lerp(reelBottom, reelTop, progress);
+                Vector3 desiredPosition = Vector3.Lerp(reelBottom.position, reelTop.position, progress);
+                robot.transform.position = Vector3.Lerp(robotStartPos, desiredPosition, progress);
                 yield return new WaitForFixedUpdate();
             }
         }

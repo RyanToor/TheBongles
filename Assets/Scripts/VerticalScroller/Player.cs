@@ -238,7 +238,6 @@ public class Player : MonoBehaviour
                     break;
                 }
             case 2:
-                health += 1;
                 break;
             default:
                 break;

@@ -9,7 +9,7 @@ public class LevelBuilder : MonoBehaviour
     public Vector3 offset;
     public GameObject tilePrefab, bubblePrefab;
     public int[] biomeLengths;
-    public GameObject birdPrefab, piePrefab, blockerPrefab, cloudPrefab;
+    public GameObject birdPrefab, piePrefab, blockerPrefab, cloudPrefab, anchorPrefab;
     public Sprite[] blockerSprites;
     public BiomeTiles levelTileLibrary;
     public PuzzlePrefabArray[] biomePuzzlePrefabs;
@@ -184,15 +184,18 @@ public class LevelBuilder : MonoBehaviour
             birdCoverage += Random.Range(birdMinSeparation, birdMaxSeparation);
             Instantiate(birdPrefab, Vector3.right * birdCoverage, Quaternion.identity, transform.Find("Birds"));
         }
-        for (int i = 0; i < blockerSprites.Length + 1; i++)
+        for (int i = 0; i < blockerSprites.Length; i++)
         {
-            if (i < blockerSprites.Length)
-            {
-                GameObject newBlocker = Instantiate(blockerPrefab, new Vector3(biomeEndPoints[i] * tilePixelWidth / 100, 0, 0), Quaternion.identity, transform);
-                newBlocker.GetComponent<SpriteRenderer>().sprite = blockerSprites[i];
-                newBlocker.AddComponent<PolygonCollider2D>();
-            }
-            PoissonDiscSampler sampler = new PoissonDiscSampler(biomeEndPoints[i] * tilePixelWidth / 100 - (i > 0? biomeEndPoints[i - 1] * tilePixelWidth / 100 : 0) - (2 * cloudBorder), cloudMaxHeight - cloudMinHeight, cloudRadius);
+            Vector3 newBlockerPos = new Vector3(biomeEndPoints[i] * tilePixelWidth / 100, 0, 0);
+            RaycastHit2D[] rayHits = Physics2D.RaycastAll(newBlockerPos, Vector3.down);
+            Vector3 anchorPoint = rayHits[rayHits.Length - 1].point;
+            GameObject newBlocker = Instantiate(blockerPrefab, newBlockerPos, Quaternion.identity, transform);
+            newBlocker.GetComponent<SpriteRenderer>().sprite = blockerSprites[i];
+            newBlocker.AddComponent<PolygonCollider2D>();
+            GameObject newAnchor = Instantiate(anchorPrefab, anchorPoint, Quaternion.identity, transform);
+            newAnchor.GetComponent<ProximityElement>().anchorPoint = anchorPoint;
+            newAnchor.GetComponent<ProximityElement>().blockerPoint = newBlockerPos;
+            PoissonDiscSampler sampler = new PoissonDiscSampler(biomeEndPoints[i] * tilePixelWidth / 100 - (i > 0 ? biomeEndPoints[i - 1] * tilePixelWidth / 100 : 0) - (2 * cloudBorder), cloudMaxHeight - cloudMinHeight, cloudRadius);
             foreach (Vector2 sample in sampler.Samples())
             {
                 Vector2 samplePos = new Vector2(sample.x + (i > 0 ? biomeEndPoints[i - 1] * tilePixelWidth / 100 : 0) + cloudBorder, sample.y + cloudMinHeight);

@@ -16,6 +16,7 @@ public class Robot : MonoBehaviour
     public GameObject waterSurface, splashPrefab, jumpCloudPrefab;
     public SpriteRenderer wheelL, wheelR;
     public Transform fishingPole, hookPoint;
+    public fuelBarUpgrade[] fuelUpgrades;
 
     [HideInInspector]
     public float rightMostPoint = float.MaxValue;
@@ -62,7 +63,13 @@ public class Robot : MonoBehaviour
 
     private void Start()
     {
-
+        for (int i = 0; i < 3; i++)
+        {
+            if (GameManager.Instance.upgrades[1][i] > 0)
+            {
+                Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[1][i]));
+            }
+        }
     }
 
     void FixedUpdate()
@@ -99,7 +106,7 @@ public class Robot : MonoBehaviour
             }
             else
             {
-                if (canDoubleJump && !isDoubleJumping && Input.GetAxisRaw("Jump") == 1)
+                if (canDoubleJump && !isDoubleJumping && Input.GetAxisRaw("Jump") == 1 && levelManager.State == LevelState.move)
                 {
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
                     Instantiate(jumpCloudPrefab, transform.position, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, groundHit.normal, Vector3.forward)));
@@ -259,7 +266,7 @@ public class Robot : MonoBehaviour
 
     private void CalculateReturnLine()
     {
-        float lineSag = levelManager.State == LevelState.fly? 0 : Mathf.Clamp(maxLineSag * (rightMostPoint - transform.position.x) / 9.6f, 0.1f, maxLineSag) * Mathf.Clamp((transform.position.x - fishingPole.position.x - 9.6f) / 20f, 0, 1);
+        float lineSag = levelManager.State == LevelState.fly? 0 : Mathf.Clamp(maxLineSag * (rightMostPoint - transform.position.x) / 9.6f, 0.1f, maxLineSag) * Mathf.Clamp((transform.position.x - fishingPole.position.x - 9.6f) / 50f, 0, 1);
         Vector3[] tempReturnLinePoints = new Vector3[onScreenLinePoints + 1];
         Vector3 firstPoint = hookPoint.transform.InverseTransformPoint(fishingPole.position);
         Vector3 midPoint = hookPoint.InverseTransformPoint(fishingPole.position) / 2 + hookPoint.InverseTransformDirection(Vector3.down) * lineSag;
@@ -289,6 +296,24 @@ public class Robot : MonoBehaviour
         Debug.DrawLine(hookPoint.TransformPoint(firstPoint), hookPoint.TransformPoint(midPoint));
         Debug.DrawLine(hookPoint.TransformPoint(midPoint), hookPoint.TransformPoint(lastPoint));
         Debug.DrawLine(hookPoint.TransformPoint(firstPoint), hookPoint.TransformPoint(lastPoint));
+    }
+
+    private void Upgrade(Vector2Int upgradeIndicies)
+    {
+        switch (upgradeIndicies.x)
+        {
+            case 1:
+                doubleJump = true;
+                maxBoostFuel = fuelUpgrades[upgradeIndicies.y - 1].maxFuel;
+                boostFuel = fuelUpgrades[upgradeIndicies.y - 1].startFuel;
+                if (transform.Find("Upgrade" + upgradeIndicies.x + "-" + GameManager.Instance.upgrades[1][upgradeIndicies.y - 1]) != null)
+                {
+                    transform.Find("Upgrade" + upgradeIndicies.x + "-" + GameManager.Instance.upgrades[1][upgradeIndicies.y - 1]).gameObject.SetActive(true);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     void EditorUpdate()
@@ -329,7 +354,6 @@ public class Robot : MonoBehaviour
         }
         else if (collision.gameObject.name == "SandCollectionTile")
         {
-            transform.parent = collision.transform;
             levelManager.State = LevelState.reel;
         }
     }
@@ -368,6 +392,7 @@ public class Robot : MonoBehaviour
     {
         if (collision.gameObject.name == "Turtle")
         {
+            rb.velocity += Vector2.right * (collision.gameObject.GetComponent<SpriteRenderer>().flipX? 1 : -1) * collision.gameObject.GetComponent<ProximityElement>().speed;
             transform.parent = null;
         }
     }
@@ -375,5 +400,12 @@ public class Robot : MonoBehaviour
     private void OnDisable()
     {
         Application.onBeforeRender -= CalculateReturnLine;
+    }
+
+    [System.Serializable]
+    public struct fuelBarUpgrade
+    {
+        public float startFuel;
+        public float maxFuel;
     }
 }

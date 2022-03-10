@@ -1,13 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ProximityElement : MonoBehaviour
 {
     public ProximityElementType type;
-    public float bubbleFrequency, speed, birdMaxAngle, birdKnockbeck, birdSpeed;
+    public float bubbleFrequency, speed, birdMaxAngle, birdKnockbeck, birdSpeed, anchorLerpSpeed, anchorTopOffset;
+
+    [HideInInspector]
+    public Vector3 anchorPoint, blockerPoint;
 
     private bool randomChanceRunning = false, shyClosed = false, isFlipping = false, hit = false;
     private Transform anchor1, anchor2;
+    private Vector2 anchorLineStart;
 
     private void Awake()
     {
@@ -15,6 +20,12 @@ public class ProximityElement : MonoBehaviour
         {
             anchor1 = transform.parent.Find("Anchor1");
             anchor2 = transform.parent.Find("Anchor2");
+        }
+        else if (type == ProximityElementType.anchor)
+        {
+            anchorLineStart = GetComponent<EdgeCollider2D>().points[0];
+            GetComponent<LineRenderer>().SetPositions(new Vector3[] { anchorLineStart, transform.InverseTransformPoint(blockerPoint) });
+            StartCoroutine(Anchor(GameObject.FindGameObjectWithTag("Player").transform));
         }
     }
 
@@ -194,6 +205,18 @@ public class ProximityElement : MonoBehaviour
         isFlipping = false;
     }
 
+    private IEnumerator Anchor(Transform player)
+    {
+        while (true)
+        {
+            Vector3 desiredPosition = player.position.x < transform.position.x ? anchorPoint : blockerPoint + Vector3.down * anchorTopOffset;
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, anchorLerpSpeed * Time.deltaTime);
+            GetComponent<LineRenderer>().SetPositions(new Vector3[] { anchorLineStart, transform.InverseTransformPoint(blockerPoint) });
+            GetComponent<EdgeCollider2D>().SetPoints(new List<Vector2> { anchorLineStart, transform.InverseTransformPoint(blockerPoint) });
+            yield return null;
+        }
+    }
+
     [System.Serializable]
     public enum ProximityElementType
     {
@@ -202,6 +225,7 @@ public class ProximityElement : MonoBehaviour
         randomAnim,
         shy,
         mussel,
-        bird
+        bird,
+        anchor
     }
 }
