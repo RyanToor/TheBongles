@@ -13,6 +13,7 @@ public class LevelManager_ScrapGrabber : LevelManager
     protected override void Awake()
     {
         remainingTime = maxTime;
+        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
     }
 
     // Update is called once per frame

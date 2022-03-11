@@ -10,6 +10,7 @@ public class LevelManager_Map : LevelManager
     public float trashClearBorder;
     public Sprite castleBefore, castleAfter;
     public CapsuleCollider2D castleSmallCollider, castleBigCollider;
+    public KeyCode[] drawLineCheat;
 
     [HideInInspector]
     public GameObject upgradesUI;
@@ -19,6 +20,7 @@ public class LevelManager_Map : LevelManager
     private Vector3 bongleIslandPosition;
     private FloatingObjects floatingObjectsScript;
     private Rect mapArea;
+    private int drawUnlockProgress = 0;
 
     protected override void Awake()
     {
@@ -66,6 +68,7 @@ public class LevelManager_Map : LevelManager
         RespawnTrash();
         GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().CheckCutscene();
         Time.timeScale = 1;
+        StartCoroutine(CheckDrawCheat());
         base.StartGame();
     }
 
@@ -120,6 +123,21 @@ public class LevelManager_Map : LevelManager
     {
         GameManager.Instance.bongleIslandPosition = bongleIslandPosition;
         base.SendSaveData();
+    }
+
+    private IEnumerator CheckDrawCheat()
+    {
+        while (drawUnlockProgress < drawLineCheat.Length)
+        {
+            if (Input.GetKeyDown(drawLineCheat[drawUnlockProgress]))
+            {
+                drawUnlockProgress += 1;
+            }
+            yield return null;
+        }
+        bongleIsland.GetComponent<BongleIsland>().pathLength = 200;
+        bongleIsland.GetComponent<BongleIsland>().pathSeparation = 0.3f;
+        bongleIsland.GetComponent<BongleIsland>().isDrawLineCheat = true;
     }
 
     private void EditorOnly()

@@ -731,6 +731,7 @@ MonoBehaviour:
   castleAfter: {fileID: 21300000, guid: 0e92fc1f14e691b4c9094c971717af7e, type: 3}
   castleSmallCollider: {fileID: 827273668}
   castleBigCollider: {fileID: 827273666}
+  drawLineCheat: 110100001101000012010000120100001401000013010000140100001301000062000000610000000d000000
   upgradesUI: {fileID: 1473632719}
   cloudCover: {fileID: 1915106628}
   bongleIsland: {fileID: 902878137}
@@ -5331,6 +5332,7 @@ MonoBehaviour:
   - upgradeSprites: []
   - upgradeSprites: []
   isInputEnabled: 0
+  isDrawLineCheat: 0
   pathObjects: []
 --- !u!212 &902878141
 SpriteRenderer:
