@@ -197,6 +197,9 @@ public class GameManager : MonoBehaviour
             case TrashType.Metal:
                 SceneManager.LoadScene("ThrowTheRobot");
                 break;
+            case TrashType.Glass:
+                SceneManager.LoadScene("ScrapGrabber");
+                break;
             default:
                 break;
         }

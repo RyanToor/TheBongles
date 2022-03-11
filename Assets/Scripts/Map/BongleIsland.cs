@@ -15,7 +15,7 @@ public class BongleIsland : MonoBehaviour
     public UpgradeSprites[] upgradeSprites;
 
     [HideInInspector]
-    public bool isInputEnabled = false;
+    public bool isInputEnabled = false, isDrawLineCheat = false;
     [HideInInspector]
     public Dictionary<GameObject, GameObject> activePopups = new Dictionary<GameObject, GameObject>();
     [HideInInspector]
@@ -140,6 +140,7 @@ public class BongleIsland : MonoBehaviour
             Vector3 newLineLocation = lastPathPos + (latestVector / 2);
             lastPathPos = transform.position + pathOffset;
             GameObject newPathObject = Instantiate(pathObject, newLineLocation, Quaternion.identity, pathContainer.transform);
+            newPathObject.GetComponent<SpriteRenderer>().color = isDrawLineCheat ? Color.black : Color.white;
             float pathAngle = Vector3.Angle(new Vector3(1, 0, 0), latestVector.normalized);
             if (latestVector.y < 0)
             {
