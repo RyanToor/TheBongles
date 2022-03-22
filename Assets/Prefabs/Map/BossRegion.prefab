@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isUnlocked: 1
-  minigameSpawnCount: 2
+  minigameSpawnCount: 1
   regionOrder: 0
   minigameMarker: {fileID: 5340263978038331420, guid: d4e42f8411db8e041998318216fd89c7, type: 3}
   cloudScreen: {fileID: 0}

@@ -1545,7 +1545,6 @@ GameObject:
   m_Component:
   - component: {fileID: 277545541}
   - component: {fileID: 277545540}
-  - component: {fileID: 277545539}
   - component: {fileID: 277545542}
   - component: {fileID: 277545543}
   m_Layer: 0
@@ -1555,14 +1554,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &277545539
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277545538}
-  m_Enabled: 1
 --- !u!20 &277545540
 Camera:
   m_ObjectHideFlags: 0
@@ -5249,6 +5240,7 @@ GameObject:
   - component: {fileID: 902878139}
   - component: {fileID: 902878138}
   - component: {fileID: 902878143}
+  - component: {fileID: 902878144}
   m_Layer: 0
   m_Name: BongleIsland
   m_TagString: Player
@@ -5424,6 +5416,14 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!81 &902878144
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902878137}
+  m_Enabled: 1
 --- !u!4 &904234730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8161915669353001257, guid: 36fe779a32eced642bf6a853c9128822, type: 3}
@@ -5486,7 +5486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928536254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.58, y: 4.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 904234730}
@@ -10704,11 +10704,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 527a355eb9101e24586d27e7156a6555, type: 2}
     - target: {fileID: 8161915668922852288, guid: 36fe779a32eced642bf6a853c9128822, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.3
+      value: 9.45
       objectReference: {fileID: 0}
     - target: {fileID: 8161915668922852288, guid: 36fe779a32eced642bf6a853c9128822, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 8161915669996649777, guid: 36fe779a32eced642bf6a853c9128822, type: 3}
       propertyPath: m_LocalPosition.x
