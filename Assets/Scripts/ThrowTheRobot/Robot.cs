@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ public class Robot : MonoBehaviour
     private Vector2 legStartL, legStartR;
     private Rigidbody2D rb;
     private LevelManager_Robot levelManager;
-    private bool isGrounded, isJumping, isDoubleJumping, canDoubleJump = false;
+    private bool isGrounded, isJumping, isDoubleJumping, canDoubleJump = false, isJumpInputHeld;
     private float colliderWidth, colliderHeight, startDrag;
     private List<Animator> clouds = new List<Animator>();
     private LineRenderer legLine;
@@ -96,11 +97,13 @@ public class Robot : MonoBehaviour
                 isDoubleJumping = false;
                 canDoubleJump = false;
                 rb.gravityScale = 1 - Mathf.Abs(Input.GetAxisRaw("Horizontal"));
-                if (Input.GetAxisRaw("Jump") == 1 && !isJumping)
+                if (Input.GetAxisRaw("Jump") == 1 && !isJumping && !isJumpInputHeld)
                 {
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
                     animator.SetTrigger("Jump");
                     isJumping = true;
+                    isJumpInputHeld = true;
+                    StartCoroutine(JumpInputRelease());
                 }
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, groundHit.normal, Vector3.forward)), rotationSpeed);
             }
@@ -314,6 +317,14 @@ public class Robot : MonoBehaviour
             default:
                 break;
         }
+    }
+    private IEnumerator JumpInputRelease()
+    {
+        while (Input.GetAxisRaw("Jump") != 0)
+        {
+            yield return null;
+        }
+        isJumpInputHeld = false;
     }
 
     void EditorUpdate()

@@ -60,7 +60,7 @@ public class Region : MonoBehaviour
     public void Unlock(bool isUnlocked)
     {
         regionCollider.enabled = !isUnlocked;
-        if (isUnlocked && GameManager.Instance.storyPoint > GameManager.Instance.regionStoryPoints[regionOrder] && GameManager.Instance.storyPoint != 1)
+        if (isUnlocked && GameManager.Instance.storyPoint > storyMeetPoints[regionOrder] && GameManager.Instance.storyPoint != 1)
         {
             SpawnMinigames();
             if (transform.Find("BossIsland/CloudScreen") != null && GameManager.Instance.storyPoint > storyMeetPoints[regionOrder] + 1)

@@ -1613,13 +1613,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277545538}
-  m_LocalRotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: -23.6, z: -16.8}
+  m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
+  m_LocalPosition: {x: 0, y: -80.4, z: -129.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
 --- !u!114 &277545542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1639,6 +1639,7 @@ MonoBehaviour:
   targetHeightOffset: -1
   desiredOffset: {x: 0, y: -23.6, z: -16.8}
   offsetLerpSpeed: 3
+  zoomToMapDuration: 1
   upgradeMenu: {fileID: 1473632723}
 --- !u!114 &277545543
 MonoBehaviour:
@@ -14475,7 +14476,7 @@ MonoBehaviour:
       audio: {fileID: 8300000, guid: d0ba6c331c4477b479f007a7df2fe803, type: 3}
       isLooping: 1
     - video: {fileID: 32900000, guid: a9908a781538918428c774c19086fd4a, type: 3}
-      audio: {fileID: 0}
+      audio: {fileID: 8300000, guid: d0e60388a39fa514a8ea7a7def0b67d2, type: 3}
       isLooping: 0
     - video: {fileID: 32900000, guid: a247d4acd147f5744bd41f91f6dacab4, type: 3}
       audio: {fileID: 0}
@@ -14517,9 +14518,12 @@ MonoBehaviour:
     - video: {fileID: 32900000, guid: 1d68a513250e6f242822300e46e7b8d2, type: 3}
       audio: {fileID: 0}
       isLooping: 0
-  - storyPoint: 10
-    scenes: []
-  - storyPoint: 10
+  - storyPoint: 12
+    scenes:
+    - video: {fileID: 32900000, guid: 49bbb0435c7579b4091ba6f9b22139b1, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
+  - storyPoint: 13
     scenes:
     - video: {fileID: 32900000, guid: abc0aa5ef6eb11d49961795199e564c3, type: 3}
       audio: {fileID: 0}
@@ -14527,6 +14531,9 @@ MonoBehaviour:
     - video: {fileID: 32900000, guid: 539982a4263b9a64484aadea47f83269, type: 3}
       audio: {fileID: 0}
       isLooping: 1
+    - video: {fileID: 32900000, guid: 539982a4263b9a64484aadea47f83269, type: 3}
+      audio: {fileID: 0}
+      isLooping: 0
   testScene: 3
   currentScene: 0
   currentCutscene: 0
@@ -14552,6 +14559,7 @@ GameObject:
   - component: {fileID: 6708069970092528579}
   - component: {fileID: 6708069970092528576}
   - component: {fileID: 6708069970092528638}
+  - component: {fileID: 6708069970092528637}
   m_Layer: 5
   m_Name: StoryVideo
   m_TagString: Untagged
@@ -14559,6 +14567,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6708069970092528637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708069970092528636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_BlockingObjects: 3
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!328 &6708069970092528638
 VideoPlayer:
   m_ObjectHideFlags: 0

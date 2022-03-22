@@ -67,7 +67,10 @@ public class FollowCamera_Robot : MonoBehaviour
         cameraComponent.orthographicSize = cameraZoom;
         for (int i = 0; i < levelBuilder.levelTileLibrary.backgroundParralaxLevels.Length; i++)
         {
-            backgroundPlateContainer.transform.Find(i.ToString()).position = new Vector3((transform.position.x - startPos.x) * (1 - parallaxMultipliers[i]), (Mathf.Clamp(transform.position.y, int.MinValue, startPos.y) - startPos.y) * (1 - parallaxMultipliers[i]), 0);
+            if (backgroundPlateContainer.transform.Find(i.ToString()) != null)
+            {
+                backgroundPlateContainer.transform.Find(i.ToString()).position = new Vector3((transform.position.x - startPos.x) * (1 - parallaxMultipliers[i]), (Mathf.Clamp(transform.position.y, int.MinValue, startPos.y) - startPos.y) * (1 - parallaxMultipliers[i]), 0);
+            }
         }
         waterPlates.localScale = Vector3.one * (cameraZoom / initialOrthographicSize);
         skyPlate.localScale = (cameraZoom / initialOrthographicSize) * initialSkyPlateScale;

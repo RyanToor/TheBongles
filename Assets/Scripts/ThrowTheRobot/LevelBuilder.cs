@@ -10,7 +10,7 @@ public class LevelBuilder : MonoBehaviour
     public GameObject tilePrefab, bubblePrefab;
     public int[] biomeLengths;
     public GameObject birdPrefab, piePrefab, blockerPrefab, cloudPrefab, anchorPrefab;
-    public Sprite[] blockerSprites;
+    public Sprite[] blockerSprites, cloudSprites;
     public BiomeTiles levelTileLibrary;
     public PuzzlePrefabArray[] biomePuzzlePrefabs;
 
@@ -98,10 +98,10 @@ public class LevelBuilder : MonoBehaviour
         {
             Instantiate(piePrefab, new Vector3(Random.Range(biomeEndPoints.Length - 2 - i < 0? 4 : biomeEndPoints[biomeEndPoints.Length - 2 - i] + 1, biomeEndPoints[biomeEndPoints.Length - 1 - i] - 1) * tilePixelWidth / 100, 0, 0), Quaternion.identity, transform);
         }
-        PlaceBackground();
+        StartCoroutine("PlaceBackground");
     }
 
-    private void PlaceBackground()
+    private IEnumerator PlaceBackground()
     {
         for (int parallaxLevel = 0; parallaxLevel < levelTileLibrary.backgroundParralaxLevels.Length; parallaxLevel++)
         {
@@ -171,12 +171,13 @@ public class LevelBuilder : MonoBehaviour
                 newBackground.GetComponent<SpriteRenderer>().sortingOrder = parallaxLevel;
                 backgroundDisplacements.Add(newBackgroundTile.yDifference);
                 lastBackgroundTile = newBackgroundTile;
+                yield return null;
             }
         }
-        PlaceElements();
+        StartCoroutine("PlaceElements");
     }
 
-    private void PlaceElements()
+    private IEnumerator PlaceElements()
     {
         float birdCoverage = birdInitialOffset;
         while (birdCoverage < levelLength * tilePixelWidth / 100f)
@@ -199,7 +200,13 @@ public class LevelBuilder : MonoBehaviour
             foreach (Vector2 sample in sampler.Samples())
             {
                 Vector2 samplePos = new Vector2(sample.x + (i > 0 ? biomeEndPoints[i - 1] * tilePixelWidth / 100 : 0) + cloudBorder, sample.y + cloudMinHeight);
-                Instantiate(cloudPrefab, samplePos, Quaternion.identity, transform.Find("Clouds"));
+                GameObject newCloud = Instantiate(cloudPrefab, samplePos, Quaternion.identity, transform.Find("Clouds"));
+                int cloudIndex = Random.Range(0, cloudSprites.Length);
+                newCloud.GetComponent<SpriteRenderer>().sprite = cloudSprites[cloudIndex];
+                newCloud.GetComponent<Animator>().SetInteger("CloudSpriteIndex", cloudIndex);
+                PolygonCollider2D newCollider = newCloud.AddComponent<PolygonCollider2D>();
+                newCollider.isTrigger = true;
+                yield return null;
             }
         }
         levelManager.floatingSurface.objectsToAdd.AddRange(GameObject.FindGameObjectsWithTag("Minigame"));

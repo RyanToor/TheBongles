@@ -4716,6 +4716,9 @@ MonoBehaviour:
   blockerSprites:
   - {fileID: 21300000, guid: 13257224dccc6d142a35dbbeb0bb222f, type: 3}
   - {fileID: 21300000, guid: 11b722f7a6590254da65979d92475f2f, type: 3}
+  cloudSprites:
+  - {fileID: 263122527897851915, guid: dab804ae4f031604c837858d2b917a9c, type: 3}
+  - {fileID: 4604437650257920085, guid: dab804ae4f031604c837858d2b917a9c, type: 3}
   levelTileLibrary:
     floorTiles:
     - sprite: {fileID: 21300000, guid: 407b9a97f35b973479f53947c8c8346c, type: 3}
@@ -5455,7 +5458,7 @@ MonoBehaviour:
   moveForce: 10
   jumpForce: 8
   airControlMultiplier: 0.4
-  groundCastOffset: 0.1
+  groundCastOffset: 0.3
   decelerationMultiplier: 2
   cloudBoostForce: 2
   boostForce: 3

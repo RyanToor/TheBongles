@@ -34,7 +34,7 @@ public class VideoManager : MonoBehaviour
             if (cutScenes[i].storyPoint == GameManager.Instance.storyPoint)
             {
                 PlayCutscene(i);
-                if (GameManager.Instance.storyPoint == 2 || GameManager.Instance.storyPoint == 6 || GameManager.Instance.storyPoint == 10)
+                if ((GameManager.Instance.storyPoint == 2 || GameManager.Instance.storyPoint == 6 || GameManager.Instance.storyPoint == 10) && GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().lerpDir == -1)
                 {
                     GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().FlipLerpDir();
                 }
@@ -52,12 +52,13 @@ public class VideoManager : MonoBehaviour
         currentCutscene = cutscene;
         GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = false;
         background.enabled = true;
-        if (GameManager.Instance.musicMuted == 1)
+        if (GameManager.Instance.musicMuted == 1 && GameManager.Instance.storyPoint != 13)
         {
             audioManager.PlayMusicWithFade("Story", musicCrossfadeTime);
         }
         isPlayingCutscene = true;
-        StartCoroutine(PlayVideo());
+        StopCoroutine("PlayVideo");
+        StartCoroutine("PlayVideo");
 
     }
 
@@ -100,7 +101,10 @@ public class VideoManager : MonoBehaviour
                     videoPlayer.isLooping = false;
                 }
             }
-            StartCoroutine(PlayVideo());
+            if (currentScene != cutScenes[currentCutscene].scenes.Length)
+            {
+                StartCoroutine("PlayVideo");
+            }
         }
         else
         {
@@ -115,13 +119,21 @@ public class VideoManager : MonoBehaviour
         {
             yield return null;
         }
-        if (!(GameManager.Instance.musicMuted == 0))
+        if (!(GameManager.Instance.musicMuted == 0) && GameManager.Instance.storyPoint != 12)
         {
             audioManager.PlayMusicWithFade("Map", musicCrossfadeTime);
         }
         while (videoPlayer.frame < System.Convert.ToInt64(clip.frameCount) - 1)
         {
             yield return null;
+        }
+        GameManager.Instance.storyPoint++;
+        Debug.Log("Story Point : " + GameManager.Instance.storyPoint);
+        if (GameManager.Instance.storyPoint == 13)
+        {
+            StopCoroutine("PlayVideo");
+            CheckCutscene();
+            yield break;
         }
         videoPlayer.enabled = false;
         videoPlayer.targetTexture.Release();
@@ -131,7 +143,6 @@ public class VideoManager : MonoBehaviour
         {
             GameObject.Find("CloudCover").SetActive(false);
         }
-        GameManager.Instance.storyPoint ++;
         GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().UpdateRegionsUnlocked();
         GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().StartPrompt();
         GameObject.FindGameObjectWithTag("Player").GetComponent<BongleIsland>().isInputEnabled = true;

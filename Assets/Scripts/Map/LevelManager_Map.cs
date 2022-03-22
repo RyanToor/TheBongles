@@ -46,11 +46,24 @@ public class LevelManager_Map : LevelManager
         }
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         UpdateRegionsUnlocked();
-        GameObject.Find("SoundManager").GetComponent<AudioManager>().PlayMusic("Map");
+        bool isVideoPlaying = false;
+        foreach (VideoManager.Cutscene scene in GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().cutScenes)
+        {
+            if (scene.storyPoint == GameManager.Instance.storyPoint)
+            {
+                isVideoPlaying = true;
+                break;
+            }
+        }
+        if (!isVideoPlaying)
+        {
+            GameObject.Find("SoundManager").GetComponent<AudioManager>().PlayMusic("Map");
+        }
         if (GameManager.Instance.gameStarted)
         {
             GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().CheckCutscene();
         }
+        StartCoroutine(CheckDrawCheat());
         base.Start();
     }
 
@@ -68,7 +81,7 @@ public class LevelManager_Map : LevelManager
         RespawnTrash();
         GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().CheckCutscene();
         Time.timeScale = 1;
-        StartCoroutine(CheckDrawCheat());
+        StartCoroutine(Camera.main.GetComponent<MapCamera>().ZoomToMap());
         base.StartGame();
     }
 
@@ -78,7 +91,6 @@ public class LevelManager_Map : LevelManager
         foreach (Transform regionTransform in GameObject.Find("BossRegions").transform)
         {
             Region regionScript = regionTransform.gameObject.GetComponent<Region>();
-            Debug.Log("Max Region : " + GameManager.Instance.MaxRegion());
             regionScript.Unlock(GameManager.Instance.MaxRegion() > regionScript.regionOrder);
         }
         int storyPoint = GameManager.Instance.storyPoint;
