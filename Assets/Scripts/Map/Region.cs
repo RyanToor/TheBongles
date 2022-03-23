@@ -109,6 +109,19 @@ public class Region : MonoBehaviour
         }
         bossAnimator.Rebind();
         bossAnimator.Update(0f);
+        if (bossEnum == bossTypes.Whale)
+        {
+            if (isStoryCleared)
+            {
+                transform.Find("BossIsland").gameObject.GetComponent<CapsuleCollider2D>().size = new Vector2(8.5f, 2);
+                transform.Find("BossIsland").gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(0.25f, 0.7f);
+            }
+            else
+            {
+                transform.Find("BossIsland").gameObject.GetComponent<CapsuleCollider2D>().size = new Vector2(10, 2.3f);
+                transform.Find("BossIsland").gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(-0.05f, 0);
+            }
+        }
     }
 
     private void EditorUpdate()
