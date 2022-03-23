@@ -164,6 +164,7 @@ public class Robot : MonoBehaviour
             foreach (Animator cloud in clouds)
             {
                 cloud.SetTrigger("Bounce");
+                AudioManager.instance.PlaySFXAtLocation("Cloud", transform.position, 15);
             }
             clouds.Clear();
         }
@@ -176,6 +177,7 @@ public class Robot : MonoBehaviour
         if (skimAngle <= skimMaxAngle && skimVector.magnitude >= skimMinVelocity)
         {
             rb.velocity *= new Vector2(1, -1) * skimVelocityMultiplier;
+            AudioManager.instance.PlaySFXAtLocation("Skim", transform.position, 15);
         }
         else
         {
@@ -187,6 +189,8 @@ public class Robot : MonoBehaviour
     {
         rb.velocity *= waterHitVelocityMultiplier;
         Instantiate(splashPrefab, Vector3.Scale(transform.position, Vector3.right), Quaternion.identity);
+        AudioManager.instance.PlaySFXAtLocation("Splash", transform.position, 15);
+        AudioManager.instance.PlaySFXAtLocation("BubblingWater", transform.position, 15);
     }
 
     private Vector2 Legs(Vector3 legOrigin)
@@ -395,6 +399,7 @@ public class Robot : MonoBehaviour
             {
                 rb.velocity = jellyfishBoost * Vector3.Reflect(rb.velocity, collision.contacts[0].normal);
                 collision.gameObject.GetComponent<Animator>().SetTrigger("Bounce");
+                AudioManager.instance.PlaySFXAtLocation("Jellyfish", transform.position, 30);
             }
         }
     }

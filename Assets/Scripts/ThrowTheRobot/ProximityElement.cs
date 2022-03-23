@@ -65,10 +65,12 @@ public class ProximityElement : MonoBehaviour
                     {
                         Shy(true);
                         StartCoroutine(CheckBirdOffscreen());
+                        AudioManager.instance.PlaySFXAtLocation("BirdFly", transform.position, 60);
                     }
                     else
                     {
                         hit = true;
+                        AudioManager.instance.PlaySFXAtLocation("BirdDead", transform.position, 60);
                         if (Vector3.Angle(Vector3.up, collision.transform.position - transform.position) < birdMaxAngle)
                         {
                             collision.GetComponent<Rigidbody2D>().velocity = Vector3.Reflect(collision.GetComponent<Rigidbody2D>().velocity, Vector3.up);

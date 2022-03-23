@@ -67,7 +67,7 @@ MonoBehaviour:
     loop: 1
   - name: Throw the Robot
     clip: {fileID: 8300000, guid: cbaaa1b1652d1d34b83c337f77d39f88, type: 3}
-    volume: 0.8
+    volume: 0.3
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
@@ -152,6 +152,104 @@ MonoBehaviour:
     loop: 0
   - name: Pop
     clip: {fileID: 8300000, guid: d5544a121edd07e40af343f4bd23be3e, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Jellyfish
+    clip: {fileID: 8300000, guid: 5d091b345bdb1e04ca665c461a0652a8, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: NearBubble
+    clip: {fileID: 8300000, guid: 0736c2ebaa0fc3c4aa90c67cf96bdeb0, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: BubblingWater
+    clip: {fileID: 8300000, guid: acebdf2518d1bec43b76b35e0b6ea7c6, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: HMMMMM
+    clip: {fileID: 8300000, guid: 2408422c200522e4abc7d60413cbf699, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: PieCrunch
+    clip: {fileID: 8300000, guid: 35ddb75c1ade1ac40b381cd4765fa62a, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: PieGrab
+    clip: {fileID: 8300000, guid: e6a2ad5821c8c504cad620b01851318f, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Skim
+    clip: {fileID: 8300000, guid: af9337d8c75b90e41b90194053b4c59f, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Slingshot
+    clip: {fileID: 8300000, guid: 2479875f39f82da41bc49b60113ce084, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: SlingshotString
+    clip: {fileID: 8300000, guid: 3f0f1a8a9f3dd7646b695f212db2fa3e, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Throw
+    clip: {fileID: 8300000, guid: 8aaf19717b7d72341b0beec56787db2d, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Cloud
+    clip: {fileID: 8300000, guid: 4b5868403fc7344438c884dd280a65e8, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Splash
+    clip: {fileID: 8300000, guid: 0a267c625b2ee44428369786fab0ffae, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: BirdFly
+    clip: {fileID: 8300000, guid: 64a70a8c0cc2e4444a8965b1b44c8286, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: BirdDead
+    clip: {fileID: 8300000, guid: 52fdacd315e4a94478ebb4bd076c6894, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
