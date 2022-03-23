@@ -169,7 +169,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public AudioSource PlaySFXAtLocation(string sound, Vector3 location)
+    public AudioSource PlaySFXAtLocation(string sound, Vector3 location, float radius)
     {
         Sound newSound = FindSound(sFX, sound);
         GameObject tempObj = new GameObject("TempAudio");
@@ -178,6 +178,8 @@ public class AudioManager : MonoBehaviour
         tempSource.clip = newSound.clip;
         tempSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
         tempSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, GameManager.Instance.sFXVolume * GameManager.Instance.sFXMuted);
+        tempSource.spatialBlend = 1;
+        tempSource.maxDistance = radius;
         tempSource.Play();
         Destroy(tempObj, newSound.clip.length);
         return tempSource;

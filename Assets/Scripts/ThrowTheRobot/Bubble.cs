@@ -27,7 +27,7 @@ public class Bubble : MonoBehaviour
         {
             isPopping = true;
             GetComponent<Animator>().SetTrigger("Pop");
-            AudioManager.instance.PlaySFXAtLocation("Pop", transform.position);
+            AudioManager.instance.PlaySFXAtLocation("Pop", transform.position, 15);
         }
     }
 

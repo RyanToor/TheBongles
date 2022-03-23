@@ -321,7 +321,7 @@ public class Player : MonoBehaviour
                         RemoveArmour("1-1");
                     }
                 }
-                audioManager.PlaySFXAtLocation("Hit1", collision.transform.position);
+                audioManager.PlaySFXAtLocation("Hit1", collision.transform.position, 10);
                 rb.AddForce((transform.position - collision.transform.position).normalized * knockbackForce, ForceMode2D.Impulse);
                 trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
                 StopAllCoroutines();

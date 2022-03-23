@@ -199,7 +199,7 @@ public class BongleIsland : MonoBehaviour
             GameManager.Instance.trashCounts[trashType]++;
             floatingObjectsScript.objectsToRemove.Add(collision.gameObject);
             upgradeMenu.GetComponent<UpgradeMenu>().RefreshReadouts();
-            audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position);
+            audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position, 10);
         }
         else if (collision.CompareTag("Minigame"))
         {
