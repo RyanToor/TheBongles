@@ -13,6 +13,7 @@ public class ProximityElement : MonoBehaviour
     private bool randomChanceRunning = false, shyClosed = false, isFlipping = false, hit = false;
     private Transform anchor1, anchor2;
     private Vector2 anchorLineStart;
+    private Sprite anchor, anchorSeabed;
 
     private void Awake()
     {
@@ -26,6 +27,8 @@ public class ProximityElement : MonoBehaviour
             anchorLineStart = GetComponent<EdgeCollider2D>().points[0];
             GetComponent<LineRenderer>().SetPositions(new Vector3[] { anchorLineStart, transform.InverseTransformPoint(blockerPoint) });
             StartCoroutine(Anchor(GameObject.FindGameObjectWithTag("Player").transform));
+            anchor = GameObject.Find("Level").GetComponent<LevelBuilder>().anchorSprites[0];
+            anchorSeabed = GameObject.Find("Level").GetComponent<LevelBuilder>().anchorSprites[1];
         }
     }
 
@@ -213,6 +216,7 @@ public class ProximityElement : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, desiredPosition, anchorLerpSpeed * Time.deltaTime);
             GetComponent<LineRenderer>().SetPositions(new Vector3[] { anchorLineStart, transform.InverseTransformPoint(blockerPoint) });
             GetComponent<EdgeCollider2D>().SetPoints(new List<Vector2> { anchorLineStart, transform.InverseTransformPoint(blockerPoint) });
+            GetComponent<SpriteRenderer>().sprite = (Vector3.Magnitude(transform.position - anchorPoint) < 0.1f) ? anchorSeabed : anchor;
             yield return null;
         }
     }

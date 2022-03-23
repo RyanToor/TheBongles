@@ -101,7 +101,7 @@ public class Region : MonoBehaviour
 
     public void RefreshSprites()
     {
-        isStoryCleared = GameManager.Instance.storyPoint >= GameManager.Instance.regionStoryPoints[Mathf.Clamp(regionOrder, 0, int.MaxValue)];
+        isStoryCleared = GameManager.Instance.storyPoint >= GameManager.Instance.regionStoryPoints[Mathf.Clamp(regionOrder + 1, 1, int.MaxValue)];
         isBossMet = GameManager.Instance.storyPoint >= storyMeetPoints[(int)bossEnum];
         if (transform.Find("BossIsland/CloudScreen") != null)
         {

@@ -95,27 +95,36 @@ public class UpgradeMenu : MonoBehaviour
         }
         int currentLevel = GameManager.Instance.MaxRegion();
         bool upgradeReady = true;
-        for (int i = 0; i < storyCostContainers.Length; i++)
+        if (currentLevel < 4 && GameManager.Instance.storyPoint != 5 && GameManager.Instance.storyPoint != 9)
         {
-            if (i < currentLevel)
+            transform.Find("LeftPanel/UpgradeBackground/Story").gameObject.SetActive(true);
+            for (int i = 0; i < storyCostContainers.Length; i++)
             {
-                Vector3 barFill;
-                storyCostContainers[i].SetActive(true);
-                storyCostContainers[i].transform.Find("Text").GetComponent<Text>().text = storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost.ToString();
-                barFill = new Vector3(Mathf.Clamp((float)GameManager.Instance.trashCounts[trashNames[i]] / storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost, 0, 1), 1, 1);
-                storyCostContainers[i].transform.Find("BarFill").localScale = barFill;
-                storyCostContainers[i].transform.Find("BarFill").GetComponent<Image>().color = (barFill.x == 1) ? barAvailableColour : barUnavailableColour;
-                if (barFill.x < 1)
+                if (i < currentLevel)
                 {
-                    upgradeReady = false;
+                    Vector3 barFill;
+                    storyCostContainers[i].SetActive(true);
+                    storyCostContainers[i].transform.Find("Text").GetComponent<Text>().text = storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost.ToString();
+                    barFill = new Vector3(Mathf.Clamp((float)GameManager.Instance.trashCounts[trashNames[i]] / storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost, 0, 1), 1, 1);
+                    storyCostContainers[i].transform.Find("BarFill").localScale = barFill;
+                    storyCostContainers[i].transform.Find("BarFill").GetComponent<Image>().color = (barFill.x == 1) ? barAvailableColour : barUnavailableColour;
+                    if (barFill.x < 1)
+                    {
+                        upgradeReady = false;
+                    }
+                }
+                else
+                {
+                    storyCostContainers[i].SetActive(false);
                 }
             }
-            else
-            {
-                storyCostContainers[i].SetActive(false);
-            }
+            transform.Find("LeftPanel/UpgradeBackground/Story").GetComponent<Image>().sprite = storySprites[currentLevel - 1];
         }
-        transform.Find("LeftPanel/UpgradeBackground/Story").GetComponent<Image>().sprite = storySprites[currentLevel - 1];
+        else
+        {
+            transform.Find("LeftPanel/UpgradeBackground/Story").gameObject.SetActive(false);
+            upgradeReady = false;
+        }
         switch (currentLevel)
         {
             case 3:

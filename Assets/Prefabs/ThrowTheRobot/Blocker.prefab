@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3127311548312755154}
   - component: {fileID: 3127311548312755155}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blocker
   m_TagString: Minigame
   m_Icon: {fileID: 0}

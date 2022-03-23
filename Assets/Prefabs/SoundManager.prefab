@@ -150,6 +150,13 @@ MonoBehaviour:
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 0
+  - name: Pop
+    clip: {fileID: 8300000, guid: d5544a121edd07e40af343f4bd23be3e, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
   musicSource: {fileID: 0}
   musicSource2: {fileID: 0}
   sfxSource: {fileID: 0}

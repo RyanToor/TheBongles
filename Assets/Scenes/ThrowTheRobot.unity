@@ -4716,6 +4716,9 @@ MonoBehaviour:
   blockerSprites:
   - {fileID: 21300000, guid: 13257224dccc6d142a35dbbeb0bb222f, type: 3}
   - {fileID: 21300000, guid: 11b722f7a6590254da65979d92475f2f, type: 3}
+  anchorSprites:
+  - {fileID: 21300000, guid: 2911cd96f9d89ba4c891ce1875afb62a, type: 3}
+  - {fileID: 21300000, guid: b02c946982b224e438367bea55e74bf8, type: 3}
   cloudSprites:
   - {fileID: 263122527897851915, guid: dab804ae4f031604c837858d2b917a9c, type: 3}
   - {fileID: 4604437650257920085, guid: dab804ae4f031604c837858d2b917a9c, type: 3}

@@ -23,8 +23,12 @@ public class Bubble : MonoBehaviour
 
     private void Pop()
     {
-        isPopping = true;
-        GetComponent<Animator>().SetTrigger("Pop");
+        if (!isPopping)
+        {
+            isPopping = true;
+            GetComponent<Animator>().SetTrigger("Pop");
+            AudioManager.instance.PlaySFXAtLocation("Pop", transform.position);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

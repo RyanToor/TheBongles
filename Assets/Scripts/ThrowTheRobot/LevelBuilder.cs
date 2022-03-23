@@ -10,7 +10,7 @@ public class LevelBuilder : MonoBehaviour
     public GameObject tilePrefab, bubblePrefab;
     public int[] biomeLengths;
     public GameObject birdPrefab, piePrefab, blockerPrefab, cloudPrefab, anchorPrefab;
-    public Sprite[] blockerSprites, cloudSprites;
+    public Sprite[] blockerSprites, anchorSprites, cloudSprites;
     public BiomeTiles levelTileLibrary;
     public PuzzlePrefabArray[] biomePuzzlePrefabs;
 
@@ -189,7 +189,7 @@ public class LevelBuilder : MonoBehaviour
         {
             Vector3 newBlockerPos = new Vector3(biomeEndPoints[i] * tilePixelWidth / 100, 0, 0);
             RaycastHit2D[] rayHits = Physics2D.RaycastAll(newBlockerPos, Vector3.down);
-            Vector3 anchorPoint = rayHits[rayHits.Length - 1].point;
+            Vector3 anchorPoint = rayHits[rayHits.Length - 1].point + Vector2.down;
             GameObject newBlocker = Instantiate(blockerPrefab, newBlockerPos, Quaternion.identity, transform);
             newBlocker.GetComponent<SpriteRenderer>().sprite = blockerSprites[i];
             newBlocker.AddComponent<PolygonCollider2D>();

@@ -55,7 +55,7 @@ public class LevelManager_Map : LevelManager
                 break;
             }
         }
-        if (!isVideoPlaying)
+        if (!isVideoPlaying || !GameManager.Instance.gameStarted)
         {
             GameObject.Find("SoundManager").GetComponent<AudioManager>().PlayMusic("Map");
         }
@@ -94,7 +94,7 @@ public class LevelManager_Map : LevelManager
             regionScript.Unlock(GameManager.Instance.MaxRegion() > regionScript.regionOrder);
         }
         int storyPoint = GameManager.Instance.storyPoint;
-        castle.GetComponent<SpriteRenderer>().sprite = storyPoint > castleStoryPoint? castleAfter: castleBefore;
+        castle.GetComponent<Animator>().SetBool("Castle", storyPoint > castleStoryPoint);
         castleSmallCollider.enabled = storyPoint <= castleStoryPoint;
         castleBigCollider.enabled = storyPoint > castleStoryPoint;
     }
@@ -111,7 +111,7 @@ public class LevelManager_Map : LevelManager
     public void SpawnRandomTrash()
     {
         GameObject newTrash = Instantiate(randomTrashPrefab, new Vector3(Random.Range(mapArea.min.x, mapArea.max.x), Random.Range(mapArea.min.y, mapArea.max.y), 0), Quaternion.identity, randomTrashContainer.transform);
-        int trashType = Random.Range(0, GameManager.Instance.MaxRegion());
+        int trashType = Mathf.Clamp(Random.Range(0, GameManager.Instance.MaxRegion()), 0, 2);
         RandomTrash trashScript = newTrash.GetComponent<RandomTrash>();
         int trashIndex = Random.Range(0, trashSprites[trashType].sprites.Length);
         trashScript.sprite = trashSprites[trashType].sprites[trashIndex];

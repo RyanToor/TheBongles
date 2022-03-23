@@ -430,6 +430,7 @@ MonoBehaviour:
   trashType: 0
   bossEnum: 0
   storyMeetPoints: 02000000060000000a000000
+  storyCleanPoints: 04000000080000000c000000
   bossControllers:
   - name: Eel
     bossController: {fileID: 9100000, guid: d274efafb27ab274c9dedcc1c6e3de80, type: 2}

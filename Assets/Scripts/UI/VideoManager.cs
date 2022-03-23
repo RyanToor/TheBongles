@@ -12,7 +12,7 @@ public class VideoManager : MonoBehaviour
     private VideoPlayer videoPlayer;
     private RawImage image;
     private AudioManager audioManager;
-    private Image background;
+    private Image background, frame;
     private bool isPlayingCutscene;
     public int currentScene = 0, currentCutscene = 0;
 
@@ -20,6 +20,7 @@ public class VideoManager : MonoBehaviour
     void Awake()
     {
         background = transform.Find("Background").GetComponent<Image>();
+        frame = transform.Find("Frame").GetComponent<Image>();
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         videoPlayer = GetComponent<VideoPlayer>();
         image = GetComponent<RawImage>();
@@ -52,6 +53,7 @@ public class VideoManager : MonoBehaviour
         currentCutscene = cutscene;
         GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = false;
         background.enabled = true;
+        frame.enabled = true;
         if (GameManager.Instance.musicMuted == 1 && GameManager.Instance.storyPoint != 13)
         {
             audioManager.PlayMusicWithFade("Story", musicCrossfadeTime);
@@ -139,6 +141,7 @@ public class VideoManager : MonoBehaviour
         videoPlayer.targetTexture.Release();
         image.enabled = false;
         background.enabled = false;
+        frame.enabled = false;
         if (GameObject.Find("CloudCover") != null)
         {
             GameObject.Find("CloudCover").SetActive(false);

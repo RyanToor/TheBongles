@@ -47,7 +47,7 @@ MonoBehaviour:
   inGameUI:
   - {fileID: 0}
   - {fileID: 0}
-  regionStoryPoints: 000000000400000008000000
+  regionStoryPoints: 0000000004000000080000000c000000
   gameStarted: 0
   bongleIslandPosition: {x: 0, y: 0, z: 0}
   highscoreStars: 
