@@ -54,7 +54,7 @@ public class VideoManager : MonoBehaviour
         GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = false;
         background.enabled = true;
         frame.enabled = true;
-        if (GameManager.Instance.musicMuted == 1 && GameManager.Instance.storyPoint != 13)
+        if (GameManager.Instance.musicMuted == 1)
         {
             audioManager.PlayMusicWithFade("Story", musicCrossfadeTime);
         }
@@ -68,6 +68,10 @@ public class VideoManager : MonoBehaviour
     {
         if (isPlayingCutscene)
         {
+            if (currentCutscene == 6 && currentScene == 4)
+            {
+                AudioManager.instance.PlayMusicWithFade("Silence");
+            }
             if (cutScenes[currentCutscene].scenes[currentScene].isLooping)
             {
                 GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().VideoPrompt();
@@ -131,12 +135,6 @@ public class VideoManager : MonoBehaviour
         }
         GameManager.Instance.storyPoint++;
         Debug.Log("Story Point : " + GameManager.Instance.storyPoint);
-        if (GameManager.Instance.storyPoint == 13)
-        {
-            StopCoroutine("PlayVideo");
-            CheckCutscene();
-            yield break;
-        }
         videoPlayer.enabled = false;
         videoPlayer.targetTexture.Release();
         image.enabled = false;

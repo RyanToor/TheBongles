@@ -127,6 +127,11 @@ public class UpgradeMenu : MonoBehaviour
         }
         switch (currentLevel)
         {
+            case 4:
+                transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageCrab").GetComponent<Image>().sprite = enabledSprites[0];
+                transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];
+                transform.Find("LeftPanel/UpgradeBackground/CrabTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];
+                break;
             case 3:
                 transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageCrab").GetComponent<Image>().sprite = enabledSprites[0];
                 transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];

@@ -72,6 +72,13 @@ MonoBehaviour:
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 1
+  - name: Silence
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
   sFX:
   - name: Click
     clip: {fileID: 8300000, guid: fb7710d4d8272444b9fc376ee2a4e98c, type: 3}

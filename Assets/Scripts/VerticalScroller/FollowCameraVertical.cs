@@ -22,11 +22,13 @@ public class FollowCameraVertical : MonoBehaviour
     private float[] offset = new float[3], chasmOffset = new float[3];
     private int[] positionIndex = new int[3], chasmPositionIndex = new int[3];
     private SpriteRenderer[] colourPlates;
+    private GameObject audioListener;
 
     private void Start()
     {
         for (int i = 0; i < 3; i++)
         {
+            audioListener = transform.Find("AudioListener").gameObject;
             colourPlates = new SpriteRenderer[3] { transform.Find("Background").GetComponent<SpriteRenderer>(), transform.Find("Midground").GetComponent<SpriteRenderer>(), transform.Find("Foreground").GetComponent<SpriteRenderer>() };
             Transform backgroundPlateTransform = transform.Find("Background_" + (i + 1).ToString());
             Transform chasmPlateTransform = transform.Find("ChasmPlates");
@@ -45,6 +47,7 @@ public class FollowCameraVertical : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        audioListener.transform.position = target.transform.position;
         desiredPos = new Vector3(0, Mathf.Clamp(target.transform.position.y, -Mathf.Infinity, 0),-10f);
         transform.position = Vector3.Lerp(transform.position, desiredPos, lerpSpeed);
         if ((desiredPos - transform.position).magnitude < minDistance)

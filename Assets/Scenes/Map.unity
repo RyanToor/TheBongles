@@ -9525,8 +9525,8 @@ MonoBehaviour:
   lerpDir: -1
   closedPos: {x: 0, y: 0, z: 0}
   openPos: {x: 370, y: 0, z: 0}
-  upgradeAvailableColour: {r: 0.504717, g: 1, b: 0.57075477, a: 1}
-  upgradeActiveColour: {r: 0.5, g: 0.66666675, b: 1, a: 1}
+  upgradeAvailableColour: {r: 0.9, g: 1, b: 0.9142857, a: 1}
+  upgradeActiveColour: {r: 0.8, g: 0.86614174, b: 1, a: 1}
   barUnavailableColour: {r: 1, g: 0.39999998, b: 0.39999998, a: 1}
   barAvailableColour: {r: 0, g: 1, b: 0.13333344, a: 1}
   sprites:
@@ -9560,66 +9560,70 @@ MonoBehaviour:
         - type: 1
           cost: 40
     - upgradeTiers:
+      - upgradeTierImage: {fileID: 21300000, guid: 6e05c4e17db0faf4c8ea714640d5376b, type: 3}
+        upgradeCosts:
+        - type: 0
+          cost: 30
+        - type: 1
+          cost: 30
+    - upgradeTiers:
       - upgradeTierImage: {fileID: 21300000, guid: f102bc9907b9acb4db647f63d668f76a, type: 3}
         upgradeCosts:
         - type: 0
-          cost: 60
-        - type: 1
-          cost: 40
-    - upgradeTiers:
-      - upgradeTierImage: {fileID: 21300000, guid: 66836eced270f3047acc6a4c0e605a90, type: 3}
-        upgradeCosts:
-        - type: 1
-          cost: 60
-        - type: 2
-          cost: 40
-        - type: 0
-          cost: 50
-  - upgrades:
-    - upgradeTiers:
-      - upgradeTierImage: {fileID: 21300000, guid: 7fb3cb29e99b20e4e8ae546e5f9655d3, type: 3}
-        upgradeCosts:
+          cost: 20
         - type: 1
           cost: 30
-      - upgradeTierImage: {fileID: 21300000, guid: 989ea15068574e34b913627372298f75, type: 3}
-        upgradeCosts:
-        - type: 1
-          cost: 20
         - type: 2
-          cost: 20
+          cost: 40
+  - upgrades:
     - upgradeTiers:
       - upgradeTierImage: {fileID: 21300000, guid: ce99708dc7396ba41b697f643c8480b3, type: 3}
         upgradeCosts:
         - type: 1
-          cost: 10
-        - type: 2
-          cost: 20
-    - upgradeTiers:
-      - upgradeTierImage: {fileID: 21300000, guid: 66836eced270f3047acc6a4c0e605a90, type: 3}
+          cost: 30
+      - upgradeTierImage: {fileID: 21300000, guid: ce99708dc7396ba41b697f643c8480b3, type: 3}
         upgradeCosts:
-        - type: 2
-          cost: 50
-  - upgrades:
-    - upgradeTiers:
-      - upgradeTierImage: {fileID: 21300000, guid: 66836eced270f3047acc6a4c0e605a90, type: 3}
-        upgradeCosts:
-        - type: 2
-          cost: 20
-      - upgradeTierImage: {fileID: 21300000, guid: 66836eced270f3047acc6a4c0e605a90, type: 3}
-        upgradeCosts:
-        - type: 2
-          cost: 15
         - type: 1
-          cost: 15
+          cost: 20
+        - type: 2
+          cost: 20
     - upgradeTiers:
-      - upgradeTierImage: {fileID: 21300000, guid: 66836eced270f3047acc6a4c0e605a90, type: 3}
+      - upgradeTierImage: {fileID: 21300000, guid: 98a9e51d2097f22429e2b417df1ae942, type: 3}
         upgradeCosts:
         - type: 0
-          cost: 50
+          cost: 20
+        - type: 1
+          cost: 20
+      - upgradeTierImage: {fileID: 21300000, guid: cc7c20c5c7310354ea17d58108535552, type: 3}
+        upgradeCosts:
+        - type: 1
+          cost: 20
+        - type: 2
+          cost: 20
+    - upgradeTiers:
+      - upgradeTierImage: {fileID: 21300000, guid: 3243303fe486798479fb1a9439c4dce6, type: 3}
+        upgradeCosts:
+        - type: 1
+          cost: 40
         - type: 2
           cost: 30
+  - upgrades:
     - upgradeTiers:
-      - upgradeTierImage: {fileID: 21300000, guid: 66836eced270f3047acc6a4c0e605a90, type: 3}
+      - upgradeTierImage: {fileID: 21300000, guid: e5869c083ef05684695fc9d05f147a77, type: 3}
+        upgradeCosts:
+        - type: 0
+          cost: 10
+        - type: 1
+          cost: 10
+    - upgradeTiers:
+      - upgradeTierImage: {fileID: 21300000, guid: 1f336e11ca1dcfc469e9fcb289694ac6, type: 3}
+        upgradeCosts:
+        - type: 1
+          cost: 30
+        - type: 2
+          cost: 15
+    - upgradeTiers:
+      - upgradeTierImage: {fileID: 21300000, guid: 1345a67784378a04491eb12bdbcd558e, type: 3}
         upgradeCosts:
         - type: 0
           cost: 10
@@ -9630,7 +9634,7 @@ MonoBehaviour:
   storySprites:
   - {fileID: 21300000, guid: 98d46dd69f75d3948bf101fdd7c2a84a, type: 3}
   - {fileID: 21300000, guid: 5887b5b08da98624484202a2ae093dd0, type: 3}
-  - {fileID: 21300000, guid: 4675d208bf571524fa2f9dba883c4651, type: 3}
+  - {fileID: 21300000, guid: dffc4f10ece8e9f449d970c2e75c83c2, type: 3}
   storyUpgradeCosts:
   - upgradeCosts:
     - type: 0
@@ -14967,9 +14971,7 @@ MonoBehaviour:
     - video: {fileID: 32900000, guid: 1bf497c82eb6bef44a92dda856b59b8a, type: 3}
       audio: {fileID: 0}
       isLooping: 0
-  - storyPoint: 13
-    scenes:
-    - video: {fileID: 32900000, guid: abc0aa5ef6eb11d49961795199e564c3, type: 3}
+    - video: {fileID: 32900000, guid: 30a49ba8f09f37d489df8ce4072dd6df, type: 3}
       audio: {fileID: 0}
       isLooping: 0
     - video: {fileID: 32900000, guid: 539982a4263b9a64484aadea47f83269, type: 3}

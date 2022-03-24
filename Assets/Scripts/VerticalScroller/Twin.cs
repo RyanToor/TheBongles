@@ -35,7 +35,8 @@ public class Twin : MonoBehaviour
         {
             levelManager.plastic++;
             trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
-            audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position, 10);
+            AudioSource grabSound = audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position, 1000);
+            grabSound.minDistance = 5;
             animator.SetTrigger("Grab");
         }
     }

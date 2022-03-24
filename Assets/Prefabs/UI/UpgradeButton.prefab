@@ -133,8 +133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrade:
     upgradeTiers: []
-  upgradeMenu: {fileID: 0}
   upgradeIndicies: 
+  upgradeMenu: {fileID: 0}
   image: {fileID: 1038664896232872461}
   requirementImages:
   - {fileID: 1038664895689462282}
@@ -146,9 +146,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a18d50a14deb676459d93760ab615e73, type: 3}
   requirementOffset: -30
   requirementSeparation: 25
-  availableColour: {r: 0.5058824, g: 1, b: 0.57254905, a: 1}
-  unlockedColour: {r: 0.5019608, g: 0.6666667, b: 1, a: 1}
-  finalTierColour: {r: 0.75, g: 0.5, b: 1, a: 1}
+  availableColour: {r: 0.7, g: 1, b: 0.7411765, a: 1}
+  unlockedColour: {r: 0.5, g: 0.6688311, b: 1, a: 1}
+  finalTierColour: {r: 0.6333334, g: 0.6, b: 1, a: 1}
 --- !u!222 &1038664895565632304
 CanvasRenderer:
   m_ObjectHideFlags: 0

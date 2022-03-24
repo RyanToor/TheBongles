@@ -184,7 +184,7 @@ public class BongleIsland : MonoBehaviour
                 if (upgradeSpriteObjects[i][j] != null)
                 {
                     upgradeSpriteObjects[i][j].SetActive(GameManager.Instance.upgrades[i][j] != 0);
-                    upgradeSpriteObjects[i][j].GetComponent<SpriteRenderer>().sprite = upgradeSprites[i].upgradeSprites[j].sprites[Mathf.Clamp(GameManager.Instance.upgrades[i][j] - 1, 0, int.MaxValue)];
+                    upgradeSpriteObjects[i][j].GetComponent<SpriteRenderer>().sprite = upgradeSprites[i].upgradeSprites[j].sprites[Mathf.Clamp(GameManager.Instance.upgrades[i][j] - 1, 0, upgradeSprites[i].upgradeSprites[j].sprites.Length - 1)];
                 }
             }
         }
