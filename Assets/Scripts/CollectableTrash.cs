@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CollectableTrash : MonoBehaviour
 {
+    public bool allowRandomisation = true;
     [HideInInspector]
     public TrashType type;
     [HideInInspector]
@@ -11,9 +12,12 @@ public class CollectableTrash : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().isTrashRandom)
+        if (GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().isTrashRandom && allowRandomisation)
         {
-            GetComponent<SpriteRenderer>().sprite = sprites[1].sprites[Random.Range(0, sprites[1].sprites.Length)].sprite;
+            TrashType levelTrashType = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().levelTrashType;
+            int trashIndex = Random.Range(0, sprites[(int)levelTrashType].sprites.Length);
+            GetComponent<SpriteRenderer>().sprite = sprites[(int)levelTrashType].sprites[trashIndex].sprite;
+            trashName = sprites[(int)levelTrashType].sprites[trashIndex].name;
         }
         else
         {

@@ -3271,7 +3271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 76, y: 76}
+  m_AnchoredPosition: {x: 76, y: 100.5}
   m_SizeDelta: {x: 149.84851, y: 253.63016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1041991488
@@ -3307,9 +3307,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '0
-
-'
+  m_Text: 0
 --- !u!222 &1041991489
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4921,10 +4919,6 @@ MonoBehaviour:
           yDifference: 0
         - sprite: {fileID: -268639658380969007, guid: afc8a828579c842709f065fb0a3900ee, type: 3}
           yDifference: 0
-        - sprite: {fileID: -2722229043469525026, guid: 625e0ae3e1a404e24b179345d795e314, type: 3}
-          yDifference: 0
-        - sprite: {fileID: -6422026550151672459, guid: 625e0ae3e1a404e24b179345d795e314, type: 3}
-          yDifference: 0
       - name: Rock-Crablantis
         plates:
         - sprite: {fileID: -350034498895759948, guid: 708ddb7b242bc86408431ee115f5b86d, type: 3}
@@ -5117,6 +5111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTrashTrigger: 1
   isTrashRandom: 1
+  levelTrashType: 1
   plastic: 0
   metal: 0
   glass: 0

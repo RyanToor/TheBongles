@@ -10,9 +10,12 @@ public class LevelManager_ScrapGrabber : LevelManager
     [HideInInspector]
     public float remainingTime;
 
+    private ScrapGrabberUI uI;
+
     protected override void Awake()
     {
         remainingTime = maxTime;
+        uI = GameObject.Find("Canvas").GetComponent<ScrapGrabberUI>();
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
     }
 
@@ -20,6 +23,10 @@ public class LevelManager_ScrapGrabber : LevelManager
     protected override void Update()
     {
         remainingTime = Mathf.Clamp(remainingTime - Time.deltaTime, 0, float.MaxValue);
+        if (remainingTime == 0)
+        {
+            uI.EndGame();
+        }
         if (Application.isEditor)
         {
             EditorUpdate();

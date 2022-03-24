@@ -80,7 +80,7 @@ public class ThrowTheRobotUI : MonoBehaviour
             currentValue += (scoreBarRate * (starValues[starsScored + 1] - starValues[starsScored]) / 1000f);
             if (starsScored < 3)
             {
-                if (currentValue > starValues[starsScored + 1])
+                if (currentValue >= starValues[starsScored + 1])
                 {
                     stars[starsScored].SetActive(true);
                     StartCoroutine(StarPulse(stars[starsScored]));

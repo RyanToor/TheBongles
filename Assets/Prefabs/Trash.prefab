@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58419d008e4c2574baef1bea74027944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowRandomisation: 1
   type: 0
-  trashName: Bag
+  trashName: Bottle
   sprites:
   - type: 0
     sprites:
@@ -119,7 +120,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0b855ca9a0d0bd041a640b665fce0b64, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14ac477d49578554a994874407a5bf22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

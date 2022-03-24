@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public bool isTrashTrigger, isTrashRandom;
+    public TrashType levelTrashType;
     public int plastic = 0, metal = 0, glass = 0;
 
     protected virtual void Awake()

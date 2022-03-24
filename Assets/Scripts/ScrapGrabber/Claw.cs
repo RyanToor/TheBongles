@@ -17,10 +17,12 @@ public class Claw : MonoBehaviour
     private LevelManager_ScrapGrabber levelManager;
     private float fuelBarStartLength, lineLength, lineLengthIndicatorPortion, lightOffset;
     private int currentTrash;
+    private Spawner spawner;
 
     // Start is called before the first frame update
     void Start()
     {
+        spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_ScrapGrabber>();
         linePoints.AddRange(new Vector3[2]{ transform.parent.position, transform.position});
         lineRenderer = GetComponent<LineRenderer>();
@@ -135,7 +137,7 @@ public class Claw : MonoBehaviour
         List<string> collectedTrash = new List<string>();
         foreach (Transform trash in transform.Find("TrashContainer"))
         {
-            if (trash.name == "Fuel")
+            if (trash.name == "Fuel(Clone)")
             {
                 levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + fuelTime, 0, levelManager.maxTime);
             }
@@ -143,6 +145,7 @@ public class Claw : MonoBehaviour
             {
                 levelManager.glass++;
                 collectedTrash.Add(trash.gameObject.GetComponent<CollectableTrash>().trashName);
+                print(trash.gameObject.GetComponent<CollectableTrash>().trashName);
             }
             Destroy(trash.gameObject);
         }
@@ -166,8 +169,9 @@ public class Claw : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("RandomTrash"))
+        if (collision.CompareTag("RandomTrash") && state == ClawState.fire)
         {
+            spawner.objectsToRemove.Add(collision.gameObject);
             collision.transform.parent = transform.Find("TrashContainer");
             foreach (Transform trash in collision.transform)
             {
@@ -188,7 +192,11 @@ public class Claw : MonoBehaviour
                 StoreTrash();
             }
         }
-        else if (collision.gameObject.name == "Mine")
+        else if (collision.CompareTag("Boss") && state == ClawState.fire)
+        {
+            state = ClawState.reel;
+        }
+        else if (collision.gameObject.name == "Mine(Clone)")
         {
             currentTrash = 0;
             collision.gameObject.GetComponent<Obstacle>().MineHit();
