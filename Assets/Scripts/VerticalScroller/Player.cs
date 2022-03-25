@@ -58,8 +58,8 @@ public class Player : MonoBehaviour
                 if (transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[0][i]) != null)
                 {
                     transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[0][i]).gameObject.SetActive(true);
-                    Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[0][i]));
                 }
+                Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[0][i]));
             }
         }
     }
@@ -223,21 +223,11 @@ public class Player : MonoBehaviour
         switch (upgradeNumber.x)
         {
             case 1:
-                if (upgradeNumber.y == 1)
-                {
-                    health += 2;
-                    break;
-                }
-                else if (upgradeNumber.y == 2)
-                {
-                    health += 1;
-                    break;
-                }
-                else
-                {
-                    break;
-                }
+                health += upgradeNumber.y;
+                break;
             case 2:
+                break;
+            case 3:
                 break;
             default:
                 break;
@@ -395,9 +385,6 @@ public class Player : MonoBehaviour
         twin.GetComponent<Collider2D>().enabled = false;
         audioManager.PlaySFX("GameOver");
         isloaded = false;
-        gameOver.SetActive(true);
-        pauseMenu.SetActive(false);
-        plastic.SetActive(false);
         uI.EndGame();
     }
 }

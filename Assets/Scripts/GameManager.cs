@@ -141,10 +141,21 @@ public class GameManager : MonoBehaviour
             upgrades[1] = loadedSave.upgrades2;
             upgrades[2] = loadedSave.upgrades3;
         }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                upgrades[i] = new int[3] { 0, 0, 0 };
+            }
+        }
         storyPoint = loadedSave.storyPoint;
         if (loadedSave.highscoreStars != null)
         {
             highscoreStars = loadedSave.highscoreStars;
+        }
+        else
+        {
+            highscoreStars = new int[3] { 0, 0, 0 };
         }
 
         if (File.Exists(Application.persistentDataPath + "/settings.json"))

@@ -68,6 +68,10 @@ public class Robot : MonoBehaviour
         {
             if (GameManager.Instance.upgrades[1][i] > 0)
             {
+                if (transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[1][i]) != null)
+                {
+                    transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[1][i]).gameObject.SetActive(true);
+                }
                 Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[1][i]));
             }
         }
@@ -77,7 +81,7 @@ public class Robot : MonoBehaviour
     {
         if (levelManager.State == LevelState.fly || levelManager.State == LevelState.move)
         {
-            RaycastHit2D groundHit = Physics2D.CircleCast((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, colliderWidth, -transform.up, colliderHeight - colliderWidth + groundCastOffset, groundLayerMask);
+            RaycastHit2D groundHit = Physics2D.CircleCast((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, colliderWidth, Vector2.down, colliderHeight - colliderWidth + groundCastOffset, groundLayerMask);
             isGrounded = groundHit.collider != null;
             Debug.DrawLine((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, (Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset - (Vector2)transform.up * (colliderHeight + groundCastOffset), Color.red);
             rb.AddForce((isGrounded? 1 : airControlMultiplier) * Input.GetAxis("Horizontal") * moveForce * (Mathf.Sign(rb.velocity.x) != Mathf.Sign(Input.GetAxisRaw("Horizontal"))? decelerationMultiplier : 1) * Vector2.right, ForceMode2D.Force);
@@ -105,7 +109,7 @@ public class Robot : MonoBehaviour
                     isJumpInputHeld = true;
                     StartCoroutine(JumpInputRelease());
                 }
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, groundHit.normal, Vector3.forward)), rotationSpeed);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, Mathf.Clamp(Vector3.SignedAngle(Vector3.up, groundHit.normal, Vector3.forward), -20, 20)), rotationSpeed);
             }
             else
             {
@@ -217,13 +221,14 @@ public class Robot : MonoBehaviour
 
     private void DrawLegs()
     {
+        AnimatorStateInfo animState = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
         legLine.SetPositions(new Vector3[5]
         {
-            legL.position + legL.transform.up * 0.3f,
-            transform.TransformPoint(legStartL + (isGrounded? Vector2.zero : Vector2.up * 0.3f)),
-            transform.position,
-            transform.TransformPoint(legStartR + (isGrounded? Vector2.zero : Vector2.up * 0.3f)),
-            legR.position + legL.transform.up * 0.3f
+            legL.localPosition + Vector3.up * 0.3f,
+            legStartL + (animState.IsName("Idle") || animState.IsName("Move_Right") || animState.IsName("MoveLeft")? Vector2.zero : Vector2.up * 0.3f),
+            Vector3.zero,
+            legStartR + (animState.IsName("Idle") || animState.IsName("Move_Right") || animState.IsName("MoveLeft")? Vector2.zero : Vector2.up * 0.3f),
+            legR.localPosition + Vector3.up * 0.3f
         });
     }
 
@@ -313,10 +318,6 @@ public class Robot : MonoBehaviour
                 doubleJump = true;
                 maxBoostFuel = fuelUpgrades[upgradeIndicies.y - 1].maxFuel;
                 boostFuel = fuelUpgrades[upgradeIndicies.y - 1].startFuel;
-                if (transform.Find("Upgrade" + upgradeIndicies.x + "-" + GameManager.Instance.upgrades[1][upgradeIndicies.y - 1]) != null)
-                {
-                    transform.Find("Upgrade" + upgradeIndicies.x + "-" + GameManager.Instance.upgrades[1][upgradeIndicies.y - 1]).gameObject.SetActive(true);
-                }
                 break;
             default:
                 break;
@@ -338,6 +339,10 @@ public class Robot : MonoBehaviour
             rb.velocity = Vector3.zero;
             transform.position = startPos;
             levelManager.State = LevelState.launch;
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            rb.velocity = Vector3.zero;
         }
     }
 

@@ -53,7 +53,7 @@ MonoBehaviour:
   birdMaxAngle: 0
   birdKnockbeck: 0
   birdSpeed: 0
-  anchorLerpSpeed: 1.5
+  anchorLerpSpeed: 0.5
   anchorTopOffset: 5
   anchorPoint: {x: 0, y: 0, z: 0}
   blockerPoint: {x: 0, y: 0, z: 0}
@@ -246,7 +246,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.040613525}
+    pivot: {x: 0.5, y: 0.07}
     oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5

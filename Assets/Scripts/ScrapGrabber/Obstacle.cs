@@ -9,6 +9,9 @@ public class Obstacle : MonoBehaviour
     public AnimationCurve mineBlast;
     public float mineAnimationLength;
 
+    [HideInInspector]
+    public Spawner spawner;
+
     public void MineHit()
     {
         GetComponent<Animator>().SetTrigger("Hit");
@@ -18,7 +21,7 @@ public class Obstacle : MonoBehaviour
         {
             if (collider.CompareTag("RandomTrash"))
             {
-                Destroy(collider.gameObject);
+                spawner.destroyRequests.Add(collider.gameObject);
             }
         }
     }
@@ -32,11 +35,15 @@ public class Obstacle : MonoBehaviour
         while (currentTime < duration)
         {
             light.intensity = curve.Evaluate(currentTime / duration) * lightMaxIntensity;
-            print(curve.Evaluate(currentTime / duration));
             currentTime += Time.deltaTime;
             yield return null;
         }
         light.intensity = lightMaxIntensity;
         light.enabled = false;
+    }
+
+    public void RequestDestruction()
+    {
+        GameObject.Find("Spawner").GetComponent<Spawner>().destroyRequests.Add(gameObject);
     }
 }

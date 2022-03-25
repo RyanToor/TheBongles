@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 164390310}
   - component: {fileID: 164390309}
   m_Layer: 5
-  m_Name: Distance
+  m_Name: Secondary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1429,7 +1429,7 @@ GameObject:
   - component: {fileID: 460154943}
   - component: {fileID: 460154942}
   m_Layer: 5
-  m_Name: Metal
+  m_Name: Trash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1777,18 +1777,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5667f8afb3869324cb32c81cc3d3cee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostFill: {fileID: 707318533}
-  scoreBarRate: 10
-  starPulseMaxScale: 1.5
-  starPulsePeriod: 0.5
-  boostFadeRate: 2
-  boostLerpSpeed: 4
   trashScore: 5
+  scoreBarRate: 10
+  starPulsePeriod: 0.5
+  starPulseMaxScale: 1.5
   starValues: 00000000900100002003000078050000
   stars:
   - {fileID: 1869051484}
   - {fileID: 276537923}
   - {fileID: 406242022}
+  boostFill: {fileID: 707318533}
+  boostFadeRate: 2
+  boostLerpSpeed: 4
 --- !u!1 &547467114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1801,7 +1801,7 @@ GameObject:
   - component: {fileID: 547467117}
   - component: {fileID: 547467116}
   m_Layer: 5
-  m_Name: Metal
+  m_Name: Trash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3517,8 +3517,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1670249916}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+      - m_Target: {fileID: 523905180}
+        m_TargetAssemblyTypeName: MinigameUI, Assembly-CSharp
         m_MethodName: LoadMap
         m_Mode: 1
         m_Arguments:
@@ -5837,7 +5837,7 @@ LineRenderer:
     textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
 --- !u!81 &1818866240
 AudioListener:
@@ -6350,7 +6350,7 @@ GameObject:
   - component: {fileID: 1931062453}
   - component: {fileID: 1931062452}
   m_Layer: 5
-  m_Name: Trash
+  m_Name: TrashImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6950,7 +6950,7 @@ GameObject:
   - component: {fileID: 2107469634}
   - component: {fileID: 2107469633}
   m_Layer: 5
-  m_Name: Metal Panel
+  m_Name: TrashPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

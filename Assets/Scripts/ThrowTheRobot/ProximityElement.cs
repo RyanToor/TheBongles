@@ -212,13 +212,32 @@ public class ProximityElement : MonoBehaviour
 
     private IEnumerator Anchor(Transform player)
     {
+        bool anchorDown = false;
+        float lerpPos = 0f;
         while (true)
         {
-            Vector3 desiredPosition = player.position.x < transform.position.x ? anchorPoint : blockerPoint + Vector3.down * anchorTopOffset;
-            transform.position = Vector3.Lerp(transform.position, desiredPosition, anchorLerpSpeed * Time.deltaTime);
+            if (player.position.x < transform.position.x - 2)
+            {
+                if (!anchorDown)
+                {
+                    lerpPos = 0f;
+                }
+                anchorDown = true;
+            }
+            else if (player.position.x > transform.position.x)
+            {
+                if (anchorDown)
+                {
+                    lerpPos = 0f;
+                }
+                anchorDown = false;
+            }
+            lerpPos += anchorLerpSpeed * Time.deltaTime;
+            Vector3 desiredPosition = anchorDown? anchorPoint : blockerPoint + Vector3.down * anchorTopOffset;
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, lerpPos);
             GetComponent<LineRenderer>().SetPositions(new Vector3[] { anchorLineStart, transform.InverseTransformPoint(blockerPoint) });
             GetComponent<EdgeCollider2D>().SetPoints(new List<Vector2> { anchorLineStart, transform.InverseTransformPoint(blockerPoint) });
-            GetComponent<SpriteRenderer>().sprite = (Vector3.Magnitude(transform.position - anchorPoint) < 0.1f) ? anchorSeabed : anchor;
+            GetComponent<SpriteRenderer>().sprite = transform.position == anchorPoint? anchorSeabed : anchor;
             yield return null;
         }
     }

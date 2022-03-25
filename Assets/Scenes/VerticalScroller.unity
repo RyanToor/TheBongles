@@ -943,7 +943,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
-  - {fileID: 503522250}
+  - {fileID: 652416383}
   - {fileID: 80411286}
   - {fileID: 144610259}
   m_Father: {fileID: 1374813869}
@@ -3496,7 +3496,7 @@ GameObject:
   - component: {fileID: 503522252}
   - component: {fileID: 503522251}
   m_Layer: 5
-  m_Name: Plastic
+  m_Name: Trash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3511,15 +3511,15 @@ RectTransform:
   m_GameObject: {fileID: 503522249}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.68505, y: 0.41103, z: 0.68505}
+  m_LocalScale: {x: 0.68504995, y: 0.41102996, z: 0.68504995}
   m_Children: []
-  m_Father: {fileID: 230742348}
+  m_Father: {fileID: 652416383}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 27.8, y: 95}
-  m_SizeDelta: {x: -317.5151, y: -327.3698}
+  m_SizeDelta: {x: 94.48489, y: 84.63019}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503522251
 MonoBehaviour:
@@ -4299,7 +4299,7 @@ GameObject:
   - component: {fileID: 583049160}
   - component: {fileID: 583049159}
   m_Layer: 5
-  m_Name: Plastic
+  m_Name: Trash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4704,6 +4704,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635429977}
   m_CullTransparentMesh: 1
+--- !u!1 &652416382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652416383}
+  m_Layer: 5
+  m_Name: TrashPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &652416383
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652416382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 503522250}
+  m_Father: {fileID: 230742348}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &690157371
 GameObject:
   m_ObjectHideFlags: 0
@@ -6902,6 +6938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTrashTrigger: 1
   isTrashRandom: 1
+  levelTrashType: 0
   plastic: 0
   metal: 0
   glass: 0
@@ -7498,7 +7535,7 @@ GameObject:
   - component: {fileID: 1143217835}
   - component: {fileID: 1143217834}
   m_Layer: 5
-  m_Name: Trash
+  m_Name: TrashImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9398,7 +9435,7 @@ GameObject:
   - component: {fileID: 1503437401}
   - component: {fileID: 1503437400}
   m_Layer: 5
-  m_Name: Depth
+  m_Name: Secondary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10648,8 +10685,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1005326308}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+      - m_Target: {fileID: 1374813870}
+        m_TargetAssemblyTypeName: MinigameUI, Assembly-CSharp
         m_MethodName: LoadMap
         m_Mode: 1
         m_Arguments:

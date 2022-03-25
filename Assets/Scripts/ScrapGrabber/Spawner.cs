@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
     public bool spawnLeft, spawnRight;
 
     [HideInInspector]
-    public List<GameObject> spawnedObjects = new List<GameObject>(), objectsToRemove = new List<GameObject>();
+    public List<GameObject> spawnedObjects = new List<GameObject>(), objectsToRemove = new List<GameObject>(), destroyRequests = new List<GameObject>();
 
     private float timeSinceLastSpawn, nextSpawnPeriod, speed;
     private Vector2 prevSpawnPos, prevSpawnDim, isPrevSpawnLeft;
@@ -75,7 +75,7 @@ public class Spawner : MonoBehaviour
         List<GameObject> objectsToDestroy = new List<GameObject>();
         for (int i = spawnedObjects.Count - 1; i >= 0; i--)
         {
-            if (Mathf.Abs(spawnedObjects[i].transform.position.x) > playArea.extents.x + 1)
+            if (Mathf.Abs(spawnedObjects[i].transform.position.x) > playArea.extents.x + 1 || destroyRequests.Contains(spawnedObjects[i]))
             {
                 objectsToDestroy.Add(spawnedObjects[i]);
             }
@@ -131,6 +131,10 @@ public class Spawner : MonoBehaviour
         startPosList.Add(newObject.transform.position);
         speedMultipliers.Add(UnityEngine.Random.Range(minSpeedMultiplier, maxSpeedMultiplier) * newObject.transform.position.x > 0 ? -1 : 1);
         seeds.Add(UnityEngine.Random.Range(0, 100000));
+        if(newObject.TryGetComponent(out Obstacle obstacleScript))
+        {
+            obstacleScript.spawner = this;
+        }
         nextSpawnPeriod = UnityEngine.Random.Range(Mathf.Lerp(startMinSpawnPeriod, endMinSpawnPeriod, Time.timeSinceLevelLoad / endTime), Mathf.Lerp(startMaxSpawnPeriod, endMaxSpawnPeriod, Time.timeSinceLevelLoad / endTime));
         timeSinceLastSpawn = 0;
     }

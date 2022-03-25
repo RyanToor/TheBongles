@@ -146,6 +146,10 @@ MonoBehaviour:
   birdMaxAngle: 0
   birdKnockbeck: 0
   birdSpeed: 0
+  anchorLerpSpeed: 0
+  anchorTopOffset: 0
+  anchorPoint: {x: 0, y: 0, z: 0}
+  blockerPoint: {x: 0, y: 0, z: 0}
 --- !u!212 &695142655475636057
 SpriteRenderer:
   m_ObjectHideFlags: 0
