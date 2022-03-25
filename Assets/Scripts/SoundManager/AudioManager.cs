@@ -185,6 +185,24 @@ public class AudioManager : MonoBehaviour
         return tempSource;
     }
 
+    public AudioSource PlayAudioAtObject(string sound, GameObject parentObject, float radius, bool loop = false)
+    {
+        Sound newSound = FindSound(sFX, sound);
+        AudioSource audioSource = parentObject.AddComponent<AudioSource>();
+        audioSource.clip = newSound.clip;
+        audioSource.pitch = RandomiseValue(newSound.pitch, newSound.pitchDeviation);
+        audioSource.volume = RandomiseValue(newSound.volume, newSound.volumeDeviation, GameManager.Instance.sFXVolume * GameManager.Instance.sFXMuted);
+        audioSource.spatialBlend = 1;
+        audioSource.maxDistance = radius;
+        audioSource.Play();
+        audioSource.loop = loop;
+        if (!loop)
+        {
+            Destroy(audioSource, newSound.clip.length);
+        }
+        return audioSource;
+    }
+
     public void SetMusicVolume(float volume)
     {
         GameManager.Instance.musicVolume =  volume;
