@@ -106,6 +106,10 @@ MonoBehaviour:
   birdMaxAngle: 0
   birdKnockbeck: 0
   birdSpeed: 0
+  anchorLerpSpeed: 0
+  anchorTopOffset: 0
+  anchorPoint: {x: 0, y: 0, z: 0}
+  blockerPoint: {x: 0, y: 0, z: 0}
 --- !u!58 &3187605994216067062
 CircleCollider2D:
   m_ObjectHideFlags: 0

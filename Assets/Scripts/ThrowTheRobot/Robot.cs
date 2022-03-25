@@ -168,7 +168,6 @@ public class Robot : MonoBehaviour
             foreach (Animator cloud in clouds)
             {
                 cloud.SetTrigger("Bounce");
-                AudioManager.instance.PlaySFXAtLocation("Cloud", transform.position, 15);
             }
             clouds.Clear();
         }
@@ -359,6 +358,7 @@ public class Robot : MonoBehaviour
         {
             clouds.Add(collision.gameObject.GetComponent<Animator>());
             collision.gameObject.GetComponent<Animator>().SetTrigger("Bounce");
+            AudioManager.instance.PlaySFXAtLocation("Cloud", transform.position, 15);
             rb.AddForce(cloudBoostForce * Vector2.up, ForceMode2D.Impulse);
             boostFuel = Mathf.Clamp(boostFuel + cloudBoostFuel, 0, maxBoostFuel);
         }
@@ -366,11 +366,13 @@ public class Robot : MonoBehaviour
         {
             levelManager.metal++;
             levelManager.floatingTrash.objectsToRemove.Add(collision.gameObject);
+            AudioManager.instance.PlaySFXAtLocation("Metal", transform.position, 15);
         }
         else if (collision.CompareTag("Boss"))
         {
             levelManager.Pies++;
             Destroy(collision.gameObject);
+            AudioManager.instance.PlaySFXAtLocation("PieGrab", transform.position, 20);
         }
         else if (collision.gameObject.name == "SandCollectionTile")
         {
@@ -393,6 +395,7 @@ public class Robot : MonoBehaviour
         {
             rb.AddForce(new Vector3(-Mathf.Sign(collision.gameObject.transform.lossyScale.x) * musselForce * Mathf.Cos(Mathf.Deg2Rad * musselAngle), musselForce * Mathf.Sin(Mathf.Deg2Rad * musselAngle)), ForceMode2D.Impulse);
             collision.gameObject.transform.parent.gameObject.GetComponent<Animator>().SetTrigger("Open");
+            AudioManager.instance.PlaySFXAtLocation("Clam", transform.position, 20);
         }
         else if (collision.gameObject.name == "Turtle")
         {
@@ -404,7 +407,7 @@ public class Robot : MonoBehaviour
             {
                 rb.velocity = jellyfishBoost * Vector3.Reflect(rb.velocity, collision.contacts[0].normal);
                 collision.gameObject.GetComponent<Animator>().SetTrigger("Bounce");
-                AudioManager.instance.PlaySFXAtLocation("Jellyfish", transform.position, 30);
+                AudioManager.instance.PlaySFXAtLocation("Jellyfish", transform.position, 20);
             }
         }
     }

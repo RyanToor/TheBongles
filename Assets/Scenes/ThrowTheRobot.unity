@@ -4932,17 +4932,7 @@ MonoBehaviour:
   biomePuzzlePrefabs:
   - name: Sand
     puzzlePrefabs:
-    - {fileID: 8373276652658738681, guid: 0b2930432920b46ce9e794c26ba92195, type: 3}
-    - {fileID: 8373276652658738681, guid: 272215a0cc52e4ec5957107b7cad0127, type: 3}
-    - {fileID: 8373276652658738681, guid: bdf3555b4abf2499aa3b8dc0fc718565, type: 3}
-    - {fileID: 8373276652658738681, guid: aee4ef952588e46faae6e17ab89fdd40, type: 3}
     - {fileID: 8373276652658738681, guid: 39b58def4822a6f4b99bfb958e96ad46, type: 3}
-    - {fileID: 8373276652658738681, guid: a7ec9c47834da614fa91959ebce45ebe, type: 3}
-    - {fileID: 8373276652658738681, guid: 8a8e3cca5bde27946862943153b40fcc, type: 3}
-    - {fileID: 8373276652658738681, guid: 9a512be75b10ee34aa61874034b7ea3b, type: 3}
-    - {fileID: 8373276652658738681, guid: e9ac06c9219656440bf39f5a4a3b1b72, type: 3}
-    - {fileID: 8373276652658738681, guid: 89bd9ad744fc0a8478d7d96fb2133e17, type: 3}
-    - {fileID: 8373276652658738681, guid: cd9e063ec6f7aee4e9bab3ba84e1a43a, type: 3}
   - name: Rock
     puzzlePrefabs:
     - {fileID: 8373276652658738681, guid: 20d0e1b89e4884c32a05b7cf6bf554ab, type: 3}
@@ -5561,7 +5551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d100de16063270d4bae5f3d82e7bfffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopRightMovement: 1
+  stopRightMovement: 0
   doubleJump: 0
   groundLayerMask:
     serializedVersion: 2

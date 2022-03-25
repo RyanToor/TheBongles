@@ -59,7 +59,7 @@ public class ThrowInputs : MonoBehaviour
             yield return null;
             duration += Time.deltaTime;
         }
-        AudioManager.instance.PlaySFX("Throw");
+        AudioManager.instance.PlaySFXAtLocation("Throw", transform.position, 20);
         robot.GetComponent<Robot>().Launch(throwVector);
         levelManager.State = LevelState.fly;
     }

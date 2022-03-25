@@ -7,7 +7,11 @@ public class Bubble : MonoBehaviour
     public float floatSpeed, boostForce;
 
     private bool isPopping;
-
+   
+    void Awake()
+    {
+        AudioManager.instance.PlaySFXAtLocation("Blob", transform.position, 20);
+    }
     // Update is called once per frame
     void FixedUpdate()
     {

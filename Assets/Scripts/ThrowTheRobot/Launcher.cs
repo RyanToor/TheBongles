@@ -47,6 +47,7 @@ public class Launcher : MonoBehaviour
         float progress = 0;
         transform.Find("Bubba").GetComponent<Animator>().SetTrigger("Reel");
         reelBottom.position = new Vector3(reelBottom.position.x, robot.transform.position.y, reelBottom.position.z);
+        AudioSource reelSound = AudioManager.instance.PlayAudioAtObject("Reel", gameObject, 20, true);
         while (progress != 1)
         {
             if (isReeling)
@@ -58,6 +59,7 @@ public class Launcher : MonoBehaviour
                 yield return new WaitForFixedUpdate();
             }
         }
+        Destroy(reelSound);
         levelManager.State = LevelState.launch;
         transform.Find("Bubba").GetComponent<Animator>().SetTrigger("Eat");
         reelStarted = false;
