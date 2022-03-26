@@ -33,6 +33,7 @@ public class Robot : MonoBehaviour
     private LineRenderer legLine;
     private Animator animator;
     private LineRenderer returnLine;
+    private bool isBoosting;
 
     private void Awake()
     {
@@ -170,6 +171,11 @@ public class Robot : MonoBehaviour
                 cloud.SetTrigger("Bounce");
             }
             clouds.Clear();
+
+            if (!isBoosting)
+            {
+                StartCoroutine(BoostSound());
+            }
         }
     }
 
@@ -419,6 +425,17 @@ public class Robot : MonoBehaviour
             rb.velocity += Vector2.right * (collision.gameObject.GetComponent<SpriteRenderer>().flipX? 1 : -1) * collision.gameObject.GetComponent<ProximityElement>().speed;
             transform.parent = null;
         }
+    }
+    private IEnumerator BoostSound()
+    {
+        isBoosting = true;
+        AudioSource boostSource = AudioManager.instance.PlayAudioAtObject("Boost", gameObject, 20, true);
+        while (Input.GetAxisRaw("Jump") == 1)
+        {
+            yield return null;
+        }
+        Destroy(boostSource);
+        isBoosting = false;
     }
 
     private void OnDisable()
