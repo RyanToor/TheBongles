@@ -9,6 +9,7 @@ public class Claw : MonoBehaviour
     public GameObject fuelBar, spotLight;
     public GameObject[] lineLengthIndicators;
     public TrashRequests trashRequestScript;
+    public Vector2[] clawExtensionAndItems;
 
     private ClawState state;
     private LineRenderer lineRenderer;
@@ -31,10 +32,19 @@ public class Claw : MonoBehaviour
         lineLength = (transform.position - transform.parent.position).magnitude;
         lineLengthIndicatorPortion = maxLineLength / lineLengthIndicators.Length;
         lightOffset = (spotLight.transform.position - transform.parent.position).magnitude;
+        for (int i = 0; i < 3; i++)
+        {
+            if (transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[2][i]) != null)
+            {
+                transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[2][i]).gameObject.SetActive(true);
+            }
+            Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[2][i]));
+            print(new Vector2Int(i + 1, GameManager.Instance.upgrades[2][i]));
+        }
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         switch (state)
         {
@@ -56,13 +66,13 @@ public class Claw : MonoBehaviour
 
     private void Aim()
     {
-        transform.RotateAround(transform.parent.position, Vector3.forward, Input.GetAxis("Horizontal") * aimSpeed * Time.deltaTime * (Time.timeScale != 0 ? 1 / Time.timeScale : 1));
+        transform.RotateAround(transform.parent.position, Vector3.forward, Input.GetAxisRaw("Horizontal") * aimSpeed * Time.unscaledDeltaTime);
         float currentAngle = Vector3.SignedAngle(transform.position - transform.parent.position, Vector3.down, Vector3.forward);
         if (Mathf.Abs(currentAngle) > maxAimAngle)
         {
             transform.RotateAround(transform.parent.position, Mathf.Sign(currentAngle) > 0? Vector3.forward : Vector3.back, Mathf.Abs(currentAngle) - maxAimAngle);
         }
-        if (Input.GetAxis("Jump") > 0)
+        if (Input.GetAxisRaw("Jump") > 0)
         {
             state = ClawState.fire;
             linePoints.Insert(linePoints.Count - 1, transform.position);
@@ -78,7 +88,7 @@ public class Claw : MonoBehaviour
         {
             isReleasing = false;
         }
-        transform.Rotate(Vector3.forward, Input.GetAxisRaw("Horizontal") * turnSpeed * Time.deltaTime * (Time.timeScale != 0 ? 1 / Time.timeScale : 1));
+        transform.Rotate(Vector3.forward, Input.GetAxisRaw("Horizontal") * turnSpeed * Time.unscaledDeltaTime);
         float currentAngle = transform.rotation.eulerAngles.z < 180? transform.rotation.eulerAngles.z : -(360 - transform.rotation.eulerAngles.z);
         if (Mathf.Abs(currentAngle) > maxAimAngle)
         {
@@ -104,7 +114,7 @@ public class Claw : MonoBehaviour
     private void Reel()
     {
         float segmentLength = (linePoints[linePoints.Count - 2] - transform.position).magnitude;
-        if (segmentLength < reelSpeed * Time.deltaTime * (Time.timeScale != 0 ? 1 / Time.timeScale : 1))
+        if (segmentLength < reelSpeed * Time.unscaledDeltaTime)
         {
             lineLength -= (linePoints[linePoints.Count - 2] - linePoints[linePoints.Count - 3]).magnitude;
             if (linePoints.Count == 3)
@@ -123,11 +133,11 @@ public class Claw : MonoBehaviour
         }
         else
         {
-            transform.position += reelSpeed * Time.deltaTime * (linePoints[linePoints.Count - 2] - transform.position).normalized * (Time.timeScale != 0 ? 1 / Time.timeScale : 1);
+            transform.position += reelSpeed * Time.unscaledDeltaTime * (linePoints[linePoints.Count - 2] - transform.position).normalized;
         }
         linePoints[linePoints.Count - 1] = transform.position;
         Quaternion desiredRotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, linePoints[linePoints.Count - 2] - transform.position, Vector3.forward));
-        transform.rotation = state == ClawState.aim? Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, linePoints[linePoints.Count - 2] - transform.position, Vector3.forward)) : Quaternion.RotateTowards(transform.rotation, desiredRotation, reelRotateSpeed * Time.deltaTime);
+        transform.rotation = state == ClawState.aim? Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, linePoints[linePoints.Count - 2] - transform.position, Vector3.forward)) : Quaternion.RotateTowards(transform.rotation, desiredRotation, reelRotateSpeed * Time.unscaledDeltaTime);
         lineRenderer.positionCount = linePoints.Count;
         lineRenderer.SetPositions(linePoints.ToArray());
     }
@@ -164,6 +174,30 @@ public class Claw : MonoBehaviour
     {
         spotLight.transform.position = transform.parent.position + (transform.position - transform.parent.position).normalized * lightOffset;
         spotLight.transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, transform.parent.position - transform.position, Vector3.forward));
+    }
+
+    private void Upgrade(Vector2Int upgradeNumber)
+    {
+        switch (upgradeNumber.x)
+        {
+            case 1:
+                if (upgradeNumber.y > 0)
+                {
+                    maxLineLength += clawExtensionAndItems[upgradeNumber.y - 1].x;
+                    trashCatchLimit = (int)(clawExtensionAndItems[upgradeNumber.y - 1].y);
+                }
+                break;
+            case 2:
+                break;
+            case 3:
+                if (upgradeNumber.y > 0)
+                {
+                    levelManager.canFreeze = true;
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

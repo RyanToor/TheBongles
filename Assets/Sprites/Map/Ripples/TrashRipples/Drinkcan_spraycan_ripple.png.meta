@@ -1,28 +1,43 @@
 fileFormatVersion: 2
-guid: 77df68ba79ab8314ca87eca948bd99b9
+guid: e8171c68c172d974c81572a556aaf25f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3901519251298665238
-    second: SodaCan_ripple_sprite_0
+      213: -1569436687601868410
+    second: Drinkcan_spraycan_ripple_0
   - first:
-      213: 933883704683848325
-    second: SodaCan_ripple_sprite_1
+      213: -7115013749919359853
+    second: Drinkcan_spraycan_ripple_1
   - first:
-      213: 8161884097279744871
-    second: SodaCan_ripple_sprite_2
+      213: -4140058113077718120
+    second: Drinkcan_spraycan_ripple_2
   - first:
-      213: -1117492853349479254
-    second: SodaCan_ripple_sprite_3
+      213: -6525554829266768220
+    second: Drinkcan_spraycan_ripple_3
   - first:
-      213: -1229714005528430692
-    second: SodaCan_ripple_sprite_4
+      213: -140279720581463965
+    second: Drinkcan_spraycan_ripple_4
   - first:
-      213: -6664133781703126301
-    second: SodaCan_ripple_sprite_5
+      213: -7577531922838367054
+    second: Drinkcan_spraycan_ripple_5
   - first:
-      213: 7123803614054748564
-    second: SodaCan_ripple_sprite_6
+      213: -2830033028085593862
+    second: Drinkcan_spraycan_ripple_6
+  - first:
+      213: -6683411669780274332
+    second: Drinkcan_spraycan_ripple_7
+  - first:
+      213: 8382189715296393187
+    second: Drinkcan_spraycan_ripple_8
+  - first:
+      213: 3961193846085315639
+    second: Drinkcan_spraycan_ripple_9
+  - first:
+      213: 7916994319812874422
+    second: Drinkcan_spraycan_ripple_10
+  - first:
+      213: -8732620905912148364
+    second: Drinkcan_spraycan_ripple_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -86,7 +101,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -98,7 +113,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -110,7 +125,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -122,7 +137,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,148 +151,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SodaCan_ripple_sprite_0
+      name: Drinkcan_spraycan_ripple_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 512
-        height: 512
+        y: 768
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.58, y: 0.02}
+      pivot: {x: 0.54, y: 0.28}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aecbefd79e40bd9c0800000000000000
-      internalID: -3901519251298665238
+      spriteID: 681660ad5ad383ae0800000000000000
+      internalID: -1569436687601868410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SodaCan_ripple_sprite_1
+      name: Drinkcan_spraycan_ripple_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.54, y: 0.28}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39c590001b4624d90800000000000000
+      internalID: -7115013749919359853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drinkcan_spraycan_ripple_2
       rect:
         serializedVersion: 2
         x: 512
-        y: 1024
-        width: 512
-        height: 512
+        y: 768
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.58, y: 0.02}
+      pivot: {x: 0.54, y: 0.28}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 582e43f0842d5fc00800000000000000
-      internalID: 933883704683848325
+      spriteID: 8935784c41f8b86c0800000000000000
+      internalID: -4140058113077718120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SodaCan_ripple_sprite_2
+      name: Drinkcan_spraycan_ripple_3
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 512
-        height: 512
+        x: 768
+        y: 768
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.58, y: 0.02}
+      pivot: {x: 0.54, y: 0.28}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76bd44cc756d44170800000000000000
-      internalID: 8161884097279744871
+      spriteID: 4ae2837e4729075a0800000000000000
+      internalID: -6525554829266768220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SodaCan_ripple_sprite_3
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 9
-      pivot: {x: 0.58, y: 0.02}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aac011dab2edd70f0800000000000000
-      internalID: -1117492853349479254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SodaCan_ripple_sprite_4
+      name: Drinkcan_spraycan_ripple_4
       rect:
         serializedVersion: 2
         x: 0
         y: 512
-        width: 512
-        height: 512
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.58, y: 0.02}
+      pivot: {x: 0.54, y: 0.28}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c97b72590ad2feee0800000000000000
-      internalID: -1229714005528430692
+      spriteID: 3600d8d5650ad0ef0800000000000000
+      internalID: -140279720581463965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SodaCan_ripple_sprite_5
+      name: Drinkcan_spraycan_ripple_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.54, y: 0.28}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b459091dd237d690800000000000000
+      internalID: -7577531922838367054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drinkcan_spraycan_ripple_6
       rect:
         serializedVersion: 2
         x: 512
         y: 512
-        width: 512
-        height: 512
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.58, y: 0.02}
+      pivot: {x: 0.435, y: 0.28}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e297e532ad3483a0800000000000000
-      internalID: -6664133781703126301
+      spriteID: af8c55284f3b9b8d0800000000000000
+      internalID: -2830033028085593862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SodaCan_ripple_sprite_6
+      name: Drinkcan_spraycan_ripple_7
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 768
         y: 512
-        width: 512
-        height: 512
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.58, y: 0.02}
+      pivot: {x: 0.435, y: 0.28}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4919069b4a5dcd260800000000000000
-      internalID: 7123803614054748564
+      spriteID: 463eb0f1f70cf33a0800000000000000
+      internalID: -6683411669780274332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drinkcan_spraycan_ripple_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.435, y: 0.28}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e79c24a225835470800000000000000
+      internalID: 8382189715296393187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drinkcan_spraycan_ripple_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.435, y: 0.28}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73ce062d0dcf8f630800000000000000
+      internalID: 3961193846085315639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drinkcan_spraycan_ripple_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.435, y: 0.28}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b05b394360dedd60800000000000000
+      internalID: 7916994319812874422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drinkcan_spraycan_ripple_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.435, y: 0.28}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47ed4f0bd8f7fc680800000000000000
+      internalID: -8732620905912148364
       vertices: []
       indices: 
       edges: []

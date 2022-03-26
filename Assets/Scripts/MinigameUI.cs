@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MinigameUI : MonoBehaviour
 {
-    public float trashScore, scoreBarRate, starPulsePeriod, starPulseMaxScale;
+    public float trashScore, secondaryCountMultiplier = 1, scoreBarRate, starPulsePeriod, starPulseMaxScale;
     public int[] starValues;
     public GameObject[] stars;
 
@@ -51,7 +51,7 @@ public class MinigameUI : MonoBehaviour
         readouts.SetActive(false);
         transform.Find("GameOver/EndScreen/Score/Trash").GetComponent<Text>().text = trashCount.ToString();
         transform.Find("GameOver/EndScreen/Score/Secondary").GetComponent<Text>().text = secondaryCount.ToString();
-        score = trashScore * trashCount + secondaryCount;
+        score = trashScore * trashCount + secondaryCount * secondaryCountMultiplier;
         StartCoroutine(FillBar());
     }
 

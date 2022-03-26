@@ -1,28 +1,43 @@
 fileFormatVersion: 2
-guid: 514f5bb18a634ff4cb38077f066482c7
+guid: 63e1db85443d31042ace3c56e025f09a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3973769848177580432
-    second: Crisp_Bag_ripple_sprite_0
+      213: 3958102374729822848
+    second: Bucket_tin_ripple_0
   - first:
-      213: -2393948008601557378
-    second: Crisp_Bag_ripple_sprite_1
+      213: -584475592943331850
+    second: Bucket_tin_ripple_1
   - first:
-      213: -1178587913568592583
-    second: Crisp_Bag_ripple_sprite_2
+      213: -8302743975461615942
+    second: Bucket_tin_ripple_2
   - first:
-      213: 8414108682568570878
-    second: Crisp_Bag_ripple_sprite_3
+      213: -6637299540631409016
+    second: Bucket_tin_ripple_3
   - first:
-      213: 280274104896241545
-    second: Crisp_Bag_ripple_sprite_4
+      213: 2791027662275631468
+    second: Bucket_tin_ripple_4
   - first:
-      213: 9005613993169166201
-    second: Crisp_Bag_ripple_sprite_5
+      213: -4138110032577146635
+    second: Bucket_tin_ripple_5
   - first:
-      213: -1470017538962747081
-    second: Crisp_Bag_ripple_sprite_6
+      213: -2619348548882107815
+    second: Bucket_tin_ripple_6
+  - first:
+      213: 6336925901728075504
+    second: Bucket_tin_ripple_7
+  - first:
+      213: 5748037074836500597
+    second: Bucket_tin_ripple_8
+  - first:
+      213: -1755085411386336143
+    second: Bucket_tin_ripple_9
+  - first:
+      213: -5911642205378967710
+    second: Bucket_tin_ripple_10
+  - first:
+      213: -1047944561312625431
+    second: Bucket_tin_ripple_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -86,7 +101,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -98,7 +113,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -110,7 +125,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -122,7 +137,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,148 +151,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Crisp_Bag_ripple_sprite_0
+      name: Bucket_tin_ripple_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1536
-        width: 512
-        height: 512
+        y: 768
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.48, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 076a73480655ad8c0800000000000000
-      internalID: -3973769848177580432
+      spriteID: 082b66e83210ee630800000000000000
+      internalID: 3958102374729822848
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crisp_Bag_ripple_sprite_1
+      name: Bucket_tin_ripple_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.48, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f51abe7b8683e7f0800000000000000
+      internalID: -584475592943331850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bucket_tin_ripple_2
       rect:
         serializedVersion: 2
         x: 512
-        y: 1536
-        width: 512
-        height: 512
+        y: 768
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.48, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e76ec8848fcf6ced0800000000000000
-      internalID: -2393948008601557378
+      spriteID: ab68899185ab6cc80800000000000000
+      internalID: -8302743975461615942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crisp_Bag_ripple_sprite_2
+      name: Bucket_tin_ripple_3
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1536
-        width: 512
-        height: 512
+        x: 768
+        y: 768
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.48, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93ddc2b7980d4afe0800000000000000
-      internalID: -1178587913568592583
+      spriteID: 88e2dc4db3393e3a0800000000000000
+      internalID: -6637299540631409016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crisp_Bag_ripple_sprite_3
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 1536
-        width: 512
-        height: 512
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef79706544be4c470800000000000000
-      internalID: 8414108682568570878
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Crisp_Bag_ripple_sprite_4
+      name: Bucket_tin_ripple_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 512
-        height: 512
+        y: 512
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.48, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98fb41e30dbb3e300800000000000000
-      internalID: 280274104896241545
+      spriteID: c695a301fd8bbb620800000000000000
+      internalID: 2791027662275631468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crisp_Bag_ripple_sprite_5
+      name: Bucket_tin_ripple_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.48, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f052ca99da7296c0800000000000000
+      internalID: -4138110032577146635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bucket_tin_ripple_6
       rect:
         serializedVersion: 2
         x: 512
-        y: 1024
-        width: 512
-        height: 512
+        y: 512
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.465, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97f9227863e5afc70800000000000000
-      internalID: 9005613993169166201
+      spriteID: 95272f86f5436abd0800000000000000
+      internalID: -2619348548882107815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crisp_Bag_ripple_sprite_6
+      name: Bucket_tin_ripple_7
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 512
-        height: 512
+        x: 768
+        y: 512
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.465, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 731188836d2799be0800000000000000
-      internalID: -1470017538962747081
+      spriteID: 0fe497c788841f750800000000000000
+      internalID: 6336925901728075504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bucket_tin_ripple_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.465, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 570b761e34125cf40800000000000000
+      internalID: 5748037074836500597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bucket_tin_ripple_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.465, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17cd8dffd1fa4a7e0800000000000000
+      internalID: -1755085411386336143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bucket_tin_ripple_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.465, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2670e254cb0a5fda0800000000000000
+      internalID: -5911642205378967710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bucket_tin_ripple_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.465, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ec88a649f3f471f0800000000000000
+      internalID: -1047944561312625431
       vertices: []
       indices: 
       edges: []

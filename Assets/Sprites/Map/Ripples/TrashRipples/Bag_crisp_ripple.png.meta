@@ -1,28 +1,40 @@
 fileFormatVersion: 2
-guid: ecae1fd60684b1d488ae1b18cc255679
+guid: b56cb1e5ca2c5694fbe7cf850281861d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6473032033041292267
-    second: BrokenBottle_ripple_sprite_0
+      213: -4671689568362594039
+    second: Bag_crisp_ripple_0
   - first:
-      213: 8211248131423037189
-    second: BrokenBottle_ripple_sprite_1
+      213: 1748483494222192005
+    second: Bag_crisp_ripple_1
   - first:
-      213: 2572831530123068433
-    second: BrokenBottle_ripple_sprite_2
+      213: -1268166161831773276
+    second: Bag_crisp_ripple_2
   - first:
-      213: 3068823497058411092
-    second: BrokenBottle_ripple_sprite_3
+      213: -267314545510470098
+    second: Bag_crisp_ripple_3
   - first:
-      213: -3510947928398465022
-    second: BrokenBottle_ripple_sprite_4
+      213: 5428290366972336380
+    second: Bag_crisp_ripple_4
   - first:
-      213: -7779384312733920555
-    second: BrokenBottle_ripple_sprite_5
+      213: 1932088723607999797
+    second: Bag_crisp_ripple_5
   - first:
-      213: -1074767628866262425
-    second: BrokenBottle_ripple_sprite_6
+      213: -3913123182047800786
+    second: Bag_crisp_ripple_6
+  - first:
+      213: -1797118625364807457
+    second: Bag_crisp_ripple_7
+  - first:
+      213: 914735865404285228
+    second: Bag_crisp_ripple_8
+  - first:
+      213: 290554946779809509
+    second: Bag_crisp_ripple_9
+  - first:
+      213: 3242589284047897566
+    second: Bag_crisp_ripple_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -86,7 +98,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -98,7 +110,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -110,7 +122,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -122,7 +134,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,148 +148,232 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BrokenBottle_ripple_sprite_0
+      name: Bag_crisp_ripple_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1536
-        width: 512
-        height: 512
+        y: 768
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.32, y: 0.02}
+      pivot: {x: 0.5, y: 0.335}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51469da59ab2b26a0800000000000000
-      internalID: -6473032033041292267
+      spriteID: 90189d8d613da2fb0800000000000000
+      internalID: -4671689568362594039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrokenBottle_ripple_sprite_1
+      name: Bag_crisp_ripple_1
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1536
-        width: 512
-        height: 512
+        x: 256
+        y: 768
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.32, y: 0.02}
+      pivot: {x: 0.5, y: 0.335}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5076f04aba634f170800000000000000
-      internalID: 8211248131423037189
+      spriteID: 58d5fb0697cd34810800000000000000
+      internalID: 1748483494222192005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrokenBottle_ripple_sprite_2
+      name: Bag_crisp_ripple_2
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1536
-        width: 512
-        height: 512
+        x: 510
+        y: 768
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.32, y: 0.02}
+      pivot: {x: 0.5, y: 0.335}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11409eb25a884b320800000000000000
-      internalID: 2572831530123068433
+      spriteID: 4abb8d74891966ee0800000000000000
+      internalID: -1268166161831773276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrokenBottle_ripple_sprite_3
+      name: Bag_crisp_ripple_3
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1536
-        width: 512
-        height: 512
+        x: 768
+        y: 768
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.32, y: 0.02}
+      pivot: {x: 0.5, y: 0.335}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 452e98416b6a69a20800000000000000
-      internalID: 3068823497058411092
+      spriteID: e2ead8f46de4a4cf0800000000000000
+      internalID: -267314545510470098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrokenBottle_ripple_sprite_4
+      name: Bag_crisp_ripple_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 512
-        height: 512
+        y: 512
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.32, y: 0.02}
+      pivot: {x: 0.5, y: 0.335}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2087aeef57b964fc0800000000000000
-      internalID: -3510947928398465022
+      spriteID: cf89f051459255b40800000000000000
+      internalID: 5428290366972336380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrokenBottle_ripple_sprite_5
+      name: Bag_crisp_ripple_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.335}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 535513d157820da10800000000000000
+      internalID: 1932088723607999797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bag_crisp_ripple_6
       rect:
         serializedVersion: 2
         x: 512
-        y: 1024
-        width: 512
-        height: 512
+        y: 512
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.32, y: 0.02}
+      pivot: {x: 0.5, y: 0.33}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d29f3c3f231a0490800000000000000
-      internalID: -7779384312733920555
+      spriteID: e22d1b3d23bc1b9c0800000000000000
+      internalID: -3913123182047800786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrokenBottle_ripple_sprite_6
+      name: Bag_crisp_ripple_7
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 512
-        height: 512
+        x: 768
+        y: 512
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.32, y: 0.02}
+      pivot: {x: 0.5, y: 0.33}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76a66513988a511f0800000000000000
-      internalID: -1074767628866262425
+      spriteID: fd074ebb12a5f07e0800000000000000
+      internalID: -1797118625364807457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bag_crisp_ripple_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c216bb05c6bc1bc00800000000000000
+      internalID: 914735865404285228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bag_crisp_ripple_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e60b864f22480400800000000000000
+      internalID: 290554946779809509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bag_crisp_ripple_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed3c92c16cdfffc20800000000000000
+      internalID: 3242589284047897566
       vertices: []
       indices: 
       edges: []
