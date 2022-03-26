@@ -8,8 +8,11 @@ public class Player : MonoBehaviour
     public SpriteRenderer[] spriteRenderers;
     public int maxHealth;
     public float chasmTopperForce, moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce, maxBagDistance, damagePulseCount, damagePulseSpeed;
-    public GameObject splash, twin, gameOver, pauseMenu, plastic, endFade;
+    public GameObject splash, twin, gameOver, pauseMenu, plastic, endFade, boostPanel, boostCooldown, sonar;
     public float tailSegmentLength = 0.1f, tailWidth = 0.1f, tailGravity = 9.8f, underwaterTailGravity = 0.1f, minJointLerp, endSequenceLength, endSequenceShakeLength, endSequenceShakeMagnitute, spinStarsDuration;
+    public Sprite[] boostSprites;
+    public Vector3[] boostMultiplierDurationCooldown;
+    public Image boostImage;
 
     [HideInInspector]
     public float gravity, health = 3;
@@ -18,7 +21,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private float controlMultiplier, moveRight = 1, flipDir = 1, spriteDir = 1;
+    private float controlMultiplier, moveRight = 1, flipDir = 1, spriteDir = 1, boostCooldownTimer, boostDurationTimer, currentMaxSpeed;
     private Vector2 moveDir;
     private Animator animator, twinAnimator;
     private TrashManager trashManager;
@@ -29,9 +32,10 @@ public class Player : MonoBehaviour
     private bool[] dry;
     private float[] dryTime;
     private Transform tailOffset, spinStarsOffset;
-    private bool isFlipping;
+    private bool isFlipping, isBoosting, isPinging;
     private GameObject spinStars;
-    //private Vector3 twinPrevPos;
+    private int boostLevel = 0;
+    private Color boostDisabledColour;
 
     // Start is called before the first frame update
     void Start()
@@ -49,25 +53,34 @@ public class Player : MonoBehaviour
         twinAnimator = GameObject.Find("Twin").GetComponent<Animator>();
         trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
         rb.gravityScale = 0;
+        currentMaxSpeed = maxSpeed;
+        boostDisabledColour = boostImage.color;
+        boostImage.color = Color.white;
         InitialiseTail();
         health = maxHealth;
         for (int i = 0; i < 3; i++)
         {
-            if (GameManager.Instance.upgrades[0][i] > 0)
+            if (transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[0][i]) != null)
             {
-                if (transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[0][i]) != null)
-                {
-                    transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[0][i]).gameObject.SetActive(true);
-                }
-                Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[0][i]));
+                transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[0][i]).gameObject.SetActive(true);
             }
+            Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[0][i]));
         }
+    }
+
+    private void OnEnable()
+    {
+        Application.onBeforeRender += UpdateTail;
     }
 
     private void FixedUpdate()
     {
         if (isloaded)
         {
+            if (Input.GetAxisRaw("Jump") == 1 && boostLevel >= 0 && !isBoosting && boostCooldownTimer <= 0)
+            {
+                StartCoroutine(nameof(Boost));
+            }
             CheckPhysics();
             moveRight = Input.GetAxis("Horizontal");
             float moveUp = Input.GetAxis("Vertical");
@@ -81,7 +94,7 @@ public class Player : MonoBehaviour
             }
             moveDir = new Vector3(moveRight, moveUp).normalized;
             rb.AddForce(controlMultiplier * moveForce * rb.mass * Time.deltaTime * moveDir, ForceMode2D.Force);
-            rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxSpeed);
+            rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, currentMaxSpeed);
         }
         UpdateTail();
     }
@@ -122,7 +135,7 @@ public class Player : MonoBehaviour
 
     private void Animate()
     {
-        transform.rotation = Quaternion.SlerpUnclamped(Quaternion.identity, Quaternion.AngleAxis(90, Vector3.forward), spriteDir * rb.velocity.y / maxSpeed);
+        transform.rotation = Quaternion.SlerpUnclamped(Quaternion.identity, Quaternion.AngleAxis(90, Vector3.forward), spriteDir * rb.velocity.y / currentMaxSpeed);
         animator.SetFloat("Angle", Mathf.Abs((transform.rotation.eulerAngles.z > 180) ? 360 - transform.rotation.eulerAngles.z : transform.rotation.eulerAngles.z));
         animator.SetFloat("Speed", rb.velocity.magnitude);
         twinAnimator.SetFloat("Speed", rb.velocity.magnitude);
@@ -154,6 +167,38 @@ public class Player : MonoBehaviour
             spriteDir = 1;
         }
         isFlipping = false;
+    }
+
+    private IEnumerator Boost()
+    {
+        isBoosting = true;
+        Vector3 boostInfo = boostMultiplierDurationCooldown[boostLevel];
+        currentMaxSpeed = maxSpeed * boostInfo.x;
+        rb.velocity = rb.velocity.normalized * currentMaxSpeed;
+        boostDurationTimer = 0;
+        while (boostDurationTimer < boostInfo.y)
+        {
+            yield return null;
+            boostDurationTimer += Time.deltaTime;
+            boostCooldown.transform.localScale = Vector2.Lerp(Vector2.right, Vector2.one, boostDurationTimer / boostInfo.y);
+        }
+        StartCoroutine(BoostCooldown());
+    }
+
+    private IEnumerator BoostCooldown()
+    {
+        Vector3 boostInfo = boostMultiplierDurationCooldown[boostLevel];
+        boostImage.color = boostDisabledColour;
+        currentMaxSpeed = maxSpeed;
+        boostCooldownTimer = boostInfo.z;
+        isBoosting = false;
+        while (boostCooldownTimer > 0)
+        {
+            yield return null;
+            boostCooldownTimer -= Time.deltaTime;
+            boostCooldown.transform.localScale = Vector2.Lerp(Vector2.right, Vector2.one, boostCooldownTimer / boostInfo.z);
+        }
+        boostImage.color = Color.white;
     }
 
     private void InitialiseTail()
@@ -205,17 +250,21 @@ public class Player : MonoBehaviour
                 joints[i].y -= underwaterTailGravity * Time.deltaTime;
             }
         }
-        //twinPrevPos = lerpJoints[lerpJoints.Length - 1];
         joints[0] = transform.position + transform.TransformVector(Vector3.Scale(tailOffset.localPosition, new Vector3((spriteRenderer.flipX == true) ? -1 : 1, 1, 1)));
         lerpJoints[0] = joints[0];
+        Vector3[] linePoints = new Vector3[joints.Length];
+        linePoints[0] = transform.InverseTransformPoint(lerpJoints[0]);
         for (int i = 1; i < joints.Length; i++)
         {
             joints[i] += (tailSegmentLength - (joints[i] - joints[i - 1]).magnitude) * (joints[i] - joints[i - 1]).normalized;
             lerpJoints[i] = Vector3.Lerp(lerpJoints[i], joints[i], minJointLerp * (joints.Length - i) * Time.deltaTime);
+            linePoints[i] = transform.InverseTransformPoint(lerpJoints[i]);
+            Debug.DrawLine(joints[i - 1], joints[i]);
+            Debug.DrawLine(lerpJoints[i - 1], lerpJoints[i], Color.red);
         }
-        lineRenderer.SetPositions(lerpJoints);
+        lineRenderer.SetPositions(linePoints);
         twin.transform.position = lerpJoints[lerpJoints.Length - 1];
-        twin.transform.rotation = /*Quaternion.Slerp(Quaternion.identity, */Quaternion.LookRotation(Vector3.forward, lerpJoints[lerpJoints.Length - 1] - lerpJoints[lerpJoints.Length - 2])/*, (lerpJoints[lerpJoints.Length - 1] - twinPrevPos).magnitude / 0.01f)*/;
+        twin.transform.rotation = Quaternion.LookRotation(transform.forward, lerpJoints[lerpJoints.Length - 1] - lerpJoints[lerpJoints.Length - 2]);
     }
 
     private void Upgrade(Vector2Int upgradeNumber)
@@ -226,8 +275,22 @@ public class Player : MonoBehaviour
                 health += upgradeNumber.y;
                 break;
             case 2:
+                boostLevel = Mathf.Clamp(GameManager.Instance.upgrades[0][1] - 1, 0, boostMultiplierDurationCooldown.Length - 1);
+                if (boostLevel < 0)
+                {
+                    boostPanel.SetActive(false);
+                }
+                else
+                {
+                    boostCooldown.transform.localScale = Vector2.right;
+                    boostImage.sprite = boostSprites[Mathf.Clamp(boostLevel, 0, boostSprites.Length - 1)];
+                }
                 break;
             case 3:
+                if (upgradeNumber.y > 0)
+                {
+                    sonar.SetActive(true);
+                }
                 break;
             default:
                 break;
@@ -315,9 +378,14 @@ public class Player : MonoBehaviour
                 bonkSound.minDistance = 6;
                 rb.AddForce((transform.position - collision.transform.position).normalized * knockbackForce, ForceMode2D.Impulse);
                 trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
-                StopAllCoroutines();
-                StartCoroutine(DamagePulse());
+                StopCoroutine(nameof(DamagePulse));
+                StartCoroutine(nameof(DamagePulse));
                 animator.SetTrigger("Hit");
+                if (isBoosting)
+                {
+                    StopCoroutine(nameof(Boost));
+                    StartCoroutine(BoostCooldown());
+                }
             }
         }
         else if (collision.CompareTag("Region"))
@@ -358,10 +426,6 @@ public class Player : MonoBehaviour
 
     private void EditorUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Map");
-        }
         if (Input.GetKeyDown(KeyCode.Minus))
         {
             health--;
@@ -369,8 +433,13 @@ public class Player : MonoBehaviour
             {
                 Dead();
             }
-            StopAllCoroutines();
-            StartCoroutine(DamagePulse());
+            StopCoroutine(nameof(DamagePulse));
+            StartCoroutine(nameof(DamagePulse));
+            if (isBoosting)
+            {
+                StopCoroutine(nameof(Boost));
+                StartCoroutine(BoostCooldown());
+            }
         }
         if (Input.GetKeyDown(KeyCode.Equals))
         {
@@ -383,8 +452,12 @@ public class Player : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
         GetComponent<Collider2D>().enabled = false;
         twin.GetComponent<Collider2D>().enabled = false;
-        audioManager.PlaySFX("GameOver");
         isloaded = false;
         uI.EndGame();
+    }
+
+    private void OnDisable()
+    {
+        Application.onBeforeRender -= UpdateTail;
     }
 }

@@ -188,10 +188,19 @@ public class TrashManager : MonoBehaviour
         {
             newTrash.GetComponent<Animator>().SetInteger("TrashIndex", trash.spriteIndex + 1);
             newTrash.GetComponent<SpriteRenderer>().sortingOrder = 6;
+            newTrash.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
         }
         else
         {
             newTrash.GetComponent<Animator>().enabled = false;
+            if (GameManager.Instance.upgrades[0][2] > 1)
+            {
+                newTrash.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+            }
+            else
+            {
+                newTrash.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.clear;
+            }
         }
         PolygonCollider2D newCollider = newTrash.AddComponent<PolygonCollider2D>();
         newCollider.isTrigger = true;

@@ -44,6 +44,7 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1f;
         GameObject newLoadScreen = Instantiate(GameManager.Instance.loadScreenPrefab, new Vector3(960, 540, 0), Quaternion.identity);
         DontDestroyOnLoad(newLoadScreen);
+        Cursor.visible = true;
         SceneManager.LoadScene("Map");
     }
 

@@ -193,6 +193,7 @@ public class GameManager : MonoBehaviour
     public void PauseGame(bool isPaused)
     {
         Time.timeScale = isPaused ? 0 : 1;
+        Cursor.visible = isPaused;
     }
 
     public void LoadMinigame(TrashType trashType)
@@ -200,6 +201,7 @@ public class GameManager : MonoBehaviour
         SaveGame();
         GameObject newLoadScreen = Instantiate(loadScreenPrefab, new Vector3(960, 540, 0), Quaternion.identity);
         DontDestroyOnLoad(newLoadScreen);
+        Cursor.visible = false;
         switch (trashType)
         {
             case TrashType.Plastic:
