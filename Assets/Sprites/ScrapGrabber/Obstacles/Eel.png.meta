@@ -1,52 +1,40 @@
 fileFormatVersion: 2
-guid: 7d95aa64e165eae42be64a3edc53bd6a
+guid: 7fd08620062f5b24386d273a0b79c210
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1249149584347041918
-    second: Anglerfish_0
+      213: 620221432124653775
+    second: Eel_0
   - first:
-      213: 1728275083561325949
-    second: Anglerfish_1
+      213: -5556104480176539947
+    second: Eel_1
   - first:
-      213: -7169718066472726663
-    second: Anglerfish_2
+      213: -1082338350020027713
+    second: Eel_2
   - first:
-      213: -5630452716880817349
-    second: Anglerfish_3
+      213: -7054289310717144099
+    second: Eel_3
   - first:
-      213: 4737544665734063189
-    second: Anglerfish_4
+      213: 305064913068425737
+    second: Eel_4
   - first:
-      213: -1950010176421779916
-    second: Anglerfish_5
+      213: -1208538524832286870
+    second: Eel_5
   - first:
-      213: -5183017729096050356
-    second: Anglerfish_6
+      213: 8517132305254357360
+    second: Eel_6
   - first:
-      213: -3057154706283636184
-    second: Anglerfish_7
+      213: 425699205484193356
+    second: Eel_7
   - first:
-      213: 6543454022646112553
-    second: Anglerfish_8
+      213: -6554261184289315149
+    second: Eel_8
   - first:
-      213: -396348630050920119
-    second: Anglerfish_9
+      213: -3248563731230950850
+    second: Eel_9
   - first:
-      213: -1115244000853164754
-    second: Anglerfish_10
-  - first:
-      213: 619097972601982679
-    second: Anglerfish_11
-  - first:
-      213: 9192411203251070049
-    second: Anglerfish_12
-  - first:
-      213: 1487020858579720437
-    second: Anglerfish_13
-  - first:
-      213: 5351761792592650065
-    second: Anglerfish_14
+      213: -2815509170878958371
+    second: Eel_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -160,7 +148,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Anglerfish_0
+      name: Eel_0
       rect:
         serializedVersion: 2
         x: 0
@@ -174,14 +162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e70155ebdeed55110800000000000000
-      internalID: 1249149584347041918
+      spriteID: fc0cfdf3b187b9800800000000000000
+      internalID: 620221432124653775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anglerfish_1
+      name: Eel_1
       rect:
         serializedVersion: 2
         x: 256
@@ -195,14 +183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d75d4dd18011cf710800000000000000
-      internalID: 1728275083561325949
+      spriteID: 5d6fe1ca960c4e2b0800000000000000
+      internalID: -5556104480176539947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anglerfish_2
+      name: Eel_2
       rect:
         serializedVersion: 2
         x: 512
@@ -216,14 +204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97f4134c76b008c90800000000000000
-      internalID: -7169718066472726663
+      spriteID: fba16405103caf0f0800000000000000
+      internalID: -1082338350020027713
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anglerfish_3
+      name: Eel_3
       rect:
         serializedVersion: 2
         x: 768
@@ -237,14 +225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b339fadd51d9cd1b0800000000000000
-      internalID: -5630452716880817349
+      spriteID: dd39ed34f312a1e90800000000000000
+      internalID: -7054289310717144099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anglerfish_4
+      name: Eel_4
       rect:
         serializedVersion: 2
         x: 0
@@ -258,77 +246,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55420acd5c32fb140800000000000000
-      internalID: 4737544665734063189
+      spriteID: 90201e01ceecb3400800000000000000
+      internalID: 305064913068425737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anglerfish_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 436abfd731c20f4e0800000000000000
-      internalID: -1950010176421779916
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Anglerfish_6
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c499da016d83218b0800000000000000
-      internalID: -5183017729096050356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Anglerfish_7
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82adc8cfdfdc295d0800000000000000
-      internalID: -3057154706283636184
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Anglerfish_8
+      name: Eel_5
       rect:
         serializedVersion: 2
         x: 0
@@ -342,14 +267,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9212cefc3c40fca50800000000000000
-      internalID: 6543454022646112553
+      spriteID: a673ff16d986a3fe0800000000000000
+      internalID: -1208538524832286870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anglerfish_9
+      name: Eel_6
       rect:
         serializedVersion: 2
         x: 256
@@ -363,14 +288,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9492a9a5503ef7af0800000000000000
-      internalID: -396348630050920119
+      spriteID: 07990b7b4bee23670800000000000000
+      internalID: 8517132305254357360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anglerfish_10
+      name: Eel_7
       rect:
         serializedVersion: 2
         x: 512
@@ -384,14 +309,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2df2437d7bd580f0800000000000000
-      internalID: -1115244000853164754
+      spriteID: c462d040c2368e500800000000000000
+      internalID: 425699205484193356
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anglerfish_11
+      name: Eel_8
       rect:
         serializedVersion: 2
         x: 768
@@ -405,14 +330,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7de0b12735a779800800000000000000
-      internalID: 619097972601982679
+      spriteID: 3b6ed49cd269a05a0800000000000000
+      internalID: -6554261184289315149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anglerfish_12
+      name: Eel_9
       rect:
         serializedVersion: 2
         x: 0
@@ -426,14 +351,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 164e91f2941029f70800000000000000
-      internalID: 9192411203251070049
+      spriteID: e3af2c18f78cae2d0800000000000000
+      internalID: -3248563731230950850
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Anglerfish_13
+      name: Eel_10
       rect:
         serializedVersion: 2
         x: 256
@@ -447,29 +372,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f89d31a795f2a410800000000000000
-      internalID: 1487020858579720437
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Anglerfish_14
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 15f1ef9def6454a40800000000000000
-      internalID: 5351761792592650065
+      spriteID: dd4b7e7835d4de8d0800000000000000
+      internalID: -2815509170878958371
       vertices: []
       indices: 
       edges: []

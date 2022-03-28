@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Sprite[] boostSprites;
     public Vector3[] boostMultiplierDurationCooldown;
     public Image boostImage;
+    public Animator boostFrameImage;
 
     [HideInInspector]
     public float gravity, health = 3;
@@ -171,6 +172,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator Boost()
     {
+        boostFrameImage.SetBool("Available", false);
         isBoosting = true;
         Vector3 boostInfo = boostMultiplierDurationCooldown[boostLevel];
         currentMaxSpeed = maxSpeed * boostInfo.x;
@@ -199,6 +201,7 @@ public class Player : MonoBehaviour
             boostCooldown.transform.localScale = Vector2.Lerp(Vector2.right, Vector2.one, boostCooldownTimer / boostInfo.z);
         }
         boostImage.color = Color.white;
+        boostFrameImage.SetBool("Available", true);
     }
 
     private void InitialiseTail()
@@ -284,6 +287,7 @@ public class Player : MonoBehaviour
                 {
                     boostCooldown.transform.localScale = Vector2.right;
                     boostImage.sprite = boostSprites[Mathf.Clamp(boostLevel, 0, boostSprites.Length - 1)];
+                    boostFrameImage.SetBool("Available", true);
                 }
                 break;
             case 3:

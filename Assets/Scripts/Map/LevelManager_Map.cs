@@ -46,6 +46,7 @@ public class LevelManager_Map : LevelManager
         }
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         UpdateRegionsUnlocked();
+        RespawnTrash();
         bool isVideoPlaying = false;
         foreach (VideoManager.Cutscene scene in GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().cutScenes)
         {
@@ -165,7 +166,7 @@ public class LevelManager_Map : LevelManager
                 GameManager.Instance.storyPoint = Mathf.Clamp(GameManager.Instance.storyPoint - 1, 1, 3);
             }
             print("Max Region : " + GameManager.Instance.MaxRegion());
-            GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().UpdateRegionsUnlocked();
+            UpdateRegionsUnlocked();
             RespawnTrash();
         }
         if (Input.GetKeyDown(KeyCode.P))

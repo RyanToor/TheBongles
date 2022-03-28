@@ -164,7 +164,7 @@ public class Spawner : MonoBehaviour
         ages.Dispose();
         speedMultipliers.Dispose();
         startPosList.Dispose();
-        speedMultipliers.Dispose();
+        seeds.Dispose();
         rotatingObjects.Dispose();
         transformAccessArray.Dispose();
     }

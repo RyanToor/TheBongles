@@ -225,9 +225,16 @@ public class Claw : MonoBehaviour
                 StoreTrash();
             }
         }
-        else if (collision.CompareTag("Boss") && state == ClawState.fire)
+        else if (collision.CompareTag("Boss"))
         {
-            state = ClawState.reel;
+            if (state == ClawState.fire)
+            {
+                state = ClawState.reel;
+            }
+            if (collision.gameObject.name == "Electric_Eel(Clone)")
+            {
+                StartCoroutine(levelManager.LightsOut(collision.gameObject));
+            }
         }
         else if (collision.gameObject.name == "Mine(Clone)")
         {
