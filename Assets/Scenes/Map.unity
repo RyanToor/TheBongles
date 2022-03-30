@@ -9528,7 +9528,7 @@ MonoBehaviour:
           cost: 18
         - type: 1
           cost: 10
-      - upgradeTierImage: {fileID: 21300000, guid: be9bba5dcdc6c164a9a03049d8320646, type: 3}
+      - upgradeTierImage: {fileID: 21300000, guid: fb850867fa2cd564895f7a17e72f7c0f, type: 3}
         upgradeCosts:
         - type: 0
           cost: 20
@@ -9541,7 +9541,7 @@ MonoBehaviour:
         upgradeCosts:
         - type: 0
           cost: 20
-      - upgradeTierImage: {fileID: 21300000, guid: 6e05c4e17db0faf4c8ea714640d5376b, type: 3}
+      - upgradeTierImage: {fileID: 21300000, guid: 43279cd7c5fac574dbd70d0a35f99435, type: 3}
         upgradeCosts:
         - type: 0
           cost: 22
@@ -9549,6 +9549,8 @@ MonoBehaviour:
           cost: 8
     - upgradeTiers:
       - upgradeTierImage: {fileID: 21300000, guid: f102bc9907b9acb4db647f63d668f76a, type: 3}
+        upgradeCosts: []
+      - upgradeTierImage: {fileID: 21300000, guid: 99cef4a786c4a6d45a016e2440e0c397, type: 3}
         upgradeCosts:
         - type: 0
           cost: 15
@@ -9564,7 +9566,7 @@ MonoBehaviour:
           cost: 5
   - upgrades:
     - upgradeTiers:
-      - upgradeTierImage: {fileID: 21300000, guid: ce99708dc7396ba41b697f643c8480b3, type: 3}
+      - upgradeTierImage: {fileID: 21300000, guid: 174c0ae6df515ff45a5f9e8059dc2f63, type: 3}
         upgradeCosts:
         - type: 1
           cost: 18
@@ -9574,6 +9576,14 @@ MonoBehaviour:
           cost: 10
         - type: 1
           cost: 20
+      - upgradeTierImage: {fileID: 21300000, guid: 594fe3f86fb157148ad8e3a0b0935b67, type: 3}
+        upgradeCosts:
+        - type: 0
+          cost: 8
+        - type: 1
+          cost: 10
+        - type: 1
+          cost: 15
     - upgradeTiers:
       - upgradeTierImage: {fileID: 21300000, guid: 98a9e51d2097f22429e2b417df1ae942, type: 3}
         upgradeCosts:
@@ -9594,11 +9604,15 @@ MonoBehaviour:
           cost: 12
   - upgrades:
     - upgradeTiers:
+      - upgradeTierImage: {fileID: 21300000, guid: c4578951ea1337345a929dfc3893d336, type: 3}
+        upgradeCosts:
+        - type: 2
+          cost: 15
       - upgradeTierImage: {fileID: 21300000, guid: e5869c083ef05684695fc9d05f147a77, type: 3}
         upgradeCosts:
         - type: 2
           cost: 25
-      - upgradeTierImage: {fileID: 21300000, guid: e5869c083ef05684695fc9d05f147a77, type: 3}
+      - upgradeTierImage: {fileID: 21300000, guid: 66682793b73199643bb1f1caf5046051, type: 3}
         upgradeCosts:
         - type: 0
           cost: 8

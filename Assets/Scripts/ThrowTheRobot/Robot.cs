@@ -322,9 +322,15 @@ public class Robot : MonoBehaviour
         switch (upgradeIndicies.x)
         {
             case 1:
-                doubleJump = true;
-                maxBoostFuel = fuelUpgrades[upgradeIndicies.y - 1].maxFuel;
-                boostFuel = fuelUpgrades[upgradeIndicies.y - 1].startFuel;
+                if (upgradeIndicies.y > 0)
+                {
+                    doubleJump = true;
+                    if (upgradeIndicies.y > 1)
+                    {
+                        maxBoostFuel = fuelUpgrades[upgradeIndicies.y - 2].maxFuel;
+                        boostFuel = fuelUpgrades[upgradeIndicies.y - 2].startFuel;
+                    }
+                }
                 break;
             default:
                 break;
