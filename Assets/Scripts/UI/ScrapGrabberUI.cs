@@ -4,9 +4,10 @@ using UnityEngine.UI;
 
 public class ScrapGrabberUI : MinigameUI
 {
-    public float dangerTime, flashPeriod;
+    public float flashPeriod;
     public Color dangerColour;
 
+    private float dangerTime;
     private Color normalColour;
     private bool isFlashing;
     private Text timeRemainingText;
@@ -14,7 +15,9 @@ public class ScrapGrabberUI : MinigameUI
     LevelManager_ScrapGrabber levelManager;
     protected override void Start()
     {
+        starScoreIndex = 2;
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_ScrapGrabber>();
+        dangerTime = levelManager.dangerTime;
         timeRemainingText = transform.Find("ReadoutPanel/TrashPanel/Time").GetComponent<Text>();
         normalColour = timeRemainingText.color;
         base.Start();

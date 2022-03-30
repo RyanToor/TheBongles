@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class LevelManager_ScrapGrabber : LevelManager
 {
-    public float maxTime, freezeTimeMultiplier, freezeTimeDuration, freezeTimeCooldown, freezeFadeTime, lightsOutDuration;
-    public bool lightsOn = true;
+    public float maxTime, dangerTime, freezeTimeMultiplier, freezeTimeDuration, freezeTimeCooldown, freezeFadeTime, lightsOutDuration;
+    public bool lightsOn = true, loseFuel;
     public LightType[] lights;
     public GameObject freezeCooldownPanel;
     public Image freezeIcon;
@@ -45,12 +45,19 @@ public class LevelManager_ScrapGrabber : LevelManager
         freezeIconDisabled = freezeIcon.color;
         freezeCooldownPanel.transform.localScale = Vector2.right;
         freezeIcon.color = Color.white;
+        if (!Application.isEditor)
+        {
+            loseFuel = true;
+        }
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        remainingTime = Mathf.Clamp(remainingTime - Time.deltaTime, 0, float.MaxValue);
+        if (loseFuel)
+        {
+            remainingTime = Mathf.Clamp(remainingTime - Time.deltaTime, 0, float.MaxValue);
+        }
         if (remainingTime == 0 && !gameEnded)
         {
             gameEnded = true;

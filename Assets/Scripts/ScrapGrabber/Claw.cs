@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Claw : MonoBehaviour
 {
     public float maxAimAngle, aimSpeed, fireSpeed, turnSpeed, linePointSeparation, maxLineLength, reelSpeed, reelRotateSpeed, fuelTime;
     public int trashCatchLimit;
-    public GameObject fuelBar, spotLight;
+    public GameObject fuelBar, spotLight, freeze;
+    public Color lightSafeColour, lightDangerColour;
     public GameObject[] lineLengthIndicators;
     public TrashRequests trashRequestScript;
     public Vector2[] clawExtensionAndItems;
@@ -16,7 +18,7 @@ public class Claw : MonoBehaviour
     private List<Vector3> linePoints = new List<Vector3>();
     private bool isReleasing;
     private LevelManager_ScrapGrabber levelManager;
-    private float fuelBarStartLength, lineLength, lineLengthIndicatorPortion, lightOffset;
+    private float fuelBarStartLength, lineLength, lineLengthIndicatorPortion, lightOffset, startOffset;
     private int currentTrash;
     private Spawner spawner;
 
@@ -30,7 +32,8 @@ public class Claw : MonoBehaviour
         lineRenderer.SetPositions(linePoints.ToArray());
         fuelBarStartLength = fuelBar.transform.localScale.x;
         lineLength = (transform.position - transform.parent.position).magnitude;
-        lineLengthIndicatorPortion = maxLineLength / lineLengthIndicators.Length;
+        lineLengthIndicatorPortion = (maxLineLength - transform.localPosition.magnitude) / (lineLengthIndicators.Length + 1);
+        startOffset = transform.localPosition.magnitude;
         lightOffset = (spotLight.transform.position - transform.parent.position).magnitude;
         for (int i = 0; i < 3; i++)
         {
@@ -46,6 +49,7 @@ public class Claw : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        lineLength = Mathf.Clamp(linePoints.Count - 3, 0, int.MaxValue) * linePointSeparation + (linePoints[1] - linePoints[0]).magnitude + (linePoints[linePoints.Count - 1] - linePoints[linePoints.Count - 2]).magnitude;
         switch (state)
         {
             case ClawState.aim:
@@ -96,14 +100,16 @@ public class Claw : MonoBehaviour
         }
         transform.position += fireSpeed * Time.deltaTime * -transform.up * (Time.timeScale != 0? 1 / Time.timeScale : 1);
         linePoints[linePoints.Count - 1] = transform.position;
-        if ((linePoints[linePoints.Count - 1] - linePoints[linePoints.Count - 2]).magnitude > linePointSeparation)
+        if ((transform.position - linePoints[linePoints.Count - 2]).magnitude > linePointSeparation)
         {
-            linePoints.Insert(linePoints.Count - 1, transform.position);
-            lineLength += (linePoints[linePoints.Count - 2] - linePoints[linePoints.Count - 3]).magnitude;
+            for (float distanceToCover = (transform.position - linePoints[linePoints.Count - 2]).magnitude; distanceToCover > linePointSeparation; distanceToCover -= linePointSeparation)
+            {
+                linePoints.Insert(linePoints.Count - 1, linePoints[linePoints.Count - 2] + (transform.position - linePoints[linePoints.Count - 2]).normalized * linePointSeparation);
+            }
         }
         lineRenderer.positionCount = linePoints.Count;
         lineRenderer.SetPositions(linePoints.ToArray());
-        if (lineRenderer.positionCount * linePointSeparation > maxLineLength || (Input.GetAxis("Jump") > 0 && !isReleasing))
+        if (lineLength > maxLineLength || (Input.GetAxis("Jump") > 0 && !isReleasing))
         {
             currentTrash = 0;
             state = ClawState.reel;
@@ -113,31 +119,50 @@ public class Claw : MonoBehaviour
 
     private void Reel()
     {
-        float segmentLength = (linePoints[linePoints.Count - 2] - transform.position).magnitude;
-        if (segmentLength < reelSpeed * Time.unscaledDeltaTime)
+        int checkPoint = linePoints.Count;
+        int pointsToRemove = 0;
+        float remainder = 0;
+        for (float moveDistance = reelSpeed * Time.unscaledDeltaTime; moveDistance > 0; moveDistance -= Vector3.Distance(linePoints[Mathf.Clamp(checkPoint - 1, 1, linePoints.Count - 2)], linePoints[Mathf.Clamp(checkPoint, 0, linePoints.Count - 1)]))
         {
-            lineLength -= (linePoints[linePoints.Count - 2] - linePoints[linePoints.Count - 3]).magnitude;
-            if (linePoints.Count == 3)
+            remainder = Vector3.Distance(linePoints[checkPoint - 1], linePoints[checkPoint - 2]) - moveDistance;
+            if (remainder < 0)
+            {
+                pointsToRemove++;
+                checkPoint--;
+            }
+        }
+        if (pointsToRemove > 0)
+        {
+            if (linePoints.Count - 1 - pointsToRemove < 2)
             {
                 transform.position = linePoints[1];
                 state = ClawState.aim;
                 GetComponent<Animator>().SetBool("Closed", false);
                 StoreTrash();
+                for (int i = linePoints.Count - 1; i > 1; i--)
+                {
+                    linePoints.RemoveAt(i);
+                    linePoints.TrimExcess();
+                }
             }
             else
             {
-                transform.position = linePoints[linePoints.Count - 2] + (linePoints[linePoints.Count - 3] - linePoints[linePoints.Count - 2]).normalized * (reelSpeed * Time.deltaTime - segmentLength);
+                transform.position = linePoints[linePoints.Count - 2 - pointsToRemove] + (linePoints[linePoints.Count - 1 - pointsToRemove] - linePoints[linePoints.Count - 2 - pointsToRemove]).normalized * remainder;
+                for (int i = 0; i < pointsToRemove; i++)
+                {
+                    linePoints.RemoveAt(linePoints.Count - 2);
+                    linePoints.TrimExcess();
+                }
             }
-            linePoints.RemoveAt(linePoints.Count - 2);
-            linePoints.TrimExcess();
         }
         else
         {
-            transform.position += reelSpeed * Time.unscaledDeltaTime * (linePoints[linePoints.Count - 2] - transform.position).normalized;
+            transform.position += (linePoints[linePoints.Count - 2] - transform.position).normalized * reelSpeed * Time.unscaledDeltaTime;
         }
         linePoints[linePoints.Count - 1] = transform.position;
-        Quaternion desiredRotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, linePoints[linePoints.Count - 2] - transform.position, Vector3.forward));
-        transform.rotation = state == ClawState.aim? Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, linePoints[linePoints.Count - 2] - transform.position, Vector3.forward)) : Quaternion.RotateTowards(transform.rotation, desiredRotation, reelRotateSpeed * Time.unscaledDeltaTime);
+        float desiredClawAngle = Vector3.SignedAngle(Vector3.up, linePoints[linePoints.Count - 2] - transform.position, Vector3.forward);
+        Quaternion desiredRotation = desiredClawAngle == 0? Quaternion.identity : Quaternion.Euler(0, 0, desiredClawAngle);
+        transform.rotation = state == ClawState.aim? desiredRotation : Quaternion.RotateTowards(transform.rotation, desiredRotation, reelRotateSpeed * Time.unscaledDeltaTime);
         lineRenderer.positionCount = linePoints.Count;
         lineRenderer.SetPositions(linePoints.ToArray());
     }
@@ -166,7 +191,8 @@ public class Claw : MonoBehaviour
         fuelBar.transform.localScale = new Vector3(Mathf.Clamp(levelManager.remainingTime * fuelBarStartLength / levelManager.maxTime, 0, fuelBarStartLength), fuelBar.transform.localScale.y, 1);
         for (int i = 0; i < lineLengthIndicators.Length; i++)
         {
-            lineLengthIndicators[i].SetActive(lineLength < (lineLengthIndicators.Length - i + 1) * lineLengthIndicatorPortion);
+            lineLengthIndicators[i].SetActive(lineLength <= startOffset + (lineLengthIndicators.Length - i) * lineLengthIndicatorPortion);
+            print(lineLength + " / " + (startOffset + (lineLengthIndicators.Length - i) * lineLengthIndicatorPortion));
         }
     }
 
@@ -174,6 +200,14 @@ public class Claw : MonoBehaviour
     {
         spotLight.transform.position = transform.parent.position + (transform.position - transform.parent.position).normalized * lightOffset;
         spotLight.transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, transform.parent.position - transform.position, Vector3.forward));
+        if (levelManager.remainingTime < levelManager.dangerTime)
+        {
+            spotLight.GetComponent<Light2D>().color = lightDangerColour;
+        }
+        else
+        {
+            spotLight.GetComponent<Light2D>().color = lightSafeColour;
+        }
     }
 
     private void Upgrade(Vector2Int upgradeNumber)
@@ -193,6 +227,10 @@ public class Claw : MonoBehaviour
                 if (upgradeNumber.y > 0)
                 {
                     levelManager.canFreeze = true;
+                }
+                else
+                {
+                    freeze.SetActive(false);
                 }
                 break;
             default:

@@ -14,6 +14,8 @@ public class MinigameUI : MonoBehaviour
     protected Text trashCounterText, secondaryCounterText, scoreText;
     protected float trashCount, secondaryCount, score;
     protected Slider fillBar;
+    protected int starScoreIndex;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -77,7 +79,7 @@ public class MinigameUI : MonoBehaviour
         }
         if (starsScored > GameManager.Instance.highscoreStars[0])
         {
-            GameManager.Instance.highscoreStars[0] = starsScored;
+            GameManager.Instance.highscoreStars[starScoreIndex] = starsScored;
         }
         scoreText.text = score.ToString();
     }

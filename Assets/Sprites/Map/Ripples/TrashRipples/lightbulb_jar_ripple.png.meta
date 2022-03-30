@@ -38,6 +38,12 @@ TextureImporter:
   - first:
       213: -3976618414476934903
     second: lightbulb_jar_ripple_11
+  - first:
+      213: -2717276282066421772
+    second: lightbulb_jar_ripple_12
+  - first:
+      213: 6093975398937357942
+    second: lightbulb_jar_ripple_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -285,7 +291,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.515, y: 0.265}
+      pivot: {x: 0.515, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -306,7 +312,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.515, y: 0.265}
+      pivot: {x: 0.515, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -398,6 +404,48 @@ TextureImporter:
       bones: []
       spriteID: 90143ddfe9630d8c0800000000000000
       internalID: -3976618414476934903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightbulb_jar_ripple_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.515, y: 0.265}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f736d24e9b4a4ad0800000000000000
+      internalID: -2717276282066421772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightbulb_jar_ripple_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.515, y: 0.265}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67e61ab8656229450800000000000000
+      internalID: 6093975398937357942
       vertices: []
       indices: 
       edges: []

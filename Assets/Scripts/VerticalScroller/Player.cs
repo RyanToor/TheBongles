@@ -278,7 +278,7 @@ public class Player : MonoBehaviour
                 health += upgradeNumber.y;
                 break;
             case 2:
-                boostLevel = Mathf.Clamp(GameManager.Instance.upgrades[0][1] - 1, 0, boostMultiplierDurationCooldown.Length - 1);
+                boostLevel = Mathf.Clamp(GameManager.Instance.upgrades[0][1] - 1, -1, boostMultiplierDurationCooldown.Length - 1);
                 if (boostLevel < 0)
                 {
                     boostPanel.SetActive(false);

@@ -36,7 +36,7 @@ public class FollowCamera_Robot : MonoBehaviour
         parallaxMultipliers = new float[levelBuilder.levelTileLibrary.backgroundParralaxLevels.Length];
         for (int i = 0; i < parallaxMultipliers.Length; i++)
         {
-            parallaxMultipliers[i] = levelBuilder.levelTileLibrary.backgroundParralaxLevels[i].parallaxMultiplier;
+            parallaxMultipliers[i] = levelBuilder.levelTileLibrary.backgroundParralaxLevels[Mathf.Clamp(i, 0, levelBuilder.levelTileLibrary.backgroundParralaxLevels.Length - 1)].parallaxMultiplier;
         }
         backgroundPlateContainer = level.Find("Backgrounds");
         waterPlateShallowColours = new Color[waterPlateDeepColours.Length];

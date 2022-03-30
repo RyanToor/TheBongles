@@ -70,12 +70,12 @@ public class TrashRequests : MonoBehaviour
                 {
                     case 1:
                         levelManager.glass += singleGlassBonus;
-                        levelManager.remainingTime += singleFuelReward;
+                        levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + singleFuelReward, 0, levelManager.maxTime);
                         locked[0] = true;
                         break;
                     case 2:
                         levelManager.glass += doubleGlassBonus;
-                        levelManager.remainingTime += doubleFuelReward;
+                        levelManager.remainingTime += Mathf.Clamp(levelManager.remainingTime + doubleFuelReward, 0, levelManager.maxTime);
                         locked[0] = true;
                         locked[1] = true;
                         break;

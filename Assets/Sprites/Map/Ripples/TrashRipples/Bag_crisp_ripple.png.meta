@@ -35,6 +35,9 @@ TextureImporter:
   - first:
       213: 3242589284047897566
     second: Bag_crisp_ripple_10
+  - first:
+      213: -4513010923166974012
+    second: Bag_crisp_ripple_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -374,6 +377,27 @@ TextureImporter:
       bones: []
       spriteID: ed3c92c16cdfffc20800000000000000
       internalID: 3242589284047897566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bag_crisp_ripple_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cfbc21f9709e51c0800000000000000
+      internalID: -4513010923166974012
       vertices: []
       indices: 
       edges: []

@@ -53,7 +53,7 @@ MonoBehaviour:
   birdMaxAngle: 0
   birdKnockbeck: 0
   birdSpeed: 0
-  anchorLerpSpeed: 0.5
+  anchorLerpSpeed: 0.2
   anchorTopOffset: 5
   anchorPoint: {x: 0, y: 0, z: 0}
   blockerPoint: {x: 0, y: 0, z: 0}

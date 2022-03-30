@@ -11,6 +11,7 @@ public class VerticalScrollerUI : MinigameUI
     // Start is called before the first frame update
     protected override void Start()
     {
+        starScoreIndex = 0;
         player = GameObject.Find("Player").GetComponent<Player>();
         secondaryCounterText = transform.Find("ReadoutPanel/DepthPanel/Depth").GetComponent<Text>();
         base.Start();

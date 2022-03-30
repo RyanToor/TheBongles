@@ -8,7 +8,6 @@ public class LevelManager_Map : LevelManager
     public int randomTrashAmount, castleStoryPoint;
     public GameObject map, randomTrashContainer, randomTrashPrefab, castle;
     public float trashClearBorder;
-    public Sprite castleBefore, castleAfter;
     public CapsuleCollider2D castleSmallCollider, castleBigCollider;
     public KeyCode[] drawLineCheat;
 

@@ -38,6 +38,15 @@ TextureImporter:
   - first:
       213: 4384274884279590245
     second: Bottle_brokenbottle_ripple_11
+  - first:
+      213: -6452613370304171668
+    second: Bottle_brokenbottle_ripple_12
+  - first:
+      213: 667968341892543726
+    second: Bottle_brokenbottle_ripple_13
+  - first:
+      213: 5273433890068199046
+    second: Bottle_brokenbottle_ripple_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -285,7 +294,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.41, y: 0.26}
+      pivot: {x: 0.51, y: 0.275}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -301,8 +310,8 @@ TextureImporter:
       name: Bottle_brokenbottle_ripple_7
       rect:
         serializedVersion: 2
-        x: 768
-        y: 512
+        x: 0
+        y: 256
         width: 256
         height: 256
       alignment: 9
@@ -322,7 +331,7 @@ TextureImporter:
       name: Bottle_brokenbottle_ripple_8
       rect:
         serializedVersion: 2
-        x: 0
+        x: 256
         y: 256
         width: 256
         height: 256
@@ -343,7 +352,7 @@ TextureImporter:
       name: Bottle_brokenbottle_ripple_9
       rect:
         serializedVersion: 2
-        x: 256
+        x: 512
         y: 256
         width: 256
         height: 256
@@ -364,7 +373,7 @@ TextureImporter:
       name: Bottle_brokenbottle_ripple_10
       rect:
         serializedVersion: 2
-        x: 512
+        x: 768
         y: 256
         width: 256
         height: 256
@@ -385,8 +394,8 @@ TextureImporter:
       name: Bottle_brokenbottle_ripple_11
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
+        x: 0
+        y: 0
         width: 256
         height: 256
       alignment: 9
@@ -398,6 +407,69 @@ TextureImporter:
       bones: []
       spriteID: 56dd62347c218dc30800000000000000
       internalID: 4384274884279590245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bottle_brokenbottle_ripple_12
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.26}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c61751eb356b376a0800000000000000
+      internalID: -6452613370304171668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bottle_brokenbottle_ripple_13
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.26}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee436bbfaa9154900800000000000000
+      internalID: 667968341892543726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bottle_brokenbottle_ripple_14
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.26}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6867504ee200f2940800000000000000
+      internalID: 5273433890068199046
       vertices: []
       indices: 
       edges: []

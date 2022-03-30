@@ -17,6 +17,7 @@ public class ThrowTheRobotUI : MinigameUI
     // Start is called before the first frame update
     protected override void Start()
     {
+        starScoreIndex = 1;
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager_Robot>();
         pieReadout = transform.Find("ReadoutPanel/Pie Panel/Pies").GetComponent<Text>();
         initialBoostFillScale = boostFill.localScale;
