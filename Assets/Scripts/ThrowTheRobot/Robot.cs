@@ -106,6 +106,7 @@ public class Robot : MonoBehaviour
                 {
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
                     animator.SetTrigger("Jump");
+                    AudioManager.instance.PlaySFX("Jump");
                     isJumping = true;
                     isJumpInputHeld = true;
                     StartCoroutine(JumpInputRelease());
@@ -119,6 +120,7 @@ public class Robot : MonoBehaviour
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
                     Instantiate(jumpCloudPrefab, transform.position, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, groundHit.normal, Vector3.forward)));
                     isDoubleJumping = true;
+                    AudioManager.instance.PlaySFX("DoubleJump");
                 }
                 else if (levelManager.State == LevelState.fly && Input.GetAxisRaw("Jump") == 1)
                 {

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music:
   - name: Map
-    clip: {fileID: 8300000, guid: 849216d2478509d44a440aad2aa6509a, type: 3}
+    clip: {fileID: 8300000, guid: da78bdc10fce94842b6724bfdfa3587a, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
@@ -306,6 +306,34 @@ MonoBehaviour:
     loop: 0
   - name: Reel
     clip: {fileID: 8300000, guid: 6f8549ca3346c4740ae1cd4cffb3aafa, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Boost
+    clip: {fileID: 8300000, guid: 77e8d29dee50cd141b19a71f6f5562ed, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: DoubleJump
+    clip: {fileID: 8300000, guid: 1729204e80193294881dd90a144fae86, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: Jump
+    clip: {fileID: 8300000, guid: 8b5e9f1f1d4f7e04bae991589f3c0447, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 0
+  - name: PopUp
+    clip: {fileID: 8300000, guid: 62d1b4f1267c1db4a82adafb6a0a1b7f, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0

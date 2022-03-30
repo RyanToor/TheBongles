@@ -6693,26 +6693,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
-      propertyPath: sFX.Array.size
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
-      propertyPath: sFX.Array.data[33].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 77e8d29dee50cd141b19a71f6f5562ed, type: 3}
-    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
-      propertyPath: sFX.Array.data[33].name
-      value: Boost
-      objectReference: {fileID: 0}
-    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
-      propertyPath: sFX.Array.data[33].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
-      propertyPath: sFX.Array.data[33].volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4321469445173243482, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
       propertyPath: m_Name
       value: SoundManager

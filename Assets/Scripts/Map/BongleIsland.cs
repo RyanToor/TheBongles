@@ -199,7 +199,21 @@ public class BongleIsland : MonoBehaviour
             GameManager.Instance.trashCounts[trashType]++;
             floatingObjectsScript.objectsToRemove.Add(collision.gameObject);
             upgradeMenu.GetComponent<UpgradeMenu>().RefreshReadouts();
-            audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position, 10);
+            //audioManager.PlaySFXAtLocation("Crinkle", collision.transform.position, 15);
+            switch (collision.gameObject.GetComponent<RandomTrash>().trashType)
+            {
+                case "Plastic":
+                    audioManager.PlaySFXAtLocation("Plastic", collision.transform.position, 15);
+                    break;
+                case "Metal":
+                    audioManager.PlaySFXAtLocation("Metal", collision.transform.position, 15);
+                    break;
+                case "Glass":
+                    audioManager.PlaySFXAtLocation("Glass", collision.transform.position, 15);
+                    break;
+                default:
+                    break;
+            }
         }
         else if (collision.CompareTag("Minigame"))
         {
@@ -207,6 +221,7 @@ public class BongleIsland : MonoBehaviour
             newPopup.GetComponent<Popup>().minigameMarker = collision.gameObject;
             newPopup.GetComponent<Popup>().trashType = collision.gameObject.GetComponent<MinigameMarker>().trashType;
             activePopups.Add(collision.gameObject, newPopup);
+            audioManager.PlaySFXAtLocation("PopUp", collision.transform.position, 20);
         }
     }
 
