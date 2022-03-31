@@ -6,6 +6,7 @@ public class ProximityElement : MonoBehaviour
 {
     public ProximityElementType type;
     public float bubbleFrequency, speed, birdMaxAngle, birdKnockbeck, birdSpeed, anchorLerpSpeed, anchorTopOffset;
+    public GameObject anchorPuffPrefab;
 
     [HideInInspector]
     public Vector3 anchorPoint, blockerPoint;
@@ -213,6 +214,7 @@ public class ProximityElement : MonoBehaviour
 
     private IEnumerator Anchor(Transform player)
     {
+        bool puffPlayed = false;
         bool anchorDown = false;
         float lerpPos = 0f;
         while (true)
@@ -232,13 +234,19 @@ public class ProximityElement : MonoBehaviour
                     lerpPos = 0f;
                 }
                 anchorDown = false;
+                puffPlayed = false;
             }
             lerpPos += anchorLerpSpeed * Time.deltaTime;
             Vector3 desiredPosition = anchorDown? anchorPoint : blockerPoint + Vector3.down * anchorTopOffset;
-            transform.position = Vector3.Lerp(transform.position, desiredPosition, lerpPos);
+            transform.position = Vector3.Lerp(anchorDown ? blockerPoint + Vector3.down * anchorTopOffset : anchorPoint, desiredPosition, lerpPos);
             GetComponent<LineRenderer>().SetPositions(new Vector3[] { anchorLineStart, transform.InverseTransformPoint(blockerPoint) });
             GetComponent<EdgeCollider2D>().SetPoints(new List<Vector2> { anchorLineStart, transform.InverseTransformPoint(blockerPoint) });
             GetComponent<SpriteRenderer>().sprite = transform.position == anchorPoint? anchorSeabed : anchor;
+            if (desiredPosition == anchorPoint && !puffPlayed && transform.position == anchorPoint)
+            {
+                Instantiate(anchorPuffPrefab, anchorPoint, Quaternion.identity, transform);
+                puffPlayed = true;
+            }
             yield return null;
         }
     }

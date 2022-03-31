@@ -2,22 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Robot : MonoBehaviour
 {
     public bool stopRightMovement, doubleJump;
-    public LayerMask groundLayerMask, legLayerMask;
+    public LayerMask legLayerMask;
+    public ContactFilter2D groundContactFilter, magnetContactFilter;
     public int legRays, onScreenLinePoints;
     public float reelSpeed, moveForce, jumpForce, airControlMultiplier, groundCastOffset, decelerationMultiplier, 
         cloudBoostForce, boostForce, skimMinVelocity, skimVelocityMultiplier, waterHitVelocityMultiplier, musselForce, jellyfishBoost,
         legMaxLength, legLerpSpeed, rotationSpeed, maxLineSag, hookOffset,
-        cloudBoostFuel, maxBoostFuel, boostFuel, boostCostPerSecond;
+        cloudBoostFuel, maxBoostFuel, boostFuel, boostCostPerSecond,
+        magnetScanWidth, magnetScanInterval, magnetScanPeriod, magnetArmSpeed, magnetCooldown;
     [Range(0, 90)]
     public float skimMaxAngle, musselAngle, maxJellyfishAngle, legMaxAngle;
-    public GameObject waterSurface, splashPrefab, jumpCloudPrefab;
+    public GameObject waterSurface, splashPrefab, skimPrefab, jumpCloudPrefab, magnetPrefab, magnetPanel;
     public SpriteRenderer wheelL, wheelR;
     public Transform fishingPole, hookPoint;
     public fuelBarUpgrade[] fuelUpgrades;
+    public Image magnetImage, magnetCooldownPanel;
+    public Animator magnetFrameAnimator;
 
     [HideInInspector]
     public float rightMostPoint = float.MaxValue;
@@ -27,16 +32,18 @@ public class Robot : MonoBehaviour
     private Vector2 legStartL, legStartR;
     private Rigidbody2D rb;
     private LevelManager_Robot levelManager;
-    private bool isGrounded, isJumping, isDoubleJumping, canDoubleJump = false, isJumpInputHeld;
+    private bool isGrounded, isJumping, isDoubleJumping, canDoubleJump = false, isJumpInputHeld, magnetEnabled = false, isMagnetAvailable = true;
     private float colliderWidth, colliderHeight, startDrag;
     private List<Animator> clouds = new List<Animator>();
     private LineRenderer legLine;
     private Animator animator;
     private LineRenderer returnLine;
-    private bool isBoosting;
+    private bool isBoosting, isMagnetCooling;
+    private Color magnetDisabledColour;
 
     private void Awake()
     {
+        magnetDisabledColour = magnetImage.color;
         rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
         startDrag = rb.drag;
@@ -52,6 +59,8 @@ public class Robot : MonoBehaviour
         hook = transform.Find("Hook");
         hookPoint = transform.Find("HookPoint");
         returnLine = hookPoint.gameObject.GetComponent<LineRenderer>();
+        isMagnetAvailable = false;
+        magnetFrameAnimator.SetBool("Available", false);
         if (!Application.isEditor)
         {
             stopRightMovement = true;
@@ -67,14 +76,11 @@ public class Robot : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            if (GameManager.Instance.upgrades[1][i] > 0)
+            if (transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[1][i]) != null)
             {
-                if (transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[1][i]) != null)
-                {
-                    transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[1][i]).gameObject.SetActive(true);
-                }
-                Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[1][i]));
+                transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[1][i]).gameObject.SetActive(true);
             }
+            Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[1][i]));
         }
     }
 
@@ -82,8 +88,8 @@ public class Robot : MonoBehaviour
     {
         if (levelManager.State == LevelState.fly || levelManager.State == LevelState.move)
         {
-            RaycastHit2D groundHit = Physics2D.CircleCast((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, colliderWidth, Vector2.down, colliderHeight - colliderWidth + groundCastOffset, groundLayerMask);
-            isGrounded = groundHit.collider != null;
+            RaycastHit2D[] groundHits = new RaycastHit2D[1];
+            isGrounded = Physics2D.CircleCast((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, colliderWidth, Vector2.down, groundContactFilter, groundHits, colliderHeight - colliderWidth + groundCastOffset) > 0;
             Debug.DrawLine((Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset, (Vector2)transform.position + GetComponent<CapsuleCollider2D>().offset - (Vector2)transform.up * (colliderHeight + groundCastOffset), Color.red);
             rb.AddForce((isGrounded? 1 : airControlMultiplier) * Input.GetAxis("Horizontal") * moveForce * (Mathf.Sign(rb.velocity.x) != Mathf.Sign(Input.GetAxisRaw("Horizontal"))? decelerationMultiplier : 1) * Vector2.right, ForceMode2D.Force);
             if (doubleJump && !isGrounded && !isDoubleJumping && Input.GetAxisRaw("Jump") == 0)
@@ -111,14 +117,14 @@ public class Robot : MonoBehaviour
                     isJumpInputHeld = true;
                     StartCoroutine(JumpInputRelease());
                 }
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, Mathf.Clamp(Vector3.SignedAngle(Vector3.up, groundHit.normal, Vector3.forward), -20, 20)), rotationSpeed);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, Mathf.Clamp(Vector3.SignedAngle(Vector3.up, groundHits[0].normal, Vector3.forward), -20, 20)), rotationSpeed);
             }
             else
             {
                 if (canDoubleJump && !isDoubleJumping && Input.GetAxisRaw("Jump") == 1 && levelManager.State == LevelState.move)
                 {
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
-                    Instantiate(jumpCloudPrefab, transform.position, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, groundHit.normal, Vector3.forward)));
+                    Instantiate(jumpCloudPrefab, transform.position, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, groundHits[0].normal, Vector3.forward)));
                     isDoubleJumping = true;
                     AudioManager.instance.PlaySFX("DoubleJump");
                 }
@@ -140,6 +146,10 @@ public class Robot : MonoBehaviour
                 rightMostPoint -= reelSpeed * Time.deltaTime;
             }
             Debug.DrawLine(Vector3.right * rightMostPoint, Vector3.right * rightMostPoint + Vector3.down * 50f);
+            if (Input.GetAxisRaw("Primary Ability") == 1 && isMagnetAvailable && magnetEnabled)
+            {
+                StartCoroutine(Magnet());
+            }
         }
         legL.localPosition = Vector2.Lerp(legL.localPosition, Legs(legStartL), legLerpSpeed);
         legR.localPosition = Vector2.Lerp(legR.localPosition, Legs(legStartR), legLerpSpeed);
@@ -189,10 +199,7 @@ public class Robot : MonoBehaviour
         {
             rb.velocity *= new Vector2(1, -1) * skimVelocityMultiplier;
             AudioManager.instance.PlaySFXAtLocation("Skim", transform.position, 15);
-        }
-        else
-        {
-            Splash();
+            Instantiate(skimPrefab, Vector3.Scale(transform.position, Vector3.right), Quaternion.identity);
         }
     }
 
@@ -259,18 +266,29 @@ public class Robot : MonoBehaviour
                 SetPhysics(0, 0);
                 animator.SetBool("isGrounded", true);
                 rightMostPoint = float.MaxValue;
+                isMagnetAvailable = false;
+                magnetFrameAnimator.SetBool("Available", false);
                 break;
             case LevelState.fly:
                 SetPhysics(1, 0);
+                isMagnetAvailable = false;
+                magnetFrameAnimator.SetBool("Available", false);
                 break;
             case LevelState.move:
                 SetPhysics(1, startDrag);
+                if (!isMagnetCooling)
+                {
+                    isMagnetAvailable = true;
+                }
+                magnetFrameAnimator.SetBool("Available", true);
                 break;
             case LevelState.reel:
                 SetPhysics(0, 0);
                 rb.velocity = Vector3.zero;
                 transform.rotation = Quaternion.identity;
                 animator.SetBool("isGrounded", true);
+                isMagnetAvailable = false;
+                magnetFrameAnimator.SetBool("Available", false);
                 break;
             default:
                 break;
@@ -281,6 +299,83 @@ public class Robot : MonoBehaviour
     {
         rb.gravityScale = gravity;
         rb.drag = drag;
+    }
+
+    private IEnumerator Magnet()
+    {
+        isMagnetAvailable = false;
+        float magnetDuration = 0;
+        List<GameObject> foundTrash = new List<GameObject>();
+        while (magnetDuration < magnetScanPeriod)
+        {
+            float intervalDuration = 0;
+            RaycastHit2D[] rayHits = Physics2D.RaycastAll(transform.position, Vector3.down);
+            Vector3 boxBottom = rayHits[rayHits.Length - 1].point + Vector2.down * 5;
+            List<Collider2D> newTrash = new List<Collider2D>();
+            Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y > 0? (transform.position.y + boxBottom.y) / 2 : boxBottom.y / 2), new Vector2(magnetScanWidth, transform.position.y > 0? transform.position.y + Mathf.Abs(boxBottom.y) : Mathf.Abs(boxBottom.y)), 0f, magnetContactFilter, newTrash);
+            foreach (Collider2D collider in newTrash)
+            {
+                if (collider.CompareTag("RandomTrash") && !foundTrash.Contains(collider.gameObject))
+                {
+                    foundTrash.Add(collider.gameObject);
+                    StartCoroutine(MagnetArm(collider.gameObject));
+                }
+            }
+            while (intervalDuration < magnetScanInterval)
+            {
+                magnetDuration += Time.deltaTime;
+                intervalDuration += Time.deltaTime;
+                magnetCooldownPanel.transform.localScale = Vector2.Lerp(Vector2.right, Vector2.one, magnetDuration / magnetScanPeriod);
+                yield return null;
+            }
+        }
+        magnetImage.color = magnetDisabledColour;
+        isMagnetCooling = true;
+        float duration = magnetCooldown;
+        while (duration > 0)
+        {
+            duration -= Time.deltaTime;
+            magnetCooldownPanel.transform.localScale = Vector2.Lerp(Vector2.right, Vector2.one, duration / magnetCooldown);
+        }
+        magnetCooldownPanel.transform.localScale = Vector2.right;
+        isMagnetAvailable = true;
+        isMagnetCooling = false;
+        magnetImage.color = Color.white;
+    }
+
+    private IEnumerator MagnetArm(GameObject target)
+    {
+        GameObject magnet = Instantiate(magnetPrefab, transform.position, Quaternion.identity, transform);
+        LineRenderer line = magnet.GetComponent<LineRenderer>();
+        float armProgress = 0;
+        while (armProgress < Vector2.Distance(transform.position, target.transform.position))
+        {
+            armProgress += magnetArmSpeed * Time.deltaTime;
+            Vector2 targetLocalPos = transform.InverseTransformPoint(target.transform.position);
+            magnet.transform.localPosition = targetLocalPos * (armProgress / targetLocalPos.magnitude);
+            magnet.transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.up, target.transform.position - transform.position));
+            line.SetPosition(1, magnet.transform.InverseTransformPoint(magnet.transform.parent.position));
+            yield return null;
+        }
+        levelManager.floatingTrash.objectsToRemove.Add(target);
+        levelManager.floatingTrash.doNotDestroy.Add(target);
+        target.transform.parent = magnet.transform;
+        target.transform.localPosition = Vector3.zero;
+        Vector3 magnetCatchPos = magnet.transform.position;
+        while (armProgress > 0)
+        {
+            armProgress -= magnetArmSpeed * Time.deltaTime;
+            Vector2 localMagnetCatchPos = transform.InverseTransformPoint(magnetCatchPos);
+            magnet.transform.localPosition = localMagnetCatchPos * (armProgress / localMagnetCatchPos.magnitude);
+            magnet.transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.up, magnetCatchPos - transform.position));
+            line.SetPosition(1, magnet.transform.InverseTransformPoint(magnet.transform.parent.position));
+            yield return null;
+        }
+        foreach (Transform trash in magnet.transform)
+        {
+            levelManager.metal++;
+        }
+        Destroy(magnet);
     }
 
     private void CalculateReturnLine()
@@ -330,6 +425,21 @@ public class Robot : MonoBehaviour
                         maxBoostFuel = fuelUpgrades[upgradeIndicies.y - 2].maxFuel;
                         boostFuel = fuelUpgrades[upgradeIndicies.y - 2].startFuel;
                     }
+                }
+                break;
+            case 2:
+                break;
+            case 3:
+                if (upgradeIndicies.y > 0)
+                {
+                    magnetEnabled = true;
+                    magnetCooldownPanel.transform.localScale = Vector2.right;
+                    magnetImage.color = Color.white;
+                }
+                else
+                {
+                    magnetEnabled = false;
+                    magnetPanel.SetActive(false);
                 }
                 break;
             default:
@@ -399,6 +509,13 @@ public class Robot : MonoBehaviour
         if (collision.gameObject.CompareTag("Cloud"))
         {
             clouds.Remove(collision.gameObject.GetComponent<Animator>());
+        }
+        else if (collision.CompareTag("Region"))
+        {
+            if (rb.velocity.y < 0)
+            {
+                Splash();
+            }
         }
     }
 

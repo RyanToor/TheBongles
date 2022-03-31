@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3593054162864615418}
   - component: {fileID: 6809681250454294646}
   m_Layer: 0
-  m_Name: Splash_ThrowTheRobot
+  m_Name: Skim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4644805867479676662, guid: 033fd54bf3067413bb4027b561b9e187, type: 3}
+  m_Sprite: {fileID: 6355138147078863368, guid: e53ee0723405d854592b9def33e46eea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,7 @@ Animator:
   m_GameObject: {fileID: 8177281313740949006}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8a4eb021a9f114ddaa9c8be10a631c06, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9938241d40356734fa2388b37a4eb050, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

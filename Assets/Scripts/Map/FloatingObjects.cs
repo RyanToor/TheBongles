@@ -12,7 +12,7 @@ public class FloatingObjects : MonoBehaviour
     public bool mapRotate = true;
 
     [HideInInspector]
-    public List<GameObject> objectsToRemove = new List<GameObject>(), objectsToAdd = new List<GameObject>();
+    public List<GameObject> objectsToRemove = new List<GameObject>(), objectsToAdd = new List<GameObject>(), doNotDestroy = new List<GameObject>();
 
     private List<GameObject> floatingObjects = new List<GameObject>();
     private NativeList<float> seeds;
@@ -70,10 +70,14 @@ public class FloatingObjects : MonoBehaviour
                 floatingObjects.RemoveAt(indexToRemove);
                 seeds.RemoveAt(indexToRemove);
                 startPosList.RemoveAt(indexToRemove);
-                Destroy(objectToRemove);
+                if (!doNotDestroy.Contains(objectToRemove))
+                {
+                    Destroy(objectToRemove);
+                }
             }
         }
         objectsToRemove.Clear();
+        doNotDestroy.Clear();
     }
 
     public void RemoveAll()

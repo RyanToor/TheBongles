@@ -53,8 +53,9 @@ MonoBehaviour:
   birdMaxAngle: 0
   birdKnockbeck: 0
   birdSpeed: 0
-  anchorLerpSpeed: 0.2
+  anchorLerpSpeed: 1
   anchorTopOffset: 5
+  anchorPuffPrefab: {fileID: 8177281313740949006, guid: 50e68a44045e49e4cb05a89284d3cb84, type: 3}
   anchorPoint: {x: 0, y: 0, z: 0}
   blockerPoint: {x: 0, y: 0, z: 0}
 --- !u!212 &2608901402215253236
