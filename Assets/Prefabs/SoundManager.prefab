@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music:
   - name: Map
-    clip: {fileID: 8300000, guid: da78bdc10fce94842b6724bfdfa3587a, type: 3}
+    clip: {fileID: 8300000, guid: b043435d2df41e44198e4c7b90902eda, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
@@ -114,13 +114,6 @@ MonoBehaviour:
     pitch: 0.7
     volumeDeviation: 0
     pitchDeviation: 0.2
-    loop: 0
-  - name: Crinkle
-    clip: {fileID: 8300000, guid: cf154d96d7c971247b3af95901334d90, type: 3}
-    volume: 1
-    pitch: 1
-    volumeDeviation: 0
-    pitchDeviation: 0
     loop: 0
   - name: Twinkle
     clip: {fileID: 8300000, guid: 343fcf3ff86517740aeb9abd866de7bf, type: 3}
@@ -339,6 +332,20 @@ MonoBehaviour:
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 0
+  - name: Wind
+    clip: {fileID: 8300000, guid: 30fe6b75a37d3464c8259b811094c084, type: 3}
+    volume: 0.55
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Hurt
+    clip: {fileID: 8300000, guid: 7bd3b2310fbf26e47936a866b68fcdc4, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
   musicSource: {fileID: 0}
   musicSource2: {fileID: 0}
   sfxSource: {fileID: 0}
