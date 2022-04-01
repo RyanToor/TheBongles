@@ -266,8 +266,7 @@ public class Player : MonoBehaviour
             Debug.DrawLine(lerpJoints[i - 1], lerpJoints[i], Color.red);
         }
         lineRenderer.SetPositions(linePoints);
-        twin.transform.position = lerpJoints[lerpJoints.Length - 1];
-        twin.transform.rotation = Quaternion.LookRotation(transform.forward, lerpJoints[lerpJoints.Length - 1] - lerpJoints[lerpJoints.Length - 2]);
+        twin.transform.SetPositionAndRotation(lerpJoints[lerpJoints.Length - 1], Quaternion.LookRotation(transform.forward, lerpJoints[lerpJoints.Length - 1] - lerpJoints[lerpJoints.Length - 2]));
     }
 
     private void Upgrade(Vector2Int upgradeNumber)
@@ -424,7 +423,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.name == "ChasmTopper_1" || collision.gameObject.name == "ChasmTopper_2")
         {
-            rb.AddForce(Vector3.right * ((collision.gameObject.name == "ChasmTopper_1") ? 1 : -1) * chasmTopperForce);
+            rb.AddForce(((collision.gameObject.name == "ChasmTopper_1") ? 1 : -1) * chasmTopperForce * Vector3.right);
         }
     }
 

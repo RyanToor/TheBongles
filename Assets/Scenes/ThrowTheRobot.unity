@@ -5893,12 +5893,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopRightMovement: 0
   doubleJump: 0
-  legLayerMask:
-    serializedVersion: 2
-    m_Bits: 257
   groundContactFilter:
     useTriggers: 0
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
@@ -5912,7 +5909,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   magnetContactFilter:
     useTriggers: 1
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
@@ -5920,6 +5917,20 @@ MonoBehaviour:
     layerMask:
       serializedVersion: 2
       m_Bits: 1
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  legContactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 257
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0

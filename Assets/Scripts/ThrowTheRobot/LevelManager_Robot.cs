@@ -54,7 +54,7 @@ public class LevelManager_Robot : LevelManager
             yield return null;
         }
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
-        AudioManager.instance.PlayMusic("Throw the Robot");
+        AudioManager.Instance.PlayMusic("Throw the Robot");
     }
 
     private void ChangeState(LevelState newState)

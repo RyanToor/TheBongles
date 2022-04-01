@@ -7,7 +7,7 @@ public class Region : MonoBehaviour
     public int minigameSpawnCount, regionOrder;
     public GameObject minigameMarker, cloudScreen;
     public TrashType trashType;
-    public bossTypes bossEnum;
+    public BossTypes bossEnum;
     public int[] storyMeetPoints;
     public List<NameController> bossControllers = new List<NameController>();
 
@@ -109,7 +109,7 @@ public class Region : MonoBehaviour
         }
         bossAnimator.Rebind();
         bossAnimator.Update(0f);
-        if (bossEnum == bossTypes.Whale)
+        if (bossEnum == BossTypes.Whale)
         {
             if (isStoryCleared)
             {
@@ -138,7 +138,7 @@ public class Region : MonoBehaviour
         }
     }
 
-    public enum bossTypes
+    public enum BossTypes
     {
         Eel,
         Crab,

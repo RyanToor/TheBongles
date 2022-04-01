@@ -11,22 +11,25 @@ public class Spawner : MonoBehaviour
 {
     [Range(0, 100)]
     public float startObstacleSpawnChance, endObstacleSpawnChance;
-    public float startSpeed, minSpeedMultiplier, maxSpeedMultiplier, speedIncreaseRate, startMinSpawnPeriod, endMinSpawnPeriod, startMaxSpawnPeriod, endMaxSpawnPeriod, endTime, maxAngle, maxYDisplacement;
+    public float startSpeed, speedIncreaseRate, endTime, maxAngle, maxYDisplacement, escapeSpeedMultiplier;
+    public SpawnSet[] spawnSets;
     public GameObject[] collectables, obstacles;
     public bool spawnLeft, spawnRight;
 
     [HideInInspector]
     public List<GameObject> spawnedObjects = new List<GameObject>(), objectsToRemove = new List<GameObject>(), destroyRequests = new List<GameObject>();
 
-    private float timeSinceLastSpawn, nextSpawnPeriod, speed;
+    private float speed;
+    private float[] timesSinceLastSpawn, spawnChangeDurations, nextRandomIntervals;
     private Vector2 prevSpawnPos, prevSpawnDim, isPrevSpawnLeft;
     private Bounds playArea;
     private TransformAccessArray transformAccessArray;
     private NativeList<bool> rotatingObjects;
     private NativeList<float> speedMultipliers;
     private NativeList<float> seeds;
-    private NativeList<float> ages;
     private NativeList<float3> startPosList;
+    private List<bool> willEscape = new List<bool>();
+    private bool[] isRandomIntervalSet;
 
     // Start is called before the first frame update
     void Start()
@@ -34,40 +37,49 @@ public class Spawner : MonoBehaviour
         transformAccessArray = new TransformAccessArray(1);
         speedMultipliers = new NativeList<float>(0, Allocator.Persistent);
         seeds = new NativeList<float>(0, Allocator.Persistent);
-        ages = new NativeList<float>(0, Allocator.Persistent);
         startPosList = new NativeList<float3>(0, Allocator.Persistent);
         rotatingObjects = new NativeList<bool>(0, Allocator.Persistent);
         playArea = GetComponent<BoxCollider2D>().bounds;
-        Spawn();
+        timesSinceLastSpawn = new float[spawnSets.Length];
+        spawnChangeDurations = new float[spawnSets.Length];
+        nextRandomIntervals = new float[spawnSets.Length];
+        isRandomIntervalSet = new bool[spawnSets.Length];
+        for (int i = 0; i < spawnSets.Length; i++)
+        {
+            spawnChangeDurations[i] = spawnSets[i].timeEnd - spawnSets[i].timeStart;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         speed = startSpeed + speedIncreaseRate * Time.timeSinceLevelLoad;
-        for (int i = 0; i < ages.Length; i++)
+        for (int i = 0; i < spawnSets.Length; i++)
         {
-            ages[i] += Time.deltaTime;
-        }
-        timeSinceLastSpawn += Time.deltaTime;
-        if (timeSinceLastSpawn >= nextSpawnPeriod)
-        {
-            Spawn();
+            timesSinceLastSpawn[i] += Time.deltaTime;
+            if (CheckSpawn(i))
+            {
+                Spawn(i);
+            }
         }
         CalculateObjectTransform calculateFloatTransform = new CalculateObjectTransform
         {
             time = Time.time,
+            deltaTime = Time.deltaTime,
             maxAngle = maxAngle,
             maxYDisplacement = maxYDisplacement,
             startPosList = startPosList,
             rotatingObjects = rotatingObjects,
             speedMultipliers = speedMultipliers,
-            ages = ages,
             seeds = seeds,
             speed = speed
         };
         JobHandle floatingObjectsJob = calculateFloatTransform.Schedule(transformAccessArray);
         floatingObjectsJob.Complete();
+        if (Application.isEditor)
+        {
+            EditorUpdate();
+        }
     }
 
     private void LateUpdate()
@@ -92,6 +104,63 @@ public class Spawner : MonoBehaviour
         objectsToRemove.Clear();
     }
 
+    private bool CheckSpawn(int spawnSetIndex)
+    {
+        SpawnSet spawnSet = spawnSets[spawnSetIndex];
+        float spawnChangeFraction = (Time.timeSinceLevelLoad - spawnSet.timeStart) / spawnChangeDurations[spawnSetIndex];
+        if (Time.timeSinceLevelLoad < spawnSet.timeStart && !spawnSet.spawnBeforeStart)
+        {
+            return false;
+        }
+        else if (Time.timeSinceLevelLoad > spawnSet.timeEnd && !spawnSet.spawnAfterEnd)
+        {
+            return false;
+        }
+        else if (timesSinceLastSpawn[spawnSetIndex] > Mathf.Lerp(spawnSet.startMinInterval, spawnSet.endMinInterval, spawnChangeFraction))
+        {
+            if (!isRandomIntervalSet[spawnSetIndex])
+            {
+                nextRandomIntervals[spawnSetIndex] = UnityEngine.Random.Range(Mathf.Lerp(spawnSet.startMinInterval, spawnSet.endMinInterval, spawnChangeFraction), Mathf.Lerp(spawnSet.startMaxInterval, spawnSet.endMaxInterval, spawnChangeFraction));
+                isRandomIntervalSet[spawnSetIndex] = true;
+            }
+            if (timesSinceLastSpawn[spawnSetIndex] - nextRandomIntervals[spawnSetIndex] > Mathf.Lerp(spawnSet.startMinInterval, spawnSet.endMinInterval, spawnChangeFraction))
+            {
+                isRandomIntervalSet[spawnSetIndex] = false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void Spawn(int spawnSetIndex)
+    {
+        timesSinceLastSpawn[spawnSetIndex] = 0;
+        SpawnSet spawnSet = spawnSets[spawnSetIndex];
+        GameObject objectToSpawn = spawnSet.prefabs[UnityEngine.Random.Range(0, spawnSet.prefabs.Length)];
+        bool isSpawnLeft = UnityEngine.Random.value > 0.5f;
+        GameObject newObject = Instantiate(objectToSpawn, new Vector3(spawnLeft && spawnRight ? isSpawnLeft ? playArea.min.x : playArea.max.x : spawnLeft ? playArea.min.x : playArea.max.x, UnityEngine.Random.Range(playArea.min.y, playArea.max.y)), Quaternion.identity, transform);
+        newObject.transform.localScale = Vector3.Scale(newObject.transform.localScale, newObject.transform.position.x > 0 ? new Vector3(-1, 1, 1) : Vector3.one);
+        rotatingObjects.Add(spawnSet.isRotatabale);
+        spawnedObjects.Add(newObject);
+        transformAccessArray.Add(newObject.transform);
+        startPosList.Add(newObject.transform.position);
+        speedMultipliers.Add(UnityEngine.Random.Range(spawnSet.minSpeedMultiplier, spawnSet.maxSpeedMultiplier) * newObject.transform.position.x > 0 ? -1 : 1);
+        seeds.Add(UnityEngine.Random.Range(0, 100000));
+        willEscape.Add(spawnSet.willEscape);
+        if (newObject.TryGetComponent(out Obstacle obstacleScript))
+        {
+            obstacleScript.spawner = this;
+        }
+        timesSinceLastSpawn[spawnSetIndex] = 0;
+    }
+
     private void RemoveFromLists(GameObject objectToRemove)
     {
         int indexToRemove = spawnedObjects.IndexOf(objectToRemove);
@@ -100,43 +169,51 @@ public class Spawner : MonoBehaviour
             spawnedObjects.RemoveAtSwapBack(indexToRemove);
             transformAccessArray.RemoveAtSwapBack(indexToRemove);
             seeds.RemoveAtSwapBack(indexToRemove);
-            ages.RemoveAtSwapBack(indexToRemove);
             startPosList.RemoveAtSwapBack(indexToRemove);
             speedMultipliers.RemoveAtSwapBack(indexToRemove);
             rotatingObjects.RemoveAtSwapBack(indexToRemove);
+            willEscape.RemoveAtSwapBack(indexToRemove);
         }
     }
 
-    private void Spawn()
+    public void Escape(int index = -1)
     {
-        bool spawnObstacle = UnityEngine.Random.Range(0, 100) < Mathf.Lerp(startObstacleSpawnChance, endObstacleSpawnChance, Time.timeSinceLevelLoad / endTime);
-        GameObject objectToSpawn =  spawnObstacle? obstacles[UnityEngine.Random.Range(0, obstacles.Length)] : collectables[UnityEngine.Random.Range(0, collectables.Length)];
-        bool isSpawnLeft = UnityEngine.Random.value > 0.5f;
-        GameObject newObject = Instantiate(objectToSpawn, new Vector3(spawnLeft && spawnRight ? isSpawnLeft ? playArea.min.x : playArea.max.x : spawnLeft ? playArea.min.x : playArea.max.x, UnityEngine.Random.Range(playArea.min.y, playArea.max.y)), Quaternion.identity, transform);
-        if (newObject.transform.position.x > 0)
+        List<int> escapingIndicies = new List<int>();
+        if (index < 0)
         {
-            newObject.transform.localScale = Vector3.Scale(newObject.transform.localScale, new Vector3(-1, 1, 1));
-        }
-        if (spawnObstacle)
-        {
-            rotatingObjects.Add(false);
+            for (int i = 0; i < willEscape.Count; i++)
+            {
+                if (willEscape[i])
+                {
+                    escapingIndicies.Add(i);
+                }
+            }
         }
         else
         {
-            rotatingObjects.Add(true);
+            escapingIndicies.Add(index);
+            willEscape[index] = false;
         }
-        spawnedObjects.Add(newObject);
-        transformAccessArray.Add(newObject.transform);
-        ages.Add(0);
-        startPosList.Add(newObject.transform.position);
-        speedMultipliers.Add(UnityEngine.Random.Range(minSpeedMultiplier, maxSpeedMultiplier) * newObject.transform.position.x > 0 ? -1 : 1);
-        seeds.Add(UnityEngine.Random.Range(0, 100000));
-        if(newObject.TryGetComponent(out Obstacle obstacleScript))
+        for (int i = 0; i < escapingIndicies.Count; i++)
         {
-            obstacleScript.spawner = this;
+            if (spawnedObjects[escapingIndicies[i]].transform.position.x >= 0)
+            {
+                if (Mathf.Sign(speedMultipliers[escapingIndicies[i]]) < 0)
+                {
+                    spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().SetTrigger("Escape");
+                }
+                speedMultipliers[escapingIndicies[i]] = Mathf.Abs(speedMultipliers[i]) * escapeSpeedMultiplier;
+            }
+            else
+            {
+                if (Mathf.Sign(speedMultipliers[escapingIndicies[i]]) > 0)
+                {
+                    spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().SetTrigger("Escape");
+                }
+                speedMultipliers[escapingIndicies[i]] = Mathf.Abs(speedMultipliers[i]) * -escapeSpeedMultiplier;
+            }
+            spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().speed = escapeSpeedMultiplier;
         }
-        nextSpawnPeriod = UnityEngine.Random.Range(Mathf.Lerp(startMinSpawnPeriod, endMinSpawnPeriod, Time.timeSinceLevelLoad / endTime), Mathf.Lerp(startMaxSpawnPeriod, endMaxSpawnPeriod, Time.timeSinceLevelLoad / endTime));
-        timeSinceLastSpawn = 0;
     }
 
     [BurstCompile]
@@ -146,12 +223,11 @@ public class Spawner : MonoBehaviour
         [ReadOnly] public NativeList<float> speedMultipliers;
         [ReadOnly] public NativeList<float3> startPosList;
         [ReadOnly] public NativeList<float> seeds;
-        [ReadOnly] public NativeList<float> ages;
-        public float maxAngle, maxYDisplacement, time, speed;
+        public float maxAngle, maxYDisplacement, time, deltaTime, speed;
 
         public void Execute(int index, TransformAccess transform)
         {
-            transform.position = startPosList[index] + new float3(0, maxYDisplacement * math.sin(time + seeds[index]), 0) + new float3(speedMultipliers[index] * speed * ages[index], 0, 0);
+            transform.position = new Vector3(transform.position.x + speedMultipliers[index] * speed * deltaTime, startPosList[index].y + maxYDisplacement * math.sin(time + seeds[index]), startPosList[index].z);
             if (rotatingObjects[index] == true)
             {
                 transform.localRotation = Quaternion.SlerpUnclamped(Quaternion.AngleAxis(-maxAngle, Vector3.forward), Quaternion.AngleAxis(maxAngle, Vector3.forward), (math.cos(time + seeds[index]) + 1) / 2);
@@ -159,13 +235,29 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    private void EditorUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Escape();
+        }
+    }
+
     private void OnDisable()
     {
-        ages.Dispose();
         speedMultipliers.Dispose();
         startPosList.Dispose();
         seeds.Dispose();
         rotatingObjects.Dispose();
         transformAccessArray.Dispose();
+    }
+
+    [System.Serializable]
+    public struct SpawnSet
+    {
+        public string name;
+        public bool isRotatabale, willEscape, spawnBeforeStart, spawnAfterEnd;
+        public GameObject[] prefabs;
+        public float timeStart, timeEnd, minSpeedMultiplier, maxSpeedMultiplier, startMinInterval, endMinInterval, startMaxInterval, endMaxInterval;
     }
 }

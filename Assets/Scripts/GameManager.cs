@@ -62,12 +62,6 @@ public class GameManager : MonoBehaviour
         highscoreStars = new int[] { 0, 0, 0 };
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     public void StartGame()
     {
         GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = true;
@@ -222,7 +216,7 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         LoadGame();
-        AudioManager.instance.Load(scene);
+        AudioManager.Instance.Load(scene);
     }
 
     public void QuitGame()

@@ -21,7 +21,14 @@ public class Obstacle : MonoBehaviour
         {
             if (collider.CompareTag("RandomTrash"))
             {
-                spawner.destroyRequests.Add(collider.gameObject);
+                if (collider.transform.parent.name == "TrashContainer")
+                {
+                    Destroy(collider.gameObject);
+                }
+                else
+                {
+                    spawner.destroyRequests.Add(collider.gameObject);
+                }
             }
         }
     }
@@ -45,5 +52,10 @@ public class Obstacle : MonoBehaviour
     public void RequestDestruction()
     {
         GameObject.Find("Spawner").GetComponent<Spawner>().destroyRequests.Add(gameObject);
+    }
+
+    public void FlipSprite()
+    {
+        GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
     }
 }

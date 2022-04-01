@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class Robot : MonoBehaviour
 {
     public bool stopRightMovement, doubleJump;
-    public LayerMask legLayerMask;
-    public ContactFilter2D groundContactFilter, magnetContactFilter;
+    public ContactFilter2D groundContactFilter, magnetContactFilter, legContactFilter;
     public int legRays, onScreenLinePoints;
     public float reelSpeed, moveForce, jumpForce, airControlMultiplier, groundCastOffset, decelerationMultiplier, 
         cloudBoostForce, boostForce, skimMinVelocity, skimVelocityMultiplier, waterHitVelocityMultiplier, musselForce, jellyfishBoost,
@@ -20,7 +19,7 @@ public class Robot : MonoBehaviour
     public GameObject waterSurface, splashPrefab, skimPrefab, jumpCloudPrefab, magnetPrefab, magnetPanel;
     public SpriteRenderer wheelL, wheelR;
     public Transform fishingPole, hookPoint;
-    public fuelBarUpgrade[] fuelUpgrades;
+    public FuelBarUpgrade[] fuelUpgrades;
     public Image magnetImage, magnetCooldownPanel;
     public Animator magnetFrameAnimator;
 
@@ -32,7 +31,7 @@ public class Robot : MonoBehaviour
     private Vector2 legStartL, legStartR;
     private Rigidbody2D rb;
     private LevelManager_Robot levelManager;
-    private bool isGrounded, isJumping, isDoubleJumping, canDoubleJump = false, isJumpInputHeld, magnetEnabled = false, isMagnetAvailable = true;
+    private bool isGrounded, isJumping, isDoubleJumping, canDoubleJump = false, isJumpInputHeld, magnetEnabled, isMagnetAvailable = true;
     private float colliderWidth, colliderHeight, startDrag;
     private List<Animator> clouds = new List<Animator>();
     private LineRenderer legLine;
@@ -112,7 +111,7 @@ public class Robot : MonoBehaviour
                 {
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
                     animator.SetTrigger("Jump");
-                    AudioManager.instance.PlaySFX("Jump");
+                    AudioManager.Instance.PlaySFX("Jump");
                     isJumping = true;
                     isJumpInputHeld = true;
                     StartCoroutine(JumpInputRelease());
@@ -126,7 +125,7 @@ public class Robot : MonoBehaviour
                     rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
                     Instantiate(jumpCloudPrefab, transform.position, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, groundHits[0].normal, Vector3.forward)));
                     isDoubleJumping = true;
-                    AudioManager.instance.PlaySFX("DoubleJump");
+                    AudioManager.Instance.PlaySFX("DoubleJump");
                 }
                 else if (levelManager.State == LevelState.fly && Input.GetAxisRaw("Jump") == 1)
                 {
@@ -176,7 +175,7 @@ public class Robot : MonoBehaviour
     {
         if (boostFuel > 0)
         {
-            rb.AddForce(Vector3.up * boostForce * 10 * Time.deltaTime, ForceMode2D.Impulse);
+            rb.AddForce(10 * boostForce * Time.deltaTime * Vector3.up, ForceMode2D.Impulse);
             boostFuel = Mathf.Clamp(boostFuel - Time.deltaTime, 0, maxBoostFuel);
             foreach (Animator cloud in clouds)
             {
@@ -198,7 +197,7 @@ public class Robot : MonoBehaviour
         if (skimAngle <= skimMaxAngle && skimVector.magnitude >= skimMinVelocity)
         {
             rb.velocity *= new Vector2(1, -1) * skimVelocityMultiplier;
-            AudioManager.instance.PlaySFXAtLocation("Skim", transform.position, 15);
+            AudioManager.Instance.PlaySFXAtLocation("Skim", transform.position, 15);
             Instantiate(skimPrefab, Vector3.Scale(transform.position, Vector3.right), Quaternion.identity);
         }
     }
@@ -207,8 +206,8 @@ public class Robot : MonoBehaviour
     {
         rb.velocity *= waterHitVelocityMultiplier;
         Instantiate(splashPrefab, Vector3.Scale(transform.position, Vector3.right), Quaternion.identity);
-        AudioManager.instance.PlaySFXAtLocation("Splash", transform.position, 15);
-        AudioManager.instance.PlaySFXAtLocation("BubblingWater", transform.position, 15);
+        AudioManager.Instance.PlaySFXAtLocation("Splash", transform.position, 15);
+        AudioManager.Instance.PlaySFXAtLocation("BubblingWater", transform.position, 15);
     }
 
     private Vector2 Legs(Vector3 legOrigin)
@@ -219,10 +218,11 @@ public class Robot : MonoBehaviour
         for (int i = 0; i < legRays; i++)
         {
             Debug.DrawLine(transform.position + Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z) * legOrigin, transform.position + Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z) * legOrigin + Quaternion.Euler(0, 0, dir * legMaxAngle * legAngleMultiplier / sideRays) * -transform.up * legMaxLength / Mathf.Cos(Mathf.Deg2Rad * legAngleMultiplier * (legMaxAngle / sideRays)));
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z) * legOrigin, Quaternion.Euler(0, 0, dir * legMaxAngle * legAngleMultiplier / sideRays)  * Vector2.down, legMaxLength / Mathf.Cos(Mathf.Deg2Rad * legAngleMultiplier * (legMaxAngle / sideRays)), legLayerMask);
-            if (hit.collider != null)
+            RaycastHit2D[] hits = new RaycastHit2D[1];
+            Physics2D.Raycast(transform.position + Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z) * legOrigin, Quaternion.Euler(0, 0, dir * legMaxAngle * legAngleMultiplier / sideRays)  * Vector2.down, legContactFilter, hits, legMaxLength / Mathf.Cos(Mathf.Deg2Rad * legAngleMultiplier * (legMaxAngle / sideRays)));
+            if (hits[0].collider != null)
             {
-                return transform.InverseTransformPoint(hit.point);
+                return transform.InverseTransformPoint(hits[0].point);
             }
             if (dir == -1)
             {
@@ -304,6 +304,7 @@ public class Robot : MonoBehaviour
     private IEnumerator Magnet()
     {
         isMagnetAvailable = false;
+        transform.GetChild(0).gameObject.SetActive(false);
         float magnetDuration = 0;
         List<GameObject> foundTrash = new List<GameObject>();
         while (magnetDuration < magnetScanPeriod)
@@ -330,12 +331,14 @@ public class Robot : MonoBehaviour
             }
         }
         magnetImage.color = magnetDisabledColour;
+        transform.GetChild(0).gameObject.SetActive(true);
         isMagnetCooling = true;
         float duration = magnetCooldown;
         while (duration > 0)
         {
             duration -= Time.deltaTime;
             magnetCooldownPanel.transform.localScale = Vector2.Lerp(Vector2.right, Vector2.one, duration / magnetCooldown);
+            yield return null;
         }
         magnetCooldownPanel.transform.localScale = Vector2.right;
         isMagnetAvailable = true;
@@ -482,7 +485,7 @@ public class Robot : MonoBehaviour
         {
             clouds.Add(collision.gameObject.GetComponent<Animator>());
             collision.gameObject.GetComponent<Animator>().SetTrigger("Bounce");
-            AudioManager.instance.PlaySFXAtLocation("Cloud", transform.position, 15);
+            AudioManager.Instance.PlaySFXAtLocation("Cloud", transform.position, 15);
             rb.AddForce(cloudBoostForce * Vector2.up, ForceMode2D.Impulse);
             boostFuel = Mathf.Clamp(boostFuel + cloudBoostFuel, 0, maxBoostFuel);
         }
@@ -490,13 +493,13 @@ public class Robot : MonoBehaviour
         {
             levelManager.metal++;
             levelManager.floatingTrash.objectsToRemove.Add(collision.gameObject);
-            AudioManager.instance.PlaySFXAtLocation("Metal", transform.position, 15);
+            AudioManager.Instance.PlaySFXAtLocation("Metal", transform.position, 15);
         }
         else if (collision.CompareTag("Boss"))
         {
             levelManager.Pies++;
             Destroy(collision.gameObject);
-            AudioManager.instance.PlaySFXAtLocation("PieGrab", transform.position, 20);
+            AudioManager.Instance.PlaySFXAtLocation("PieGrab", transform.position, 20);
         }
         else if (collision.gameObject.name == "SandCollectionTile")
         {
@@ -526,7 +529,7 @@ public class Robot : MonoBehaviour
         {
             rb.AddForce(new Vector3(-Mathf.Sign(collision.gameObject.transform.lossyScale.x) * musselForce * Mathf.Cos(Mathf.Deg2Rad * musselAngle), musselForce * Mathf.Sin(Mathf.Deg2Rad * musselAngle)), ForceMode2D.Impulse);
             collision.gameObject.transform.parent.gameObject.GetComponent<Animator>().SetTrigger("Open");
-            AudioManager.instance.PlaySFXAtLocation("Clam", transform.position, 20);
+            AudioManager.Instance.PlaySFXAtLocation("Clam", transform.position, 20);
         }
         else if (collision.gameObject.name == "Turtle")
         {
@@ -538,7 +541,7 @@ public class Robot : MonoBehaviour
             {
                 rb.velocity = jellyfishBoost * Vector3.Reflect(rb.velocity, collision.contacts[0].normal);
                 collision.gameObject.GetComponent<Animator>().SetTrigger("Bounce");
-                AudioManager.instance.PlaySFXAtLocation("Jellyfish", transform.position, 20);
+                AudioManager.Instance.PlaySFXAtLocation("Jellyfish", transform.position, 20);
             }
         }
     }
@@ -547,14 +550,14 @@ public class Robot : MonoBehaviour
     {
         if (collision.gameObject.name == "Turtle")
         {
-            rb.velocity += Vector2.right * (collision.gameObject.GetComponent<SpriteRenderer>().flipX? 1 : -1) * collision.gameObject.GetComponent<ProximityElement>().speed;
+            rb.velocity += (collision.gameObject.GetComponent<SpriteRenderer>().flipX? 1 : -1) * collision.gameObject.GetComponent<ProximityElement>().speed * Vector2.right;
             transform.parent = null;
         }
     }
     private IEnumerator BoostSound()
     {
         isBoosting = true;
-        AudioSource boostSource = AudioManager.instance.PlayAudioAtObject("Boost", gameObject, 20, true);
+        AudioSource boostSource = AudioManager.Instance.PlayAudioAtObject("Boost", gameObject, 20, true);
         while (Input.GetAxisRaw("Jump") == 1)
         {
             yield return null;
@@ -569,7 +572,7 @@ public class Robot : MonoBehaviour
     }
 
     [System.Serializable]
-    public struct fuelBarUpgrade
+    public struct FuelBarUpgrade
     {
         public float startFuel;
         public float maxFuel;

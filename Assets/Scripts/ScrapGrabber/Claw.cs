@@ -98,7 +98,7 @@ public class Claw : MonoBehaviour
         {
             transform.Rotate(Mathf.Sign(currentAngle) > 0 ? Vector3.back : Vector3.forward, Mathf.Abs(currentAngle) - maxAimAngle);
         }
-        transform.position += fireSpeed * Time.deltaTime * -transform.up * (Time.timeScale != 0? 1 / Time.timeScale : 1);
+        transform.position += (Time.timeScale != 0? 1 / Time.timeScale : 1) * fireSpeed * Time.deltaTime * -transform.up;
         linePoints[linePoints.Count - 1] = transform.position;
         if ((transform.position - linePoints[linePoints.Count - 2]).magnitude > linePointSeparation)
         {
@@ -157,7 +157,7 @@ public class Claw : MonoBehaviour
         }
         else
         {
-            transform.position += (linePoints[linePoints.Count - 2] - transform.position).normalized * reelSpeed * Time.unscaledDeltaTime;
+            transform.position += reelSpeed * Time.unscaledDeltaTime * (linePoints[linePoints.Count - 2] - transform.position).normalized;
         }
         linePoints[linePoints.Count - 1] = transform.position;
         float desiredClawAngle = Vector3.SignedAngle(Vector3.up, linePoints[linePoints.Count - 2] - transform.position, Vector3.forward);
@@ -192,14 +192,12 @@ public class Claw : MonoBehaviour
         for (int i = 0; i < lineLengthIndicators.Length; i++)
         {
             lineLengthIndicators[i].SetActive(lineLength <= startOffset + (lineLengthIndicators.Length - i) * lineLengthIndicatorPortion);
-            print(lineLength + " / " + (startOffset + (lineLengthIndicators.Length - i) * lineLengthIndicatorPortion));
         }
     }
 
     private void UpdateLight()
     {
-        spotLight.transform.position = transform.parent.position + (transform.position - transform.parent.position).normalized * lightOffset;
-        spotLight.transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, transform.parent.position - transform.position, Vector3.forward));
+        spotLight.transform.SetPositionAndRotation(transform.parent.position + (transform.position - transform.parent.position).normalized * lightOffset, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, transform.parent.position - transform.position, Vector3.forward)));
         if (levelManager.remainingTime < levelManager.dangerTime)
         {
             spotLight.GetComponent<Light2D>().color = lightDangerColour;
@@ -273,6 +271,7 @@ public class Claw : MonoBehaviour
             {
                 StartCoroutine(levelManager.LightsOut(collision.gameObject));
             }
+            spawner.Escape(spawner.spawnedObjects.IndexOf(collision.gameObject));
         }
         else if (collision.gameObject.name == "Mine(Clone)")
         {

@@ -70,7 +70,7 @@ public class VideoManager : MonoBehaviour
         {
             if (currentCutscene == 6 && currentScene == 4)
             {
-                AudioManager.instance.PlayMusicWithFade("Silence");
+                AudioManager.Instance.PlayMusicWithFade("Silence");
             }
             if (cutScenes[currentCutscene].scenes[currentScene].isLooping)
             {

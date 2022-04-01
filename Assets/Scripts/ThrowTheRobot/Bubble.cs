@@ -10,7 +10,7 @@ public class Bubble : MonoBehaviour
    
     void Awake()
     {
-        AudioManager.instance.PlaySFXAtLocation("Blob", transform.position, 20);
+        AudioManager.Instance.PlaySFXAtLocation("Blob", transform.position, 20);
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -31,7 +31,7 @@ public class Bubble : MonoBehaviour
         {
             isPopping = true;
             GetComponent<Animator>().SetTrigger("Pop");
-            AudioManager.instance.PlaySFXAtLocation("Pop", transform.position, 15);
+            AudioManager.Instance.PlaySFXAtLocation("Pop", transform.position, 15);
         }
     }
 

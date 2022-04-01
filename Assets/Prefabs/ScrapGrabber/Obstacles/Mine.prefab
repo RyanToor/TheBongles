@@ -83,6 +83,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   mineAnimationLength: 0.5
+  spawner: {fileID: 0}
 --- !u!212 &6971083803225266485
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -123,7 +124,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 8135663367076951168, guid: 280b04f1c79d8c04c80483bbeaf099e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

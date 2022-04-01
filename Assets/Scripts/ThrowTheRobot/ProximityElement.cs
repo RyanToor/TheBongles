@@ -66,12 +66,12 @@ public class ProximityElement : MonoBehaviour
                     {
                         Shy(true);
                         StartCoroutine(CheckBirdOffscreen());
-                        AudioManager.instance.PlayAudioAtObject("BirdFly", gameObject, 20, false);
+                        AudioManager.Instance.PlayAudioAtObject("BirdFly", gameObject, 20, false);
                     }
                     else
                     {
                         hit = true;
-                        AudioManager.instance.PlayAudioAtObject("BirdDead", gameObject, 20, false);
+                        AudioManager.Instance.PlayAudioAtObject("BirdDead", gameObject, 20, false);
                         if (Vector3.Angle(Vector3.up, collision.transform.position - transform.position) < birdMaxAngle)
                         {
                             collision.GetComponent<Rigidbody2D>().velocity = Vector3.Reflect(collision.GetComponent<Rigidbody2D>().velocity, Vector3.up);
@@ -117,7 +117,7 @@ public class ProximityElement : MonoBehaviour
         {
             Bubble newBubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity, GameObject.Find("Bubbles").transform).GetComponent<Bubble>();
             newBubble.floatSpeed = speed;
-            AudioManager.instance.PlayAudioAtObject("BubbleMoving", newBubble.gameObject, 15, true);
+            AudioManager.Instance.PlayAudioAtObject("BubbleMoving", newBubble.gameObject, 15, true);
             while (duration < bubbleFrequency)
             {
                 duration += Time.deltaTime;

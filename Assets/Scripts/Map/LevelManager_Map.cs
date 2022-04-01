@@ -30,7 +30,7 @@ public class LevelManager_Map : LevelManager
     protected override void Start()
     {
         SpriteRenderer sprite = map.GetComponent<SpriteRenderer>();
-        mapArea = new Rect(sprite.bounds.min + Vector3.one * trashClearBorder, sprite.bounds.size - Vector3.one * trashClearBorder * 2);
+        mapArea = new Rect(sprite.bounds.min + Vector3.one * trashClearBorder, sprite.bounds.size - 2 * trashClearBorder * Vector3.one);
         GameObject.FindGameObjectWithTag("Player").transform.position = GameManager.Instance.bongleIslandPosition;
         if (GameManager.Instance.gameStarted == true)
         {

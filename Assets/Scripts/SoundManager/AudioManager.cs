@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance { get; private set; }
+    public static AudioManager Instance { get; private set; }
 
     #region Fields
     public List<Sound> music;
@@ -25,9 +25,9 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         // Make sure there isn't already an AudioManager in the scene
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             // Make sure we don't destroy this instance
             DontDestroyOnLoad(gameObject);
         }
@@ -114,14 +114,13 @@ public class AudioManager : MonoBehaviour
     private IEnumerator UpdateMusicWithFade(AudioSource activeSource, AudioSource innactiveSource, Sound newSound, float transitionTime)
     {
         {
-            float t = 0.0f;
             innactiveSource.clip = newSound.clip;
             innactiveSource.pitch = newSound.pitch;
             innactiveSource.loop = newSound.loop;
             float musicVolume = GameManager.Instance.musicVolume * GameManager.Instance.musicMuted;
 
             // Fade out
-            for (t = 0; t < transitionTime; t += Time.deltaTime)
+            for (float t = 0; t < transitionTime; t += Time.deltaTime)
             {
                 if (activeSource.clip != null)
                 {

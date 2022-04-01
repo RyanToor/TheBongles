@@ -77,11 +77,11 @@ public class PauseMenu : MonoBehaviour
             {
                 if (toggleType == "Music")
                 {
-                    buttonType.gameObject.SetActive(((GameManager.Instance.musicMuted == 0) ^ (buttonType.gameObject.name == "Sound_Button")) ? true : false);
+                    buttonType.gameObject.SetActive(((GameManager.Instance.musicMuted == 0) ^ (buttonType.gameObject.name == "Sound_Button")));
                 }
                 else
                 {
-                    buttonType.gameObject.SetActive(((GameManager.Instance.sFXMuted == 0) ^ (buttonType.gameObject.name == "Sound_Button")) ? true : false);
+                    buttonType.gameObject.SetActive(((GameManager.Instance.sFXMuted == 0) ^ (buttonType.gameObject.name == "Sound_Button")));
                 }
             }
         }

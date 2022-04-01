@@ -4,27 +4,27 @@ public class AudioInterface : MonoBehaviour
 {
     public void OnClick()
     {
-        AudioManager.instance.PlaySFX("Click");
+        AudioManager.Instance.PlaySFX("Click");
     }
     public void OnHover()
     {
-        AudioManager.instance.PlaySFXComplete("Hover");
+        AudioManager.Instance.PlaySFXComplete("Hover");
     }
     public void SetMusicVolume(float volume)
     {
-        AudioManager.instance.SetMusicVolume(volume);
+        AudioManager.Instance.SetMusicVolume(volume);
     }
     public void SetSFXVolume(float volume)
     {
-        AudioManager.instance.SetSFXVolume(volume);
+        AudioManager.Instance.SetSFXVolume(volume);
     }
     public void ToggleMusic()
     {
-        AudioManager.instance.ToggleMusic();
+        AudioManager.Instance.ToggleMusic();
     }
 
     public void ToggleSFX()
     {
-        AudioManager.instance.ToggleSFX();
+        AudioManager.Instance.ToggleSFX();
     }
 }

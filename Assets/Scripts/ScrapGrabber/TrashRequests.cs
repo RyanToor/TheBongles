@@ -36,11 +36,6 @@ public class TrashRequests : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-
-    }
-
     public void CheckCatch(List<string> caughtNames)
     {
         if (!locked[0])

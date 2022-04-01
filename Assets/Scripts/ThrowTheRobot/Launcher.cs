@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Launcher : MonoBehaviour
@@ -18,7 +17,7 @@ public class Launcher : MonoBehaviour
     private void Awake()
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
-        robot = GameObject.FindGameObjectWithTag("Player").gameObject;
+        robot = GameObject.FindGameObjectWithTag("Player");
         reelBottom = transform.Find("Bubba/LineBottom");
         reelTop = transform.Find("Bubba/LineStop");
         isReeling = true;
@@ -47,7 +46,7 @@ public class Launcher : MonoBehaviour
         float progress = 0;
         transform.Find("Bubba").GetComponent<Animator>().SetTrigger("Reel");
         reelBottom.position = new Vector3(reelBottom.position.x, robot.transform.position.y, reelBottom.position.z);
-        AudioSource reelSound = AudioManager.instance.PlayAudioAtObject("Reel", gameObject, 20, true);
+        AudioSource reelSound = AudioManager.Instance.PlayAudioAtObject("Reel", gameObject, 20, true);
         while (progress != 1)
         {
             if (isReeling)

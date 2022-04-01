@@ -32,12 +32,6 @@ public class CollectableTrash : MonoBehaviour
         PolygonCollider2D newCollider = gameObject.AddComponent<PolygonCollider2D>();
         newCollider.isTrigger = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().isTrashTrigger;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
 
 [System.Serializable]

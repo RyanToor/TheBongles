@@ -75,8 +75,7 @@ public class MapCamera : MonoBehaviour
         while (offset.magnitude != startOffset)
         {
             offset = Vector3.Lerp(initialOffset, desiredOffset, duration / zoomToMapDuration);
-            transform.position = targetPos + offset;
-            transform.rotation = Quaternion.Lerp(startRotation, Quaternion.Euler(new Vector3(-60, 0, 0)), duration / zoomToMapDuration);
+            transform.SetPositionAndRotation(targetPos + offset, Quaternion.Lerp(startRotation, Quaternion.Euler(new Vector3(-60, 0, 0)), duration / zoomToMapDuration));
             duration += Time.deltaTime;
             yield return null;
         }

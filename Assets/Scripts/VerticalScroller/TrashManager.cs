@@ -34,10 +34,6 @@ public class TrashManager : MonoBehaviour
         chunkHeight = GameObject.Find("Grid").GetComponent<ChunkManager>().height;
     }
 
-    private void LateUpdate()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
