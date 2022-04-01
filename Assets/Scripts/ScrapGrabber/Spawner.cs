@@ -24,21 +24,24 @@ public class Spawner : MonoBehaviour
     private Vector2 prevSpawnPos, prevSpawnDim, isPrevSpawnLeft;
     private Bounds playArea;
     private TransformAccessArray transformAccessArray;
-    private NativeList<bool> rotatingObjects;
-    private NativeList<float> speedMultipliers;
-    private NativeList<float> seeds;
+    private NativeList<bool> rotatingObjects, moveVertical, isEscaping;
+    private NativeList<float> speedMultipliers, seeds;
     private NativeList<float3> startPosList;
     private List<bool> willEscape = new List<bool>();
     private bool[] isRandomIntervalSet;
+    private LevelManager_ScrapGrabber levelManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_ScrapGrabber>();
         transformAccessArray = new TransformAccessArray(1);
         speedMultipliers = new NativeList<float>(0, Allocator.Persistent);
         seeds = new NativeList<float>(0, Allocator.Persistent);
         startPosList = new NativeList<float3>(0, Allocator.Persistent);
         rotatingObjects = new NativeList<bool>(0, Allocator.Persistent);
+        moveVertical = new NativeList<bool>(0, Allocator.Persistent);
+        isEscaping = new NativeList<bool>(0, Allocator.Persistent);
         playArea = GetComponent<BoxCollider2D>().bounds;
         timesSinceLastSpawn = new float[spawnSets.Length];
         spawnChangeDurations = new float[spawnSets.Length];
@@ -56,7 +59,10 @@ public class Spawner : MonoBehaviour
         speed = startSpeed + speedIncreaseRate * Time.timeSinceLevelLoad;
         for (int i = 0; i < spawnSets.Length; i++)
         {
-            timesSinceLastSpawn[i] += Time.deltaTime;
+            if (!levelManager.isBellActive || levelManager.isBellActive && !spawnSets[i].isDisabledByBell)
+            {
+                timesSinceLastSpawn[i] += Time.deltaTime;
+            }
             if (CheckSpawn(i))
             {
                 Spawn(i);
@@ -72,7 +78,9 @@ public class Spawner : MonoBehaviour
             rotatingObjects = rotatingObjects,
             speedMultipliers = speedMultipliers,
             seeds = seeds,
-            speed = speed
+            speed = speed,
+            moveVertical = moveVertical,
+            isEscaping = isEscaping
         };
         JobHandle floatingObjectsJob = calculateFloatTransform.Schedule(transformAccessArray);
         floatingObjectsJob.Complete();
@@ -87,7 +95,7 @@ public class Spawner : MonoBehaviour
         List<GameObject> objectsToDestroy = new List<GameObject>();
         for (int i = spawnedObjects.Count - 1; i >= 0; i--)
         {
-            if (Mathf.Abs(spawnedObjects[i].transform.position.x) > playArea.extents.x + 1 || destroyRequests.Contains(spawnedObjects[i]))
+            if (Mathf.Abs(spawnedObjects[i].transform.position.x) > playArea.extents.x + 1 || spawnedObjects[i].transform.position.y > 6f ||destroyRequests.Contains(spawnedObjects[i]))
             {
                 objectsToDestroy.Add(spawnedObjects[i]);
             }
@@ -145,13 +153,24 @@ public class Spawner : MonoBehaviour
         SpawnSet spawnSet = spawnSets[spawnSetIndex];
         GameObject objectToSpawn = spawnSet.prefabs[UnityEngine.Random.Range(0, spawnSet.prefabs.Length)];
         bool isSpawnLeft = UnityEngine.Random.value > 0.5f;
-        GameObject newObject = Instantiate(objectToSpawn, new Vector3(spawnLeft && spawnRight ? isSpawnLeft ? playArea.min.x : playArea.max.x : spawnLeft ? playArea.min.x : playArea.max.x, UnityEngine.Random.Range(playArea.min.y, playArea.max.y)), Quaternion.identity, transform);
+        Vector3 spawnPoint;
+        if (spawnSet.moveVertical)
+        {
+            spawnPoint = new Vector3(UnityEngine.Random.Range(-5.4f, 5.4f), playArea.min.y - 3f);
+        }
+        else
+        {
+            spawnPoint = new Vector3(spawnLeft && spawnRight ? isSpawnLeft ? playArea.min.x : playArea.max.x : spawnLeft ? playArea.min.x : playArea.max.x, UnityEngine.Random.Range(playArea.min.y, playArea.max.y));
+        }
+        GameObject newObject = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity, transform);
         newObject.transform.localScale = Vector3.Scale(newObject.transform.localScale, newObject.transform.position.x > 0 ? new Vector3(-1, 1, 1) : Vector3.one);
         rotatingObjects.Add(spawnSet.isRotatabale);
+        moveVertical.Add(spawnSet.moveVertical);
+        isEscaping.Add(false);
         spawnedObjects.Add(newObject);
         transformAccessArray.Add(newObject.transform);
         startPosList.Add(newObject.transform.position);
-        speedMultipliers.Add(UnityEngine.Random.Range(spawnSet.minSpeedMultiplier, spawnSet.maxSpeedMultiplier) * newObject.transform.position.x > 0 ? -1 : 1);
+        speedMultipliers.Add(UnityEngine.Random.Range(spawnSet.minSpeedMultiplier, spawnSet.maxSpeedMultiplier) * newObject.transform.position.x > 0 && !spawnSet.moveVertical ? -1 : 1);
         seeds.Add(UnityEngine.Random.Range(0, 100000));
         willEscape.Add(spawnSet.willEscape);
         if (newObject.TryGetComponent(out Obstacle obstacleScript))
@@ -173,6 +192,8 @@ public class Spawner : MonoBehaviour
             speedMultipliers.RemoveAtSwapBack(indexToRemove);
             rotatingObjects.RemoveAtSwapBack(indexToRemove);
             willEscape.RemoveAtSwapBack(indexToRemove);
+            moveVertical.RemoveAtSwapBack(indexToRemove);
+            isEscaping.RemoveAtSwapBack(indexToRemove);
         }
     }
 
@@ -186,31 +207,44 @@ public class Spawner : MonoBehaviour
                 if (willEscape[i])
                 {
                     escapingIndicies.Add(i);
+                    isEscaping[i] = true;
                 }
             }
         }
         else
         {
-            escapingIndicies.Add(index);
-            willEscape[index] = false;
+            if (willEscape[index])
+            {
+                escapingIndicies.Add(index);
+                willEscape[index] = false;
+                isEscaping[index] = true;
+            }
         }
         for (int i = 0; i < escapingIndicies.Count; i++)
         {
-            if (spawnedObjects[escapingIndicies[i]].transform.position.x >= 0)
+            if (moveVertical[escapingIndicies[i]])
             {
-                if (Mathf.Sign(speedMultipliers[escapingIndicies[i]]) < 0)
-                {
-                    spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().SetTrigger("Escape");
-                }
+                spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().SetTrigger("Escape");
                 speedMultipliers[escapingIndicies[i]] = Mathf.Abs(speedMultipliers[i]) * escapeSpeedMultiplier;
             }
             else
             {
-                if (Mathf.Sign(speedMultipliers[escapingIndicies[i]]) > 0)
+                if (spawnedObjects[escapingIndicies[i]].transform.position.x >= 0)
                 {
-                    spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().SetTrigger("Escape");
+                    if (Mathf.Sign(speedMultipliers[escapingIndicies[i]]) < 0)
+                    {
+                        spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().SetTrigger("Escape");
+                    }
+                    speedMultipliers[escapingIndicies[i]] = Mathf.Abs(speedMultipliers[i]) * escapeSpeedMultiplier;
                 }
-                speedMultipliers[escapingIndicies[i]] = Mathf.Abs(speedMultipliers[i]) * -escapeSpeedMultiplier;
+                else
+                {
+                    if (Mathf.Sign(speedMultipliers[escapingIndicies[i]]) > 0)
+                    {
+                        spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().SetTrigger("Escape");
+                    }
+                    speedMultipliers[escapingIndicies[i]] = Mathf.Abs(speedMultipliers[i]) * -escapeSpeedMultiplier;
+                }
             }
             spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().speed = escapeSpeedMultiplier;
         }
@@ -219,15 +253,21 @@ public class Spawner : MonoBehaviour
     [BurstCompile]
     private struct CalculateObjectTransform : IJobParallelForTransform
     {
-        [ReadOnly] public NativeList<bool> rotatingObjects;
-        [ReadOnly] public NativeList<float> speedMultipliers;
+        [ReadOnly] public NativeList<bool> rotatingObjects, moveVertical, isEscaping;
+        [ReadOnly] public NativeList<float> speedMultipliers, seeds;
         [ReadOnly] public NativeList<float3> startPosList;
-        [ReadOnly] public NativeList<float> seeds;
         public float maxAngle, maxYDisplacement, time, deltaTime, speed;
 
         public void Execute(int index, TransformAccess transform)
         {
-            transform.position = new Vector3(transform.position.x + speedMultipliers[index] * speed * deltaTime, startPosList[index].y + maxYDisplacement * math.sin(time + seeds[index]), startPosList[index].z);
+            if (moveVertical[index])
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y + speedMultipliers[index] * speed * deltaTime * (isEscaping[index]? 1 : ((math.sin(time + seeds[index]) + 0.5f) / 2)), startPosList[index].z);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x + speedMultipliers[index] * speed * deltaTime, startPosList[index].y + maxYDisplacement * math.sin(time + seeds[index]), startPosList[index].z);
+            }
             if (rotatingObjects[index] == true)
             {
                 transform.localRotation = Quaternion.SlerpUnclamped(Quaternion.AngleAxis(-maxAngle, Vector3.forward), Quaternion.AngleAxis(maxAngle, Vector3.forward), (math.cos(time + seeds[index]) + 1) / 2);
@@ -249,6 +289,8 @@ public class Spawner : MonoBehaviour
         startPosList.Dispose();
         seeds.Dispose();
         rotatingObjects.Dispose();
+        moveVertical.Dispose();
+        isEscaping.Dispose();
         transformAccessArray.Dispose();
     }
 
@@ -256,7 +298,7 @@ public class Spawner : MonoBehaviour
     public struct SpawnSet
     {
         public string name;
-        public bool isRotatabale, willEscape, spawnBeforeStart, spawnAfterEnd;
+        public bool isDisabledByBell, moveVertical, isRotatabale, willEscape, spawnBeforeStart, spawnAfterEnd;
         public GameObject[] prefabs;
         public float timeStart, timeEnd, minSpeedMultiplier, maxSpeedMultiplier, startMinInterval, endMinInterval, startMaxInterval, endMaxInterval;
     }

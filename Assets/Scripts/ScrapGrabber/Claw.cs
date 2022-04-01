@@ -7,7 +7,7 @@ public class Claw : MonoBehaviour
 {
     public float maxAimAngle, aimSpeed, fireSpeed, turnSpeed, linePointSeparation, maxLineLength, reelSpeed, reelRotateSpeed, fuelTime;
     public int trashCatchLimit;
-    public GameObject fuelBar, spotLight, freeze;
+    public GameObject fuelBar, spotLight, freeze, bellAssembly;
     public Color lightSafeColour, lightDangerColour;
     public GameObject[] lineLengthIndicators;
     public TrashRequests trashRequestScript;
@@ -220,11 +220,22 @@ public class Claw : MonoBehaviour
                 }
                 break;
             case 2:
+                if (upgradeNumber.y > 0)
+                {
+                    levelManager.isBellEnabled = true;
+                    levelManager.bellAnimator.SetBool("Available", true);
+                    levelManager.bellPromptText.SetActive(true);
+                }
+                else
+                {
+                    bellAssembly.SetActive(false);
+                    levelManager.bellPromptText.SetActive(false);
+                }
                 break;
             case 3:
                 if (upgradeNumber.y > 0)
                 {
-                    levelManager.canFreeze = true;
+                    levelManager.isFreezeEnabled = true;
                 }
                 else
                 {

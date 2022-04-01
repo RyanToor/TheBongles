@@ -5,23 +5,26 @@ using UnityEngine.UI;
 
 public class LevelManager_ScrapGrabber : LevelManager
 {
-    public float maxTime, dangerTime, freezeTimeMultiplier, freezeTimeDuration, freezeTimeCooldown, freezeFadeTime, lightsOutDuration;
+    public float maxTime, dangerTime, freezeTimeMultiplier, freezeTimeDuration, freezeTimeCooldown, freezeFadeTime, bellDuration, bellCooldownDuration, lightsOutDuration;
     public bool lightsOn = true, loseFuel;
     public LightType[] lights;
-    public GameObject freezeCooldownPanel;
+    public GameObject freezeCooldownPanel, bellPromptText;
     public Image freezeIcon;
-    public Animator freezeFrameAnimator;
+    public Animator freezeFrameAnimator, bellAnimator, bellAddonAnimator;
     public GameObject[] freezeElements;
-    
+    public GameObject[] bellIndicators;
+    public Spawner spawner;
+
     [HideInInspector]
     public float remainingTime;
     [HideInInspector]
-    public bool canFreeze = false;
+    public bool isFreezeEnabled = false, isBellEnabled = false, isBellActive = false;
 
     private ScrapGrabberUI uI;
-    private bool isFreezing, gameEnded = false;
+    private bool isFreezing, isBellCooling, gameEnded = false;
     private Color[] freezeColours;
     private Color freezeIconDisabled;
+    private float bellCooldown;
 
     protected override void Awake()
     {
@@ -45,6 +48,10 @@ public class LevelManager_ScrapGrabber : LevelManager
         freezeIconDisabled = freezeIcon.color;
         freezeCooldownPanel.transform.localScale = Vector2.right;
         freezeIcon.color = Color.white;
+        foreach (GameObject bellIndicator in bellIndicators)
+        {
+            bellIndicator.SetActive(true);
+        }
         if (!Application.isEditor)
         {
             loseFuel = true;
@@ -63,9 +70,13 @@ public class LevelManager_ScrapGrabber : LevelManager
             gameEnded = true;
             uI.EndGame();
         }
-        if (Input.GetKeyDown(KeyCode.F) && !isFreezing && canFreeze)
+        if (Input.GetAxisRaw("Primary Ability") == 1 && !isFreezing && isFreezeEnabled)
         {
             StartCoroutine(FreezeTime());
+        }
+        if (Input.GetAxisRaw("Secondary Ability") == 1 && !(isBellActive || isBellCooling) && isBellEnabled)
+        {
+            StartCoroutine(Bell());
         }
         if (Application.isEditor)
         {
@@ -116,6 +127,49 @@ public class LevelManager_ScrapGrabber : LevelManager
         freezeCooldownPanel.transform.localScale = Vector2.right;
         freezeIcon.color = Color.white;
         freezeFrameAnimator.SetBool("Available", true);
+    }
+
+    private IEnumerator Bell()
+    {
+        bellAnimator.SetTrigger("Ring");
+        isBellActive = true;
+        float duration = bellDuration;
+        isBellActive = true;
+        bellPromptText.SetActive(false);
+        bellAddonAnimator.SetBool("Available", false);
+        spawner.Escape();
+        while (duration > 0)
+        {
+            bellCooldown = duration / bellDuration;
+            duration -= Time.deltaTime / Time.timeScale;
+            for (int i = 0; i < bellIndicators.Length; i++)
+            {
+                bellIndicators[i].SetActive(duration > i * (bellDuration / bellIndicators.Length));
+            }
+            yield return null;
+        }
+        bellAnimator.SetBool("Available", false);
+        duration = 0;
+        isBellActive = false;
+        isBellCooling = true;
+        while (duration < bellCooldownDuration)
+        {
+            bellCooldown = duration / bellCooldownDuration;
+            duration += Time.deltaTime;
+            for (int i = 0; i < bellIndicators.Length; i++)
+            {
+                bellIndicators[i].SetActive(duration > i * (bellCooldownDuration / bellIndicators.Length) + bellCooldownDuration / bellIndicators.Length);
+            }
+            yield return null;
+        }
+        isBellCooling = false;
+        foreach (GameObject bellIndicator in bellIndicators)
+        {
+            bellIndicator.SetActive(true);
+        }
+        bellAnimator.SetBool("Available", true);
+        bellAddonAnimator.SetBool("Available", true);
+        bellPromptText.SetActive(true);
     }
 
     private IEnumerator Fade(bool fadeIn)
