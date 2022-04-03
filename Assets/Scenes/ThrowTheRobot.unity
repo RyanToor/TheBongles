@@ -5891,7 +5891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d100de16063270d4bae5f3d82e7bfffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopRightMovement: 0
+  stopRightMovement: 1
   doubleJump: 0
   groundContactFilter:
     useTriggers: 0
@@ -5959,11 +5959,11 @@ MonoBehaviour:
   maxBoostFuel: 0
   boostFuel: 0.2
   boostCostPerSecond: 0.3
-  magnetScanWidth: 19.2
+  magnetScanWidth: 10
   magnetScanInterval: 0.5
-  magnetScanPeriod: 5
+  magnetScanPeriod: 4
   magnetArmSpeed: 15
-  magnetCooldown: 20
+  magnetCooldown: 1
   skimMaxAngle: 20
   musselAngle: 60
   maxJellyfishAngle: 30
