@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 public class UpgradeMenu : MonoBehaviour
 {
     public VideoManager videoManager;
-    public float lerpSpeed, lerpDir = -1;
+    public float lerpSpeed, lerpDir = -1, examplePanelPauseDuration, examplePanelScaleSpeed;
     public Vector3 closedPos, openPos;
     public Color upgradeAvailableColour, upgradeActiveColour, barUnavailableColour, barAvailableColour;
     public List<Sprite> sprites;
@@ -17,11 +18,14 @@ public class UpgradeMenu : MonoBehaviour
     public StoryUpgradeCosts[] storyUpgradeCosts;
     public Sprite[] enabledSprites;
     public UpgradeButton[] upgradeButtons;
+    public RectTransform upgradeExamplePanel;
 
     private AudioManager audioManager;
     private float lerpPos = 0;
     private readonly string[] trashNames = new string[] { "Plastic", "Metal", "Glass" };
     private int currentTabIndex;
+    private bool examplePanelHovered;
+    private Coroutine currentExampleCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -232,6 +236,53 @@ public class UpgradeMenu : MonoBehaviour
         foreach (Transform bossRegion in GameObject.Find("BossRegions").transform)
         {
             bossRegion.gameObject.GetComponent<Region>().RefreshSprites();
+        }
+    }
+
+    public bool ExamplePanelHovered
+    {
+        get
+        {
+            return examplePanelHovered;
+        }
+        set
+        {
+            examplePanelHovered = value;
+            if (currentExampleCoroutine != null)
+            {
+                StopCoroutine(currentExampleCoroutine);
+            }
+            currentExampleCoroutine = StartCoroutine(ScaleExamplePanel(value ? 1 : -1));
+        }
+    }
+
+    private IEnumerator ScaleExamplePanel(int direction)
+    {
+        if (direction == -1 && upgradeExamplePanel.localScale.y == 1)
+        {
+            float duration = 0;
+            while (duration < examplePanelPauseDuration)
+            {
+                duration += Time.deltaTime;
+                yield return null;
+            }
+        }
+        else if (direction == 1 && upgradeExamplePanel.localScale.y == 1)
+        {
+            yield break;
+        }
+        while (upgradeExamplePanel.localScale.y >= 0 && upgradeExamplePanel.localScale.y <= 1)
+        {
+            upgradeExamplePanel.localScale = new Vector3(upgradeExamplePanel.localScale.x, upgradeExamplePanel.localScale.y + direction * examplePanelScaleSpeed * Time.deltaTime, upgradeExamplePanel.localScale.z);
+            yield return null;
+        }
+        if (upgradeExamplePanel.localScale.y > 1)
+        {
+            upgradeExamplePanel.localScale = Vector3.one;
+        }
+        else if (upgradeExamplePanel.localScale.y < 0)
+        {
+            upgradeExamplePanel.localScale = new Vector3(1, 0, 1);
         }
     }
 

@@ -95,4 +95,9 @@ public class UpgradeButton : MonoBehaviour
     {
         upgradeMenu.Upgrade(upgradeIndicies);
     }
+
+    public void UpgradeExampleHovered(bool isHovered)
+    {
+        upgradeMenu.ExamplePanelHovered = isHovered;
+    }
 }

@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
                 flipDir = 1;
             }
             moveDir = new Vector3(moveRight, moveUp).normalized;
-            rb.AddForce(controlMultiplier * moveForce * rb.mass * Time.deltaTime * moveDir, ForceMode2D.Force);
+            rb.AddForce(controlMultiplier * moveForce * rb.mass * Time.deltaTime * moveDir * (isBoosting? boostMultiplierDurationCooldown[boostLevel].x : 1), ForceMode2D.Force);
             rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, currentMaxSpeed);
         }
         UpdateTail();

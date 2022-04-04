@@ -48,11 +48,19 @@ public class PauseMenu : MonoBehaviour
         if (lerpDir == -1)
         {
             GameManager.Instance.PauseGame(false);
+            transform.Find("RightPanel/Settings").gameObject.SetActive(false);
+            transform.Find("RightPanel/PauseMenu").gameObject.SetActive(true);
+            transform.Find("RightPanel/PauseMenu/UpgradeBook").gameObject.SetActive(false);
         }
         else
         {
             GameManager.Instance.PauseGame(true);
         }
+    }
+
+    public void UpgradeBook()
+    {
+
     }
 
     public void QuitGame()

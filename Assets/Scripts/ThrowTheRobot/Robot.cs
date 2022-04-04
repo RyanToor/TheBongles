@@ -95,14 +95,17 @@ public class Robot : MonoBehaviour
             {
                 canDoubleJump = true;
             }
-            if (isGrounded)
+            if (levelManager.State == LevelState.fly && groundHits[0].collider != null)
             {
-                if (levelManager.State == LevelState.fly)
+                if (!groundHits[0].collider.CompareTag("Minigame"))
                 {
                     levelManager.State = LevelState.move;
                     levelManager.totalThrowDistance += transform.position.x;
                     rightMostPoint = transform.position.x + 19.2f;
                 }
+            }
+            if (isGrounded)
+            {
                 isJumping = false;
                 isDoubleJumping = false;
                 canDoubleJump = false;
