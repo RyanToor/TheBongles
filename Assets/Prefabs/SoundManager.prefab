@@ -151,7 +151,7 @@ MonoBehaviour:
     pitchDeviation: 0
     loop: 0
   - name: Pop
-    clip: {fileID: 8300000, guid: 14cd9754eab58564494fb3298c80a859, type: 3}
+    clip: {fileID: 8300000, guid: f1e3ab52ab1c71a4faf9b3f0a6cc4828, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
@@ -341,6 +341,13 @@ MonoBehaviour:
     loop: 1
   - name: Hurt
     clip: {fileID: 8300000, guid: 7bd3b2310fbf26e47936a866b68fcdc4, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: AmbientWind
+    clip: {fileID: 8300000, guid: 0633f25c87e235249b2c71a0f4a14a96, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0

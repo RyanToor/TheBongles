@@ -36,6 +36,8 @@ public class BongleIsland : MonoBehaviour
     {
         sailZ = sailAnimator.gameObject.transform.position.z;
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
+        AudioManager.Instance.PlayAudioAtObject("Wind", gameObject, 20, true);
+        AudioManager.Instance.PlayAudioAtObject("AmbientWind", gameObject, 20, true);
         popupsContainer = GameObject.Find("UI/PopupsContainer").transform;
         rb2D = GetComponent<Rigidbody2D>();
         pathOffset = new Vector3(0, pathYOffset, 0);
