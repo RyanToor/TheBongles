@@ -7,7 +7,7 @@ public class UpgradeButton : MonoBehaviour
     [HideInInspector]
     public Upgrade upgrade;
     [HideInInspector]
-    public int[] upgradeIndicies;
+    public Vector3Int upgradeIndicies;
     [HideInInspector]
     public UpgradeMenu upgradeMenu;
 
@@ -98,6 +98,6 @@ public class UpgradeButton : MonoBehaviour
 
     public void UpgradeExampleHovered(bool isHovered)
     {
-        upgradeMenu.ExamplePanelHovered = isHovered;
+        upgradeMenu.ExamplePanelHovered(isHovered, upgradeIndicies);
     }
 }

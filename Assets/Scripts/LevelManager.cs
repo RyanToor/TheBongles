@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public bool isTrashTrigger, isTrashRandom;
+    public float mouseVisibleDuration = 2f;
     public TrashType levelTrashType;
     public int plastic = 0, metal = 0, glass = 0;
+
+    private bool isCursorVisible;
 
     protected virtual void Awake()
     {
@@ -28,7 +31,10 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-
+        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && SceneManager.GetActiveScene().name != "Map" && !isCursorVisible)
+        {
+            StartCoroutine(MouseVisible());
+        }
     }
 
     protected virtual void SendSaveData()
@@ -47,6 +53,20 @@ public class LevelManager : MonoBehaviour
         Cursor.visible = true;
         SceneManager.LoadScene("Map");
     }
+
+    private IEnumerator MouseVisible()
+	{
+        Cursor.visible = true;
+        isCursorVisible = true;
+        float duration = 0;
+        while (duration < mouseVisibleDuration)
+        {
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        Cursor.visible = false;
+        isCursorVisible = false;
+	}
 
     private void OnDestroy()
     {

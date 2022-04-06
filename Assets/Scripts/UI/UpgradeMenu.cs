@@ -93,9 +93,9 @@ public class UpgradeMenu : MonoBehaviour
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
             int upgradeTier = GameManager.Instance.upgrades[currentTabIndex][i];
-            upgradeButtons[i].upgradeIndicies = new int[] { currentTabIndex, i, upgradeTier};
+            upgradeButtons[i].upgradeIndicies = new Vector3Int(currentTabIndex, i, upgradeTier);
             upgradeButtons[i].upgrade = upgradeCosts[currentTabIndex].upgrades[i];
-            upgradeButtons[i].UpdateContents(GameManager.Instance.upgrades[currentTabIndex][i], UpgradeAffordabilityCheck(new int[3] { currentTabIndex, i, upgradeTier }));
+            upgradeButtons[i].UpdateContents(GameManager.Instance.upgrades[currentTabIndex][i], UpgradeAffordabilityCheck(new Vector3Int(currentTabIndex, i, upgradeTier)));
         }
         int currentLevel = GameManager.Instance.MaxRegion();
         bool upgradeReady = true;
@@ -173,27 +173,27 @@ public class UpgradeMenu : MonoBehaviour
         }
     }
 
-    public void Upgrade(int[] upgradeIndicies)
+    public void Upgrade(Vector3Int upgradeIndicies)
     {
         if (UpgradeAffordabilityCheck(upgradeIndicies))
         {
-            UpgradeCost[] prices = upgradeCosts[upgradeIndicies[0]].upgrades[upgradeIndicies[1]].upgradeTiers[upgradeIndicies[2]].upgradeCosts;
+            UpgradeCost[] prices = upgradeCosts[upgradeIndicies.x].upgrades[upgradeIndicies.y].upgradeTiers[upgradeIndicies.z].upgradeCosts;
             for (int i = 0; i < prices.Length; i++)
             {
                 GameManager.Instance.trashCounts[prices[i].type.ToString()] -= prices[i].cost;
             }
-            GameManager.Instance.upgrades[upgradeIndicies[0]][upgradeIndicies[1]] ++;
+            GameManager.Instance.upgrades[upgradeIndicies.x][upgradeIndicies.y] ++;
             RefreshReadouts();
             GameObject.Find("BongleIsland").GetComponent<BongleIsland>().RefreshUpgrades();
             audioManager.PlaySFX("Twinkle");
         }
     }
 
-    private bool UpgradeAffordabilityCheck(int[] upgradeIndicies)
+    private bool UpgradeAffordabilityCheck(Vector3Int upgradeIndicies)
     {
-        if (upgradeIndicies[2] < upgradeCosts[upgradeIndicies[0]].upgrades[upgradeIndicies[1]].upgradeTiers.Length)
+        if (upgradeIndicies.z < upgradeCosts[upgradeIndicies.x].upgrades[upgradeIndicies.y].upgradeTiers.Length)
         {
-            UpgradeCost[] upgradeCost = upgradeCosts[upgradeIndicies[0]].upgrades[upgradeIndicies[1]].upgradeTiers[upgradeIndicies[2]].upgradeCosts;
+            UpgradeCost[] upgradeCost = upgradeCosts[upgradeIndicies.x].upgrades[upgradeIndicies.y].upgradeTiers[upgradeIndicies.z].upgradeCosts;
             bool canAffordUpgrade = true;
             for (int i = 0; i < upgradeCost.Length; i++)
             {
@@ -239,25 +239,21 @@ public class UpgradeMenu : MonoBehaviour
         }
     }
 
-    public bool ExamplePanelHovered
+    public void ExamplePanelHovered(bool isHovered, Vector3Int buttonIndicies)
     {
-        get
+        examplePanelHovered = isHovered;
+        if (currentExampleCoroutine != null)
         {
-            return examplePanelHovered;
+            StopCoroutine(currentExampleCoroutine);
         }
-        set
-        {
-            examplePanelHovered = value;
-            if (currentExampleCoroutine != null)
-            {
-                StopCoroutine(currentExampleCoroutine);
-            }
-            currentExampleCoroutine = StartCoroutine(ScaleExamplePanel(value ? 1 : -1));
-        }
+        currentExampleCoroutine = StartCoroutine(ScaleExamplePanel((isHovered ? 1 : -1), buttonIndicies));
     }
 
-    private IEnumerator ScaleExamplePanel(int direction)
+    private IEnumerator ScaleExamplePanel(int direction, Vector3Int upgradeIndicies)
     {
+        upgradeExamplePanel.GetChild(0).GetComponent<Animator>().SetInteger("Minigame", upgradeIndicies.x + 1);
+        upgradeExamplePanel.GetChild(0).GetComponent<Animator>().SetInteger("Upgrade", upgradeIndicies.y + 1);
+        upgradeExamplePanel.GetChild(0).GetComponent<Animator>().SetInteger("Tier", upgradeIndicies.z + 1);
         if (direction == -1 && upgradeExamplePanel.localScale.y == 1)
         {
             float duration = 0;
@@ -273,7 +269,7 @@ public class UpgradeMenu : MonoBehaviour
         }
         while (upgradeExamplePanel.localScale.y >= 0 && upgradeExamplePanel.localScale.y <= 1)
         {
-            upgradeExamplePanel.localScale = new Vector3(upgradeExamplePanel.localScale.x, upgradeExamplePanel.localScale.y + direction * examplePanelScaleSpeed * Time.deltaTime, upgradeExamplePanel.localScale.z);
+            upgradeExamplePanel.localScale = new Vector3(upgradeExamplePanel.localScale.x, upgradeExamplePanel.localScale.y + direction * examplePanelScaleSpeed * Time.unscaledDeltaTime, upgradeExamplePanel.localScale.z);
             yield return null;
         }
         if (upgradeExamplePanel.localScale.y > 1)
