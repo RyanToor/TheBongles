@@ -354,7 +354,7 @@ public class Robot : MonoBehaviour
         GameObject magnet = Instantiate(magnetPrefab, transform.position, Quaternion.identity, transform);
         LineRenderer line = magnet.GetComponent<LineRenderer>();
         float armProgress = 0;
-        while (armProgress < Vector2.Distance(transform.position, target.transform.position))
+        while (target != null && armProgress < Vector2.Distance(transform.position, target.transform.position))
         {
             armProgress += magnetArmSpeed * Time.deltaTime;
             Vector2 targetLocalPos = transform.InverseTransformPoint(target.transform.position);

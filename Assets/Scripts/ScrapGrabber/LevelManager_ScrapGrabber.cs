@@ -30,7 +30,6 @@ public class LevelManager_ScrapGrabber : LevelManager
     {
         remainingTime = maxTime;
         uI = GameObject.Find("Canvas").GetComponent<ScrapGrabberUI>();
-        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         freezeColours = new Color[freezeElements.Length];
         for (int i = 0; i < freezeElements.Length; i++)
         {
@@ -52,10 +51,21 @@ public class LevelManager_ScrapGrabber : LevelManager
         {
             bellIndicator.SetActive(true);
         }
+        StartCoroutine(CheckLoaded());
         if (!Application.isEditor)
         {
             loseFuel = true;
         }
+    }
+
+    private IEnumerator CheckLoaded()
+    {
+        while (false)
+        {
+            yield return null;
+        }
+        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
+        AudioManager.Instance.PlayMusic("Scrap Grabber");
     }
 
     // Update is called once per frame

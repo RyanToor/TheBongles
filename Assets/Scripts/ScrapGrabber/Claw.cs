@@ -126,7 +126,7 @@ public class Claw : MonoBehaviour
         float remainder = 0;
         for (float moveDistance = reelSpeed * Time.unscaledDeltaTime; moveDistance > 0; moveDistance -= Vector3.Distance(linePoints[Mathf.Clamp(checkPoint - 1, 1, linePoints.Count - 2)], linePoints[Mathf.Clamp(checkPoint, 0, linePoints.Count - 1)]))
         {
-            remainder = Vector3.Distance(linePoints[checkPoint - 1], linePoints[checkPoint - 2]) - moveDistance;
+            remainder = Vector3.Distance(linePoints[Mathf.Clamp(checkPoint - 1, 0, int.MaxValue)], linePoints[Mathf.Clamp(checkPoint - 2, 0, int.MaxValue)]) - moveDistance;
             if (remainder < 0)
             {
                 pointsToRemove++;
@@ -295,7 +295,7 @@ public class Claw : MonoBehaviour
                 state = ClawState.reel;
             }
         }
-        else if (collision.gameObject.name == "SharkMouth")
+        else if (collision.gameObject.name == "SharkMouth" && state == ClawState.fire)
         {
             StartCoroutine(collision.transform.parent.GetComponent<Obstacle>().SharkGrab(this));
         }
