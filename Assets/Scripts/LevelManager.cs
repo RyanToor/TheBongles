@@ -9,8 +9,8 @@ public class LevelManager : MonoBehaviour
     public float mouseVisibleDuration = 2f;
     public TrashType levelTrashType;
     public int plastic = 0, metal = 0, glass = 0;
-
-    private bool isCursorVisible;
+    public bool isCursorVisible;
+    public Coroutine mouseVisibleCoroutine;
 
     protected virtual void Awake()
     {
@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
     {
         if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && SceneManager.GetActiveScene().name != "Map" && !isCursorVisible)
         {
-            StartCoroutine(MouseVisible());
+            mouseVisibleCoroutine = StartCoroutine(MouseVisible());
         }
     }
 
@@ -52,6 +52,14 @@ public class LevelManager : MonoBehaviour
         DontDestroyOnLoad(newLoadScreen);
         Cursor.visible = true;
         SceneManager.LoadScene("Map");
+    }
+
+    public void StopMouseVisibleCoroutine()
+    {
+        if (mouseVisibleCoroutine != null)
+        {
+            StopCoroutine(mouseVisibleCoroutine);
+        }
     }
 
     private IEnumerator MouseVisible()

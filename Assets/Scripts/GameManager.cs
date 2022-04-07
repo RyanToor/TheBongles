@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int[][] upgrades;
     [HideInInspector] public int[] highscoreStars;
     [HideInInspector] public int storyPoint;
+    [HideInInspector] public bool[] levelsPrompted;
     #endregion
 
     #region Settings
@@ -100,7 +101,8 @@ public class GameManager : MonoBehaviour
                 upgrades2 = upgrades[1],
                 upgrades3 = upgrades[2],
                 storyPoint = storyPoint,
-                highscoreStars = highscoreStars
+                highscoreStars = highscoreStars,
+                levelsPrompted = levelsPrompted
             };
             File.WriteAllText(Application.persistentDataPath + "/saveGame.json", JsonUtility.ToJson(save, true));
         }
@@ -149,7 +151,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            highscoreStars = new int[3] { 0, 0, 0 };
+            highscoreStars = new int[4] { 0, 0, 0, 0 };
+        }
+        if (loadedSave.levelsPrompted.Length != 0)
+        {
+            levelsPrompted = loadedSave.levelsPrompted;
+        }
+        else
+        {
+            levelsPrompted = new bool[3] { false, false, false };
         }
 
         if (File.Exists(Application.persistentDataPath + "/settings.json"))
@@ -252,6 +262,7 @@ struct Save
     public int[] upgrades3;
     public int storyPoint;
     public int[] highscoreStars;
+    public bool[] levelsPrompted;
 }
 
 [System.Serializable]

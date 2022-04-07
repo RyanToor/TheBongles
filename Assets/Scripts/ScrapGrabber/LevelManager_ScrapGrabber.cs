@@ -78,6 +78,7 @@ public class LevelManager_ScrapGrabber : LevelManager
         {
             StartCoroutine(Bell());
         }
+        base.Update();
         if (Application.isEditor)
         {
             EditorUpdate();
@@ -221,6 +222,17 @@ public class LevelManager_ScrapGrabber : LevelManager
         if (Input.GetKeyDown(KeyCode.L))
         {
             LightsOn = !LightsOn;
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0.2f;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
         }
     }
 

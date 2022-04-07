@@ -41,6 +41,7 @@ public class LevelManager_Robot : LevelManager
     // Update is called once per frame
     protected override void Update()
     {
+        base.Update();
         if (Application.isEditor)
         {
             EditorUpdate();

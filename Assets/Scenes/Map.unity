@@ -14829,6 +14829,10 @@ PrefabInstance:
       value: Pause
       objectReference: {fileID: 0}
     - target: {fileID: 4168531506817681814, guid: 9af2e31f55fa3774ab055d6ccf2ca666, type: 3}
+      propertyPath: tutorialPages
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168531506817681814, guid: 9af2e31f55fa3774ab055d6ccf2ca666, type: 3}
       propertyPath: availableTutorialPages.Array.size
       value: 3
       objectReference: {fileID: 0}

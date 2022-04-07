@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2465679003018889065}
   - component: {fileID: 2465679003018889064}
   - component: {fileID: 1703367005586121006}
+  - component: {fileID: 8900254498487308914}
   m_Layer: 0
   m_Name: Salmon
   m_TagString: Boss
@@ -118,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mineRadius: 0
+  sharkDragPeriod: 0
   mineBlast:
     serializedVersion: 2
     m_Curve: []
@@ -142,3 +144,35 @@ CapsuleCollider2D:
   m_Offset: {x: 0.1, y: 0}
   m_Size: {x: 1.4, y: 0.5}
   m_Direction: 1
+--- !u!114 &8900254498487308914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465679003018889071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 57979662bb172604
+  m_ShapePath:
+  - {x: -0.70248663, y: -0.05918038, z: 0}
+  - {x: -0.739038, y: 0.044559937, z: 0}
+  - {x: -0.5592376, y: 8.714552e-10, z: 0}
+  - {x: -0.28875667, y: 0.13158533, z: 0}
+  - {x: 0.19372283, y: 0.1900677, z: 0}
+  - {x: 0.6542714, y: 0.11696474, z: 0}
+  - {x: 0.9071748, y: -0.16012836, z: 0}
+  - {x: 0.7755896, y: -0.11766279, z: 0}
+  - {x: 0.5738582, y: -0.2119986, z: 0}
+  - {x: -0.054827213, y: -0.197378, z: 0}
+  m_ShapePathHash: -93344724
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -808818

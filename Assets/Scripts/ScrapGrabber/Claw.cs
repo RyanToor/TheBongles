@@ -13,6 +13,9 @@ public class Claw : MonoBehaviour
     public TrashRequests trashRequestScript;
     public Vector2[] clawExtensionAndItems;
 
+    [HideInInspector]
+    public bool isCaught;
+
     private ClawState state;
     private LineRenderer lineRenderer;
     private List<Vector3> linePoints = new List<Vector3>();
@@ -42,7 +45,6 @@ public class Claw : MonoBehaviour
                 transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[2][i]).gameObject.SetActive(true);
             }
             Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[2][i]));
-            print(new Vector2Int(i + 1, GameManager.Instance.upgrades[2][i]));
         }
     }
 
@@ -109,7 +111,7 @@ public class Claw : MonoBehaviour
         }
         lineRenderer.positionCount = linePoints.Count;
         lineRenderer.SetPositions(linePoints.ToArray());
-        if (lineLength > maxLineLength || (Input.GetAxis("Jump") > 0 && !isReleasing))
+        if ((lineLength > maxLineLength || (Input.GetAxis("Jump") > 0 && !isReleasing)) && !isCaught)
         {
             currentTrash = 0;
             state = ClawState.reel;
@@ -292,6 +294,10 @@ public class Claw : MonoBehaviour
             {
                 state = ClawState.reel;
             }
+        }
+        else if (collision.gameObject.name == "SharkMouth")
+        {
+            StartCoroutine(collision.transform.parent.GetComponent<Obstacle>().SharkGrab(this));
         }
     }
 
