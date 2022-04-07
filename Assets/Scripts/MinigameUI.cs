@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MinigameUI : MonoBehaviour
@@ -31,7 +32,7 @@ public class MinigameUI : MonoBehaviour
         {
             star.SetActive(false);
         }
-
+        starScoreIndex = SceneManager.GetActiveScene().buildIndex - 1;
     }
 
     // Update is called once per frame
@@ -77,7 +78,7 @@ public class MinigameUI : MonoBehaviour
             }
             yield return null;
         }
-        if (starsScored > GameManager.Instance.highscoreStars[0])
+        if (starsScored > GameManager.Instance.highscoreStars[starScoreIndex])
         {
             GameManager.Instance.highscoreStars[starScoreIndex] = starsScored;
         }

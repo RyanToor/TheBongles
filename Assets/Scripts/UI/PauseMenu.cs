@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
     public Animator sceneAnimator;
     public GameObject[] upgradeImages, dividers;
     public Button prevPage, nextPage;
-    [SerializeField]
+    public int tutorialPages = 1;
     public UpgradeSpriteArray[] upgradeSprites;
     public ControlPromptSet[] upgradeControlPrompts;
 
@@ -24,10 +24,14 @@ public class PauseMenu : MonoBehaviour
     private RectTransform rightPaneTransform;
     private AudioManager audioManager;
 
+    private void Awake()
+    {
+        transform.Find("UpgradeBook").gameObject.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        transform.Find("UpgradeBook").gameObject.SetActive(false);
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         rightPaneTransform = transform.Find("RightPanel").GetComponent<RectTransform>();
         rightPaneTransform.localPosition = closedPos;
@@ -62,6 +66,12 @@ public class PauseMenu : MonoBehaviour
             transform.Find("RightPanel/Settings").gameObject.SetActive(false);
             transform.Find("RightPanel/PauseMenu").gameObject.SetActive(true);
             transform.Find("UpgradeBook").gameObject.SetActive(false);
+            LevelManager levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+            if (levelManager.isCursorVisible && SceneManager.GetActiveScene().name != "Map")
+            {
+                levelManager.StopMouseVisibleCoroutine();
+                levelManager.isCursorVisible = false;
+            }
         }
         else
         {
@@ -69,27 +79,70 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void UpgradeBook(int pageTurn)
+    public void UpgradeBook(int pageTurn = 0)
     {
         tutorialPage += pageTurn;
-        sceneAnimator.gameObject.SetActive(tutorialPage == 0);
+        sceneAnimator.gameObject.SetActive(tutorialPage < tutorialPages);
         sceneAnimator.SetInteger("Scene", SceneManager.GetActiveScene().buildIndex);
+        sceneAnimator.SetInteger("Page", tutorialPage);
         prevPage.interactable = tutorialPage > 0;
-        nextPage.interactable = tutorialPage < availableTutorialPages.Length;
+        List<int> currentTutorialPages = new List<int>();
+        for (int i = 0; i < availableTutorialPages.Length; i++)
+        {
+            if (currentTutorialPages.Contains(availableTutorialPages[i]) || GameManager.Instance.storyPoint < 3)
+            {
+                break;
+            }
+            for (int j = 0; j < GameManager.Instance.upgrades[availableTutorialPages[i]].Length; j++)
+            {
+                if (GameManager.Instance.upgrades[availableTutorialPages[i]][j] > 0)
+                {
+                    currentTutorialPages.Add(availableTutorialPages[i]);
+                    break;
+                }
+            }
+        }
+        nextPage.interactable = tutorialPage < currentTutorialPages.Count + tutorialPages - 1;
+        for (int i = 0; i < upgradeControlPrompts.Length; i++)
+        {
+            foreach (ControlPrompt prompt in upgradeControlPrompts[i].controlPrompts)
+            {
+                prompt.promptObject.SetActive(false);
+            }
+        }
         for (int i = 0; i < upgradeImages.Length; i++)
         {
-            upgradeImages[i].SetActive(tutorialPage != 0);
+            upgradeImages[i].SetActive(tutorialPage >= tutorialPages);
             if (upgradeImages[i].activeSelf)
             {
-                int upgradeTier = Mathf.Clamp(GameManager.Instance.upgrades[availableTutorialPages[tutorialPage - 1]][i], 0, upgradeSprites[availableTutorialPages[tutorialPage - 1]].upgradeSprites[i].sprites.Length);
-                upgradeImages[i].GetComponent<Image>().sprite = upgradeTier < 1 ? null : upgradeSprites[availableTutorialPages[tutorialPage - 1]].upgradeSprites[i].sprites[upgradeTier - 1];
-                upgradeImages[i].GetComponent<Image>().color = upgradeTier < 1 ? Color.clear : Color.white;
-                for (int j = 0; j < upgradeImages[i].transform.childCount; j++)
+                int upgradeTier = Mathf.Clamp(GameManager.Instance.upgrades[currentTutorialPages[tutorialPage - tutorialPages]][i], 0, upgradeSprites[currentTutorialPages[tutorialPage - tutorialPages]].upgradeSprites[i].sprites.Length);
+                if (upgradeTier < 1)
+                {
+                    upgradeImages[i].SetActive(false);
+                    continue;
+                }
+                upgradeImages[i].GetComponent<Image>().sprite = upgradeSprites[currentTutorialPages[tutorialPage - tutorialPages]].upgradeSprites[i].sprites[Mathf.Clamp(upgradeTier - 1, 0, int.MaxValue)];
+                foreach (ControlPrompt prompt in upgradeControlPrompts[i].controlPrompts)
+                {
+                    if (prompt.control == upgradeSprites[currentTutorialPages[tutorialPage - tutorialPages]].upgradeSprites[i].input)
+                    {
+                        prompt.promptObject.SetActive(true);
+                        if (prompt.control == InputType.PrimaryInput)
+                        {
+                            prompt.promptObject.transform.GetChild(0).GetComponent<Text>().text = "F";
+                        }
+                        else if (prompt.control == InputType.SecondaryInput)
+                        {
+                            prompt.promptObject.transform.GetChild(0).GetComponent<Text>().text = "B";
+                        }
+                    }
+                }
+                for (int j = 0; j < upgradeImages[i].transform.childCount - 2; j++)
                 {
                     upgradeImages[i].transform.GetChild(j).gameObject.SetActive(j < upgradeTier);
                     if (upgradeImages[i].transform.GetChild(j).gameObject.activeSelf)
                     {
-                        upgradeImages[i].transform.GetChild(j).GetComponent<Animator>().SetInteger("Minigame", availableTutorialPages[tutorialPage - 1] + 1);
+                        upgradeImages[i].transform.GetChild(j).GetComponent<Animator>().SetInteger("Minigame", currentTutorialPages[tutorialPage - tutorialPages] + 1);
                         upgradeImages[i].transform.GetChild(j).GetComponent<Animator>().SetInteger("Upgrade", i + 1);
                         upgradeImages[i].transform.GetChild(j).GetComponent<Animator>().SetInteger("Tier", j + 1);
                     }
@@ -98,7 +151,7 @@ public class PauseMenu : MonoBehaviour
         }
         foreach (GameObject divider in dividers)
         {
-            divider.SetActive(tutorialPage != 0);
+            divider.SetActive(tutorialPage >= tutorialPages);
         }
     }
 

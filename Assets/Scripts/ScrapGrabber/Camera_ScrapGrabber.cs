@@ -5,12 +5,15 @@ using UnityEngine;
 public class Camera_ScrapGrabber : MonoBehaviour
 {
     public Material glowMaterial;
-    public float perlinSpeed;
+    public float perlinSpeed, rayTranslateSpeed, rayFadeSpeed;
     public ParallaxLayerSet[] parallaxLayerSets;
+    public GameObject[] rayLayers;
 
     private ParallaxLayer[] parallaxLayerSet;
     private GameObject[] parallaxPlates;
     private Vector2[] perlinCoordinates;
+    private Vector2[][] rayPerlinCoordinates;
+    private float[] rayMaxAlphas;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,22 @@ public class Camera_ScrapGrabber : MonoBehaviour
             float perlinMagnitude = Random.Range(0, 10000);
             perlinCoordinates[i] = new Vector2(perlinMagnitude * Mathf.Cos(perlinAngle), perlinMagnitude * Mathf.Sin(perlinAngle));
         }
+        rayMaxAlphas = new float[rayLayers.Length];
+        for (int i = 0; i < rayMaxAlphas.Length; i++)
+        {
+            rayMaxAlphas[i] = rayLayers[i].GetComponent<SpriteRenderer>().color.a;
+        }
+        rayPerlinCoordinates = new Vector2[rayLayers.Length][];
+        for (int i = 0; i < rayLayers.Length; i++)
+        {
+            rayPerlinCoordinates[i] = new Vector2[2];
+            for (int j = 0; j < 2; j++)
+            {
+                float perlinAngle = Random.Range(0, 2 * Mathf.PI);
+                float perlinMagnitude = Random.Range(0, 10000);
+                rayPerlinCoordinates[i][j] = new Vector2(perlinMagnitude * Mathf.Cos(perlinAngle), perlinMagnitude * Mathf.Sin(perlinAngle));
+            }
+        }
     }
 
     // Update is called once per frame
@@ -45,11 +64,21 @@ public class Camera_ScrapGrabber : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            perlinCoordinates[i] += perlinCoordinates[i].normalized * Time.deltaTime * perlinSpeed;
+            perlinCoordinates[i] += perlinSpeed * Time.deltaTime * perlinCoordinates[i].normalized;
+        }
+        for (int i = 0; i < rayLayers.Length; i++)
+        {
+            rayPerlinCoordinates[i][0] += rayTranslateSpeed * Time.deltaTime * rayPerlinCoordinates[i][0].normalized;
+            rayPerlinCoordinates[i][1] += rayFadeSpeed * Time.deltaTime * rayPerlinCoordinates[i][1].normalized;
         }
         for (int i = 0; i < parallaxPlates.Length; i++)
         {
             parallaxPlates[i].transform.position = new Vector3((Mathf.Clamp(Mathf.PerlinNoise(perlinCoordinates[0].x, perlinCoordinates[0].y), 0, 1) * 2 - 1) * 10.88f * parallaxLayerSet[i].parallaxMultiplier, (Mathf.Clamp(Mathf.PerlinNoise(perlinCoordinates[1].x, perlinCoordinates[1].y), 0, 1) * 2 - 1) * 4.84f * parallaxLayerSet[i].parallaxMultiplier, parallaxPlates[i].transform.position.z);
+        }
+        for (int i = 0; i < rayLayers.Length; i++)
+        {
+            rayLayers[i].transform.position = new Vector3((Mathf.Clamp(Mathf.PerlinNoise(rayPerlinCoordinates[i][0].x, rayPerlinCoordinates[i][0].y), 0, 1) * 2f - 1f) * 1.24f, rayLayers[i].transform.position.y, rayLayers[i].transform.position.z);
+            rayLayers[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, Mathf.Lerp(0, rayMaxAlphas[i], Mathf.Clamp(Mathf.PerlinNoise(rayPerlinCoordinates[i][0].x, rayPerlinCoordinates[i][0].y), 0, 1)));
         }
     }
 

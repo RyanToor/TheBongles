@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2245045350222482042}
   - component: {fileID: 2245045350222482043}
   - component: {fileID: 2245045350222482047}
+  - component: {fileID: 7851791163902068198}
   m_Layer: 0
   m_Name: Electric_Eel
   m_TagString: Boss
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mineRadius: 0
+  sharkDragPeriod: 0
   mineBlast:
     serializedVersion: 2
     m_Curve: []
@@ -365,3 +367,36 @@ MonoBehaviour:
   - {x: 1.0146565, y: -0.28246462, z: 0}
   - {x: 1.0199628, y: 0.09676355, z: 0}
   - {x: -0.9881282, y: 0.107375205, z: 0}
+--- !u!114 &7851791163902068198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2245045350222482036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 57979662bb172604
+  m_ShapePath:
+  - {x: -0.8076167, y: -0.22907996, z: 0}
+  - {x: -1.1118627, y: -0.18205923, z: 0}
+  - {x: -0.8326111, y: -0.13027239, z: 0}
+  - {x: -0.4057212, y: -0.06579274, z: 0}
+  - {x: -0.24426508, y: -0.07222462, z: 0}
+  - {x: 0.27935362, y: 0.018359482, z: 0}
+  - {x: 0.8233838, y: 0.0077272058, z: 0}
+  - {x: 1.0168295, y: -0.10895616, z: 0}
+  - {x: 0.8978472, y: -0.23438764, z: 0}
+  - {x: 0.27590036, y: -0.021582663, z: 0}
+  - {x: -0.5194583, y: -0.124964714, z: 0}
+  m_ShapePathHash: 1898104363
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -805576

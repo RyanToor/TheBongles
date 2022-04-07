@@ -1,20 +1,32 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThrowInputs : MonoBehaviour
-
 {
-    public LevelManager_Robot levelManager;
-    public GameObject robot, powerWheel, powerPointer, anglePointer;
-    public float drawDistance, drawPause, powerMin, powerMax, angleMin, angleMax, powerSpeedMin, powerSpeedMax, angleSpeedMin, angleSpeedMax;
+    public Launcher launcher;
+    public GameObject powerWheel, powerPointer, anglePointer;
+    public float fadeTime, drawDistance, drawPause, powerMin, powerMax, angleMin, angleMax, powerSpeedMin, powerSpeedMax, angleSpeedMin, angleSpeedMax;
 
     [HideInInspector]
     public float power, angle;
+
+    private bool isFaded;
+    private GameObject robot;
+    private LevelManager_Robot levelManager;
 
     private void Awake()
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
         robot = GameObject.FindGameObjectWithTag("Player");
+        for (int i = 0; i < 2; i++)
+        {
+            transform.GetChild(i).GetComponent<Image>().color = Color.clear;
+            foreach (Transform child in transform.GetChild(i))
+            {
+                child.GetComponent<Image>().color = Color.clear;
+            }
+        }
     }
 
     public void Throw()
@@ -32,10 +44,12 @@ public class ThrowInputs : MonoBehaviour
         {
             Debug.Log("Angle Collected : " + valueCollected);
             throwValues.x = valueCollected;
+            StartCoroutine(launcher.AngleArm(valueCollected));
             StartCoroutine(Spin("power", valueCollected =>
             {
                 Debug.Log("Power Collected : " + valueCollected);
                 throwValues.y = valueCollected;
+                StartCoroutine(launcher.AngleArm(valueCollected, true));
                 callback(throwValues);
             }));
         }));
@@ -62,6 +76,7 @@ public class ThrowInputs : MonoBehaviour
         AudioManager.Instance.PlaySFXAtLocation("Throw", transform.position, 20);
         robot.GetComponent<Robot>().Launch(throwVector);
         levelManager.State = LevelState.fly;
+        ResetDials();
     }
 
     public void ResetDials()
@@ -73,6 +88,12 @@ public class ThrowInputs : MonoBehaviour
 
     public IEnumerator Spin(string type, System.Action<float> callback)
     {
+        isFaded = false;
+        StartCoroutine(Fade(type == "angle"? transform.GetChild(0) : transform.GetChild(1), Color.clear, Color.white));
+        while (!isFaded)
+        {
+            yield return null;
+        }
         float speed = type == "power" ? Random.Range(powerSpeedMin, powerSpeedMax) : Random.Range(angleSpeedMin, angleSpeedMax);
         GameObject pointer = type == "power" ? powerPointer : anglePointer;
         int spinDir = 1;
@@ -115,5 +136,32 @@ public class ThrowInputs : MonoBehaviour
             }
             yield return null;
         }
+        isFaded = false;
+        StartCoroutine(Fade(type == "angle" ? transform.GetChild(0) : transform.GetChild(1), Color.white, Color.clear));
+        while (!isFaded)
+        {
+            yield return null;
+        }
+    }
+
+    private IEnumerator Fade(Transform parentTransform, Color fromColour, Color toColour)
+    {
+        float duration = 0;
+        while (duration < fadeTime)
+        {
+            duration += Time.deltaTime;
+            parentTransform.GetComponent<Image>().color = Color.Lerp(fromColour, toColour, duration / fadeTime);
+            foreach (Transform child in parentTransform)
+            {
+                child.GetComponent<Image>().color = Color.Lerp(fromColour, toColour, duration / fadeTime);
+            }
+            yield return null;
+        }
+        parentTransform.GetComponent<Image>().color = toColour;
+        foreach (Transform child in parentTransform)
+        {
+            child.GetComponent<Image>().color = toColour;
+        }
+        isFaded = true;
     }
 }

@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mineRadius: 2
+  sharkDragPeriod: 0
   mineBlast:
     serializedVersion: 2
     m_Curve:
@@ -266,7 +267,7 @@ MonoBehaviour:
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
-  m_ApplyToSortingLayers: 57979662bb17260400000000d738ee41
+  m_ApplyToSortingLayers: 57979662bb172604
   m_ShapePath:
   - {x: -0.5728569, y: -0.56433713, z: 0}
   - {x: -0.8008609, y: 0.017039418, z: 0}

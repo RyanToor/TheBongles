@@ -5,7 +5,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class Obstacle : MonoBehaviour
 {
-    public float mineRadius;
+    public float mineRadius, sharkDragPeriod;
     public AnimationCurve mineBlast;
     public float mineAnimationLength;
 
@@ -47,6 +47,22 @@ public class Obstacle : MonoBehaviour
         }
         light.intensity = lightMaxIntensity;
         light.enabled = false;
+    }
+
+    public IEnumerator SharkGrab(Claw clawScript)
+    {
+        GetComponent<Animator>().SetBool("Drag", true);
+        clawScript.isCaught = true;
+        Transform catchPoint = transform.Find("CatchPoint");
+        float duration = 0;
+        while (duration < sharkDragPeriod && Mathf.Abs(transform.position.x) < 9.6)
+        {
+            clawScript.transform.position = catchPoint.position;
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        GetComponent<Animator>().SetBool("Drag", false);
+        clawScript.isCaught = false;
     }
 
     public void RequestDestruction()

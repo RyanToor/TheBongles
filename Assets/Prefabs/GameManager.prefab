@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadScreenPrefab: {fileID: 8501071293954850938, guid: 94454062a6294e2408b01b9ef78015c1, type: 3}
+  collectionIndicatorPrefab: {fileID: 2569150048261709844, guid: 0cdfccc8e10ac16498c70d64204b5577, type: 3}
   inGameUI:
   - {fileID: 0}
   - {fileID: 0}
@@ -52,6 +53,7 @@ MonoBehaviour:
   bongleIslandPosition: {x: 0, y: 0, z: 0}
   highscoreStars: 
   storyPoint: 0
+  levelsPrompted: 
   musicMuted: 1
   sFXMuted: 1
   musicVolume: 0.25

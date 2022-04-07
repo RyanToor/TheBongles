@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class Launcher : MonoBehaviour
 {
-    public float reelSpeed, lineWidth;
-    public Material lineMaterial;
+    public float reelSpeed, lineWidth, armSpeed;
 
     [HideInInspector]
     public bool isReeling;
 
     private LevelManager_Robot levelManager;
-    private Transform reelBottom, reelTop;
+    private Transform reelBottom, reelTop, arm;
     private GameObject robot;
     private bool reelStarted;
+    private float armStartAngle;
 
     private void Awake()
     {
@@ -20,6 +20,8 @@ public class Launcher : MonoBehaviour
         robot = GameObject.FindGameObjectWithTag("Player");
         reelBottom = transform.Find("Bubba/LineBottom");
         reelTop = transform.Find("Bubba/LineStop");
+        arm = transform.Find("Bubba/AngleArm");
+        armStartAngle = arm.rotation.eulerAngles.z;
         isReeling = true;
     }
 
@@ -28,6 +30,22 @@ public class Launcher : MonoBehaviour
         if (Application.isEditor)
         {
             EditorUpdate();
+        }
+    }
+
+    public IEnumerator AngleArm(float angle, bool isReturning = false)
+    {
+        float progress = 0f, startAngle = isReturning ? arm.rotation.eulerAngles.z : armStartAngle, endAngle = isReturning? armStartAngle : angle;
+        arm.gameObject.SetActive(true);
+        while (progress < 1)
+        {
+            progress = Mathf.Clamp(progress + armSpeed * Time.deltaTime, 0, 1);
+            arm.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, startAngle), Quaternion.Euler(0, 0, endAngle), progress);
+            yield return null;
+        }
+        if (isReturning)
+        {
+            arm.gameObject.SetActive(false);
         }
     }
 

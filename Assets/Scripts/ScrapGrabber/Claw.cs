@@ -13,6 +13,9 @@ public class Claw : MonoBehaviour
     public TrashRequests trashRequestScript;
     public Vector2[] clawExtensionAndItems;
 
+    [HideInInspector]
+    public bool isCaught;
+
     private ClawState state;
     private LineRenderer lineRenderer;
     private List<Vector3> linePoints = new List<Vector3>();
@@ -42,7 +45,6 @@ public class Claw : MonoBehaviour
                 transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[2][i]).gameObject.SetActive(true);
             }
             Upgrade(new Vector2Int(i + 1, GameManager.Instance.upgrades[2][i]));
-            print(new Vector2Int(i + 1, GameManager.Instance.upgrades[2][i]));
         }
     }
 
@@ -109,7 +111,7 @@ public class Claw : MonoBehaviour
         }
         lineRenderer.positionCount = linePoints.Count;
         lineRenderer.SetPositions(linePoints.ToArray());
-        if (lineLength > maxLineLength || (Input.GetAxis("Jump") > 0 && !isReleasing))
+        if ((lineLength > maxLineLength || (Input.GetAxis("Jump") > 0 && !isReleasing)) && !isCaught)
         {
             currentTrash = 0;
             state = ClawState.reel;
@@ -124,7 +126,7 @@ public class Claw : MonoBehaviour
         float remainder = 0;
         for (float moveDistance = reelSpeed * Time.unscaledDeltaTime; moveDistance > 0; moveDistance -= Vector3.Distance(linePoints[Mathf.Clamp(checkPoint - 1, 1, linePoints.Count - 2)], linePoints[Mathf.Clamp(checkPoint, 0, linePoints.Count - 1)]))
         {
-            remainder = Vector3.Distance(linePoints[checkPoint - 1], linePoints[checkPoint - 2]) - moveDistance;
+            remainder = Vector3.Distance(linePoints[Mathf.Clamp(checkPoint - 1, 0, int.MaxValue)], linePoints[Mathf.Clamp(checkPoint - 2, 0, int.MaxValue)]) - moveDistance;
             if (remainder < 0)
             {
                 pointsToRemove++;
@@ -180,6 +182,7 @@ public class Claw : MonoBehaviour
             {
                 levelManager.glass++;
                 collectedTrash.Add(trash.gameObject.GetComponent<CollectableTrash>().trashName);
+                GameManager.Instance.SpawnCollectionIndicator(trash.position, levelManager.collectionIndicatorColor);
             }
             Destroy(trash.gameObject);
         }
@@ -292,6 +295,10 @@ public class Claw : MonoBehaviour
             {
                 state = ClawState.reel;
             }
+        }
+        else if (collision.gameObject.name == "SharkMouth" && state == ClawState.fire)
+        {
+            StartCoroutine(collision.transform.parent.GetComponent<Obstacle>().SharkGrab(this));
         }
     }
 

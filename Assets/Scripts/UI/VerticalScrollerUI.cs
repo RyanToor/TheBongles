@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class VerticalScrollerUI : MinigameUI
 {
     public GameObject[] healthObjects;
+    public Sprite[] shieldSprites;
 
     private Player player;
 
@@ -15,6 +16,10 @@ public class VerticalScrollerUI : MinigameUI
         player = GameObject.Find("Player").GetComponent<Player>();
         secondaryCounterText = transform.Find("ReadoutPanel/DepthPanel/Depth").GetComponent<Text>();
         base.Start();
+        for (int i = 0; i < 3; i++)
+        {
+            healthObjects[3 + i].GetComponent<Image>().sprite = shieldSprites[Mathf.Clamp(GameManager.Instance.upgrades[0][0] - 1, 0, shieldSprites.Length - 1)];
+        }
     }
 
     // Update is called once per frame

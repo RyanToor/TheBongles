@@ -216,6 +216,7 @@ public class BongleIsland : MonoBehaviour
                 default:
                     break;
             }
+            GameManager.Instance.SpawnCollectionIndicator(collision.transform.position, GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().collectionIndicatorColor);
         }
         else if (collision.CompareTag("Minigame"))
         {

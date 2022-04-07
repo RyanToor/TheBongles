@@ -698,8 +698,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTrashTrigger: 0
   isTrashRandom: 0
+  isCursorVisible: 1
   mouseVisibleDuration: 0
   levelTrashType: 0
+  collectionIndicatorColor: {r: 0, g: 0.6, b: 0, a: 1}
   plastic: 0
   metal: 0
   glass: 0
@@ -4676,14 +4678,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.13333344, a: 1}
+  m_Color: {r: 0.39999998, g: 1, b: 0.48571423, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8833544e73a01c6479851a9a54004ca1, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7733,14 +7735,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.13333344, a: 1}
+  m_Color: {r: 0.39999998, g: 1, b: 0.48571423, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8833544e73a01c6479851a9a54004ca1, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9698,10 +9700,10 @@ MonoBehaviour:
   examplePanelScaleSpeed: 5
   closedPos: {x: 0, y: 0, z: 0}
   openPos: {x: 370, y: 0, z: 0}
-  upgradeAvailableColour: {r: 0.9, g: 1, b: 0.9142857, a: 1}
+  upgradeAvailableColour: {r: 0.9019608, g: 1, b: 0.9183006, a: 1}
   upgradeActiveColour: {r: 0.8, g: 0.86614174, b: 1, a: 1}
-  barUnavailableColour: {r: 1, g: 0.39999998, b: 0.39999998, a: 1}
-  barAvailableColour: {r: 0, g: 1, b: 0.13333344, a: 1}
+  barUnavailableColour: {r: 1, g: 0.6, b: 0.6, a: 1}
+  barAvailableColour: {r: 0.66639996, g: 0.84, b: 0.504, a: 1}
   sprites:
   - {fileID: 21300000, guid: dc80c6b5b9a0b7045a4dd932ba209a76, type: 3}
   - {fileID: 21300000, guid: 74e9340ad5d23fa419dbfb69e13a4474, type: 3}
@@ -13157,7 +13159,7 @@ GameObject:
   - component: {fileID: 1878305562}
   m_Layer: 5
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: MainCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13849,14 +13851,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.13333344, a: 1}
+  m_Color: {r: 0.39999998, g: 1, b: 0.47843134, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8833544e73a01c6479851a9a54004ca1, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14827,6 +14829,10 @@ PrefabInstance:
     - target: {fileID: 4168531506817681812, guid: 9af2e31f55fa3774ab055d6ccf2ca666, type: 3}
       propertyPath: m_Name
       value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168531506817681814, guid: 9af2e31f55fa3774ab055d6ccf2ca666, type: 3}
+      propertyPath: tutorialPages
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168531506817681814, guid: 9af2e31f55fa3774ab055d6ccf2ca666, type: 3}
       propertyPath: availableTutorialPages.Array.size

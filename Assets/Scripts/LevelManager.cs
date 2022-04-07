@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public bool isTrashTrigger, isTrashRandom;
+    public bool isTrashTrigger, isTrashRandom, isCursorVisible;
     public float mouseVisibleDuration = 2f;
     public TrashType levelTrashType;
-    public int plastic = 0, metal = 0, glass = 0;
+    public Color collectionIndicatorColor;
 
-    private bool isCursorVisible;
+    [HideInInspector]
+    public int plastic = 0, metal = 0, glass = 0;
+    public Coroutine mouseVisibleCoroutine;
 
     protected virtual void Awake()
     {
@@ -33,7 +35,7 @@ public class LevelManager : MonoBehaviour
     {
         if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && SceneManager.GetActiveScene().name != "Map" && !isCursorVisible)
         {
-            StartCoroutine(MouseVisible());
+            mouseVisibleCoroutine = StartCoroutine(MouseVisible());
         }
     }
 
@@ -52,6 +54,14 @@ public class LevelManager : MonoBehaviour
         DontDestroyOnLoad(newLoadScreen);
         Cursor.visible = true;
         SceneManager.LoadScene("Map");
+    }
+
+    public void StopMouseVisibleCoroutine()
+    {
+        if (mouseVisibleCoroutine != null)
+        {
+            StopCoroutine(mouseVisibleCoroutine);
+        }
     }
 
     private IEnumerator MouseVisible()

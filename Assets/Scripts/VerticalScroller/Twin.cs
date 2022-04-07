@@ -38,6 +38,7 @@ public class Twin : MonoBehaviour
             AudioSource grabSound = audioManager.PlaySFXAtLocation("Plastic", collision.transform.position, 1000);
             grabSound.minDistance = 5;
             animator.SetTrigger("Grab");
+            GameManager.Instance.SpawnCollectionIndicator(collision.transform.position, levelManager.collectionIndicatorColor);
         }
     }
 }

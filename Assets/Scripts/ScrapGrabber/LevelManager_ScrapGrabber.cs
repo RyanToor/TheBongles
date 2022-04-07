@@ -14,6 +14,7 @@ public class LevelManager_ScrapGrabber : LevelManager
     public GameObject[] freezeElements;
     public GameObject[] bellIndicators;
     public Spawner spawner;
+    public Color darkCollectionIndicatorColour;
 
     [HideInInspector]
     public float remainingTime;
@@ -24,13 +25,11 @@ public class LevelManager_ScrapGrabber : LevelManager
     private bool isFreezing, isBellCooling, gameEnded = false;
     private Color[] freezeColours;
     private Color freezeIconDisabled;
-    private float bellCooldown;
 
     protected override void Awake()
     {
         remainingTime = maxTime;
         uI = GameObject.Find("Canvas").GetComponent<ScrapGrabberUI>();
-        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         freezeColours = new Color[freezeElements.Length];
         for (int i = 0; i < freezeElements.Length; i++)
         {
@@ -52,10 +51,21 @@ public class LevelManager_ScrapGrabber : LevelManager
         {
             bellIndicator.SetActive(true);
         }
+        StartCoroutine(CheckLoaded());
         if (!Application.isEditor)
         {
             loseFuel = true;
         }
+    }
+
+    private IEnumerator CheckLoaded()
+    {
+        while (false)
+        {
+            yield return null;
+        }
+        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
+        AudioManager.Instance.PlayMusic("Scrap Grabber");
     }
 
     // Update is called once per frame
@@ -78,6 +88,7 @@ public class LevelManager_ScrapGrabber : LevelManager
         {
             StartCoroutine(Bell());
         }
+        base.Update();
         if (Application.isEditor)
         {
             EditorUpdate();
@@ -140,7 +151,6 @@ public class LevelManager_ScrapGrabber : LevelManager
         spawner.Escape();
         while (duration > 0)
         {
-            bellCooldown = duration / bellDuration;
             duration -= Time.deltaTime / Time.timeScale;
             for (int i = 0; i < bellIndicators.Length; i++)
             {
@@ -154,7 +164,6 @@ public class LevelManager_ScrapGrabber : LevelManager
         isBellCooling = true;
         while (duration < bellCooldownDuration)
         {
-            bellCooldown = duration / bellCooldownDuration;
             duration += Time.deltaTime;
             for (int i = 0; i < bellIndicators.Length; i++)
             {
@@ -221,6 +230,17 @@ public class LevelManager_ScrapGrabber : LevelManager
         if (Input.GetKeyDown(KeyCode.L))
         {
             LightsOn = !LightsOn;
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0.2f;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
         }
     }
 

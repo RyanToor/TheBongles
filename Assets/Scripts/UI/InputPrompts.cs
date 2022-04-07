@@ -9,22 +9,15 @@ public class InputPrompts : MonoBehaviour
     public Image storyPromptImage, videoPromptImage;
 
     private bool startPrompted;
-    private Image trashHuntPromptImage;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().name == "VerticalScroller")
+        if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] && SceneManager.GetActiveScene().buildIndex != 0)
         {
-            trashHuntPromptImage = transform.Find("TrashHuntPrompt").GetComponent<Image>();
-            if (GameManager.Instance.storyPoint < 2)
-            {
-                if (!trashHuntPromptImage.gameObject.activeInHierarchy)
-                {
-                    trashHuntPromptImage.gameObject.SetActive(true);
-                    StartCoroutine(ConfirmInput(trashHuntPromptImage));
-                }
-            }
+            transform.Find("UpgradeBook").gameObject.SetActive(true);
+            GetComponent<PauseMenu>().UpgradeBook();
+            GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] = true;
         }
     }
 

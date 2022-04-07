@@ -34,13 +34,13 @@ public class LevelManager_Robot : LevelManager
         levelbuilder = GameObject.Find("Level").GetComponent<LevelBuilder>();
         StartCoroutine(CheckLoaded());
         throwParameters.ResetDials();
-        ChangeState(0);
         Pies = pies;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+        base.Update();
         if (Application.isEditor)
         {
             EditorUpdate();
@@ -54,6 +54,7 @@ public class LevelManager_Robot : LevelManager
             yield return null;
         }
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
+        ChangeState(0);
         AudioManager.Instance.PlayMusic("Throw the Robot");
     }
 

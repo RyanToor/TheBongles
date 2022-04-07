@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject loadScreenPrefab;
+    public GameObject loadScreenPrefab, collectionIndicatorPrefab;
     public List<GameObject> inGameUI;
     public int[] regionStoryPoints;
 
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int[][] upgrades;
     [HideInInspector] public int[] highscoreStars;
     [HideInInspector] public int storyPoint;
+    [HideInInspector] public bool[] levelsPrompted;
     #endregion
 
     #region Settings
@@ -100,7 +101,8 @@ public class GameManager : MonoBehaviour
                 upgrades2 = upgrades[1],
                 upgrades3 = upgrades[2],
                 storyPoint = storyPoint,
-                highscoreStars = highscoreStars
+                highscoreStars = highscoreStars,
+                levelsPrompted = levelsPrompted
             };
             File.WriteAllText(Application.persistentDataPath + "/saveGame.json", JsonUtility.ToJson(save, true));
         }
@@ -149,7 +151,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            highscoreStars = new int[3] { 0, 0, 0 };
+            highscoreStars = new int[4] { 0, 0, 0, 0 };
+        }
+        if (loadedSave.levelsPrompted.Length != 0)
+        {
+            levelsPrompted = loadedSave.levelsPrompted;
+        }
+        else
+        {
+            levelsPrompted = new bool[3] { false, false, false };
         }
 
         if (File.Exists(Application.persistentDataPath + "/settings.json"))
@@ -213,6 +223,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SpawnCollectionIndicator(Vector3 pos, Color textColor, string text = "", float maxAngle = -1, float maxDistance = -1, float speed = -1)
+    {
+        CollectionIndicator newIndicator = Instantiate(collectionIndicatorPrefab, Camera.main.WorldToScreenPoint(pos), Quaternion.identity, GameObject.FindGameObjectWithTag("MainCanvas").transform).GetComponent<CollectionIndicator>();
+        newIndicator.startPos = pos;
+        newIndicator.textColor = textColor;
+        if (text != "")
+        {
+            newIndicator.text = text;
+        }
+        if (maxAngle > 0)
+        {
+            newIndicator.maxAngle = maxAngle;
+        }
+        if (maxDistance > 0)
+        {
+            newIndicator.maxTravelDistance = maxDistance;
+        }
+        if (speed > 0)
+        {
+            newIndicator.speed = speed;
+        }
+    }
+
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         LoadGame();
@@ -252,6 +285,7 @@ struct Save
     public int[] upgrades3;
     public int storyPoint;
     public int[] highscoreStars;
+    public bool[] levelsPrompted;
 }
 
 [System.Serializable]
