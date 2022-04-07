@@ -15,6 +15,7 @@ TagManager:
   - LevelManager
   - GameManager
   - Emergency
+  - MainCanvas
   layers:
   - Default
   - TransparentFX

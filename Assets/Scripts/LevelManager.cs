@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public bool isTrashTrigger, isTrashRandom;
+    public bool isTrashTrigger, isTrashRandom, isCursorVisible;
     public float mouseVisibleDuration = 2f;
     public TrashType levelTrashType;
+    public Color collectionIndicatorColor;
+
+    [HideInInspector]
     public int plastic = 0, metal = 0, glass = 0;
-    public bool isCursorVisible;
     public Coroutine mouseVisibleCoroutine;
 
     protected virtual void Awake()

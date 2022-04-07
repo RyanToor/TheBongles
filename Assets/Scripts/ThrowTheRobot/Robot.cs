@@ -363,10 +363,10 @@ public class Robot : MonoBehaviour
             line.SetPosition(1, magnet.transform.InverseTransformPoint(magnet.transform.parent.position));
             yield return null;
         }
-        levelManager.floatingTrash.objectsToRemove.Add(target);
-        levelManager.floatingTrash.doNotDestroy.Add(target);
         target.transform.parent = magnet.transform;
         target.transform.localPosition = Vector3.zero;
+        levelManager.floatingTrash.objectsToRemove.Add(target);
+        levelManager.floatingTrash.doNotDestroy.Add(target);
         Vector3 magnetCatchPos = magnet.transform.position;
         while (armProgress > 0)
         {
@@ -380,6 +380,7 @@ public class Robot : MonoBehaviour
         foreach (Transform trash in magnet.transform)
         {
             levelManager.metal++;
+            GameManager.Instance.SpawnCollectionIndicator(trash.position, levelManager.collectionIndicatorColor);
         }
         Destroy(magnet);
     }
@@ -497,6 +498,7 @@ public class Robot : MonoBehaviour
             levelManager.metal++;
             levelManager.floatingTrash.objectsToRemove.Add(collision.gameObject);
             AudioManager.Instance.PlaySFXAtLocation("Metal", transform.position, 15);
+            GameManager.Instance.SpawnCollectionIndicator(collision.transform.position, levelManager.collectionIndicatorColor);
         }
         else if (collision.CompareTag("Boss"))
         {

@@ -4973,8 +4973,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTrashTrigger: 1
   isTrashRandom: 1
+  isCursorVisible: 0
   mouseVisibleDuration: 2
   levelTrashType: 0
+  collectionIndicatorColor: {r: 0, g: 0.6, b: 0, a: 1}
   plastic: 0
   metal: 0
   glass: 0
@@ -5735,7 +5737,7 @@ GameObject:
   - component: {fileID: 1374813866}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: MainCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5852,6 +5854,10 @@ MonoBehaviour:
   - {fileID: 456892056}
   - {fileID: 579063828}
   - {fileID: 1508754019}
+  shieldSprites:
+  - {fileID: 21300000, guid: 17f28b408b0ce5d42bd20a7f2e82fefa, type: 3}
+  - {fileID: 21300000, guid: dfdb3cea4bfc55e479ea8c43df8aff0a, type: 3}
+  - {fileID: 21300000, guid: 045f739f66956304eb404842ea680124, type: 3}
 --- !u!1 &1391442486
 GameObject:
   m_ObjectHideFlags: 0

@@ -698,12 +698,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTrashTrigger: 0
   isTrashRandom: 0
+  isCursorVisible: 1
   mouseVisibleDuration: 0
   levelTrashType: 0
+  collectionIndicatorColor: {r: 0, g: 0.6, b: 0, a: 1}
   plastic: 0
   metal: 0
   glass: 0
-  isCursorVisible: 0
   trashSprites:
   - name: Plastic
     sprites:
@@ -13158,7 +13159,7 @@ GameObject:
   - component: {fileID: 1878305562}
   m_Layer: 5
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: MainCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

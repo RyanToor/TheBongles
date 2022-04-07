@@ -14,6 +14,7 @@ public class LevelManager_ScrapGrabber : LevelManager
     public GameObject[] freezeElements;
     public GameObject[] bellIndicators;
     public Spawner spawner;
+    public Color darkCollectionIndicatorColour;
 
     [HideInInspector]
     public float remainingTime;
@@ -24,7 +25,6 @@ public class LevelManager_ScrapGrabber : LevelManager
     private bool isFreezing, isBellCooling, gameEnded = false;
     private Color[] freezeColours;
     private Color freezeIconDisabled;
-    private float bellCooldown;
 
     protected override void Awake()
     {
@@ -151,7 +151,6 @@ public class LevelManager_ScrapGrabber : LevelManager
         spawner.Escape();
         while (duration > 0)
         {
-            bellCooldown = duration / bellDuration;
             duration -= Time.deltaTime / Time.timeScale;
             for (int i = 0; i < bellIndicators.Length; i++)
             {
@@ -165,7 +164,6 @@ public class LevelManager_ScrapGrabber : LevelManager
         isBellCooling = true;
         while (duration < bellCooldownDuration)
         {
-            bellCooldown = duration / bellCooldownDuration;
             duration += Time.deltaTime;
             for (int i = 0; i < bellIndicators.Length; i++)
             {

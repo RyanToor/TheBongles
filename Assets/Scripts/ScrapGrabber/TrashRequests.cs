@@ -65,11 +65,13 @@ public class TrashRequests : MonoBehaviour
                 {
                     case 1:
                         levelManager.glass += singleGlassBonus;
+                        GameManager.Instance.SpawnCollectionIndicator(GameObject.FindGameObjectWithTag("Player").transform.position, levelManager.LightsOn? levelManager.collectionIndicatorColor : levelManager.darkCollectionIndicatorColour, "+ " + singleGlassBonus);
                         levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + singleFuelReward, 0, levelManager.maxTime);
                         locked[0] = true;
                         break;
                     case 2:
                         levelManager.glass += doubleGlassBonus;
+                        GameManager.Instance.SpawnCollectionIndicator(GameObject.FindGameObjectWithTag("Player").transform.position, levelManager.LightsOn ? levelManager.collectionIndicatorColor : levelManager.darkCollectionIndicatorColour, "+ " + doubleGlassBonus);
                         levelManager.remainingTime += Mathf.Clamp(levelManager.remainingTime + doubleFuelReward, 0, levelManager.maxTime);
                         locked[0] = true;
                         locked[1] = true;

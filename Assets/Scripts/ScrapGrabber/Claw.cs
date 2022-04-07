@@ -182,6 +182,7 @@ public class Claw : MonoBehaviour
             {
                 levelManager.glass++;
                 collectedTrash.Add(trash.gameObject.GetComponent<CollectableTrash>().trashName);
+                GameManager.Instance.SpawnCollectionIndicator(trash.position, levelManager.collectionIndicatorColor);
             }
             Destroy(trash.gameObject);
         }

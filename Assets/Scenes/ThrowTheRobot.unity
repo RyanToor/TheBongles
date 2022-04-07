@@ -1911,7 +1911,7 @@ GameObject:
   - component: {fileID: 523905180}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: MainCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5453,12 +5453,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTrashTrigger: 1
   isTrashRandom: 1
+  isCursorVisible: 0
   mouseVisibleDuration: 2
   levelTrashType: 1
+  collectionIndicatorColor: {r: 0, g: 0.6, b: 0, a: 1}
   plastic: 0
   metal: 0
   glass: 0
-  isCursorVisible: 0
   throwParameters: {fileID: 616355474}
   piesSprite: {fileID: 935512260}
   pieSprites:
@@ -6192,7 +6193,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4

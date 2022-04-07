@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject loadScreenPrefab;
+    public GameObject loadScreenPrefab, collectionIndicatorPrefab;
     public List<GameObject> inGameUI;
     public int[] regionStoryPoints;
 
@@ -220,6 +220,29 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public void SpawnCollectionIndicator(Vector3 pos, Color textColor, string text = "", float maxAngle = -1, float maxDistance = -1, float speed = -1)
+    {
+        CollectionIndicator newIndicator = Instantiate(collectionIndicatorPrefab, Camera.main.WorldToScreenPoint(pos), Quaternion.identity, GameObject.FindGameObjectWithTag("MainCanvas").transform).GetComponent<CollectionIndicator>();
+        newIndicator.startPos = pos;
+        newIndicator.textColor = textColor;
+        if (text != "")
+        {
+            newIndicator.text = text;
+        }
+        if (maxAngle > 0)
+        {
+            newIndicator.maxAngle = maxAngle;
+        }
+        if (maxDistance > 0)
+        {
+            newIndicator.maxTravelDistance = maxDistance;
+        }
+        if (speed > 0)
+        {
+            newIndicator.speed = speed;
         }
     }
 
