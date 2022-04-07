@@ -52,7 +52,7 @@ MonoBehaviour:
     pitchDeviation: 0
     loop: 1
   - name: Trash Hunt
-    clip: {fileID: 8300000, guid: 425a2c35b59f252428b3a3116325f136, type: 3}
+    clip: {fileID: 8300000, guid: bd35d69705022a54b99d55030749b993, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
