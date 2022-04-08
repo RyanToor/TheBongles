@@ -25,6 +25,7 @@ public class Camera_ScrapGrabber : MonoBehaviour
             parallaxPlates[i] = new GameObject("Plate" + i.ToString());
             parallaxPlates[i].transform.parent = transform;
             parallaxPlates[i].transform.position = Vector3.Scale(Camera.main.transform.position, -Vector3.one);
+            parallaxPlates[i].transform.localScale = Vector3.Lerp(Vector3.one * (1080f / 2048f), Vector3.one, parallaxLayerSet[i].parallaxMultiplier);
             SpriteRenderer newSpriteRenderer = parallaxPlates[i].AddComponent<SpriteRenderer>();
             newSpriteRenderer.sprite = parallaxLayerSet[i].sprite;
             newSpriteRenderer.sortingLayerName = "Background";
@@ -73,7 +74,7 @@ public class Camera_ScrapGrabber : MonoBehaviour
         }
         for (int i = 0; i < parallaxPlates.Length; i++)
         {
-            parallaxPlates[i].transform.position = new Vector3((Mathf.Clamp(Mathf.PerlinNoise(perlinCoordinates[0].x, perlinCoordinates[0].y), 0, 1) * 2 - 1) * 10.88f * parallaxLayerSet[i].parallaxMultiplier, (Mathf.Clamp(Mathf.PerlinNoise(perlinCoordinates[1].x, perlinCoordinates[1].y), 0, 1) * 2 - 1) * 4.84f * parallaxLayerSet[i].parallaxMultiplier, parallaxPlates[i].transform.position.z);
+            parallaxPlates[i].transform.position = new Vector3((Mathf.Clamp(Mathf.PerlinNoise(perlinCoordinates[0].x, perlinCoordinates[0].y), 0, 1) * 2f - 1f) * 10.88f * parallaxLayerSet[i].parallaxMultiplier, (Mathf.Clamp(Mathf.PerlinNoise(perlinCoordinates[1].x, perlinCoordinates[1].y), 0, 1) * 2f - 1f) * 4.84f * parallaxLayerSet[i].parallaxMultiplier, parallaxPlates[i].transform.position.z);
         }
         for (int i = 0; i < rayLayers.Length; i++)
         {

@@ -3504,10 +3504,10 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 1
   m_Points:
-  - {x: 9.6, y: -5.4}
-  - {x: 9.6, y: 5.4}
+  - {x: 10.6, y: -5.4}
+  - {x: 10.6, y: 5.4}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -3526,10 +3526,10 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 1
   m_Points:
-  - {x: -9.6, y: -5.4}
-  - {x: -9.6, y: 5.4}
+  - {x: -10.6, y: -5.4}
+  - {x: -10.6, y: 5.4}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -5165,6 +5165,7 @@ MonoBehaviour:
   offset: {x: 10.24, y: -17.5, z: 0}
   tilePrefab: {fileID: 8373276652658738681, guid: f9a32f027532c1740b591090c9e144af, type: 3}
   bubblePrefab: {fileID: 6010698024634007259, guid: 193f411603e6dc241b129083f8069fb3, type: 3}
+  defaultTilePrefab: {fileID: 8373276652658738681, guid: 422b6880007e9f442a53507b210f9938, type: 3}
   biomeLengths: 050000000500000005000000
   birdPrefab: {fileID: 2304258094415399874, guid: 2f856d36806c2fc47b353685d6a3c12d, type: 3}
   piePrefab: {fileID: 8031443626121875508, guid: 25cbac4a6596c774a862fbbb459fb2e4, type: 3}
@@ -5456,7 +5457,7 @@ MonoBehaviour:
   isCursorVisible: 0
   mouseVisibleDuration: 2
   levelTrashType: 1
-  collectionIndicatorColor: {r: 0, g: 0.6, b: 0, a: 1}
+  collectionIndicatorColor: {r: 0, g: 0.8, b: 0, a: 1}
   plastic: 0
   metal: 0
   glass: 0
@@ -6082,6 +6083,7 @@ MonoBehaviour:
   magnetScanPeriod: 4
   magnetArmSpeed: 15
   magnetCooldown: 1
+  windCooldown: 0.3
   skimMaxAngle: 20
   musselAngle: 60
   maxJellyfishAngle: 30
@@ -6104,6 +6106,9 @@ MonoBehaviour:
   magnetImage: {fileID: 485220644}
   magnetCooldownPanel: {fileID: 1917985670}
   magnetFrameAnimator: {fileID: 1786809460}
+  windParticles:
+  - {fileID: 922743532467572241, guid: 7eb0ab3d63c90d84fb75cef339e2b9bc, type: 3}
+  - {fileID: 8906536761905698499, guid: 0f884c1f283beb64bac8c0c10c760462, type: 3}
   rightMostPoint: 0
 --- !u!212 &1818866234
 SpriteRenderer:
@@ -6193,7 +6198,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4

@@ -13,7 +13,8 @@ public class Robot : MonoBehaviour
         cloudBoostForce, boostForce, skimMinVelocity, skimVelocityMultiplier, waterHitVelocityMultiplier, musselForce, jellyfishBoost,
         legMaxLength, legLerpSpeed, rotationSpeed, maxLineSag, hookOffset,
         cloudBoostFuel, maxBoostFuel, boostFuel, boostCostPerSecond,
-        magnetScanWidth, magnetScanInterval, magnetScanPeriod, magnetArmSpeed, magnetCooldown;
+        magnetScanWidth, magnetScanInterval, magnetScanPeriod, magnetArmSpeed, magnetCooldown,
+        windCooldown;
     [Range(0, 90)]
     public float skimMaxAngle, musselAngle, maxJellyfishAngle, legMaxAngle;
     public GameObject waterSurface, splashPrefab, skimPrefab, jumpCloudPrefab, magnetPrefab, magnetPanel;
@@ -22,6 +23,7 @@ public class Robot : MonoBehaviour
     public FuelBarUpgrade[] fuelUpgrades;
     public Image magnetImage, magnetCooldownPanel;
     public Animator magnetFrameAnimator;
+    public GameObject[] windParticles;
 
     [HideInInspector]
     public float rightMostPoint = float.MaxValue;
@@ -37,7 +39,7 @@ public class Robot : MonoBehaviour
     private LineRenderer legLine;
     private Animator animator;
     private LineRenderer returnLine;
-    private bool isBoosting, isMagnetCooling;
+    private bool isBoosting, isMagnetCooling, isWindSpawning;
     private Color magnetDisabledColour;
 
     private void Awake()
@@ -462,6 +464,23 @@ public class Robot : MonoBehaviour
         isJumpInputHeld = false;
     }
 
+    private IEnumerator Wind(Vector3 pos)
+    {
+        isWindSpawning = true;
+        float duration = 0;
+        for (int i = 0; i < windParticles.Length; i++)
+        {
+            GameObject newWind = Instantiate(windParticles[i], pos + Vector3.right, Quaternion.Euler(0, 0, 180), GameManager.Instance.transform);
+            newWind.transform.localScale = new Vector3(1, UnityEngine.Random.value < 0.5 ? -1 : 1, 1);
+        }
+        while (duration < windCooldown)
+        {
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        isWindSpawning = false;
+    }
+
     void EditorUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Return))
@@ -548,6 +567,10 @@ public class Robot : MonoBehaviour
                 collision.gameObject.GetComponent<Animator>().SetTrigger("Bounce");
                 AudioManager.Instance.PlaySFXAtLocation("Jellyfish", transform.position, 20);
             }
+        }
+        else if (collision.gameObject.CompareTag("MainCamera") && !isWindSpawning && transform.position.y > 1.5)
+        {
+            StartCoroutine(Wind(collision.GetContact(0).point));
         }
     }
 

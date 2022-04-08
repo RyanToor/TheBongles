@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,7 @@ public class CollectionIndicator : MonoBehaviour
         transform.SetPositionAndRotation(Camera.main.WorldToScreenPoint(startPos), Quaternion.Euler(0, 0, Random.Range(-maxAngle, maxAngle)));
         if (text != "")
         {
-            GetComponent<Text>().text = text;
+            GetComponent<TextMeshProUGUI>().text = text;
         }
         StartCoroutine(Move());
     }
@@ -28,7 +29,7 @@ public class CollectionIndicator : MonoBehaviour
         {
             currentPos = Vector3.Lerp(currentPos, endPos, Time.unscaledDeltaTime * speed);
             transform.position = Camera.main.WorldToScreenPoint(currentPos);
-            GetComponent<Text>().color = Color.Lerp(new Color(textColor.r, textColor.g, textColor.b, 0), textColor, fadeout.Evaluate(1 - Vector3.Distance(currentPos, endPos) / maxTravelDistance));
+            GetComponent<TextMeshProUGUI>().color = Color.Lerp(new Color(textColor.r, textColor.g, textColor.b, 0), textColor, fadeout.Evaluate(1 - Vector3.Distance(currentPos, endPos) / maxTravelDistance));
             yield return null;
         }
         Destroy(gameObject);

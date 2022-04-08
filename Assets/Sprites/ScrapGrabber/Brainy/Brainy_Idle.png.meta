@@ -1,13 +1,28 @@
 fileFormatVersion: 2
-guid: bf2248083f1a09a4fb0f3b96b0162c45
+guid: b78180f3dd138c1409df9c8b8b876355
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3641529621728735538
-    second: layer4_Combined_0
+      213: 7772800442284639632
+    second: Brainy_Idle_0
   - first:
-      213: -8906794722987875316
-    second: layer4_Combined_1
+      213: -2477763506837739935
+    second: Brainy_Idle_1
+  - first:
+      213: -250334460430791638
+    second: Brainy_Idle_2
+  - first:
+      213: 3464544311481448000
+    second: Brainy_Idle_3
+  - first:
+      213: 1284321348977340023
+    second: Brainy_Idle_4
+  - first:
+      213: -2057731617843063525
+    second: Brainy_Idle_5
+  - first:
+      213: 1541234922335803240
+    second: Brainy_Idle_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -71,7 +86,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -83,7 +98,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -95,7 +110,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 4096
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -107,7 +122,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 4096
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -121,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: layer4_Combined_0
+      name: Brainy_Idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2048
-        width: 4096
-        height: 2048
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2313436b5ef498230800000000000000
-      internalID: 3641529621728735538
+      spriteID: 0950068f1d88edb60800000000000000
+      internalID: 7772800442284639632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: layer4_Combined_1
+      name: Brainy_Idle_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 4096
-        height: 2048
+        x: 256
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,8 +171,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c04ebf0c365b46480800000000000000
-      internalID: -8906794722987875316
+      spriteID: 166a281e7373d9dd0800000000000000
+      internalID: -2477763506837739935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brainy_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2ccbf27222a68cf0800000000000000
+      internalID: -250334460430791638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brainy_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 046b37202b8841030800000000000000
+      internalID: 3464544311481448000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brainy_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77eae375673d2d110800000000000000
+      internalID: 1284321348977340023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brainy_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b15df53fef77173e0800000000000000
+      internalID: -2057731617843063525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brainy_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 867904dfef0936510800000000000000
+      internalID: 1541234922335803240
       vertices: []
       indices: 
       edges: []
