@@ -181,6 +181,7 @@ public class Claw : MonoBehaviour
             else
             {
                 levelManager.glass++;
+                AudioManager.Instance.PlayAudioAtObject("Glass", gameObject, 20, false);
                 collectedTrash.Add(trash.gameObject.GetComponent<CollectableTrash>().trashName);
                 GameManager.Instance.SpawnCollectionIndicator(trash.position, levelManager.collectionIndicatorColor);
             }

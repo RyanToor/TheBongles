@@ -249,6 +249,7 @@ public class BongleIsland : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioManager.Instance.PlayAudioAtObject("Boing", gameObject, 20, false);
         if (collision.gameObject.CompareTag("Boss"))
         {
             switch (collision.transform.parent.name)

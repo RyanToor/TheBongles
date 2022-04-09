@@ -129,7 +129,7 @@ MonoBehaviour:
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 0
-  - name: GameOver
+  - name: GameOver-TrashHunt
     clip: {fileID: 8300000, guid: 1882d25b0cea51940ade7eac7bfef2d8, type: 3}
     volume: 1
     pitch: 1
@@ -138,20 +138,6 @@ MonoBehaviour:
     loop: 0
   - name: Hit1
     clip: {fileID: 8300000, guid: 94a9acdfec5b6fe43b77cf83de369d8e, type: 3}
-    volume: 1
-    pitch: 1
-    volumeDeviation: 0
-    pitchDeviation: 0
-    loop: 0
-  - name: Hit2
-    clip: {fileID: 8300000, guid: 26751a9808efcf04ab2cac71c41481fa, type: 3}
-    volume: 1
-    pitch: 1
-    volumeDeviation: 0
-    pitchDeviation: 0
-    loop: 0
-  - name: Hit3
-    clip: {fileID: 8300000, guid: 182036ca8ea60cf438a2b5303c58e7fa, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
@@ -284,7 +270,7 @@ MonoBehaviour:
     pitchDeviation: 0
     loop: 0
   - name: Glass
-    clip: {fileID: 8300000, guid: f78b060d1355da74b9962bb0b4bba964, type: 3}
+    clip: {fileID: 8300000, guid: cf154d96d7c971247b3af95901334d90, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
@@ -341,20 +327,27 @@ MonoBehaviour:
     loop: 0
   - name: Wind
     clip: {fileID: 8300000, guid: 30fe6b75a37d3464c8259b811094c084, type: 3}
-    volume: 0.55
-    pitch: 1
-    volumeDeviation: 0
-    pitchDeviation: 0
-    loop: 1
-  - name: Hurt
-    clip: {fileID: 8300000, guid: 7bd3b2310fbf26e47936a866b68fcdc4, type: 3}
-    volume: 1
+    volume: 0.25
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 1
   - name: AmbientWind
     clip: {fileID: 8300000, guid: 0633f25c87e235249b2c71a0f4a14a96, type: 3}
+    volume: 0.5
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: GameOver-ThrowTheRobot
+    clip: {fileID: 8300000, guid: 2b0fb439e737bb040871c008877caed8, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Boing
+    clip: {fileID: 8300000, guid: c22b8d9750c5db142a87755fef1e3de3, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0

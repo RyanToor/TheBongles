@@ -394,7 +394,7 @@ public class Player : MonoBehaviour
                         transform.Find("Helmet-" + i).gameObject.SetActive(false);
                     }
                 }
-                AudioSource bonkSound = audioManager.PlaySFXAtLocation("Hurt", collision.transform.position, 20);
+                AudioSource bonkSound = audioManager.PlaySFXAtLocation("Hit1", collision.transform.position, 20);
                 bonkSound.minDistance = 6;
                 rb.AddForce((transform.position - collision.transform.position).normalized * knockbackForce, ForceMode2D.Impulse);
                 trashManager.objectsToRemove.Add(new Unity.Mathematics.int2(chunkIndex, objectIndex));
@@ -474,6 +474,7 @@ public class Player : MonoBehaviour
         twin.GetComponent<Collider2D>().enabled = false;
         isloaded = false;
         uI.EndGame();
+        AudioManager.Instance.PlaySFX("GameOver-TrashHunt");
     }
 
     private void OnDisable()

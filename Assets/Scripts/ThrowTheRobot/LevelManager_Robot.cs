@@ -103,6 +103,7 @@ public class LevelManager_Robot : LevelManager
     private void EndLevel()
     {
         uI.EndGame();
+        AudioManager.Instance.PlaySFX("GameOver-ThrowTheRobot");
     }
 
     public LevelState State

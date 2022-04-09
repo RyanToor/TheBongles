@@ -48,7 +48,6 @@ public class MinigameUI : MonoBehaviour
     public virtual void EndGame()
     {
         Cursor.visible = true;
-        AudioManager.Instance.PlaySFX("GameOver");
         gameOver.SetActive(true);
         pauseMenu.SetActive(false);
         readouts.SetActive(false);
