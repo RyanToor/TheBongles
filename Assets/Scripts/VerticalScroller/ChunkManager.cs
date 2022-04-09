@@ -11,6 +11,7 @@ using System;
 
 public class ChunkManager : MonoBehaviour
 {
+    public bool removeChunksBehind;
     public Tilemap tilemap;
     public TileBase ruleTile;
     public GameObject player;
@@ -106,7 +107,7 @@ public class ChunkManager : MonoBehaviour
         for (int i = 0; i < enabledChunks.Count; i++)
         {
             int enabledChunkIndex = enabledChunks[i];
-            if (enabledChunkIndex > currentChunkIndex + chunkBuffer || enabledChunkIndex < currentChunkIndex - chunkBuffer)
+            if ((enabledChunkIndex > currentChunkIndex + chunkBuffer || enabledChunkIndex < currentChunkIndex - chunkBuffer) && removeChunksBehind)
             {
                 StartCoroutine(LoadChunk(enabledChunks[i], false));
             }

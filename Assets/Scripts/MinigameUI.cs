@@ -66,7 +66,7 @@ public class MinigameUI : MonoBehaviour
         {
             scoreText.text = Mathf.Ceil(currentValue).ToString();
             fillBar.value = Mathf.Clamp((currentValue - starValues[Mathf.Clamp(starsScored, 0, 2)]) / (starValues[Mathf.Clamp(starsScored + 1, 1, 3)] - starValues[starsScored]), 0, 1);
-            currentValue += (scoreBarRate * (starValues[Mathf.Clamp(starsScored + 1, 1, 3)] - starValues[Mathf.Clamp(starsScored, 0, 2)]) / 1000f);
+            currentValue += (scoreBarRate * (starValues[Mathf.Clamp(starsScored + 1, 1, 3)] - starValues[Mathf.Clamp(starsScored, 0, 2)]) / 1000f) * Time.unscaledDeltaTime * 100;
             if (starsScored < 3)
             {
                 if (currentValue >= starValues[starsScored + 1])

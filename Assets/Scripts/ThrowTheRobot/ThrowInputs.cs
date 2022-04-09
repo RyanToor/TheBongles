@@ -101,7 +101,7 @@ public class ThrowInputs : MonoBehaviour
         {
             if (Input.GetAxis("Jump") == 1)
             {
-                while (Input.GetAxis("Jump") == 1)
+                while (Input.GetAxis("Jump") == 1 && type == "angle")
                 {
                     yield return null;
                 }

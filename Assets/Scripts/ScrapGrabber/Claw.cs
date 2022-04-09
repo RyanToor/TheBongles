@@ -255,10 +255,10 @@ public class Claw : MonoBehaviour
         if (collision.CompareTag("RandomTrash") && state == ClawState.fire)
         {
             spawner.objectsToRemove.Add(collision.gameObject);
-            collision.transform.parent = transform.Find("TrashContainer");
+            collision.transform.SetParent(transform.Find("TrashContainer"), true);
             foreach (Transform trash in collision.transform)
             {
-                trash.transform.parent = transform.Find("TrashContainer");
+                trash.transform.SetParent(transform.Find("TrashContainer"), true);
             }
             if (state == ClawState.fire)
             {

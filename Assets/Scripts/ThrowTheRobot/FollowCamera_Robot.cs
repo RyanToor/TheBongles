@@ -49,6 +49,7 @@ public class FollowCamera_Robot : MonoBehaviour
         {
             cameraMaxX += biomeLength * levelBuilder.tilePixelWidth / 100;
         }
+        cameraMaxX += levelBuilder.tilePixelWidth / 100;
     }
 
     // Start is called before the first frame update

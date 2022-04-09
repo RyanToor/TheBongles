@@ -701,7 +701,7 @@ MonoBehaviour:
   isCursorVisible: 1
   mouseVisibleDuration: 0
   levelTrashType: 0
-  collectionIndicatorColor: {r: 0, g: 0.6, b: 0, a: 1}
+  collectionIndicatorColor: {r: 0, g: 0.8, b: 0, a: 1}
   plastic: 0
   metal: 0
   glass: 0
@@ -13239,8 +13239,8 @@ RectTransform:
   - {fileID: 1473632720}
   - {fileID: 14903203}
   - {fileID: 600872734}
-  - {fileID: 834483298}
   - {fileID: 6708069970092528639}
+  - {fileID: 834483298}
   - {fileID: 939434531}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -14856,7 +14856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4168531506817681815, guid: 9af2e31f55fa3774ab055d6ccf2ca666, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4168531506817681815, guid: 9af2e31f55fa3774ab055d6ccf2ca666, type: 3}
       propertyPath: m_AnchorMax.x
@@ -15317,7 +15317,7 @@ RectTransform:
   - {fileID: 1926798972}
   - {fileID: 1595130414}
   m_Father: {fileID: 1878305565}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -7,10 +7,11 @@ public class LevelBuilder : MonoBehaviour
     public float tilePixelWidth, backgroundVerticalBuffer, birdInitialOffset, birdMinSeparation, birdMaxSeparation,
         cloudRadius, cloudMinHeight, cloudMaxHeight, cloudBorder;
     public Vector3 offset;
-    public GameObject tilePrefab, bubblePrefab;
+    public GameObject tilePrefab, bubblePrefab, defaultTilePrefab;
     public int[] biomeLengths;
     public GameObject birdPrefab, piePrefab, blockerPrefab, cloudPrefab, anchorPrefab;
     public Sprite[] blockerSprites, anchorSprites, cloudSprites;
+    public Tile[] finalBlockerSprites;
     public BiomeTiles levelTileLibrary;
     public PuzzlePrefabArray[] biomePuzzlePrefabs;
 
@@ -98,7 +99,19 @@ public class LevelBuilder : MonoBehaviour
         {
             Instantiate(piePrefab, new Vector3(Random.Range(biomeEndPoints.Length - 2 - i < 0? 4 : biomeEndPoints[biomeEndPoints.Length - 2 - i] + 1, biomeEndPoints[biomeEndPoints.Length - 1 - i] - 1) * tilePixelWidth / 100, 0, 0), Quaternion.identity, transform);
         }
+        PlaceFinalBlocker();
         StartCoroutine("PlaceBackground");
+    }
+
+    private void PlaceFinalBlocker()
+    {
+        int totalDisplacement = 0;
+        foreach (int displacement in floorDisplacements)
+        {
+            totalDisplacement += displacement;
+        }
+        GameObject newTile = Instantiate(defaultTilePrefab, new Vector3(levelLength * tilePixelWidth / 100, totalDisplacement * -0.01f, 0) + offset, Quaternion.identity, gameObject.transform.Find("Puzzles"));
+        newTile.name = "FinalBlockerTile";
     }
 
     private IEnumerator PlaceBackground()

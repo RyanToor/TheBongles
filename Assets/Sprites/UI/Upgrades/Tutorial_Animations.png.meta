@@ -86,6 +86,18 @@ TextureImporter:
   - first:
       213: -5119542067348346405
     second: Tutorial_Animations_27
+  - first:
+      213: -2219613573523986842
+    second: Tutorial_Animations_28
+  - first:
+      213: 8007045583164320743
+    second: Tutorial_Animations_29
+  - first:
+      213: 7322542157039986798
+    second: Tutorial_Animations_30
+  - first:
+      213: 2893721539069026298
+    second: Tutorial_Animations_31
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -782,6 +794,90 @@ TextureImporter:
       bones: []
       spriteID: bd9680f3d9bb3f8b0800000000000000
       internalID: -5119542067348346405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_Animations_28
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 666a77307395231e0800000000000000
+      internalID: -2219613573523986842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_Animations_29
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ebaed4e88dbe1f60800000000000000
+      internalID: 8007045583164320743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_Animations_30
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e68e03b9b45ee9560800000000000000
+      internalID: 7322542157039986798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_Animations_31
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aff1b1f7860982820800000000000000
+      internalID: 2893721539069026298
       vertices: []
       indices: 
       edges: []

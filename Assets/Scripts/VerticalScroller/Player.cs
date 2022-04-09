@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private float controlMultiplier, moveRight = 1, flipDir = 1, spriteDir = 1, boostCooldownTimer, boostDurationTimer, currentMaxSpeed;
+    private float controlMultiplier, moveRight = 1, flipDir = 1, spriteDir = 1, boostCooldownTimer, boostDurationTimer, currentMaxSpeed, startZ;
     private Vector2 moveDir;
     private Animator animator, twinAnimator;
     private TrashManager trashManager;
@@ -96,6 +96,10 @@ public class Player : MonoBehaviour
             moveDir = new Vector3(moveRight, moveUp).normalized;
             rb.AddForce(controlMultiplier * moveForce * rb.mass * Time.deltaTime * moveDir * (isBoosting? boostMultiplierDurationCooldown[boostLevel].x : 1), ForceMode2D.Force);
             rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, currentMaxSpeed);
+        }
+        if (transform.position.z != startZ)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, startZ);
         }
         UpdateTail();
     }
@@ -275,6 +279,20 @@ public class Player : MonoBehaviour
         {
             case 1:
                 health += upgradeNumber.y;
+                if (upgradeNumber.y > 0)
+                {
+                    for (int i = 1; i <= upgradeNumber.y; i++)
+                    {
+                        if (transform.Find("Upgrade" + 1 + "-" + i).gameObject != null)
+                        {
+                            transform.Find("Upgrade" + 1 + "-" + i).gameObject.SetActive(true);
+                        }
+                    }
+                    if (transform.Find("Helmet-" + upgradeNumber.y).gameObject != null)
+                    {
+                        transform.Find("Helmet-" + upgradeNumber.y).gameObject.SetActive(true);
+                    }
+                }
                 break;
             case 2:
                 boostLevel = Mathf.Clamp(GameManager.Instance.upgrades[0][1] - 1, -1, boostMultiplierDurationCooldown.Length - 1);
@@ -297,14 +315,6 @@ public class Player : MonoBehaviour
                 break;
             default:
                 break;
-        }
-    }
-
-    private void RemoveArmour(string armourIndex)
-    {
-        if (transform.Find("Upgrade" + armourIndex) != null)
-        {
-            transform.Find("Upgrade" + armourIndex).gameObject.SetActive(false);
         }
     }
 
@@ -369,12 +379,19 @@ public class Player : MonoBehaviour
                 {
                     Dead();
                 }
-                if (health < maxHealth + 3)
+                for (int i = 3; i > 0; i--)
                 {
-                    RemoveArmour("1-2");
-                    if (health < maxHealth + 1)
+                    if (transform.Find("Upgrade1-" + i) != null)
                     {
-                        RemoveArmour("1-1");
+                        transform.Find("Upgrade1-" + i).gameObject.SetActive(health >= maxHealth + i);
+                    }
+                }
+                for (int i = 1; i < 4; i++)
+                {
+                    if (health <= maxHealth)
+                    {
+
+                        transform.Find("Helmet-" + i).gameObject.SetActive(false);
                     }
                 }
                 AudioSource bonkSound = audioManager.PlaySFXAtLocation("Hurt", collision.transform.position, 20);

@@ -14,6 +14,7 @@ public class TrashManager : MonoBehaviour
     [Range(0, 100)]
     public float maxIsDangerousChance;
     public GameObject trashPrefab;
+    public Color dangerousSonarColour, SafeSonarColour;
     public List<Sprite> trashSprites, dangerousTrashSprites;
 
     [HideInInspector]
@@ -191,11 +192,11 @@ public class TrashManager : MonoBehaviour
             newTrash.GetComponent<Animator>().enabled = false;
             if (GameManager.Instance.upgrades[0][2] > 1)
             {
-                newTrash.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+                newTrash.transform.GetChild(0).GetComponent<SpriteRenderer>().color = SafeSonarColour;
             }
             else
             {
-                newTrash.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.clear;
+                newTrash.transform.GetChild(0).GetComponent<SpriteRenderer>().color = dangerousSonarColour;
             }
         }
         PolygonCollider2D newCollider = newTrash.AddComponent<PolygonCollider2D>();

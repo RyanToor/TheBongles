@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: 3099492747633288552
     second: Bell add on_1
+  - first:
+      213: -6287299162908264353
+    second: Bell add on_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -158,6 +161,27 @@ TextureImporter:
       bones: []
       spriteID: 865e49e6b3c930b20800000000000000
       internalID: 3099492747633288552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bell add on_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f58fd3e09b60fb8a0800000000000000
+      internalID: -6287299162908264353
       vertices: []
       indices: 
       edges: []
