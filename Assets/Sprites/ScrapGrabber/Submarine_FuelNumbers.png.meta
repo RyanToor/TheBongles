@@ -1,28 +1,37 @@
 fileFormatVersion: 2
-guid: b78180f3dd138c1409df9c8b8b876355
+guid: 6d7d6f4bf852ad849a62e66e1751c959
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7772800442284639632
-    second: Brainy_Idle_0
+      213: 5063002908571782833
+    second: Submarine_FuelNumbers_0
   - first:
-      213: -2477763506837739935
-    second: Brainy_Idle_1
+      213: -8547891651100813913
+    second: Submarine_FuelNumbers_1
   - first:
-      213: -250334460430791638
-    second: Brainy_Idle_2
+      213: 7640300988873453892
+    second: Submarine_FuelNumbers_2
   - first:
-      213: 3464544311481448000
-    second: Brainy_Idle_3
+      213: -4288703043217546398
+    second: Submarine_FuelNumbers_3
   - first:
-      213: 1284321348977340023
-    second: Brainy_Idle_4
+      213: 2234363938880769320
+    second: Submarine_FuelNumbers_4
   - first:
-      213: -2057731617843063525
-    second: Brainy_Idle_5
+      213: 5015229317899991919
+    second: Submarine_FuelNumbers_5
   - first:
-      213: 1541234922335803240
-    second: Brainy_Idle_6
+      213: -3162848255872152353
+    second: Submarine_FuelNumbers_6
+  - first:
+      213: -1555387171552027495
+    second: Submarine_FuelNumbers_7
+  - first:
+      213: -5122938536208726774
+    second: Submarine_FuelNumbers_8
+  - first:
+      213: 3391125734079175722
+    second: Submarine_FuelNumbers_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -86,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -98,7 +107,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -110,7 +119,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -122,7 +131,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,13 +145,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Brainy_Idle_0
+      name: Submarine_FuelNumbers_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0950068f1d88edb60800000000000000
-      internalID: 7772800442284639632
+      spriteID: 1bec0360256634640800000000000000
+      internalID: 5063002908571782833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brainy_Idle_1
+      name: Submarine_FuelNumbers_1
       rect:
         serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
+        x: 64
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +180,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 166a281e7373d9dd0800000000000000
-      internalID: -2477763506837739935
+      spriteID: 7a5db9df4d9cf5980800000000000000
+      internalID: -8547891651100813913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brainy_Idle_2
+      name: Submarine_FuelNumbers_2
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
-        width: 256
-        height: 256
+        x: 128
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +201,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2ccbf27222a68cf0800000000000000
-      internalID: -250334460430791638
+      spriteID: 4413ed2f44dc70a60800000000000000
+      internalID: 7640300988873453892
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brainy_Idle_3
+      name: Submarine_FuelNumbers_3
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
+        x: 192
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +222,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 046b37202b8841030800000000000000
-      internalID: 3464544311481448000
+      spriteID: 263a1e10e477b74c0800000000000000
+      internalID: -4288703043217546398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brainy_Idle_4
+      name: Submarine_FuelNumbers_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 256
-        height: 256
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +243,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77eae375673d2d110800000000000000
-      internalID: 1284321348977340023
+      spriteID: 82d4eeb0a2e020f10800000000000000
+      internalID: 2234363938880769320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brainy_Idle_5
+      name: Submarine_FuelNumbers_5
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,20 +264,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b15df53fef77173e0800000000000000
-      internalID: -2057731617843063525
+      spriteID: f6bbd882e7ca99540800000000000000
+      internalID: 5015229317899991919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brainy_Idle_6
+      name: Submarine_FuelNumbers_6
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
+        x: 128
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,8 +285,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 867904dfef0936510800000000000000
-      internalID: 1541234922335803240
+      spriteID: fdcc64ec44e4b14d0800000000000000
+      internalID: -3162848255872152353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Submarine_FuelNumbers_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99c1177bb972a6ae0800000000000000
+      internalID: -1555387171552027495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Submarine_FuelNumbers_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a058e173b8aa7e8b0800000000000000
+      internalID: -5122938536208726774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Submarine_FuelNumbers_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2c997063e2bf0f20800000000000000
+      internalID: 3391125734079175722
       vertices: []
       indices: 
       edges: []

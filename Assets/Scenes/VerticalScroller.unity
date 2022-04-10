@@ -4480,6 +4480,10 @@ MonoBehaviour:
   - {fileID: 154335632}
   - {fileID: 1240057464}
   - {fileID: 985686732}
+  - {fileID: 417950514}
+  - {fileID: 1106345311}
+  - {fileID: 1624129077}
+  - {fileID: 234512660}
   maxHealth: 3
   chasmTopperForce: 10000
   moveForce: 1500

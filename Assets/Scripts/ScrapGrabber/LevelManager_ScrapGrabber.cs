@@ -16,6 +16,15 @@ public class LevelManager_ScrapGrabber : LevelManager
     public Spawner spawner;
     public Color darkCollectionIndicatorColour;
 
+    [Header("Brainy Settings")]
+    public Animator brainy;
+    [Range(0, 100)]
+    public float focusChance;
+    public float shockLength, eyeOffset, focusTime;
+    public Transform eyes, eyePoint, claw;
+    private bool isFocussed;
+    private float currentEyeOffset;
+
     [HideInInspector]
     public float remainingTime;
     [HideInInspector]
@@ -51,6 +60,7 @@ public class LevelManager_ScrapGrabber : LevelManager
         {
             bellIndicator.SetActive(true);
         }
+        currentEyeOffset = eyeOffset;
         StartCoroutine(CheckLoaded());
         if (!Application.isEditor)
         {
@@ -88,11 +98,17 @@ public class LevelManager_ScrapGrabber : LevelManager
         {
             StartCoroutine(Bell());
         }
+        brainy.SetFloat("RandomChance", Random.Range(0f, 100f));
         base.Update();
         if (Application.isEditor)
         {
             EditorUpdate();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        BrainyEyes();
     }
 
     public bool LightsOn
@@ -223,6 +239,44 @@ public class LevelManager_ScrapGrabber : LevelManager
                 eel.GetComponent<Animator>().SetBool("Shock", false);
             }
         }
+    }
+
+    public IEnumerator BrainyShock()
+    {
+        brainy.SetBool("Shock", true);
+        float duration = 0;
+        while (duration < shockLength)
+        {
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        brainy.SetBool("Shock", false);
+    }
+
+    private void BrainyEyes()
+    {
+        eyes.position = eyePoint.position + (claw.position - eyePoint.position).normalized * currentEyeOffset;
+        if (!isFocussed)
+        {
+            if (Random.Range(0f, 100f) < focusChance)
+            {
+                StartCoroutine(EyeFocus());
+            }
+        }
+    }
+
+    private IEnumerator EyeFocus()
+    {
+        isFocussed = true;
+        currentEyeOffset = 0;
+        float duration = 0;
+        while (duration < focusTime)
+        {
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        currentEyeOffset = eyeOffset;
+        isFocussed = false;
     }
 
     private void EditorUpdate()

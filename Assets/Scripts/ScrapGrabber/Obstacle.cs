@@ -52,7 +52,7 @@ public class Obstacle : MonoBehaviour
     public IEnumerator SharkGrab(Claw clawScript)
     {
         GetComponent<Animator>().SetBool("Drag", true);
-        clawScript.isCaught = true;
+        clawScript.IsCaught = true;
         Transform catchPoint = transform.Find("CatchPoint");
         float duration = 0;
         while (duration < sharkDragPeriod && Mathf.Abs(transform.position.x) < 9.6)
@@ -62,7 +62,7 @@ public class Obstacle : MonoBehaviour
             yield return null;
         }
         GetComponent<Animator>().SetBool("Drag", false);
-        clawScript.isCaught = false;
+        clawScript.IsCaught = false;
     }
 
     public void RequestDestruction()

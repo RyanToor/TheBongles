@@ -5,13 +5,15 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class Claw : MonoBehaviour
 {
-    public float maxAimAngle, aimSpeed, fireSpeed, turnSpeed, linePointSeparation, maxLineLength, reelSpeed, reelRotateSpeed, fuelTime;
+    public float maxAimAngle, aimSpeed, fireSpeed, turnSpeed, linePointSeparation, maxLineLength, reelSpeed, reelRotateSpeed, fuelTime, secondsFlashPeriod;
     public int trashCatchLimit;
     public GameObject fuelBar, spotLight, freeze, bellAssembly;
-    public Color lightSafeColour, lightDangerColour;
+    public Color lightSafeColour, lightDangerColour, secondsDangerColour;
     public GameObject[] lineLengthIndicators;
     public TrashRequests trashRequestScript;
     public Vector2[] clawExtensionAndItems;
+    public Sprite[] numbers;
+    public SpriteRenderer[] seconds;
 
     [HideInInspector]
     public bool isCaught;
@@ -19,11 +21,12 @@ public class Claw : MonoBehaviour
     private ClawState state;
     private LineRenderer lineRenderer;
     private List<Vector3> linePoints = new List<Vector3>();
-    private bool isReleasing;
+    private bool isReleasing, isFlashing;
     private LevelManager_ScrapGrabber levelManager;
-    private float fuelBarStartLength, lineLength, lineLengthIndicatorPortion, lightOffset, startOffset;
-    private int currentTrash;
+    private float fuelBarStartLength, lineLength, lineLengthIndicatorPortion, lightOffset, startOffset, dangerTime;
+    private int currentTrash, roundedSeconds;
     private Spawner spawner;
+    private Color[] normalColour;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,8 @@ public class Claw : MonoBehaviour
         lineLengthIndicatorPortion = (maxLineLength - transform.localPosition.magnitude) / (lineLengthIndicators.Length + 1);
         startOffset = transform.localPosition.magnitude;
         lightOffset = (spotLight.transform.position - transform.parent.position).magnitude;
+        dangerTime = levelManager.dangerTime;
+        normalColour = new Color[] { seconds[0].color, seconds[1].color };
         for (int i = 0; i < 3; i++)
         {
             if (transform.Find("Upgrade" + (i + 1) + "-" + GameManager.Instance.upgrades[2][i]) != null)
@@ -68,6 +73,13 @@ public class Claw : MonoBehaviour
         }
         UpdateInstruments();
         UpdateLight();
+    }
+
+    private void FixedUpdate()
+    {
+        roundedSeconds = (int)System.Math.Round(levelManager.remainingTime, 0);
+        seconds[0].sprite = numbers[roundedSeconds % 10];
+        seconds[1].sprite = numbers[Mathf.FloorToInt(roundedSeconds / 10)];
     }
 
     private void Aim()
@@ -197,6 +209,42 @@ public class Claw : MonoBehaviour
         {
             lineLengthIndicators[i].SetActive(lineLength <= startOffset + (lineLengthIndicators.Length - i) * lineLengthIndicatorPortion);
         }
+        if (0 < roundedSeconds && roundedSeconds < dangerTime && !isFlashing)
+        {
+            StartCoroutine(Flash());
+        }
+    }
+
+    private IEnumerator Flash()
+    {
+        isFlashing = true;
+        levelManager.brainy.SetBool("Stress", true);
+        float duration = 0;
+        while (levelManager.remainingTime < dangerTime && levelManager.remainingTime > 0)
+        {
+            for (int i = 0; i < seconds.Length; i++)
+            {
+                seconds[i].color = duration % secondsFlashPeriod < secondsFlashPeriod / 2 ? secondsDangerColour : normalColour[i];
+            }
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        isFlashing = false;
+        if (!isCaught)
+        {
+            levelManager.brainy.SetBool("Stress", false);
+        }
+        for (int i = 0; i < seconds.Length; i++)
+        {
+            if (levelManager.remainingTime > 0)
+            {
+                seconds[i].color = normalColour[i];
+            }
+            else
+            {
+                seconds[i].color = secondsDangerColour;
+            }
+        }
     }
 
     private void UpdateLight()
@@ -251,6 +299,26 @@ public class Claw : MonoBehaviour
         }
     }
 
+    public bool IsCaught
+    {
+        get { return isCaught; }
+        set
+        {
+            isCaught = value;
+            if (value == true)
+            {
+                levelManager.brainy.SetBool("Stress", true);
+            }
+            else
+            {
+                if (!isFlashing)
+                {
+                    levelManager.brainy.SetBool("Stress", false);
+                }
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("RandomTrash") && state == ClawState.fire)
@@ -285,8 +353,10 @@ public class Claw : MonoBehaviour
             if (collision.gameObject.name == "Electric_Eel(Clone)")
             {
                 StartCoroutine(levelManager.LightsOut(collision.gameObject));
+                StartCoroutine(levelManager.BrainyShock());
             }
             spawner.Escape(spawner.spawnedObjects.IndexOf(collision.gameObject));
+            levelManager.brainy.SetBool("Sad", true);
         }
         else if (collision.gameObject.name == "Mine(Clone)")
         {
@@ -296,6 +366,7 @@ public class Claw : MonoBehaviour
             {
                 state = ClawState.reel;
             }
+            levelManager.brainy.SetBool("Sad", true);
         }
         else if (collision.gameObject.name == "SharkMouth" && state == ClawState.fire)
         {

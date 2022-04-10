@@ -48,6 +48,7 @@ public class TrashRequests : MonoBehaviour
                     requestsFulfilled = 1;
                     caughtNames.Remove(caughtName);
                     GetComponent<Animator>().SetTrigger("Switch");
+                    levelManager.brainy.SetBool("Happy", true);
                     break;
                 }
             }

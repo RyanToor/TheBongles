@@ -29,7 +29,7 @@ public class Camera_ScrapGrabber : MonoBehaviour
             SpriteRenderer newSpriteRenderer = parallaxPlates[i].AddComponent<SpriteRenderer>();
             newSpriteRenderer.sprite = parallaxLayerSet[i].sprite;
             newSpriteRenderer.sortingLayerName = "Background";
-            newSpriteRenderer.sortingOrder = i == 0? -1 : i;
+            newSpriteRenderer.sortingOrder = i == 0? -1 : i + 1;
             if (parallaxLayerSet[i].glow)
             {
                 newSpriteRenderer.material = glowMaterial;

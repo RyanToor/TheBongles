@@ -105,13 +105,40 @@ public class LevelBuilder : MonoBehaviour
 
     private void PlaceFinalBlocker()
     {
-        int totalDisplacement = 0;
+        float totalDisplacement = 0;
         foreach (int displacement in floorDisplacements)
         {
             totalDisplacement += displacement;
         }
-        GameObject newTile = Instantiate(defaultTilePrefab, new Vector3(levelLength * tilePixelWidth / 100, totalDisplacement * -0.01f, 0) + offset, Quaternion.identity, gameObject.transform.Find("Puzzles"));
+        GameObject newTile = Instantiate(defaultTilePrefab, new Vector3(levelLength * tilePixelWidth / 100, totalDisplacement * -0.01f, 0) + offset, Quaternion.identity, transform.Find("Puzzles"));
         newTile.name = "FinalBlockerTile";
+        Sprite floorSprite = newTile.transform.Find("Ground").GetComponent<SpriteRenderer>().sprite;
+        foreach (Tile tile in levelTileLibrary.floorTiles)
+        {
+            if (tile.sprite == floorSprite)
+            {
+                totalDisplacement += tile.yDifference;
+                break;
+            }
+        }
+        totalDisplacement -= offset.y * 100f;
+        float totalXDisplacement = 0;
+        int totalHeight = 0;
+        int segmentsPlaced = 0;
+        while (totalHeight < totalDisplacement)
+        {
+            GameObject blockerSegment = new GameObject();
+            blockerSegment.name = "FinalBlocker_" + segmentsPlaced;
+            blockerSegment.transform.SetParent(transform.Find("Puzzles/FinalBlockerTile"));
+            blockerSegment.transform.position = new Vector3((levelLength + 1) * tilePixelWidth * 0.01f + totalXDisplacement * 0.01f + offset.x, totalHeight * -0.01f, 0);
+            SpriteRenderer spriteRenderer = blockerSegment.AddComponent<SpriteRenderer>();
+            int spriteToPlace = segmentsPlaced == 0 ? 0 : totalHeight + 1024 > totalDisplacement ? 1 : Random.Range(2, finalBlockerSprites.Length);
+            spriteRenderer.sprite = finalBlockerSprites[spriteToPlace].sprite;
+            totalXDisplacement += finalBlockerSprites[spriteToPlace].yDifference;
+            blockerSegment.AddComponent<PolygonCollider2D>();
+            totalHeight += segmentsPlaced == 0 ? 0 : 1024;
+            segmentsPlaced++;
+        }
     }
 
     private IEnumerator PlaceBackground()

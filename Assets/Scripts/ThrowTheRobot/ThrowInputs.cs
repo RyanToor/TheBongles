@@ -11,7 +11,7 @@ public class ThrowInputs : MonoBehaviour
     [HideInInspector]
     public float power, angle;
 
-    private bool isFaded;
+    private bool isFaded, isJumpHeld;
     private GameObject robot;
     private LevelManager_Robot levelManager;
 
@@ -40,6 +40,7 @@ public class ThrowInputs : MonoBehaviour
     private void GetThrowInputs(System.Action<Vector2> callback)
     {
         Vector2 throwValues = Vector2.zero;
+        isJumpHeld = false;
         StartCoroutine(Spin("angle", valueCollected =>
         {
             Debug.Log("Angle Collected : " + valueCollected);
@@ -99,12 +100,9 @@ public class ThrowInputs : MonoBehaviour
         int spinDir = 1;
         while (true)
         {
-            if (Input.GetAxis("Jump") == 1)
+            if (Input.GetAxis("Jump") == 1 && !isJumpHeld)
             {
-                while (Input.GetAxis("Jump") == 1 && type == "angle")
-                {
-                    yield return null;
-                }
+                isJumpHeld = true;
                 if (pointer == powerPointer)
                 {
                     callback(Mathf.Lerp(powerMax, powerMin, Mathf.Abs(Mathf.DeltaAngle(pointer.transform.rotation.eulerAngles.z, powerWheel.transform.rotation.eulerAngles.z)) / 180));
@@ -121,6 +119,10 @@ public class ThrowInputs : MonoBehaviour
                     }
                 }
                 break;
+            }
+            else if (Input.GetAxis("Jump") == 0 && isJumpHeld)
+            {
+                isJumpHeld = false;
             }
             pointer.transform.Rotate(speed * spinDir * Time.deltaTime * Vector3.back);
             if (pointer == anglePointer)

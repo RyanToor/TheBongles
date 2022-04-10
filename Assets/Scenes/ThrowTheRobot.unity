@@ -5181,7 +5181,15 @@ MonoBehaviour:
   cloudSprites:
   - {fileID: 263122527897851915, guid: dab804ae4f031604c837858d2b917a9c, type: 3}
   - {fileID: 4604437650257920085, guid: dab804ae4f031604c837858d2b917a9c, type: 3}
-  finalBlockerSprites: []
+  finalBlockerSprites:
+  - sprite: {fileID: 21300000, guid: 7e6bec3ee3c844b47a02b2cf92048944, type: 3}
+    yDifference: 0
+  - sprite: {fileID: 21300000, guid: 2d39a40ea5f2cc84799b261e320016ee, type: 3}
+    yDifference: -243
+  - sprite: {fileID: 21300000, guid: b9cedef1209401a41b72d8658254a896, type: 3}
+    yDifference: -204
+  - sprite: {fileID: 21300000, guid: adcfc161aa35651498c6cd6e8d016773, type: 3}
+    yDifference: -168
   levelTileLibrary:
     floorTiles:
     - sprite: {fileID: 21300000, guid: 407b9a97f35b973479f53947c8c8346c, type: 3}
