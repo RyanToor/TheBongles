@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProximityElement : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class ProximityElement : MonoBehaviour
     [HideInInspector]
     public Vector3 anchorPoint, blockerPoint;
 
-    private bool randomChanceRunning = false, shyClosed = false, isFlipping = false, hit = false;
+    private bool randomChanceRunning = false, shyClosed = false, isFlipping = false, hit = false, isMap = false;
     private Transform anchor1, anchor2;
     private Vector2 anchorLineStart;
     private Sprite anchor, anchorSeabed;
@@ -30,6 +31,13 @@ public class ProximityElement : MonoBehaviour
             StartCoroutine(Anchor(GameObject.FindGameObjectWithTag("Player").transform));
             anchor = GameObject.Find("Level").GetComponent<LevelBuilder>().anchorSprites[0];
             anchorSeabed = GameObject.Find("Level").GetComponent<LevelBuilder>().anchorSprites[1];
+        }
+        else if (type == ProximityElementType.bird)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                isMap = true;
+            }
         }
     }
 
@@ -68,7 +76,7 @@ public class ProximityElement : MonoBehaviour
                         StartCoroutine(CheckBirdOffscreen());
                         AudioManager.Instance.PlayAudioAtObject("BirdFly", gameObject, 20, false);
                     }
-                    else
+                    else if(!isMap)
                     {
                         hit = true;
                         AudioManager.Instance.PlayAudioAtObject("BirdDead", gameObject, 20, false);
@@ -173,12 +181,12 @@ public class ProximityElement : MonoBehaviour
     public IEnumerator BirdFly()
     {
         float angle = Random.Range(20, 70);
-        GameObject robot = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         while (!hit)
         {
-            Vector3 offset = transform.position - robot.transform.position;
+            Vector3 offset = transform.position - player.transform.position;
             float flightMagnitude = Mathf.Sign(offset.x) * birdSpeed * Time.deltaTime;
-            transform.position += new Vector3(flightMagnitude * Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Abs(flightMagnitude) * Mathf.Sin(Mathf.Deg2Rad * angle));
+            transform.position += transform.TransformDirection(new Vector3(flightMagnitude * Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Abs(flightMagnitude) * Mathf.Sin(Mathf.Deg2Rad * angle)));
             GetComponent<SpriteRenderer>().flipX = offset.x > 0;
             yield return null;
         }

@@ -37,6 +37,7 @@ public class LevelManager_ScrapGrabber : LevelManager
 
     protected override void Awake()
     {
+        freezeFrameAnimator.SetBool("Freeze", true);
         remainingTime = maxTime;
         uI = GameObject.Find("Canvas").GetComponent<ScrapGrabberUI>();
         freezeColours = new Color[freezeElements.Length];
@@ -130,6 +131,7 @@ public class LevelManager_ScrapGrabber : LevelManager
     private IEnumerator FreezeTime()
     {
         freezeFrameAnimator.SetBool("Available", false);
+        brainy.SetBool("Freeze", true);
         isFreezing = true;
         float duration = 0;
         Time.timeScale = freezeTimeMultiplier;
@@ -140,6 +142,7 @@ public class LevelManager_ScrapGrabber : LevelManager
             duration += Time.deltaTime / Time.timeScale;
             yield return null;
         }
+        brainy.SetBool("Freeze", false);
         freezeIcon.color = freezeIconDisabled;
         Time.timeScale = 1;
         StartCoroutine(Fade(false));
@@ -159,6 +162,7 @@ public class LevelManager_ScrapGrabber : LevelManager
     private IEnumerator Bell()
     {
         bellAnimator.SetTrigger("Ring");
+        brainy.SetTrigger("Bell");
         isBellActive = true;
         float duration = bellDuration;
         isBellActive = true;

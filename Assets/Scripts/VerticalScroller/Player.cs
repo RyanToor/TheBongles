@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startZ = transform.position.z;
         spinStars = transform.Find("SpinStars").gameObject;
         spinStars.SetActive(false);
         tailOffset = transform.Find("TailOffset");

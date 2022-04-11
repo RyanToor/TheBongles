@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,10 +6,11 @@ public class Region : MonoBehaviour
 {
     public bool isUnlocked;
     public int minigameSpawnCount, regionOrder;
-    public GameObject minigameMarker, cloudScreen;
+    public GameObject minigameMarker, cloudScreen, arrow;
     public TrashType trashType;
     public BossTypes bossEnum;
     public int[] storyMeetPoints;
+    public float arrowWaitDuration;
     public List<NameController> bossControllers = new List<NameController>();
 
     private Collider2D regionCollider;
@@ -37,7 +39,7 @@ public class Region : MonoBehaviour
                 bossAnimator.runtimeAnimatorController = bossType.bossController;
                 rippleAnimator.runtimeAnimatorController = bossType.rippleController;
             }
-        }        
+        }
     }
 
     private void Start()
@@ -121,6 +123,21 @@ public class Region : MonoBehaviour
                 transform.Find("BossIsland").gameObject.GetComponent<CapsuleCollider2D>().size = new Vector2(10, 2.3f);
                 transform.Find("BossIsland").gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(-0.05f, 0);
             }
+        }
+    }
+
+    public IEnumerator CheckPrompt()
+    {
+        int storypoint = GameManager.Instance.storyPoint;
+        if (bossEnum == BossTypes.Eel && storypoint == 1 || bossEnum == BossTypes.Crab && storypoint == 5 || bossEnum == BossTypes.Whale && storypoint == 9)
+        {
+            float duration = 0;
+            while (duration < arrowWaitDuration)
+            {
+                duration += Time.deltaTime;
+                yield return null;
+            }
+            arrow.SetActive(true);
         }
     }
 

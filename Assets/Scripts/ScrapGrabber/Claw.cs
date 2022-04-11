@@ -184,6 +184,10 @@ public class Claw : MonoBehaviour
     private void StoreTrash()
     {
         List<string> collectedTrash = new List<string>();
+        if (transform.Find("TrashContainer").childCount > 0)
+        {
+            levelManager.brainy.SetBool("Happy", true);
+        }
         foreach (Transform trash in transform.Find("TrashContainer"))
         {
             if (trash.name == "Fuel(Clone)")

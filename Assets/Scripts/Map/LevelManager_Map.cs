@@ -5,8 +5,8 @@ using UnityEngine;
 public class LevelManager_Map : LevelManager
 {
     public NameSpriteArray[] trashSprites;
-    public int randomTrashAmount, castleStoryPoint;
-    public GameObject map, randomTrashContainer, randomTrashPrefab, castle;
+    public int randomTrashAmount, birdAmount, castleStoryPoint;
+    public GameObject map, randomTrashContainer, randomTrashPrefab, birdPrefab, castle;
     public float trashClearBorder;
     public CapsuleCollider2D castleSmallCollider, castleBigCollider;
     public KeyCode[] drawLineCheat;
@@ -20,6 +20,7 @@ public class LevelManager_Map : LevelManager
     private FloatingObjects floatingObjectsScript;
     private Rect mapArea;
     private int drawUnlockProgress = 0;
+    private Coroutine[] promptCoroutines;
 
     protected override void Awake()
     {
@@ -44,6 +45,7 @@ public class LevelManager_Map : LevelManager
             pauseUI.SetActive(false);
         }
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
+        promptCoroutines = new Coroutine[GameObject.Find("BossRegions").transform.childCount];
         UpdateRegionsUnlocked();
         RespawnTrash();
         bool isVideoPlaying = false;
@@ -64,6 +66,7 @@ public class LevelManager_Map : LevelManager
             GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().CheckCutscene();
         }
         StartCoroutine(CheckDrawCheat());
+        SpawnBirds();
         base.Start();
     }
 
@@ -97,6 +100,14 @@ public class LevelManager_Map : LevelManager
         castle.GetComponent<Animator>().SetBool("Castle", storyPoint > castleStoryPoint);
         castleSmallCollider.enabled = storyPoint <= castleStoryPoint;
         castleBigCollider.enabled = storyPoint > castleStoryPoint;
+        for (int i = 0; i < GameObject.Find("BossRegions").transform.childCount; i++)
+        {
+            if (promptCoroutines[i] != null)
+            {
+                StopCoroutine(promptCoroutines[i]);
+            }
+            StartCoroutine(GameObject.Find("BossRegions").transform.GetChild(i).GetComponent<Region>().CheckPrompt());
+        }
     }
 
     public void RespawnTrash()
@@ -119,6 +130,17 @@ public class LevelManager_Map : LevelManager
         trashScript.trashType = trashSprites[trashType].name;
         trashScript.floatingObjectsScript = floatingObjectsScript;
         floatingObjectsScript.objectsToAdd.Add(newTrash);
+    }
+
+    private void SpawnBirds()
+    {
+        for (int i = 0; i < birdAmount; i++)
+        {
+            GameObject newBird = Instantiate(birdPrefab, new Vector3(Random.Range(mapArea.min.x, mapArea.max.x), Random.Range(mapArea.min.y, mapArea.max.y), 0), Quaternion.identity, GameObject.Find("MapObjects").transform);
+            newBird.GetComponent<SpriteRenderer>().sortingOrder = 0;
+            newBird.GetComponent<SpriteRenderer>().flipX = Random.value > 0.5f;
+            newBird.transform.rotation = Quaternion.Euler(-60f, 0, 0);
+        }
     }
 
     protected override void Update()

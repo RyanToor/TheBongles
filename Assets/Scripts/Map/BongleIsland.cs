@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,7 +6,8 @@ using UnityEngine.UI;
 
 public class BongleIsland : MonoBehaviour
 {
-    public float acceleration, pathSeparation, pathYOffset, animationSpeedDivisor;
+    public bool excludeArchFromBoing;
+    public float acceleration, pathSeparation, pathYOffset, animationSpeedDivisor, boingDuration, boingScaleOffset, boingSpeed, boingNumber, minBoingSpeed;
     public int pathLength;
     public GameObject pathObject, pathContainer, popupPrefab, upgradeMenu, loadScreen;
     public AudioClip musicOriginal;
@@ -29,6 +31,7 @@ public class BongleIsland : MonoBehaviour
     private bool prevFlipX;
     private float sailZ;
     private GameObject[][] upgradeSpriteObjects;
+    private List<GameObject> boingObjects = new List<GameObject>();
 
     // Start is called before the first frame update
 
@@ -192,6 +195,31 @@ public class BongleIsland : MonoBehaviour
         }
     }
 
+    private IEnumerator Boing(GameObject target)
+    {
+        boingObjects.Add(target);
+        Animator animator;
+        Vector3 targetScale = target.transform.localScale;
+        if (target.transform.GetChild(0).TryGetComponent(out animator))
+        {
+            animator.speed = boingSpeed;
+        }
+        float duration = 0;
+        while (duration < boingDuration)
+        {
+            target.transform.localScale = targetScale + targetScale * boingScaleOffset * Mathf.Sin(2 * Mathf.PI * duration / boingDuration * boingNumber);
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        if (animator != null)
+        {
+            animator.speed = 1;
+        }
+        target.transform.localScale = targetScale;
+        boingObjects.Remove(target);
+        boingObjects.TrimExcess();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("RandomTrash"))
@@ -277,6 +305,10 @@ public class BongleIsland : MonoBehaviour
                 default:
                     break;
             }
+        }
+        else if (rb2D.velocity.magnitude > minBoingSpeed && collision.gameObject.CompareTag("Untagged") && collision.gameObject.name != "Map" && !boingObjects.Contains(collision.gameObject) && !(excludeArchFromBoing && collision.gameObject.name == "Arch"))
+        {
+            StartCoroutine(Boing(collision.gameObject));
         }
     }
 
