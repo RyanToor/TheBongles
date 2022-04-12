@@ -71,10 +71,11 @@ public class LevelManager_ScrapGrabber : LevelManager
 
     private IEnumerator CheckLoaded()
     {
-        while (false)
+        while (!Camera.main.GetComponent<Camera_ScrapGrabber>().isInitialised)
         {
             yield return null;
         }
+        isLoaded = true;
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         AudioManager.Instance.PlayMusic("Scrap Grabber");
     }

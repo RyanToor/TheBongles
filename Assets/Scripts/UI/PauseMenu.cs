@@ -155,6 +155,14 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void CloseUpgradeBook()
+    {
+        if (lerpDir < 0)
+        {
+            GameManager.Instance.PauseGame(false);
+        }
+    }
+
     public void QuitGame()
     {
         Application.Quit();

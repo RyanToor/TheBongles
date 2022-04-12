@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     [HideInInspector]
     public int plastic = 0, metal = 0, glass = 0;
     public Coroutine mouseVisibleCoroutine;
+    public bool isLoaded;
 
     protected virtual void Awake()
     {

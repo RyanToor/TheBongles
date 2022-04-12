@@ -198,8 +198,8 @@ public class BongleIsland : MonoBehaviour
     private IEnumerator Boing(GameObject target)
     {
         boingObjects.Add(target);
-        Animator animator;
         Vector3 targetScale = target.transform.localScale;
+        Animator animator;
         if (target.transform.GetChild(0).TryGetComponent(out animator))
         {
             animator.speed = boingSpeed;
@@ -207,7 +207,7 @@ public class BongleIsland : MonoBehaviour
         float duration = 0;
         while (duration < boingDuration)
         {
-            target.transform.localScale = targetScale + targetScale * boingScaleOffset * Mathf.Sin(2 * Mathf.PI * duration / boingDuration * boingNumber);
+            target.transform.localScale = targetScale + boingScaleOffset * Mathf.Sin(2 * Mathf.PI * duration / boingDuration * boingNumber) * targetScale;
             duration += Time.deltaTime;
             yield return null;
         }

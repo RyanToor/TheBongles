@@ -17,6 +17,7 @@ public class InputPrompts : MonoBehaviour
         {
             transform.Find("UpgradeBook").gameObject.SetActive(true);
             GetComponent<PauseMenu>().UpgradeBook();
+            GameManager.Instance.PauseGame(true);
             GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] = true;
         }
     }
@@ -69,6 +70,7 @@ public class InputPrompts : MonoBehaviour
             t = Mathf.Clamp(t + Time.deltaTime, 0, duration);
             yield return null;
         }
+        image.color = new Color(1, 1, 1, startOpacity + direction);
         if (direction == -1)
         {
             image.gameObject.SetActive(false);

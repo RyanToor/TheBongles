@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  bubbleFrequency: 1
+  bubbleFrequency: 2
   speed: 3
   birdMaxAngle: 0
   birdKnockbeck: 0

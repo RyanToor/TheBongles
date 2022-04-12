@@ -9,6 +9,9 @@ public class Camera_ScrapGrabber : MonoBehaviour
     public ParallaxLayerSet[] parallaxLayerSets;
     public GameObject[] rayLayers;
 
+    [HideInInspector]
+    public bool isInitialised;
+
     private ParallaxLayer[] parallaxLayerSet;
     private GameObject[] parallaxPlates;
     private Vector2[] perlinCoordinates;
@@ -58,6 +61,7 @@ public class Camera_ScrapGrabber : MonoBehaviour
                 rayPerlinCoordinates[i][j] = new Vector2(perlinMagnitude * Mathf.Cos(perlinAngle), perlinMagnitude * Mathf.Sin(perlinAngle));
             }
         }
+        isInitialised = true;
     }
 
     // Update is called once per frame

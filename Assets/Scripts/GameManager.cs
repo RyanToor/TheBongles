@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public int[] regionStoryPoints;
 
     public Dictionary<string, int> trashCounts = new Dictionary<string, int>();
+    [HideInInspector]
+    public InputMethod inputMethod;
 
     private static GameManager instance;
     private bool isResetting = false;
@@ -68,6 +70,33 @@ public class GameManager : MonoBehaviour
         GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = true;
         GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().StartGame();
         gameStarted = true;
+    }
+
+    private void OnGUI()
+    {
+        if (Event.current.isKey)
+        {
+            //print("Detected Key");
+        }
+        switch (inputMethod)
+        {
+            case InputMethod.MKB:
+                if (Input.anyKeyDown && !Event.current.isKey)
+                {
+                    //print("Switched to MKB");
+                    inputMethod = InputMethod.Controller;
+                }
+                break;
+            case InputMethod.Controller:
+                if (Input.anyKeyDown && Event.current.isKey)
+                {
+                    //print("Switched to Controller");
+                    inputMethod = InputMethod.MKB;
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public int MaxRegion()
@@ -255,6 +284,12 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public enum InputMethod
+    {
+        MKB,
+        Controller
     }
 }
 

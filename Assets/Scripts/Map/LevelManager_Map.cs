@@ -97,9 +97,9 @@ public class LevelManager_Map : LevelManager
             regionScript.Unlock(GameManager.Instance.MaxRegion() > regionScript.regionOrder);
         }
         int storyPoint = GameManager.Instance.storyPoint;
-        castle.GetComponent<Animator>().SetBool("Castle", storyPoint > castleStoryPoint);
-        castleSmallCollider.enabled = storyPoint <= castleStoryPoint;
-        castleBigCollider.enabled = storyPoint > castleStoryPoint;
+        castle.GetComponent<Animator>().SetBool("Castle", storyPoint >= castleStoryPoint);
+        castleSmallCollider.enabled = storyPoint < castleStoryPoint;
+        castleBigCollider.enabled = storyPoint >= castleStoryPoint;
         for (int i = 0; i < GameObject.Find("BossRegions").transform.childCount; i++)
         {
             if (promptCoroutines[i] != null)
