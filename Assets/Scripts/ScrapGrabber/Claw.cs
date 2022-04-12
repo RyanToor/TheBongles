@@ -190,7 +190,7 @@ public class Claw : MonoBehaviour
         }
         foreach (Transform trash in transform.Find("TrashContainer"))
         {
-            if (trash.name == "Fuel(Clone)")
+            if (trash.name == "Fuel(Clone)" || trash.name == "Fuel")
             {
                 levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + fuelTime, 0, levelManager.maxTime);
             }
@@ -362,7 +362,7 @@ public class Claw : MonoBehaviour
             spawner.Escape(spawner.spawnedObjects.IndexOf(collision.gameObject));
             levelManager.brainy.SetBool("Sad", true);
         }
-        else if (collision.gameObject.name == "Mine(Clone)")
+        else if (collision.gameObject.CompareTag("Emergency"))
         {
             currentTrash = 0;
             collision.gameObject.GetComponent<Obstacle>().MineHit();

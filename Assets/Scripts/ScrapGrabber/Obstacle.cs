@@ -67,7 +67,7 @@ public class Obstacle : MonoBehaviour
 
     public void RequestDestruction()
     {
-        GameObject.Find("Spawner").GetComponent<Spawner>().destroyRequests.Add(gameObject);
+        spawner.destroyRequests.Add(gameObject);
     }
 
     public void FlipSprite()

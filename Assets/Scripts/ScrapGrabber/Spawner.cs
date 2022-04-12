@@ -13,7 +13,6 @@ public class Spawner : MonoBehaviour
     public float startObstacleSpawnChance, endObstacleSpawnChance;
     public float startSpeed, speedIncreaseRate, endTime, maxAngle, maxYDisplacement, escapeSpeedMultiplier;
     public SpawnSet[] spawnSets;
-    public GameObject[] collectables, obstacles;
     public bool spawnLeft, spawnRight;
 
     [HideInInspector]
@@ -93,9 +92,13 @@ public class Spawner : MonoBehaviour
     private void LateUpdate()
     {
         List<GameObject> objectsToDestroy = new List<GameObject>();
+        foreach (GameObject objectToDestroy in destroyRequests)
+        {
+            objectsToDestroy.Add(objectToDestroy);
+        }
         for (int i = spawnedObjects.Count - 1; i >= 0; i--)
         {
-            if (Mathf.Abs(spawnedObjects[i].transform.position.x) > playArea.extents.x + 1 || spawnedObjects[i].transform.position.y > 6f ||destroyRequests.Contains(spawnedObjects[i]))
+            if (Mathf.Abs(spawnedObjects[i].transform.position.x) > playArea.extents.x + 1 || spawnedObjects[i].transform.position.y > 6f)
             {
                 objectsToDestroy.Add(spawnedObjects[i]);
             }
@@ -177,12 +180,30 @@ public class Spawner : MonoBehaviour
         {
             obstacleScript.spawner = this;
         }
+        else
+        {
+            foreach (Transform child in newObject.transform)
+            {
+                if (child.TryGetComponent(out Obstacle childObstacleScript))
+                {
+                    childObstacleScript.spawner = this;
+                }
+            }
+        }
         timesSinceLastSpawn[spawnSetIndex] = 0;
     }
 
     private void RemoveFromLists(GameObject objectToRemove)
     {
-        int indexToRemove = spawnedObjects.IndexOf(objectToRemove);
+        int indexToRemove;
+        if (spawnedObjects.Contains(objectToRemove))
+        {
+            indexToRemove = spawnedObjects.IndexOf(objectToRemove);
+        }
+        else
+        {
+            indexToRemove = -1;
+        }
         if (indexToRemove >= 0)
         {
             spawnedObjects.RemoveAtSwapBack(indexToRemove);
