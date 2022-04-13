@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         {
             highscoreStars = new int[4] { 0, 0, 0, 0 };
         }
-        if (loadedSave.levelsPrompted.Length != 0)
+        if (loadedSave.levelsPrompted != null && loadedSave.levelsPrompted.Length != 0)
         {
             levelsPrompted = loadedSave.levelsPrompted;
         }
@@ -219,7 +219,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("Save file not found.");
         }
         File.Delete(Application.persistentDataPath + "/saveGame.json");
-        File.Delete(Application.persistentDataPath + "/settings.json");
         SceneManager.LoadScene("Map");
     }
 

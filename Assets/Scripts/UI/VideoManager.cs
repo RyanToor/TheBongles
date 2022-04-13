@@ -147,6 +147,7 @@ public class VideoManager : MonoBehaviour
         GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().UpdateRegionsUnlocked();
         GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().StartPrompt();
         GameObject.FindGameObjectWithTag("Player").GetComponent<BongleIsland>().isInputEnabled = true;
+        Cursor.visible = true;
     }
 
     void EditorUpdate()

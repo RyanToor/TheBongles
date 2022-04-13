@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music:
   - name: Map
-    clip: {fileID: 8300000, guid: b043435d2df41e44198e4c7b90902eda, type: 3}
+    clip: {fileID: 8300000, guid: 9a5a6eea4811c0c40b9f90e734e63d59, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
