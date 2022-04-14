@@ -1532,8 +1532,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.071380615, y: 2.1343935}
-  m_Size: {x: 4.23983, y: 5.306536}
+  m_Offset: {x: 0, y: 2}
+  m_Size: {x: 4.5, y: 6}
   m_Direction: 0
 --- !u!95 &365929713
 Animator:
@@ -5261,6 +5261,7 @@ MonoBehaviour:
   plastic: 0
   metal: 0
   glass: 0
+  isLoaded: 0
   chunkManager: {fileID: 1773317680}
   player: {fileID: 813436469}
 --- !u!1 &1021958486

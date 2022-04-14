@@ -13,6 +13,8 @@ public class LevelManager_Map : LevelManager
 
     [HideInInspector]
     public GameObject upgradesUI;
+    [HideInInspector]
+    public Coroutine arrowCoroutine;
 
     [SerializeField] private GameObject cloudCover, bongleIsland, pauseUI;
 
@@ -106,7 +108,7 @@ public class LevelManager_Map : LevelManager
             {
                 StopCoroutine(promptCoroutines[i]);
             }
-            StartCoroutine(GameObject.Find("BossRegions").transform.GetChild(i).GetComponent<Region>().CheckPrompt());
+            arrowCoroutine = StartCoroutine(GameObject.Find("BossRegions").transform.GetChild(i).GetComponent<Region>().CheckPrompt());
         }
     }
 

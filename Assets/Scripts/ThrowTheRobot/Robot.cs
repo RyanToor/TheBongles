@@ -132,7 +132,7 @@ public class Robot : MonoBehaviour
                     isDoubleJumping = true;
                     AudioManager.Instance.PlaySFX("DoubleJump");
                 }
-                else if (levelManager.State == LevelState.fly && Input.GetAxisRaw("Jump") == 1)
+                else if (levelManager.State == LevelState.fly && Input.GetAxisRaw("Jump") == 1 && boostFuel > 0)
                 {
                     Boost();
                 }
@@ -178,20 +178,17 @@ public class Robot : MonoBehaviour
 
     private void Boost()
     {
-        if (boostFuel > 0)
+        rb.AddForce(10 * boostForce * Time.deltaTime * Vector3.up, ForceMode2D.Impulse);
+        boostFuel = Mathf.Clamp(boostFuel - Time.deltaTime, 0, maxBoostFuel);
+        foreach (Animator cloud in clouds)
         {
-            rb.AddForce(10 * boostForce * Time.deltaTime * Vector3.up, ForceMode2D.Impulse);
-            boostFuel = Mathf.Clamp(boostFuel - Time.deltaTime, 0, maxBoostFuel);
-            foreach (Animator cloud in clouds)
-            {
-                cloud.SetTrigger("Bounce");
-            }
-            clouds.Clear();
+            cloud.SetTrigger("Bounce");
+        }
+        clouds.Clear();
 
-            if (!isBoosting)
-            {
-                StartCoroutine(BoostSound());
-            }
+        if (!isBoosting)
+        {
+            StartCoroutine(BoostSound());
         }
     }
 
@@ -480,6 +477,17 @@ public class Robot : MonoBehaviour
         }
         isWindSpawning = false;
     }
+    private IEnumerator BoostSound()
+    {
+        isBoosting = true;
+        AudioSource boostSource = AudioManager.Instance.PlayAudioAtObject("Boost", gameObject, 20, true);
+        while (Input.GetAxisRaw("Jump") == 1 && boostFuel > 0)
+        {
+            yield return null;
+        }
+        Destroy(boostSource);
+        isBoosting = false;
+    }
 
     void EditorUpdate()
     {
@@ -581,17 +589,6 @@ public class Robot : MonoBehaviour
             rb.velocity += (collision.gameObject.GetComponent<SpriteRenderer>().flipX? 1 : -1) * collision.gameObject.GetComponent<ProximityElement>().speed * Vector2.right;
             transform.parent = null;
         }
-    }
-    private IEnumerator BoostSound()
-    {
-        isBoosting = true;
-        AudioSource boostSource = AudioManager.Instance.PlayAudioAtObject("Boost", gameObject, 20, true);
-        while (Input.GetAxisRaw("Jump") == 1)
-        {
-            yield return null;
-        }
-        Destroy(boostSource);
-        isBoosting = false;
     }
 
     private void OnDisable()

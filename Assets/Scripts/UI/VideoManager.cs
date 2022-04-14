@@ -45,7 +45,10 @@ public class VideoManager : MonoBehaviour
 
     private void Update()
     {
-        EditorUpdate();
+        if (Application.isEditor)
+        {
+            EditorUpdate();
+        }
     }
 
     public void PlayCutscene(int cutscene)
@@ -148,6 +151,17 @@ public class VideoManager : MonoBehaviour
         GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().StartPrompt();
         GameObject.FindGameObjectWithTag("Player").GetComponent<BongleIsland>().isInputEnabled = true;
         Cursor.visible = true;
+        foreach (Transform region in GameObject.Find("BossRegions").transform)
+        {
+            if (region.Find("BossIsland/Arrow").gameObject.activeSelf)
+            {
+                region.Find("BossIsland/Arrow").gameObject.SetActive(false);
+            }
+            if (GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().arrowCoroutine != null)
+            {
+                StopCoroutine(GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().arrowCoroutine);
+            }
+        }
     }
 
     void EditorUpdate()
