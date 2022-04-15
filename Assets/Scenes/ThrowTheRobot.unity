@@ -5478,7 +5478,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 599a75fe224e4f048b217c45a2f41ad1, type: 3}
   - {fileID: 21300000, guid: 44ef5b323f6560d429bc3092ef662e60, type: 3}
   - {fileID: 21300000, guid: 1868adf9059d1e14289d1336af7d5406, type: 3}
-  pies: 3
+  pies: 2
   floatingDecorations: {fileID: 1670249919}
   floatingTrash: {fileID: 1670249918}
   floatingSurface: {fileID: 1670249920}
@@ -6066,7 +6066,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   legRays: 11
   onScreenLinePoints: 50
-  reelSpeed: 1.4
+  reelSpeed: 1.45
   moveForce: 12
   jumpForce: 8.5
   airControlMultiplier: 0.4
@@ -6090,9 +6090,9 @@ MonoBehaviour:
   boostCostPerSecond: 0.3
   magnetScanWidth: 10
   magnetScanInterval: 0.5
-  magnetScanPeriod: 5
+  magnetScanPeriod: 3
   magnetArmSpeed: 15
-  magnetCooldown: 12
+  magnetCooldown: 18
   windCooldown: 0.3
   skimMaxAngle: 20
   musselAngle: 60
