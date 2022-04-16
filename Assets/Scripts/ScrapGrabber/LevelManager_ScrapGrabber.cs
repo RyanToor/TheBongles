@@ -10,7 +10,7 @@ public class LevelManager_ScrapGrabber : LevelManager
     public LightType[] lights;
     public GameObject freezeCooldownPanel, bellPromptText;
     public Image freezeIcon;
-    public Animator freezeFrameAnimator, bellAnimator, bellAddonAnimator;
+    public Animator freezeFrameAnimator, bellAnimator, bellAddonAnimator, submarineAnimator;
     public GameObject[] freezeElements;
     public GameObject[] bellIndicators;
     public Spawner spawner;
@@ -101,6 +101,7 @@ public class LevelManager_ScrapGrabber : LevelManager
             StartCoroutine(Bell());
         }
         brainy.SetFloat("RandomChance", Random.Range(0f, 100f));
+        submarineAnimator.SetFloat("RandomChance", Random.Range(0f, 100f));
         base.Update();
         if (Application.isEditor)
         {
@@ -133,6 +134,7 @@ public class LevelManager_ScrapGrabber : LevelManager
     {
         freezeFrameAnimator.SetBool("Available", false);
         brainy.SetBool("Freeze", true);
+        submarineAnimator.SetBool("Freeze", true);
         isFreezing = true;
         float duration = 0;
         Time.timeScale = freezeTimeMultiplier;
@@ -144,6 +146,7 @@ public class LevelManager_ScrapGrabber : LevelManager
             yield return null;
         }
         brainy.SetBool("Freeze", false);
+        submarineAnimator.SetBool("Freeze", false);
         freezeIcon.color = freezeIconDisabled;
         Time.timeScale = 1;
         StartCoroutine(Fade(false));

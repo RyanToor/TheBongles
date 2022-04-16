@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject[] upgradeImages, dividers;
     public Button prevPage, nextPage;
     public int tutorialPages = 1;
+    public GameObject tutorialButton;
     public UpgradeSpriteArray[] upgradeSprites;
     public ControlPromptSet[] upgradeControlPrompts;
 
@@ -39,6 +40,25 @@ public class PauseMenu : MonoBehaviour
         sFXSlider.value = GameManager.Instance.sFXVolume;
         ToggleMute("Music");
         ToggleMute("SFX");
+        if (SceneManager.GetActiveScene().name == "Map")
+        {
+            tutorialButton.SetActive(TutorialButtonEnabled());
+        }
+    }
+
+    public bool TutorialButtonEnabled()
+    {
+        for (int i = 0; i < GameManager.Instance.upgrades.Length; i++)
+        {
+            for (int j = 0; j < GameManager.Instance.upgrades[i].Length; j++)
+            {
+                if (GameManager.Instance.upgrades[i][j] > 0)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     // Update is called once per frame
@@ -81,6 +101,7 @@ public class PauseMenu : MonoBehaviour
 
     public void UpgradeBook(int pageTurn = 0)
     {
+        GameManager.Instance.PauseGame(true);
         tutorialPage += pageTurn;
         sceneAnimator.gameObject.SetActive(tutorialPage < tutorialPages);
         sceneAnimator.SetInteger("Scene", SceneManager.GetActiveScene().buildIndex);
