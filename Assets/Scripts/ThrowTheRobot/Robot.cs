@@ -353,6 +353,7 @@ public class Robot : MonoBehaviour
 
     private IEnumerator MagnetArm(GameObject target)
     {
+        target.GetComponent<Collider2D>().enabled = false;
         GameObject magnet = Instantiate(magnetPrefab, transform.position, Quaternion.identity, transform);
         LineRenderer line = magnet.GetComponent<LineRenderer>();
         float armProgress = 0;
@@ -383,6 +384,7 @@ public class Robot : MonoBehaviour
         {
             levelManager.metal++;
             GameManager.Instance.SpawnCollectionIndicator(trash.position, levelManager.collectionIndicatorColor);
+            Destroy(trash.gameObject);
         }
         Destroy(magnet);
     }

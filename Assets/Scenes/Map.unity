@@ -274,6 +274,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 535229316}
   - {fileID: 1984759400}
   - {fileID: 1611811371}
   - {fileID: 1869824203}
@@ -3430,6 +3431,77 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5786167024573015595, guid: 2b88506fe573fa94b93f772adc3c1c77, type: 3}
   m_PrefabInstance: {fileID: 859122696}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &535229315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 535229316}
+  - component: {fileID: 535229317}
+  m_Layer: 5
+  m_Name: StartBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &535229316
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535229315}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 14903203}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!328 &535229317
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535229315}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 4a6e027668f67b6459bd11707226c3cf, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 277545540}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 1
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 0
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 1
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!1 &535240610
 GameObject:
   m_ObjectHideFlags: 0
@@ -5326,7 +5398,7 @@ RectTransform:
   - {fileID: 373151371}
   - {fileID: 962080902}
   m_Father: {fileID: 14903203}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5469,7 +5541,7 @@ RectTransform:
   - {fileID: 399748979}
   - {fileID: 1118273968}
   m_Father: {fileID: 14903203}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5857,6 +5929,8 @@ MonoBehaviour:
     - name: 
       sprites:
       - {fileID: 21300000, guid: 24aecb6f53eb3fe4dbb4dfdf0d8c6fda, type: 3}
+      - {fileID: 21300000, guid: 4f18ecc8085b9dd44bfd26889a587890, type: 3}
+      - {fileID: 21300000, guid: d8f97dc52feb2374f9cd5185dd24dfd1, type: 3}
     - name: 
       sprites: []
     - name: 
@@ -6226,7 +6300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 760, y: -396}
+  m_AnchoredPosition: {x: -806, y: -396}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &962080903
@@ -8061,7 +8135,7 @@ RectTransform:
   - {fileID: 1867400880}
   - {fileID: 1011704951}
   m_Father: {fileID: 14903203}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11569,7 +11643,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 14903203}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13073,7 +13147,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 14903203}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14262,7 +14336,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 14903203}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15302,16 +15376,16 @@ MonoBehaviour:
       audio: {fileID: 0}
       isLooping: 0
     - video: {fileID: 32900000, guid: c3b4557315c2782439acbd96436fd748, type: 3}
-      audio: {fileID: 8300000, guid: 878f162155549414c975c03256a35942, type: 3}
+      audio: {fileID: 8300000, guid: 639217587babf2544bcb4938186d2ce2, type: 3}
       isLooping: 1
     - video: {fileID: 32900000, guid: 2de3fc5f27954c248bcf59c39bf3d682, type: 3}
-      audio: {fileID: 8300000, guid: 03d55e6dc9185a748aa50e648e0d1e68, type: 3}
+      audio: {fileID: 8300000, guid: 6b7fe2396cfd914409ef5161ae58ecf3, type: 3}
       isLooping: 1
     - video: {fileID: 32900000, guid: a55bb4aa4ec082b4982eb9474be0f61a, type: 3}
-      audio: {fileID: 8300000, guid: f6b6e1ae20cf4324b867a50faf643a6c, type: 3}
+      audio: {fileID: 8300000, guid: 3996b0dc48b7a854093c193630ec3e50, type: 3}
       isLooping: 1
     - video: {fileID: 32900000, guid: 9718422d7ef2d16428e8a25922485c77, type: 3}
-      audio: {fileID: 0}
+      audio: {fileID: 8300000, guid: a4f265809515a9a4588c52454e284caa, type: 3}
       isLooping: 1
     - video: {fileID: 32900000, guid: 1d68a513250e6f242822300e46e7b8d2, type: 3}
       audio: {fileID: 0}
@@ -15322,10 +15396,10 @@ MonoBehaviour:
       audio: {fileID: 0}
       isLooping: 0
     - video: {fileID: 32900000, guid: ddb0d80cd7cae894b8d423216f6740f9, type: 3}
-      audio: {fileID: 0}
+      audio: {fileID: 8300000, guid: 2e9aa46c257af864ab578f91610d4488, type: 3}
       isLooping: 1
     - video: {fileID: 32900000, guid: 354a22a378126de44a573d4d13dc81bc, type: 3}
-      audio: {fileID: 0}
+      audio: {fileID: 8300000, guid: 7d20ffbb1cc4c6d48ad25578eddd06e1, type: 3}
       isLooping: 1
     - video: {fileID: 32900000, guid: 1bf497c82eb6bef44a92dda856b59b8a, type: 3}
       audio: {fileID: 0}
@@ -15339,7 +15413,7 @@ MonoBehaviour:
     - video: {fileID: 32900000, guid: 539982a4263b9a64484aadea47f83269, type: 3}
       audio: {fileID: 0}
       isLooping: 0
-  testScene: 3
+  testScene: 6
   currentScene: 0
   currentCutscene: 0
 --- !u!222 &6708069970092528579
