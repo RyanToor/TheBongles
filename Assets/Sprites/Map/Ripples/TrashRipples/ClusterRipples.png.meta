@@ -1,43 +1,55 @@
 fileFormatVersion: 2
-guid: 63e1db85443d31042ace3c56e025f09a
+guid: 851a7526c6a1f4c4e9a07c0b1844405a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3958102374729822848
-    second: Bucket_tin_ripple_0
+      213: -7743741413344677069
+    second: ClusterRipples_0
   - first:
-      213: -584475592943331850
-    second: Bucket_tin_ripple_1
+      213: 2431374247162881010
+    second: ClusterRipples_1
   - first:
-      213: -8302743975461615942
-    second: Bucket_tin_ripple_2
+      213: -4658518511140793370
+    second: ClusterRipples_2
   - first:
-      213: -6637299540631409016
-    second: Bucket_tin_ripple_3
+      213: -5178672468441292849
+    second: ClusterRipples_3
   - first:
-      213: 2791027662275631468
-    second: Bucket_tin_ripple_4
+      213: 2152458300470363780
+    second: ClusterRipples_4
   - first:
-      213: -4138110032577146635
-    second: Bucket_tin_ripple_5
+      213: -1446183678866731041
+    second: ClusterRipples_5
   - first:
-      213: -2619348548882107815
-    second: Bucket_tin_ripple_6
+      213: 5964131298977405375
+    second: ClusterRipples_6
   - first:
-      213: 6336925901728075504
-    second: Bucket_tin_ripple_7
+      213: 1355372837980396844
+    second: ClusterRipples_7
   - first:
-      213: 5748037074836500597
-    second: Bucket_tin_ripple_8
+      213: -3885745328248605013
+    second: ClusterRipples_8
   - first:
-      213: -1755085411386336143
-    second: Bucket_tin_ripple_9
+      213: 5185340692129507245
+    second: ClusterRipples_9
   - first:
-      213: -5911642205378967710
-    second: Bucket_tin_ripple_10
+      213: 7029028202436719380
+    second: ClusterRipples_10
   - first:
-      213: -1047944561312625431
-    second: Bucket_tin_ripple_11
+      213: -8874251132413622125
+    second: ClusterRipples_11
+  - first:
+      213: -3821104020437849871
+    second: ClusterRipples_12
+  - first:
+      213: 3142309073655052415
+    second: ClusterRipples_13
+  - first:
+      213: -3284771600224563618
+    second: ClusterRipples_14
+  - first:
+      213: -2139373612724412780
+    second: ClusterRipples_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -101,7 +113,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,7 +125,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -125,7 +137,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 1024
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -137,7 +149,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 1024
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -151,253 +163,337 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bucket_tin_ripple_0
+      name: ClusterRipples_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
+        y: 3072
+        width: 1024
+        height: 1024
       alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+      pivot: {x: 0.49, y: 0.59}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 082b66e83210ee630800000000000000
-      internalID: 3958102374729822848
+      spriteID: 333fb117634b88490800000000000000
+      internalID: -7743741413344677069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_1
+      name: ClusterRipples_1
       rect:
         serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
+        x: 1024
+        y: 3072
+        width: 1024
+        height: 1024
       alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+      pivot: {x: 0.49, y: 0.59}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f51abe7b8683e7f0800000000000000
-      internalID: -584475592943331850
+      spriteID: 2f32d2eeef9fdb120800000000000000
+      internalID: 2431374247162881010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_2
+      name: ClusterRipples_2
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
-        width: 256
-        height: 256
+        x: 2048
+        y: 3072
+        width: 1024
+        height: 1024
       alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+      pivot: {x: 0.49, y: 0.59}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab68899185ab6cc80800000000000000
-      internalID: -8302743975461615942
+      spriteID: 6e31fd3981e995fb0800000000000000
+      internalID: -4658518511140793370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_3
+      name: ClusterRipples_3
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
+        x: 3072
+        y: 3072
+        width: 1024
+        height: 1024
       alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+      pivot: {x: 0.49, y: 0.59}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88e2dc4db3393e3a0800000000000000
-      internalID: -6637299540631409016
+      spriteID: fcf1676e3d8a128b0800000000000000
+      internalID: -5178672468441292849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c695a301fd8bbb620800000000000000
-      internalID: 2791027662275631468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f052ca99da7296c0800000000000000
-      internalID: -4138110032577146635
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_6
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 95272f86f5436abd0800000000000000
-      internalID: -2619348548882107815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_7
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0fe497c788841f750800000000000000
-      internalID: 6336925901728075504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_8
+      name: ClusterRipples_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 256
-        height: 256
+        y: 2048
+        width: 1024
+        height: 1024
       alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+      pivot: {x: 0.49, y: 0.59}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 570b761e34125cf40800000000000000
-      internalID: 5748037074836500597
+      spriteID: 48680698b611fdd10800000000000000
+      internalID: 2152458300470363780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_9
+      name: ClusterRipples_5
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
+        x: 1024
+        y: 2048
+        width: 1024
+        height: 1024
       alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+      pivot: {x: 0.49, y: 0.59}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17cd8dffd1fa4a7e0800000000000000
-      internalID: -1755085411386336143
+      spriteID: fdf4e253b9f1eebe0800000000000000
+      internalID: -1446183678866731041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_10
+      name: ClusterRipples_6
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
+        x: 2048
+        y: 2048
+        width: 1024
+        height: 1024
       alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+      pivot: {x: 0.49, y: 0.59}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2670e254cb0a5fda0800000000000000
-      internalID: -5911642205378967710
+      spriteID: fb9565d21d9d4c250800000000000000
+      internalID: 5964131298977405375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_11
+      name: ClusterRipples_7
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 256
+        x: 3072
+        y: 2048
+        width: 1024
+        height: 1024
       alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+      pivot: {x: 0.49, y: 0.59}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ec88a649f3f471f0800000000000000
-      internalID: -1047944561312625431
+      spriteID: c2dd8024a604fc210800000000000000
+      internalID: 1355372837980396844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClusterRipples_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.49, y: 0.59}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba6bb16263f031ac0800000000000000
+      internalID: -3885745328248605013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClusterRipples_9
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.49, y: 0.59}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da7e1c9e2e706f740800000000000000
+      internalID: 5185340692129507245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClusterRipples_10
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.49, y: 0.59}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4137172a8ef1c8160800000000000000
+      internalID: 7029028202436719380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClusterRipples_11
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1024
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.49, y: 0.59}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 398c0e4ec9358d480800000000000000
+      internalID: -8874251132413622125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClusterRipples_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.49, y: 0.59}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f82cf37326b8fac0800000000000000
+      internalID: -3821104020437849871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClusterRipples_13
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.49, y: 0.59}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7832bd2479bb9b20800000000000000
+      internalID: 3142309073655052415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClusterRipples_14
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.49, y: 0.59}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ec25012a52a62d0800000000000000
+      internalID: -3284771600224563618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClusterRipples_15
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.49, y: 0.59}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49e97bbb80b6f42e0800000000000000
+      internalID: -2139373612724412780
       vertices: []
       indices: 
       edges: []

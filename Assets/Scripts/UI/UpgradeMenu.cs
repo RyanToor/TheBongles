@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UpgradeMenu : MonoBehaviour
 {
     public VideoManager videoManager;
-    public float lerpSpeed, lerpDir = -1, examplePanelPauseDuration, examplePanelScaleSpeed;
+    public float lerpSpeed, lerpDir = -1, examplePanelPauseDuration, examplePanelScaleSpeed, storyUpgradeBlinkDuration;
     public Vector3 closedPos, openPos;
     public Color upgradeAvailableColour, upgradeActiveColour, barUnavailableColour, barAvailableColour;
     public List<Sprite> sprites;
@@ -24,8 +24,7 @@ public class UpgradeMenu : MonoBehaviour
     private float lerpPos = 0;
     private readonly string[] trashNames = new string[] { "Plastic", "Metal", "Glass" };
     private int currentTabIndex;
-    private bool examplePanelHovered;
-    private Coroutine currentExampleCoroutine;
+    private Coroutine currentExampleCoroutine, storyButtonBlink;
 
     // Start is called before the first frame update
     void Start()
@@ -148,6 +147,21 @@ public class UpgradeMenu : MonoBehaviour
                 break;
         }
         upgradeButton.interactable = upgradeReady;
+        if (upgradeReady && gameObject.activeSelf)
+        {
+            if (storyButtonBlink == null)
+            {
+                storyButtonBlink = StartCoroutine(StoryButtonBlink());
+            }
+        }
+        else
+        {
+            if (storyButtonBlink != null)
+            {
+                StopCoroutine(storyButtonBlink);
+                storyButtonBlink = null;
+            }
+        }
     }
 
     public void FlipLerpDir()
@@ -241,7 +255,6 @@ public class UpgradeMenu : MonoBehaviour
 
     public void ExamplePanelHovered(bool isHovered, Vector3Int buttonIndicies)
     {
-        examplePanelHovered = isHovered;
         if (currentExampleCoroutine != null)
         {
             StopCoroutine(currentExampleCoroutine);
@@ -279,6 +292,17 @@ public class UpgradeMenu : MonoBehaviour
         else if (upgradeExamplePanel.localScale.y < 0)
         {
             upgradeExamplePanel.localScale = new Vector3(1, 0, 1);
+        }
+    }
+
+    private IEnumerator StoryButtonBlink()
+    {
+        float duration = 0;
+        while (true)
+        {
+            duration += Time.deltaTime;
+            upgradeButton.gameObject.GetComponent<Image>().color = (duration % 2 * storyUpgradeBlinkDuration > storyUpgradeBlinkDuration) ? Color.grey : Color.white;
+            yield return null;
         }
     }
 

@@ -1,43 +1,37 @@
 fileFormatVersion: 2
-guid: 63e1db85443d31042ace3c56e025f09a
+guid: 72c0cf7d07a7ec74c9ef867785511a62
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3958102374729822848
-    second: Bucket_tin_ripple_0
+      213: 7056590331792618621
+    second: Big_Bubba_Reel---Idle_0
   - first:
-      213: -584475592943331850
-    second: Bucket_tin_ripple_1
+      213: 3610385038542641223
+    second: Big_Bubba_Reel---Idle_1
   - first:
-      213: -8302743975461615942
-    second: Bucket_tin_ripple_2
+      213: -4554730498105336320
+    second: Big_Bubba_Reel---Idle_2
   - first:
-      213: -6637299540631409016
-    second: Bucket_tin_ripple_3
+      213: -7943632814604615758
+    second: Big_Bubba_Reel---Idle_3
   - first:
-      213: 2791027662275631468
-    second: Bucket_tin_ripple_4
+      213: 3785357121901082479
+    second: Big_Bubba_Reel---Idle_4
   - first:
-      213: -4138110032577146635
-    second: Bucket_tin_ripple_5
+      213: -7981700803849708566
+    second: Big_Bubba_Reel---Idle_5
   - first:
-      213: -2619348548882107815
-    second: Bucket_tin_ripple_6
+      213: 1143842109846054098
+    second: Big_Bubba_Reel---Idle_6
   - first:
-      213: 6336925901728075504
-    second: Bucket_tin_ripple_7
+      213: 8309862667154743730
+    second: Big_Bubba_Reel---Idle_7
   - first:
-      213: 5748037074836500597
-    second: Bucket_tin_ripple_8
+      213: -1565308074857821210
+    second: Big_Bubba_Reel---Idle_8
   - first:
-      213: -1755085411386336143
-    second: Bucket_tin_ripple_9
-  - first:
-      213: -5911642205378967710
-    second: Bucket_tin_ripple_10
-  - first:
-      213: -1047944561312625431
-    second: Bucket_tin_ripple_11
+      213: -4738363206074347316
+    second: Big_Bubba_Reel---Idle_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -101,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,7 +107,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -125,7 +119,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -137,7 +131,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -151,253 +145,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bucket_tin_ripple_0
+      name: Big_Bubba_Reel---Idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 082b66e83210ee630800000000000000
-      internalID: 3958102374729822848
+      spriteID: d7474f3f48b0ee160800000000000000
+      internalID: 7056590331792618621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f51abe7b8683e7f0800000000000000
-      internalID: -584475592943331850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_2
+      name: Big_Bubba_Reel---Idle_1
       rect:
         serializedVersion: 2
         x: 512
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab68899185ab6cc80800000000000000
-      internalID: -8302743975461615942
+      spriteID: 74818bc501aaa1230800000000000000
+      internalID: 3610385038542641223
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_3
+      name: Big_Bubba_Reel---Idle_2
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88e2dc4db3393e3a0800000000000000
-      internalID: -6637299540631409016
+      spriteID: 00e1bc47eb85ac0c0800000000000000
+      internalID: -4554730498105336320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_4
+      name: Big_Bubba_Reel---Idle_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bffa53da0c82c190800000000000000
+      internalID: -7943632814604615758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Reel---Idle_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f67b8e62f3a488430800000000000000
+      internalID: 3785357121901082479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Reel---Idle_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeb9613686d4b3190800000000000000
+      internalID: -7981700803849708566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Reel---Idle_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d4e18ca65ebfdf00800000000000000
+      internalID: 1143842109846054098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Reel---Idle_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b1e9087110925370800000000000000
+      internalID: 8309862667154743730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Reel---Idle_8
       rect:
         serializedVersion: 2
         x: 0
         y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c695a301fd8bbb620800000000000000
-      internalID: 2791027662275631468
+      spriteID: 6eb8c0a6998e64ae0800000000000000
+      internalID: -1565308074857821210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f052ca99da7296c0800000000000000
-      internalID: -4138110032577146635
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_6
+      name: Big_Bubba_Reel---Idle_9
       rect:
         serializedVersion: 2
         x: 512
         y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95272f86f5436abd0800000000000000
-      internalID: -2619348548882107815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_7
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0fe497c788841f750800000000000000
-      internalID: 6336925901728075504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 570b761e34125cf40800000000000000
-      internalID: 5748037074836500597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_9
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17cd8dffd1fa4a7e0800000000000000
-      internalID: -1755085411386336143
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_10
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2670e254cb0a5fda0800000000000000
-      internalID: -5911642205378967710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_11
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9ec88a649f3f471f0800000000000000
-      internalID: -1047944561312625431
+      spriteID: cc0582dd4c3fd3eb0800000000000000
+      internalID: -4738363206074347316
       vertices: []
       indices: 
       edges: []

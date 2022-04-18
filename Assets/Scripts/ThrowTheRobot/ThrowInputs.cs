@@ -10,6 +10,8 @@ public class ThrowInputs : MonoBehaviour
 
     [HideInInspector]
     public float power, angle;
+    [HideInInspector]
+    public bool isLoaded;
 
     private bool isFaded, isJumpHeld;
     private GameObject robot;
@@ -29,11 +31,16 @@ public class ThrowInputs : MonoBehaviour
         }
     }
 
-    public void Throw()
+    public IEnumerator Throw()
     {
+        isLoaded = false;
+        while (!isLoaded)
+        {
+            yield return null;
+        }
         GetThrowInputs(throwValues =>
         {
-            StartCoroutine(DrawAndHold(throwValues));
+            StartCoroutine(Launch(throwValues));
         });
     }
 
@@ -45,39 +52,34 @@ public class ThrowInputs : MonoBehaviour
         {
             Debug.Log("Angle Collected : " + valueCollected);
             throwValues.x = valueCollected;
-            StartCoroutine(launcher.AngleArm(valueCollected));
+            StartCoroutine(launcher.Angle(valueCollected));
             StartCoroutine(Spin("power", valueCollected =>
             {
                 Debug.Log("Power Collected : " + valueCollected);
                 throwValues.y = valueCollected;
-                StartCoroutine(launcher.AngleArm(valueCollected, true));
                 callback(throwValues);
             }));
         }));
     }
 
-    private IEnumerator DrawAndHold(Vector2 powerAngle)
+    private IEnumerator Launch(Vector2 powerAngle)
     {
-        float duration = 0;
-        Vector3 startPoint = robot.transform.position;
+        if (levelManager.throwPowerLevel == 0)
+        {
+            float angleFraction = powerAngle.x / 90f;
+            int releaseFrame = (int)Mathf.Lerp(9, 4, angleFraction);
+            float clipLength = launcher.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.length;
+            float framerate = launcher.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.frameRate;
+            while ((int)(clipLength * (launcher.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime % 1) * framerate) != releaseFrame)
+            {
+                yield return null;
+            }
+        }
         Vector3 throwVector = powerAngle.y * new Vector2(Mathf.Cos(Mathf.Deg2Rad * powerAngle.x), Mathf.Sin(Mathf.Deg2Rad * powerAngle.x));
-        Vector3 drawPoint = startPoint - powerAngle.y / powerMax * drawDistance * throwVector.normalized;
-        while (robot.transform.position != drawPoint)
-        {
-            robot.transform.position = Vector3.Lerp(startPoint, drawPoint, duration);
-            duration += Time.deltaTime;
-            yield return null;
-        }
-        duration = 0;
-        while (duration < drawPause)
-        {
-            yield return null;
-            duration += Time.deltaTime;
-        }
         AudioManager.Instance.PlaySFXAtLocation("Throw", transform.position, 20);
         robot.GetComponent<Robot>().Launch(throwVector);
-        levelManager.State = LevelState.fly;
         ResetDials();
+        StartCoroutine(launcher.Angle(0f, true));
     }
 
     public void ResetDials()

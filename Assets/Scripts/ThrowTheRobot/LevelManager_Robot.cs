@@ -5,13 +5,13 @@ using UnityEngine;
 public class LevelManager_Robot : LevelManager
 {
     public ThrowInputs throwParameters;
-    public SpriteRenderer piesSprite;
-    public Sprite[] pieSprites;
     public int pies;
     public FloatingObjects floatingDecorations, floatingTrash, floatingSurface;
 
     [HideInInspector]
     public float totalThrowDistance;
+    [HideInInspector]
+    public int throwPowerLevel;
 
     private LevelState state;
     private LevelBuilder levelbuilder;
@@ -34,7 +34,6 @@ public class LevelManager_Robot : LevelManager
         levelbuilder = GameObject.Find("Level").GetComponent<LevelBuilder>();
         StartCoroutine(CheckLoaded());
         throwParameters.ResetDials();
-        Pies = pies;
     }
 
     // Update is called once per frame
@@ -64,11 +63,10 @@ public class LevelManager_Robot : LevelManager
         switch (newState)
         {
             case LevelState.launch:
-                if (pies > 0)
+                if (pies >= 0)
                 {
-                    Pies--;
                     throwParameters.StopAllCoroutines();
-                    throwParameters.Throw();
+                    StartCoroutine(throwParameters.Throw());
                 }
                 else
                 {
@@ -80,23 +78,10 @@ public class LevelManager_Robot : LevelManager
             case LevelState.move:
                 break;
             case LevelState.reel:
-                GameObject.Find("Launcher").GetComponent<Launcher>().Reel();
+                GameObject.Find("Bubba").GetComponent<Launcher>().Reel();
                 break;
             default:
                 break;
-        }
-    }
-
-    public int Pies
-    {
-        get
-        {
-            return pies;
-        }
-        set
-        {
-            pies = value;
-            piesSprite.sprite = pies > 0? pieSprites[Mathf.Clamp(value - 1, 0, pieSprites.Length - 1)] : null;
         }
     }
 

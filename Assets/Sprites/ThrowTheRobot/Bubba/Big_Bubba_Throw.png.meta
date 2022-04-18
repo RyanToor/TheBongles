@@ -1,43 +1,55 @@
 fileFormatVersion: 2
-guid: 63e1db85443d31042ace3c56e025f09a
+guid: 56fe9ce8f8cacfa48bdf2c897c420d15
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3958102374729822848
-    second: Bucket_tin_ripple_0
+      213: 6103933428606092838
+    second: Big_Bubba_Throw_0
   - first:
-      213: -584475592943331850
-    second: Bucket_tin_ripple_1
+      213: 1857405905830468972
+    second: Big_Bubba_Throw_1
   - first:
-      213: -8302743975461615942
-    second: Bucket_tin_ripple_2
+      213: -5632559662554545752
+    second: Big_Bubba_Throw_2
   - first:
-      213: -6637299540631409016
-    second: Bucket_tin_ripple_3
+      213: 89100433997538749
+    second: Big_Bubba_Throw_3
   - first:
-      213: 2791027662275631468
-    second: Bucket_tin_ripple_4
+      213: -1940572312318003838
+    second: Big_Bubba_Throw_4
   - first:
-      213: -4138110032577146635
-    second: Bucket_tin_ripple_5
+      213: -5950240214741362989
+    second: Big_Bubba_Throw_5
   - first:
-      213: -2619348548882107815
-    second: Bucket_tin_ripple_6
+      213: -7563404324772723906
+    second: Big_Bubba_Throw_6
   - first:
-      213: 6336925901728075504
-    second: Bucket_tin_ripple_7
+      213: -4602928946512266639
+    second: Big_Bubba_Throw_7
   - first:
-      213: 5748037074836500597
-    second: Bucket_tin_ripple_8
+      213: -6942204086961823135
+    second: Big_Bubba_Throw_8
   - first:
-      213: -1755085411386336143
-    second: Bucket_tin_ripple_9
+      213: -3588170487832389673
+    second: Big_Bubba_Throw_9
   - first:
-      213: -5911642205378967710
-    second: Bucket_tin_ripple_10
+      213: 3170886798705198096
+    second: Big_Bubba_Throw_10
   - first:
-      213: -1047944561312625431
-    second: Bucket_tin_ripple_11
+      213: -7643559974042011049
+    second: Big_Bubba_Throw_11
+  - first:
+      213: 7738245978192417575
+    second: Big_Bubba_Throw_12
+  - first:
+      213: -956771989938319948
+    second: Big_Bubba_Throw_13
+  - first:
+      213: -5173475744357742485
+    second: Big_Bubba_Throw_14
+  - first:
+      213: 2403239136390261676
+    second: Big_Bubba_Throw_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -101,7 +113,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,7 +125,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -125,7 +137,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -137,7 +149,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -151,253 +163,337 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bucket_tin_ripple_0
+      name: Big_Bubba_Throw_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 082b66e83210ee630800000000000000
-      internalID: 3958102374729822848
+      spriteID: 626c2b00d1785b450800000000000000
+      internalID: 6103933428606092838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f51abe7b8683e7f0800000000000000
-      internalID: -584475592943331850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_2
+      name: Big_Bubba_Throw_1
       rect:
         serializedVersion: 2
         x: 512
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab68899185ab6cc80800000000000000
-      internalID: -8302743975461615942
+      spriteID: c6ddcb494d4d6c910800000000000000
+      internalID: 1857405905830468972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_3
+      name: Big_Bubba_Throw_2
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88e2dc4db3393e3a0800000000000000
-      internalID: -6637299540631409016
+      spriteID: 8a10e3954d025d1b0800000000000000
+      internalID: -5632559662554545752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_4
+      name: Big_Bubba_Throw_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db5a1c56f5c8c3100800000000000000
+      internalID: 89100433997538749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Throw_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 285b35773c3b115e0800000000000000
+      internalID: -1940572312318003838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Throw_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d6d818ec008c6da0800000000000000
+      internalID: -5950240214741362989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Throw_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e33c449d6d3690790800000000000000
+      internalID: -7563404324772723906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Throw_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17af5c0b28c1f10c0800000000000000
+      internalID: -4602928946512266639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Throw_8
       rect:
         serializedVersion: 2
         x: 0
         y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c695a301fd8bbb620800000000000000
-      internalID: 2791027662275631468
+      spriteID: 162206e0a2658af90800000000000000
+      internalID: -6942204086961823135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f052ca99da7296c0800000000000000
-      internalID: -4138110032577146635
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_6
+      name: Big_Bubba_Throw_9
       rect:
         serializedVersion: 2
         x: 512
         y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95272f86f5436abd0800000000000000
-      internalID: -2619348548882107815
+      spriteID: 7d7d537c3f1443ec0800000000000000
+      internalID: -3588170487832389673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_7
+      name: Big_Bubba_Throw_10
       rect:
         serializedVersion: 2
-        x: 768
+        x: 1024
         y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fe497c788841f750800000000000000
-      internalID: 6336925901728075504
+      spriteID: 0148ccb4eb0410c20800000000000000
+      internalID: 3170886798705198096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_8
+      name: Big_Bubba_Throw_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75af4df63be9ce590800000000000000
+      internalID: -7643559974042011049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Throw_12
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 570b761e34125cf40800000000000000
-      internalID: 5748037074836500597
+      spriteID: 72311cad7b5c36b60800000000000000
+      internalID: 7738245978192417575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_9
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17cd8dffd1fa4a7e0800000000000000
-      internalID: -1755085411386336143
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_10
+      name: Big_Bubba_Throw_13
       rect:
         serializedVersion: 2
         x: 512
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2670e254cb0a5fda0800000000000000
-      internalID: -5911642205378967710
+      spriteID: 4bdcea0c1fcd8b2f0800000000000000
+      internalID: -956771989938319948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_11
+      name: Big_Bubba_Throw_14
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ec88a649f3f471f0800000000000000
-      internalID: -1047944561312625431
+      spriteID: b680573883f1438b0800000000000000
+      internalID: -5173475744357742485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Throw_15
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cababdaf2450a5120800000000000000
+      internalID: 2403239136390261676
       vertices: []
       indices: 
       edges: []

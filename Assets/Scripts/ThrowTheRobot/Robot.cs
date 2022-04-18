@@ -9,6 +9,7 @@ public class Robot : MonoBehaviour
     public bool stopRightMovement, doubleJump;
     public ContactFilter2D groundContactFilter, magnetContactFilter, legContactFilter;
     public int legRays, onScreenLinePoints;
+    public float[] launchForceUpgrades;
     public float reelSpeed, moveForce, jumpForce, airControlMultiplier, groundCastOffset, decelerationMultiplier, 
         cloudBoostForce, boostForce, skimMinVelocity, skimVelocityMultiplier, waterHitVelocityMultiplier, musselForce, jellyfishBoost,
         legMaxLength, legLerpSpeed, rotationSpeed, maxLineSag, hookOffset,
@@ -27,6 +28,8 @@ public class Robot : MonoBehaviour
 
     [HideInInspector]
     public float rightMostPoint = float.MaxValue;
+    [HideInInspector]
+    public Transform startParent;
 
     private Vector3 startPos;
     private Transform legL, legR, hook;
@@ -41,9 +44,11 @@ public class Robot : MonoBehaviour
     private LineRenderer returnLine;
     private bool isBoosting, isMagnetCooling, isWindSpawning;
     private Color magnetDisabledColour;
+    private float launchForce = 1;
 
     private void Awake()
     {
+        startParent = transform.parent;
         magnetDisabledColour = magnetImage.color;
         rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
@@ -173,7 +178,7 @@ public class Robot : MonoBehaviour
     public void Launch(Vector2 force)
     {
         rb.gravityScale = 1;
-        rb.AddForce(force);
+        rb.AddForce(force * launchForce);
     }
 
     private void Boost()
@@ -263,8 +268,6 @@ public class Robot : MonoBehaviour
         switch (state)
         {
             case LevelState.launch:
-                transform.parent = null;
-                transform.position = startPos;
                 SetPhysics(0, 0);
                 animator.SetBool("isGrounded", true);
                 rightMostPoint = float.MaxValue;
@@ -410,7 +413,7 @@ public class Robot : MonoBehaviour
             }
         }
         hook.position = hookPoint.TransformPoint(returnLinePoints[returnLinePoints.Length - 1]);
-        hook.transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(Vector3.down, hookPoint.position - hook.position));
+        hook.transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.down, hookPoint.position - hook.position, Vector3.forward));
         returnLine.positionCount = returnLinePoints.Length;
         returnLine.SetPositions(returnLinePoints);
         Debug.DrawLine(hookPoint.TransformPoint(firstPoint), hookPoint.TransformPoint(midPoint));
@@ -434,6 +437,9 @@ public class Robot : MonoBehaviour
                 }
                 break;
             case 2:
+                launchForce = launchForceUpgrades[upgradeIndicies.y];
+                GameObject.Find("Bubba").GetComponent<Animator>().SetInteger("LaunchUpgradeLevel", upgradeIndicies.y);
+                levelManager.throwPowerLevel = upgradeIndicies.y;
                 break;
             case 3:
                 if (upgradeIndicies.y > 0)
@@ -529,7 +535,7 @@ public class Robot : MonoBehaviour
         }
         else if (collision.CompareTag("Boss"))
         {
-            levelManager.Pies++;
+            levelManager.pies++;
             Destroy(collision.gameObject);
             AudioManager.Instance.PlaySFXAtLocation("PieGrab", transform.position, 20);
         }

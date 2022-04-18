@@ -9786,6 +9786,7 @@ MonoBehaviour:
   lerpDir: -1
   examplePanelPauseDuration: 1
   examplePanelScaleSpeed: 5
+  storyUpgradeBlinkDuration: 1
   closedPos: {x: 0, y: 0, z: 0}
   openPos: {x: 370, y: 0, z: 0}
   upgradeAvailableColour: {r: 0.9019608, g: 1, b: 0.9183006, a: 1}

@@ -1,43 +1,49 @@
 fileFormatVersion: 2
-guid: 63e1db85443d31042ace3c56e025f09a
+guid: db8c5bd8286b1c14e80eedf78c6c3075
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3958102374729822848
-    second: Bucket_tin_ripple_0
+      213: -8719041948934284276
+    second: Big_Bubba_Eat_0
   - first:
-      213: -584475592943331850
-    second: Bucket_tin_ripple_1
+      213: 5816870530780310685
+    second: Big_Bubba_Eat_1
   - first:
-      213: -8302743975461615942
-    second: Bucket_tin_ripple_2
+      213: -5156067276974979314
+    second: Big_Bubba_Eat_2
   - first:
-      213: -6637299540631409016
-    second: Bucket_tin_ripple_3
+      213: 1512736407313741248
+    second: Big_Bubba_Eat_3
   - first:
-      213: 2791027662275631468
-    second: Bucket_tin_ripple_4
+      213: 5968720706773433128
+    second: Big_Bubba_Eat_4
   - first:
-      213: -4138110032577146635
-    second: Bucket_tin_ripple_5
+      213: 9128182556366628859
+    second: Big_Bubba_Eat_5
   - first:
-      213: -2619348548882107815
-    second: Bucket_tin_ripple_6
+      213: -8227405025412419591
+    second: Big_Bubba_Eat_6
   - first:
-      213: 6336925901728075504
-    second: Bucket_tin_ripple_7
+      213: -5326680012254700815
+    second: Big_Bubba_Eat_7
   - first:
-      213: 5748037074836500597
-    second: Bucket_tin_ripple_8
+      213: -909474297158467643
+    second: Big_Bubba_Eat_8
   - first:
-      213: -1755085411386336143
-    second: Bucket_tin_ripple_9
+      213: -8962604758993500368
+    second: Big_Bubba_Eat_9
   - first:
-      213: -5911642205378967710
-    second: Bucket_tin_ripple_10
+      213: -5948377988913599831
+    second: Big_Bubba_Eat_10
   - first:
-      213: -1047944561312625431
-    second: Bucket_tin_ripple_11
+      213: -2417922572147681376
+    second: Big_Bubba_Eat_11
+  - first:
+      213: 4237553608149975749
+    second: Big_Bubba_Eat_12
+  - first:
+      213: 5142610511535793930
+    second: Big_Bubba_Eat_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -101,7 +107,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,7 +119,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -125,7 +131,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -137,7 +143,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -151,253 +157,295 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bucket_tin_ripple_0
+      name: Big_Bubba_Eat_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 082b66e83210ee630800000000000000
-      internalID: 3958102374729822848
+      spriteID: c0cda0cfa8dbff680800000000000000
+      internalID: -8719041948934284276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f51abe7b8683e7f0800000000000000
-      internalID: -584475592943331850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_2
+      name: Big_Bubba_Eat_1
       rect:
         serializedVersion: 2
         x: 512
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab68899185ab6cc80800000000000000
-      internalID: -8302743975461615942
+      spriteID: d9c299bbdeca9b050800000000000000
+      internalID: 5816870530780310685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_3
+      name: Big_Bubba_Eat_2
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88e2dc4db3393e3a0800000000000000
-      internalID: -6637299540631409016
+      spriteID: e0704ed2128f178b0800000000000000
+      internalID: -5156067276974979314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_4
+      name: Big_Bubba_Eat_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c57cb46fb15ef410800000000000000
+      internalID: 1512736407313741248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Eat_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82bbfb2fbd725d250800000000000000
+      internalID: 5968720706773433128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Eat_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf7662dfba1ddae70800000000000000
+      internalID: 9128182556366628859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Eat_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ff670558b262dd80800000000000000
+      internalID: -8227405025412419591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Eat_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fa926530c4d316b0800000000000000
+      internalID: -5326680012254700815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Eat_8
       rect:
         serializedVersion: 2
         x: 0
         y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c695a301fd8bbb620800000000000000
-      internalID: 2791027662275631468
+      spriteID: 5cf758102f5e063f0800000000000000
+      internalID: -909474297158467643
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.48, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f052ca99da7296c0800000000000000
-      internalID: -4138110032577146635
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_6
+      name: Big_Bubba_Eat_9
       rect:
         serializedVersion: 2
         x: 512
         y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95272f86f5436abd0800000000000000
-      internalID: -2619348548882107815
+      spriteID: 03787f5257e6e9380800000000000000
+      internalID: -8962604758993500368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_7
+      name: Big_Bubba_Eat_10
       rect:
         serializedVersion: 2
-        x: 768
+        x: 1024
         y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fe497c788841f750800000000000000
-      internalID: 6336925901728075504
+      spriteID: 9aa6d052cbd137da0800000000000000
+      internalID: -5948377988913599831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_8
+      name: Big_Bubba_Eat_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a71db83b30d17ed0800000000000000
+      internalID: -2417922572147681376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Bubba_Eat_12
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 570b761e34125cf40800000000000000
-      internalID: 5748037074836500597
+      spriteID: 5c2447a1e80deca30800000000000000
+      internalID: 4237553608149975749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bucket_tin_ripple_9
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17cd8dffd1fa4a7e0800000000000000
-      internalID: -1755085411386336143
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_10
+      name: Big_Bubba_Eat_13
       rect:
         serializedVersion: 2
         x: 512
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2670e254cb0a5fda0800000000000000
-      internalID: -5911642205378967710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bucket_tin_ripple_11
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.465, y: 0.3}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9ec88a649f3f471f0800000000000000
-      internalID: -1047944561312625431
+      spriteID: a07e74673093e5740800000000000000
+      internalID: 5142610511535793930
       vertices: []
       indices: 
       edges: []

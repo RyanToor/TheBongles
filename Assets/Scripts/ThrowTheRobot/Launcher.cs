@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class Launcher : MonoBehaviour
 {
-    public float reelSpeed, lineWidth, armSpeed;
+    public float reelSpeed, lineWidth, armSpeed, postThrowPause;
+    public Transform robotHoldPoint;
+    public ThrowInputs throwScript;
+    public SpriteRenderer piesSprite;
+    public Sprite[] pieSprites;
 
     [HideInInspector]
     public bool isReeling;
@@ -13,16 +17,21 @@ public class Launcher : MonoBehaviour
     private GameObject robot;
     private bool reelStarted;
     private float armStartAngle;
+    private Animator animator, robotAnimator;
+    private Coroutine pauseCoroutine;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
         robot = GameObject.FindGameObjectWithTag("Player");
-        reelBottom = transform.Find("Bubba/LineBottom");
-        reelTop = transform.Find("Bubba/LineStop");
-        arm = transform.Find("Bubba/AngleArm");
+        robotAnimator = robot.GetComponent<Animator>();
+        reelBottom = transform.Find("LineBottom");
+        reelTop = transform.Find("LineStop");
+        arm = transform.Find("AngleArm");
         armStartAngle = arm.rotation.eulerAngles.z;
         isReeling = true;
+        piesSprite.sprite = levelManager.pies > 0 ? pieSprites[Mathf.Clamp(levelManager.pies - 1, 0, pieSprites.Length - 1)] : null;
     }
 
     private void Update()
@@ -33,19 +42,36 @@ public class Launcher : MonoBehaviour
         }
     }
 
-    public IEnumerator AngleArm(float angle, bool isReturning = false)
+    public IEnumerator Angle(float angle, bool isReturning = false)
     {
-        float progress = 0f, startAngle = isReturning ? arm.rotation.eulerAngles.z : armStartAngle, endAngle = isReturning? armStartAngle : angle;
-        arm.gameObject.SetActive(true);
-        while (progress < 1)
+        if (!isReturning)
         {
-            progress = Mathf.Clamp(progress + armSpeed * Time.deltaTime, 0, 1);
-            arm.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, startAngle), Quaternion.Euler(0, 0, endAngle), progress);
-            yield return null;
+            animator.SetTrigger("CollectingPower");
+            Hold(0);
         }
-        if (isReturning)
+        else
         {
-            arm.gameObject.SetActive(false);
+            animator.speed = 0;
+            Release();
+        }
+        switch (levelManager.throwPowerLevel)
+        {
+            case 0:
+                float progress = 0f, startAngle = isReturning ? arm.rotation.eulerAngles.z : armStartAngle, endAngle = isReturning ? armStartAngle : angle;
+                arm.gameObject.SetActive(true);
+                while (progress < 1)
+                {
+                    progress = Mathf.Clamp(progress + armSpeed * Time.deltaTime, 0, 1);
+                    arm.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, startAngle), Quaternion.Euler(0, 0, endAngle), progress);
+                    yield return null;
+                }
+                if (isReturning)
+                {
+                    arm.gameObject.SetActive(false);
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -53,6 +79,11 @@ public class Launcher : MonoBehaviour
     {
         if (!reelStarted)
         {
+            if (pauseCoroutine != null)
+            {
+                StopCoroutine(pauseCoroutine);
+                animator.speed = 1;
+            }
             StartCoroutine(ReelIn());
             reelStarted = true;
         }
@@ -62,7 +93,8 @@ public class Launcher : MonoBehaviour
     {
         Vector3 robotStartPos = robot.transform.position;
         float progress = 0;
-        transform.Find("Bubba").GetComponent<Animator>().SetTrigger("Reel");
+        animator.SetTrigger("Reel");
+        robot.transform.position = robotStartPos;
         reelBottom.position = new Vector3(reelBottom.position.x, robot.transform.position.y, reelBottom.position.z);
         AudioSource reelSound = AudioManager.Instance.PlayAudioAtObject("Reel", gameObject, 20, true);
         while (progress != 1)
@@ -77,9 +109,55 @@ public class Launcher : MonoBehaviour
             }
         }
         Destroy(reelSound);
-        levelManager.State = LevelState.launch;
-        transform.Find("Bubba").GetComponent<Animator>().SetTrigger("Eat");
+        animator.SetInteger("Pies", levelManager.pies);
+        animator.SetTrigger("Eat");
         reelStarted = false;
+    }
+
+    public void Grab()
+    {
+        robot.transform.SetParent(robot.GetComponent<Robot>().startParent);
+        robot.transform.localPosition = Vector3.zero;
+    }
+
+    public void Eat()
+    {
+        levelManager.pies--;
+        piesSprite.sprite = levelManager.pies > 0 ? pieSprites[Mathf.Clamp(levelManager.pies - 1, 0, pieSprites.Length - 1)] : null;
+    }
+
+    public void Hold(int isHeld)
+    {
+        robotAnimator.SetBool("Held", isHeld == 1);
+    }
+
+    public void Load()
+    {
+        throwScript.isLoaded = true;
+    }
+
+    public void Launch()
+    {
+        levelManager.State = LevelState.launch;
+    }
+
+    public void Release()
+    {
+        levelManager.State = LevelState.fly;
+        robot.transform.SetParent(null, true);
+        pauseCoroutine = StartCoroutine(LaunchPause());
+    }
+
+    private IEnumerator LaunchPause()
+    {
+        float duration = 0;
+        while (duration < postThrowPause)
+        {
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        animator.SetTrigger("Idle");
+        animator.speed = 1;
     }
 
     private void EditorUpdate()
