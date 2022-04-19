@@ -7,6 +7,7 @@ public class LevelManager_Robot : LevelManager
     public ThrowInputs throwParameters;
     public int pies;
     public FloatingObjects floatingDecorations, floatingTrash, floatingSurface;
+    public GameObject ballista, cannon, dock;
 
     [HideInInspector]
     public float totalThrowDistance;
@@ -55,6 +56,7 @@ public class LevelManager_Robot : LevelManager
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         ChangeState(0);
         AudioManager.Instance.PlayMusic("Throw the Robot");
+        GameObject.Find("Bubba").GetComponent<Animator>().enabled = true;
     }
 
     private void ChangeState(LevelState newState)
@@ -63,15 +65,8 @@ public class LevelManager_Robot : LevelManager
         switch (newState)
         {
             case LevelState.launch:
-                if (pies >= 0)
-                {
-                    throwParameters.StopAllCoroutines();
-                    StartCoroutine(throwParameters.Throw());
-                }
-                else
-                {
-                    EndLevel();
-                }
+                throwParameters.StopAllCoroutines();
+                StartCoroutine(throwParameters.Throw());
                 break;
             case LevelState.fly:
                 break;
@@ -85,7 +80,7 @@ public class LevelManager_Robot : LevelManager
         }
     }
 
-    private void EndLevel()
+    public void EndLevel()
     {
         uI.EndGame();
         AudioManager.Instance.PlaySFX("GameOver-ThrowTheRobot");
@@ -105,6 +100,22 @@ public class LevelManager_Robot : LevelManager
             }
             state = value;
             ChangeState(value);
+        }
+    }
+
+    public int ThrowPowerLevel
+    {
+        get
+        {
+            return throwPowerLevel;
+        }
+        set
+        {
+            throwPowerLevel = value;
+            dock.SetActive(value > 0);
+            ballista.SetActive(value == 1);
+            cannon.SetActive(value > 1);
+            GameObject.Find("Bubba").GetComponent<Animator>().SetInteger("LaunchUpgradeLevel", value);
         }
     }
 

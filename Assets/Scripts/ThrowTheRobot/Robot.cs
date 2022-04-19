@@ -440,8 +440,7 @@ public class Robot : MonoBehaviour
                 break;
             case 2:
                 launchForce = launchForceUpgrades[upgradeIndicies.y];
-                GameObject.Find("Bubba").GetComponent<Animator>().SetInteger("LaunchUpgradeLevel", upgradeIndicies.y);
-                levelManager.throwPowerLevel = upgradeIndicies.y;
+                levelManager.ThrowPowerLevel = upgradeIndicies.y;
                 break;
             case 3:
                 if (upgradeIndicies.y > 0)

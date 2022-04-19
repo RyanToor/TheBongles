@@ -6,7 +6,7 @@ public class ThrowInputs : MonoBehaviour
 {
     public Launcher launcher;
     public GameObject powerWheel, powerPointer, anglePointer;
-    public float fadeTime, drawDistance, drawPause, powerMin, powerMax, angleMin, angleMax, powerSpeedMin, powerSpeedMax, angleSpeedMin, angleSpeedMax;
+    public float fadeTime, drawDistance, drawPause, powerMin, powerMax, angleMin, angleMax, powerSpeedMin, powerSpeedMax, angleSpeedMin, angleSpeedMax, ballistaDrawSpeed;
 
     [HideInInspector]
     public float power, angle;
@@ -33,7 +33,6 @@ public class ThrowInputs : MonoBehaviour
 
     public IEnumerator Throw()
     {
-        isLoaded = false;
         while (!isLoaded)
         {
             yield return null;
@@ -42,6 +41,7 @@ public class ThrowInputs : MonoBehaviour
         {
             StartCoroutine(Launch(throwValues));
         });
+        isLoaded = false;
     }
 
     private void GetThrowInputs(System.Action<Vector2> callback)
@@ -58,6 +58,7 @@ public class ThrowInputs : MonoBehaviour
                 Debug.Log("Power Collected : " + valueCollected);
                 throwValues.y = valueCollected;
                 callback(throwValues);
+                launcher.PowerCollected();
             }));
         }));
     }
@@ -75,11 +76,20 @@ public class ThrowInputs : MonoBehaviour
                 yield return null;
             }
         }
+        else if (levelManager.throwPowerLevel == 1)
+        {
+            Vector3 localStartPos = robot.transform.localPosition;
+            float desiredDisplacement = 3f * (powerAngle.y / powerMax);
+            while (robot.transform.localPosition.x > localStartPos.x - desiredDisplacement)
+            {
+                robot.transform.localPosition += ballistaDrawSpeed * Time.deltaTime * Vector3.left;
+                yield return null;
+            }
+        }
         Vector3 throwVector = powerAngle.y * new Vector2(Mathf.Cos(Mathf.Deg2Rad * powerAngle.x), Mathf.Sin(Mathf.Deg2Rad * powerAngle.x));
         AudioManager.Instance.PlaySFXAtLocation("Throw", transform.position, 20);
-        robot.GetComponent<Robot>().Launch(throwVector);
-        ResetDials();
-        StartCoroutine(launcher.Angle(0f, true));
+        launcher.throwVector = throwVector;
+        launcher.Release();
     }
 
     public void ResetDials()
@@ -145,6 +155,10 @@ public class ThrowInputs : MonoBehaviour
         while (!isFaded)
         {
             yield return null;
+        }
+        if (type == "power")
+        {
+            ResetDials();
         }
     }
 

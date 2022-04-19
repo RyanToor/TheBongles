@@ -4,18 +4,21 @@ using UnityEngine;
 public class Launcher : MonoBehaviour
 {
     public float reelSpeed, lineWidth, armSpeed, postThrowPause;
-    public Transform robotHoldPoint;
+    public Transform robotHoldPoint, ballistaArm, cannonBarrel;
     public ThrowInputs throwScript;
+    public GameObject thrownHand;
     public SpriteRenderer piesSprite;
     public Sprite[] pieSprites;
 
     [HideInInspector]
     public bool isReeling;
+    [HideInInspector]
+    public Vector3 throwVector;
 
     private LevelManager_Robot levelManager;
     private Transform reelBottom, reelTop, arm;
     private GameObject robot;
-    private bool reelStarted;
+    private bool reelStarted, isEnded;
     private float armStartAngle;
     private Animator animator, robotAnimator;
     private Coroutine pauseCoroutine;
@@ -44,19 +47,14 @@ public class Launcher : MonoBehaviour
 
     public IEnumerator Angle(float angle, bool isReturning = false)
     {
-        if (!isReturning)
-        {
-            animator.SetTrigger("CollectingPower");
-            Hold(0);
-        }
-        else
-        {
-            animator.speed = 0;
-            Release();
-        }
         switch (levelManager.throwPowerLevel)
         {
             case 0:
+                if (!isReturning)
+                {
+                    animator.SetTrigger("CollectingPower");
+                    Hold(0);
+                }
                 float progress = 0f, startAngle = isReturning ? arm.rotation.eulerAngles.z : armStartAngle, endAngle = isReturning ? armStartAngle : angle;
                 arm.gameObject.SetActive(true);
                 while (progress < 1)
@@ -70,8 +68,34 @@ public class Launcher : MonoBehaviour
                     arm.gameObject.SetActive(false);
                 }
                 break;
+            case 1:
+                progress = 0;  startAngle = isReturning ? ballistaArm.rotation.eulerAngles.z : 11f; endAngle = isReturning ? 11f : angle;
+                while (progress < 1)
+                {
+                    progress = Mathf.Clamp(progress + armSpeed * Time.deltaTime, 0, 1);
+                    ballistaArm.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, startAngle), Quaternion.Euler(0, 0, endAngle), progress);
+                    yield return null;
+                }
+                break;
+            case 2:
+                progress = 0; startAngle = isReturning ? cannonBarrel.rotation.eulerAngles.z : 0f; endAngle = isReturning ? 0f : -angle;
+                while (progress < 1)
+                {
+                    progress = Mathf.Clamp(progress + armSpeed * Time.deltaTime, 0, 1);
+                    cannonBarrel.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, startAngle), Quaternion.Euler(0, 0, endAngle), progress);
+                    yield return null;
+                }
+                break;
             default:
                 break;
+        }
+    }
+
+    public void PowerCollected()
+    {
+        if (levelManager.throwPowerLevel > 0)
+        {
+            animator.SetTrigger("CollectingPower");
         }
     }
 
@@ -134,6 +158,15 @@ public class Launcher : MonoBehaviour
     public void Load()
     {
         throwScript.isLoaded = true;
+        if (levelManager.throwPowerLevel == 1)
+        {
+            robot.transform.parent = ballistaArm;
+        }
+    }
+
+    public void Arms(int enabled)
+    {
+        robot.transform.Find("Arms").gameObject.SetActive(enabled == 1);
     }
 
     public void Launch()
@@ -145,12 +178,28 @@ public class Launcher : MonoBehaviour
     {
         levelManager.State = LevelState.fly;
         robot.transform.SetParent(null, true);
+        robot.transform.rotation = Quaternion.identity;
+        robot.GetComponent<Robot>().Launch(throwVector);
         pauseCoroutine = StartCoroutine(LaunchPause());
+    }
+
+    public void End()
+    {
+        if (!isEnded)
+        {
+            isEnded = true;
+            levelManager.EndLevel();
+        }
     }
 
     private IEnumerator LaunchPause()
     {
         float duration = 0;
+        if (levelManager.throwPowerLevel == 0)
+        {
+            thrownHand.SetActive(true);
+            animator.speed = 0;
+        }
         while (duration < postThrowPause)
         {
             duration += Time.deltaTime;
@@ -158,6 +207,11 @@ public class Launcher : MonoBehaviour
         }
         animator.SetTrigger("Idle");
         animator.speed = 1;
+        if (levelManager.throwPowerLevel == 0)
+        {
+            thrownHand.SetActive(false);
+        }
+        StartCoroutine(Angle(levelManager.throwPowerLevel == 1 ? 11f : 0f, true));
     }
 
     private void EditorUpdate()
