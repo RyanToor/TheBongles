@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            levelsPrompted = new bool[3] { false, false, false };
+            levelsPrompted = new bool[4] { false, false, false, false };
         }
 
         if (File.Exists(Application.persistentDataPath + "/settings.json"))

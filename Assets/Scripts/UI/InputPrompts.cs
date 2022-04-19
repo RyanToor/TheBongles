@@ -13,12 +13,15 @@ public class InputPrompts : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] && SceneManager.GetActiveScene().buildIndex != 0)
+        if (SceneManager.GetActiveScene().buildIndex != 0)
         {
-            transform.Find("UpgradeBook").gameObject.SetActive(true);
-            GetComponent<PauseMenu>().UpgradeBook();
-            GameManager.Instance.PauseGame(true);
-            GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] = true;
+            if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex])
+            {
+                transform.Find("UpgradeBook").gameObject.SetActive(true);
+                GetComponent<PauseMenu>().UpgradeBook();
+                GameManager.Instance.PauseGame(true);
+                GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] = true;
+            }
         }
     }
 
