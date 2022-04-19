@@ -11,7 +11,7 @@ public class Launcher : MonoBehaviour
     public Sprite[] pieSprites;
 
     [HideInInspector]
-    public bool isReeling;
+    public bool isReeling, isAngleSet;
     [HideInInspector]
     public Vector3 throwVector;
 
@@ -34,7 +34,7 @@ public class Launcher : MonoBehaviour
         arm = transform.Find("AngleArm");
         armStartAngle = arm.rotation.eulerAngles.z;
         isReeling = true;
-        piesSprite.sprite = levelManager.pies > 0 ? pieSprites[Mathf.Clamp(levelManager.pies - 1, 0, pieSprites.Length - 1)] : null;
+        UpdatePies();
     }
 
     private void Update()
@@ -69,7 +69,7 @@ public class Launcher : MonoBehaviour
                 }
                 break;
             case 1:
-                progress = 0;  startAngle = isReturning ? ballistaArm.rotation.eulerAngles.z : 11f; endAngle = isReturning ? 11f : angle;
+                progress = 0;  startAngle = isReturning ? ballistaArm.rotation.eulerAngles.z : 11f; endAngle = isReturning ? 11f : Mathf.Clamp(angle, 11f, 70f);
                 while (progress < 1)
                 {
                     progress = Mathf.Clamp(progress + armSpeed * Time.deltaTime, 0, 1);
@@ -78,7 +78,7 @@ public class Launcher : MonoBehaviour
                 }
                 break;
             case 2:
-                progress = 0; startAngle = isReturning ? cannonBarrel.rotation.eulerAngles.z : 0f; endAngle = isReturning ? 0f : -angle;
+                progress = 0; startAngle = isReturning ? cannonBarrel.rotation.eulerAngles.z : 0f; endAngle = isReturning ? 0f : -90f + angle;
                 while (progress < 1)
                 {
                     progress = Mathf.Clamp(progress + armSpeed * Time.deltaTime, 0, 1);
@@ -89,6 +89,7 @@ public class Launcher : MonoBehaviour
             default:
                 break;
         }
+        isAngleSet = true;
     }
 
     public void PowerCollected()
@@ -97,6 +98,11 @@ public class Launcher : MonoBehaviour
         {
             animator.SetTrigger("CollectingPower");
         }
+    }
+
+    public void UpdatePies()
+    {
+        piesSprite.sprite = levelManager.Pies > 0 ? pieSprites[Mathf.Clamp(levelManager.pies - 1, 0, pieSprites.Length - 1)] : null;
     }
 
     public void Reel()
@@ -133,7 +139,7 @@ public class Launcher : MonoBehaviour
             }
         }
         Destroy(reelSound);
-        animator.SetInteger("Pies", levelManager.pies);
+        animator.SetInteger("Pies", levelManager.Pies);
         animator.SetTrigger("Eat");
         reelStarted = false;
     }
@@ -146,8 +152,8 @@ public class Launcher : MonoBehaviour
 
     public void Eat()
     {
-        levelManager.pies--;
-        piesSprite.sprite = levelManager.pies > 0 ? pieSprites[Mathf.Clamp(levelManager.pies - 1, 0, pieSprites.Length - 1)] : null;
+        levelManager.Pies--;
+        piesSprite.sprite = levelManager.Pies > 0 ? pieSprites[Mathf.Clamp(levelManager.Pies - 1, 0, pieSprites.Length - 1)] : null;
     }
 
     public void Hold(int isHeld)

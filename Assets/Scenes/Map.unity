@@ -6369,6 +6369,8 @@ MonoBehaviour:
     - name: 
       sprites:
       - {fileID: 21300000, guid: bbf61bc3bc6870c4d8f932a38bd679d8, type: 3}
+      - {fileID: 21300000, guid: 56bc4e8d17bde084a96c2843e26029cc, type: 3}
+      - {fileID: 21300000, guid: a0246201257c75f46b180a1da3c90fc1, type: 3}
     - name: 
       sprites:
       - {fileID: 21300000, guid: 0acca5a4baa8ed146b777586a92f945a, type: 3}

@@ -212,6 +212,7 @@ public class ProximityElement : MonoBehaviour
     public void BirdFall()
     {
         gameObject.AddComponent<Rigidbody2D>();
+        gameObject.GetComponent<Collider2D>().enabled = false;
     }
 
     public void Flip()

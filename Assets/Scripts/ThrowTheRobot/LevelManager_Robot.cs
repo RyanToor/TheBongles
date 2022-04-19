@@ -47,6 +47,19 @@ public class LevelManager_Robot : LevelManager
         }
     }
 
+    public int Pies
+    {
+        get
+        {
+            return pies;
+        }
+        set
+        {
+            pies = value;
+            GameObject.Find("Bubba").GetComponent<Launcher>().UpdatePies();
+        }
+    }
+
     private IEnumerator CheckLoaded()
     {
         while (!levelbuilder.isLevelBuilt)
@@ -113,6 +126,7 @@ public class LevelManager_Robot : LevelManager
         {
             throwPowerLevel = value;
             dock.SetActive(value > 0);
+            GameObject.Find("Bubba").transform.Find("Lever").gameObject.SetActive(value > 0);
             ballista.SetActive(value == 1);
             cannon.SetActive(value > 1);
             GameObject.Find("Bubba").GetComponent<Animator>().SetInteger("LaunchUpgradeLevel", value);

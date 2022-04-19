@@ -536,7 +536,7 @@ public class Robot : MonoBehaviour
         }
         else if (collision.CompareTag("Boss"))
         {
-            levelManager.pies++;
+            levelManager.Pies++;
             Destroy(collision.gameObject);
             AudioManager.Instance.PlaySFXAtLocation("PieGrab", transform.position, 20);
         }

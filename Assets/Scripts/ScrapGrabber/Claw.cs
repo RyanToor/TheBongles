@@ -273,6 +273,7 @@ public class Claw : MonoBehaviour
                 {
                     maxLineLength += clawExtensionAndItems[upgradeNumber.y - 1].x;
                     trashCatchLimit = (int)(clawExtensionAndItems[upgradeNumber.y - 1].y);
+                    GetComponent<Animator>().SetInteger("ClawLevel", upgradeNumber.y);
                 }
                 break;
             case 2:

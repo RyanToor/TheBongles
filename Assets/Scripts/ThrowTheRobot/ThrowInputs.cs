@@ -78,18 +78,26 @@ public class ThrowInputs : MonoBehaviour
         }
         else if (levelManager.throwPowerLevel == 1)
         {
+            LineRenderer line = launcher.transform.Find("Ballista_Base/Ballista_Arm").GetComponent<LineRenderer>();
             Vector3 localStartPos = robot.transform.localPosition;
             float desiredDisplacement = 3f * (powerAngle.y / powerMax);
             while (robot.transform.localPosition.x > localStartPos.x - desiredDisplacement)
             {
+                line.SetPosition(1, robot.transform.localPosition);
                 robot.transform.localPosition += ballistaDrawSpeed * Time.deltaTime * Vector3.left;
                 yield return null;
             }
+            line.SetPosition(1, line.GetPosition(0));
+        }
+        while (!launcher.isAngleSet)
+        {
+            yield return null;
         }
         Vector3 throwVector = powerAngle.y * new Vector2(Mathf.Cos(Mathf.Deg2Rad * powerAngle.x), Mathf.Sin(Mathf.Deg2Rad * powerAngle.x));
         AudioManager.Instance.PlaySFXAtLocation("Throw", transform.position, 20);
         launcher.throwVector = throwVector;
         launcher.Release();
+        launcher.isAngleSet = false;
     }
 
     public void ResetDials()

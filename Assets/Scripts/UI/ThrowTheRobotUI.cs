@@ -33,7 +33,7 @@ public class ThrowTheRobotUI : MinigameUI
     // Update is called once per frame
     protected override void Update()
     {
-        pieReadout.text = levelManager.pies.ToString();
+        pieReadout.text = levelManager.Pies.ToString();
         Color currentColour = boostFill.gameObject.GetComponent<Image>().color;
         boostFill.gameObject.GetComponent<Image>().color = new Color(currentColour.r, currentColour.g, currentColour.b, Mathf.Clamp(currentColour.a + (((levelManager.State == LevelState.launch || levelManager.State == LevelState.fly) && robotScript.maxBoostFuel > 0)? 1 : -1) * boostFadeRate * Time.deltaTime, 0, 1));
         currentColour = boostFill.parent.gameObject.GetComponent<Image>().color;
