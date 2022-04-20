@@ -16,9 +16,10 @@ public class Claw : MonoBehaviour
     public SpriteRenderer[] seconds;
 
     [HideInInspector]
-    public bool isCaught;
+    public bool isCaught, isMultiClaw;
+    [HideInInspector]
+    public ClawState state;
 
-    private ClawState state;
     private LineRenderer lineRenderer;
     private List<Vector3> linePoints = new List<Vector3>();
     private bool isReleasing, isFlashing;
@@ -27,6 +28,7 @@ public class Claw : MonoBehaviour
     private int currentTrash, roundedSeconds;
     private Spawner spawner;
     private Color[] normalColour;
+    private AudioSource fireSound, reelSound;
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +86,10 @@ public class Claw : MonoBehaviour
 
     private void Aim()
     {
+        if (reelSound != null)
+        {
+            Destroy(reelSound);
+        }
         transform.RotateAround(transform.parent.position, Vector3.forward, Input.GetAxisRaw("Horizontal") * aimSpeed * Time.unscaledDeltaTime);
         float currentAngle = Vector3.SignedAngle(transform.position - transform.parent.position, Vector3.down, Vector3.forward);
         if (Mathf.Abs(currentAngle) > maxAimAngle)
@@ -93,6 +99,7 @@ public class Claw : MonoBehaviour
         if (Input.GetAxisRaw("Jump") > 0)
         {
             state = ClawState.fire;
+            //fireSound = AudioManager.Instance.PlayAudioAtObject("FireSound", gameObject, 20, true);
             linePoints.Insert(linePoints.Count - 1, transform.position);
             isReleasing = true;
         }
@@ -127,6 +134,11 @@ public class Claw : MonoBehaviour
         {
             currentTrash = 0;
             state = ClawState.reel;
+            if (fireSound != null)
+            {
+                Destroy(fireSound);
+            }
+            //reelSound = AudioManager.Instance.PlayAudioAtObject("ReelSound", gameObject, 20, true);
             GetComponent<Animator>().SetBool("Closed", true);
         }
     }
@@ -277,6 +289,10 @@ public class Claw : MonoBehaviour
                     maxLineLength += clawExtensionAndItems[upgradeNumber.y - 1].x;
                     trashCatchLimit = (int)(clawExtensionAndItems[upgradeNumber.y - 1].y);
                     GetComponent<Animator>().SetInteger("ClawLevel", upgradeNumber.y);
+                    if (upgradeNumber.y > 1)
+                    {
+                        isMultiClaw = true;
+                    }
                 }
                 break;
             case 2:
@@ -343,6 +359,11 @@ public class Claw : MonoBehaviour
                 if (currentTrash >= trashCatchLimit)
                 {
                     state = ClawState.reel;
+                    if (fireSound != null)
+                    {
+                        Destroy(fireSound);
+                    }
+                    //reelSound = AudioManager.Instance.PlayAudioAtObject("ReelSound", gameObject, 20, true);
                     GetComponent<Animator>().SetBool("Closed", true);
                     currentTrash = 0;
                 }
@@ -357,6 +378,11 @@ public class Claw : MonoBehaviour
             if (state == ClawState.fire)
             {
                 state = ClawState.reel;
+                if (fireSound != null)
+                {
+                    Destroy(fireSound);
+                }
+                //reelSound = AudioManager.Instance.PlayAudioAtObject("ReelSound", gameObject, 20, true);
             }
             if (collision.gameObject.name == "Electric_Eel(Clone)")
             {
@@ -374,6 +400,11 @@ public class Claw : MonoBehaviour
             if (state == ClawState.fire)
             {
                 state = ClawState.reel;
+                if (fireSound != null)
+                {
+                    Destroy(fireSound);
+                }
+                //reelSound = AudioManager.Instance.PlayAudioAtObject("ReelSound", gameObject, 20, true);
             }
             levelManager.brainy.SetBool("Sad", true);
         }
@@ -384,7 +415,7 @@ public class Claw : MonoBehaviour
         }
     }
 
-    private enum ClawState
+    public enum ClawState
     {
         aim,
         fire,

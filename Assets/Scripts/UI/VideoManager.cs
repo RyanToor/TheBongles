@@ -6,20 +6,20 @@ using UnityEngine.Video;
 public class VideoManager : MonoBehaviour
 {
     public float musicCrossfadeTime, fadeFramesBefore;
+    public Image background;
     public Cutscene[] cutScenes;
     public int testScene;
 
     private VideoPlayer videoPlayer;
     private RawImage image;
     private AudioManager audioManager;
-    private Image background, frame;
+    private Image frame;
     private bool isPlayingCutscene;
     public int currentScene = 0, currentCutscene = 0;
 
     // Start is called before the first frame update
     void Awake()
     {
-        background = transform.Find("Background").GetComponent<Image>();
         frame = transform.Find("Frame").GetComponent<Image>();
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         videoPlayer = GetComponent<VideoPlayer>();
@@ -53,6 +53,8 @@ public class VideoManager : MonoBehaviour
 
     public void PlayCutscene(int cutscene)
     {
+        GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().startPrompted = true;
+        GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().coroutines.Add(StartCoroutine(GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().Fade(-1, 0.1f)));
         currentCutscene = cutscene;
         GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = false;
         background.enabled = true;
@@ -77,7 +79,7 @@ public class VideoManager : MonoBehaviour
             }
             if (cutScenes[currentCutscene].scenes[currentScene].isLooping)
             {
-                GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().VideoPrompt();
+                GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().Prompt(1);
             }
             if (cutScenes[currentCutscene].scenes[currentScene].audio != null)
             {
@@ -128,7 +130,7 @@ public class VideoManager : MonoBehaviour
         {
             yield return null;
         }
-        if (!(GameManager.Instance.musicMuted == 0) && GameManager.Instance.storyPoint != 12)
+        if (!(GameManager.Instance.musicMuted == 0))
         {
             audioManager.PlayMusicWithFade("Map", musicCrossfadeTime);
         }
@@ -148,7 +150,8 @@ public class VideoManager : MonoBehaviour
             GameObject.Find("CloudCover").SetActive(false);
         }
         GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().UpdateRegionsUnlocked();
-        GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().StartPrompt();
+        GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().startPrompted = false;
+        GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().ResetTimers();
         GameObject.FindGameObjectWithTag("Player").GetComponent<BongleIsland>().isInputEnabled = true;
         Cursor.visible = true;
         foreach (Transform region in GameObject.Find("BossRegions").transform)

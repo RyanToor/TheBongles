@@ -204,15 +204,17 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
+        float currentVolume = GameManager.Instance.musicVolume;
         GameManager.Instance.musicVolume =  volume;
-        musicSource.volume = volume * GameManager.Instance.musicMuted;
-        musicSource2.volume = volume * GameManager.Instance.musicMuted;
+        musicSource.volume *= volume / currentVolume;
+        musicSource2.volume *= volume /currentVolume;
         GameManager.Instance.SaveSettings();
     }
     public void SetSFXVolume(float volume)
     {
+        float currentVolume = GameManager.Instance.musicVolume;
         GameManager.Instance.sFXVolume = volume;
-        sfxSource.volume = volume * GameManager.Instance.sFXMuted;
+        sfxSource.volume *= volume / currentVolume;
         GameManager.Instance.SaveSettings();
     }
     public void ToggleMusic()

@@ -125,12 +125,6 @@ public class BongleIsland : MonoBehaviour
         {
             sailAnimator.gameObject.transform.localPosition = new Vector3(tempPos.x, tempPos.y, sailZ);
         }
-
-        if (Input.GetKeyDown(KeyCode.BackQuote))
-        {
-            GetComponent<InputField>().Select();
-            GetComponent<InputField>().ActivateInputField();
-        }
     }
 
     private void LateUpdate()

@@ -168,6 +168,11 @@ public class Launcher : MonoBehaviour
         if (levelManager.throwPowerLevel == 1)
         {
             robot.transform.parent = ballistaArm;
+            robotAnimator.SetBool("Ballista", true);
+        }
+        else if (levelManager.throwPowerLevel == 2)
+        {
+            robot.transform.parent = cannonBarrel;
         }
     }
 
@@ -188,6 +193,7 @@ public class Launcher : MonoBehaviour
         robot.transform.rotation = Quaternion.identity;
         robot.GetComponent<Robot>().Launch(throwVector);
         pauseCoroutine = StartCoroutine(LaunchPause());
+        StartCoroutine(robot.GetComponent<Robot>().ReleaseSling());
     }
 
     public void End()

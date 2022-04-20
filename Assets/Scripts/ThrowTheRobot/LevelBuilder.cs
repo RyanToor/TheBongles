@@ -95,7 +95,7 @@ public class LevelBuilder : MonoBehaviour
                 levelManager.floatingTrash.objectsToAdd.Add(trash);
             }
         }
-        for (int i = 0; i < Mathf.Min(5 - levelManager.pies, biomeEndPoints.Length); i++)
+        for (int i = 0; i < Mathf.Min(5 - levelManager.Pies, biomeEndPoints.Length); i++)
         {
             Instantiate(piePrefab, new Vector3(Random.Range(biomeEndPoints.Length - 2 - i < 0? 4 : biomeEndPoints[biomeEndPoints.Length - 2 - i] + 1, biomeEndPoints[biomeEndPoints.Length - 1 - i] - 1) * tilePixelWidth / 100, 0, 0), Quaternion.identity, transform);
         }
@@ -133,6 +133,10 @@ public class LevelBuilder : MonoBehaviour
             blockerSegment.transform.position = new Vector3((levelLength + 1) * tilePixelWidth * 0.01f + totalXDisplacement * 0.01f + offset.x, totalHeight * -0.01f, 0);
             SpriteRenderer spriteRenderer = blockerSegment.AddComponent<SpriteRenderer>();
             int spriteToPlace = segmentsPlaced == 0 ? 0 : totalHeight + 1024 > totalDisplacement ? 1 : Random.Range(2, finalBlockerSprites.Length);
+            if (segmentsPlaced == 0)
+            {
+                spriteRenderer.sortingOrder = 2;
+            }
             spriteRenderer.sprite = finalBlockerSprites[spriteToPlace].sprite;
             totalXDisplacement += finalBlockerSprites[spriteToPlace].yDifference;
             blockerSegment.AddComponent<PolygonCollider2D>();

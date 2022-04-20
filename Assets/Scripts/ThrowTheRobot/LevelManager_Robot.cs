@@ -70,6 +70,7 @@ public class LevelManager_Robot : LevelManager
         ChangeState(0);
         AudioManager.Instance.PlayMusic("Throw the Robot");
         GameObject.Find("Bubba").GetComponent<Animator>().enabled = true;
+        StartCoroutine(GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<InputPrompts>().LevelPrompts());
     }
 
     private void ChangeState(LevelState newState)

@@ -10,7 +10,6 @@ public class MainMenu : MonoBehaviour
         gameObject.SetActive(false);
         if (GameManager.Instance.storyPoint == 1)
         {
-            GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().StartPrompt();
             GameObject.Find("CloudCover").SetActive(false);
         }
         GameManager.Instance.StartGame();

@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
 
     public virtual void StartGame()
     {
-
+        StartCoroutine(GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<InputPrompts>().LevelPrompts());
     }
 
     // Update is called once per frame

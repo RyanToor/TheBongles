@@ -32,9 +32,8 @@ public class LevelManager_VerticalScroller : LevelManager
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         player.isloaded = true;
         player.twin.GetComponent<Collider2D>().enabled = true;
-
         GameObject.Find("SoundManager").GetComponent<AudioManager>().PlayMusic("Trash Hunt");
-
         chunkManager.InitialiseToppers();
+        StartCoroutine(GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<InputPrompts>().LevelPrompts());
     }
 }

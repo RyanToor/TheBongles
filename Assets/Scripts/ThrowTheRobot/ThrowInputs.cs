@@ -75,6 +75,7 @@ public class ThrowInputs : MonoBehaviour
             {
                 yield return null;
             }
+            //ThrowSound
         }
         else if (levelManager.throwPowerLevel == 1)
         {
@@ -87,7 +88,18 @@ public class ThrowInputs : MonoBehaviour
                 robot.transform.localPosition += ballistaDrawSpeed * Time.deltaTime * Vector3.left;
                 yield return null;
             }
-            line.SetPosition(1, line.GetPosition(0));
+            //BallistaSound
+        }
+        else if (levelManager.throwPowerLevel == 2)
+        {
+            //CannonSound
+        }
+        if (levelManager.throwPowerLevel > 0)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                yield return null;
+            }
         }
         while (!launcher.isAngleSet)
         {
@@ -118,6 +130,7 @@ public class ThrowInputs : MonoBehaviour
         float speed = type == "power" ? Random.Range(powerSpeedMin, powerSpeedMax) : Random.Range(angleSpeedMin, angleSpeedMax);
         GameObject pointer = type == "power" ? powerPointer : anglePointer;
         int spinDir = 1;
+        //Play spin sound
         while (true)
         {
             if (Input.GetAxis("Jump") == 1 && !isJumpHeld)
@@ -150,14 +163,17 @@ public class ThrowInputs : MonoBehaviour
                 if (pointer.transform.rotation.eulerAngles.z < 180 && pointer.transform.rotation.eulerAngles.z > 45 - (90 - angleMax))
                 {
                     spinDir = 1;
+                    //Play bump sound !No looping! Or change pitch or cut out for a moment or whatever.
                 }
                 else if (pointer.transform.rotation.eulerAngles.z > 180 && pointer.transform.eulerAngles.z < 315 + angleMin)
                 {
                     spinDir = -1;
+                    //Play bump sound !No looping!
                 }
             }
             yield return null;
         }
+        //Stop spin sound
         isFaded = false;
         StartCoroutine(Fade(type == "angle" ? transform.GetChild(0) : transform.GetChild(1), Color.white, Color.clear));
         while (!isFaded)

@@ -78,6 +78,7 @@ public class LevelManager_ScrapGrabber : LevelManager
         isLoaded = true;
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         AudioManager.Instance.PlayMusic("Scrap Grabber");
+        StartCoroutine(GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<InputPrompts>().LevelPrompts());
     }
 
     // Update is called once per frame

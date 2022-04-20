@@ -72,11 +72,11 @@ public class GameManager : MonoBehaviour
         gameStarted = true;
     }
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         if (Event.current.isKey)
         {
-            //print("Detected Key");
+            print("Detected Key");
         }
         switch (inputMethod)
         {
@@ -97,7 +97,11 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
-    }
+        if (Input.GetButton("Escape"))
+        {
+            print("Start Pressed");
+        }
+    }*/
 
     public int MaxRegion()
     {

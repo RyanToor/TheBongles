@@ -20,7 +20,7 @@ public class Robot : MonoBehaviour
     public float skimMaxAngle, musselAngle, maxJellyfishAngle, legMaxAngle;
     public GameObject waterSurface, splashPrefab, skimPrefab, jumpCloudPrefab, magnetPrefab, magnetPanel;
     public SpriteRenderer wheelL, wheelR;
-    public Transform fishingPole, hookPoint;
+    public Transform fishingPole, hookPoint, ballista;
     public FuelBarUpgrade[] fuelUpgrades;
     public Image magnetImage, magnetCooldownPanel;
     public Animator magnetFrameAnimator;
@@ -495,6 +495,18 @@ public class Robot : MonoBehaviour
         }
         Destroy(boostSource);
         isBoosting = false;
+    }
+
+    public IEnumerator ReleaseSling()
+    {
+        LineRenderer line = ballista.parent.GetComponent<LineRenderer>();
+        while (transform.position.x < ballista.position.x)
+        {
+            line.SetPosition(1, transform.localPosition);
+            yield return null;
+        }
+        GetComponent<Animator>().SetBool("Ballista", false);
+        line.SetPosition(1, line.GetPosition(0));
     }
 
     void EditorUpdate()
