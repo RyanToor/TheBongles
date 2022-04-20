@@ -268,6 +268,7 @@ public class Spawner : MonoBehaviour
                 }
             }
             spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().speed = escapeSpeedMultiplier;
+            AudioManager.Instance.PlayAudioAtObject("FishEscaping", gameObject, 20, false);
         }
     }
 

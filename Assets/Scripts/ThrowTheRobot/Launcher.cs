@@ -154,6 +154,7 @@ public class Launcher : MonoBehaviour
     {
         levelManager.Pies--;
         piesSprite.sprite = levelManager.Pies > 0 ? pieSprites[Mathf.Clamp(levelManager.Pies - 1, 0, pieSprites.Length - 1)] : null;
+        AudioManager.Instance.PlayAudioAtObject("PieCrunch", gameObject, 20, false);
     }
 
     public void Hold(int isHeld)

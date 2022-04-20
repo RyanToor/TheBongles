@@ -81,7 +81,7 @@ MonoBehaviour:
     loop: 0
   - name: Scrap Grabber
     clip: {fileID: 8300000, guid: d12d66258c9141f409545607ec617022, type: 3}
-    volume: 0.3
+    volume: 0.1
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
@@ -171,16 +171,9 @@ MonoBehaviour:
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 0
-  - name: HMMMMM
-    clip: {fileID: 8300000, guid: 812cbea0bbbc65a42a6651e3720dffd9, type: 3}
-    volume: 1
-    pitch: 1
-    volumeDeviation: 0
-    pitchDeviation: 0
-    loop: 0
   - name: PieCrunch
-    clip: {fileID: 8300000, guid: 35ddb75c1ade1ac40b381cd4765fa62a, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 812cbea0bbbc65a42a6651e3720dffd9, type: 3}
+    volume: 0.5
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
@@ -404,6 +397,55 @@ MonoBehaviour:
     loop: 1
   - name: WipeWindow
     clip: {fileID: 8300000, guid: 0cb7632cfe9838c458c610ce49737461, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: HighPitch
+    clip: {fileID: 8300000, guid: ac211f57782b8084e8fe9e5f75e5f4bc, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: LowPitch
+    clip: {fileID: 8300000, guid: c9f6ec5ba13a00349959914af8d59956, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: ClawExtending
+    clip: {fileID: 8300000, guid: 49b6687bc8419434fbc7f3f54d06155f, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: ClawRetracting
+    clip: {fileID: 8300000, guid: a88745690eaffa34c8d7162a3909bc40, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Mine
+    clip: {fileID: 8300000, guid: 977f6a32bc054c145b1082c3905b04a9, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Shark
+    clip: {fileID: 8300000, guid: 9aafe0130dd7e1d419d73a51d3b5827a, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: FishEscaping
+    clip: {fileID: 8300000, guid: 9dc21dbcceaae56489be68a632e441bf, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0

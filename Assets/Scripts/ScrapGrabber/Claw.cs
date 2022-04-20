@@ -370,6 +370,7 @@ public class Claw : MonoBehaviour
         {
             currentTrash = 0;
             collision.gameObject.GetComponent<Obstacle>().MineHit();
+            AudioManager.Instance.PlayAudioAtObject("Mine", gameObject, 20, false);
             if (state == ClawState.fire)
             {
                 state = ClawState.reel;
@@ -379,6 +380,7 @@ public class Claw : MonoBehaviour
         else if (collision.gameObject.name == "SharkMouth" && state == ClawState.fire)
         {
             StartCoroutine(collision.transform.parent.GetComponent<Obstacle>().SharkGrab(this));
+            AudioManager.Instance.PlayAudioAtObject("Shark", gameObject, 20, false);
         }
     }
 

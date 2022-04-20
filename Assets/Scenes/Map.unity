@@ -15875,6 +15875,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d12d66258c9141f409545607ec617022, type: 3}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[6].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[6].name
+      value: Scrap Grabber
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[6].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[6].volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4321469445173243482, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
       propertyPath: m_Name
       value: SoundManager
