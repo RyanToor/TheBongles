@@ -95,6 +95,7 @@ public class LevelManager_ScrapGrabber : LevelManager
         if (Input.GetAxisRaw("Primary Ability") == 1 && !isFreezing && isFreezeEnabled)
         {
             StartCoroutine(FreezeTime());
+            AudioManager.Instance.PlaySFX("Freeze");
         }
         if (Input.GetAxisRaw("Secondary Ability") == 1 && !(isBellActive || isBellCooling) && isBellEnabled)
         {
@@ -161,6 +162,7 @@ public class LevelManager_ScrapGrabber : LevelManager
         freezeCooldownPanel.transform.localScale = Vector2.right;
         freezeIcon.color = Color.white;
         freezeFrameAnimator.SetBool("Available", true);
+        AudioManager.Instance.PlaySFX("AbilityReady");
     }
 
     private IEnumerator Bell()
@@ -173,6 +175,7 @@ public class LevelManager_ScrapGrabber : LevelManager
         bellPromptText.SetActive(false);
         bellAddonAnimator.SetBool("Available", false);
         spawner.Escape();
+        AudioSource BellSource = AudioManager.Instance.PlayAudioAtObject("Bell", gameObject, 20, true);
         while (duration > 0)
         {
             duration -= Time.deltaTime / Time.timeScale;
@@ -182,6 +185,7 @@ public class LevelManager_ScrapGrabber : LevelManager
             }
             yield return null;
         }
+        Destroy(BellSource);
         bellAnimator.SetBool("Available", false);
         duration = 0;
         isBellActive = false;
@@ -203,6 +207,7 @@ public class LevelManager_ScrapGrabber : LevelManager
         bellAnimator.SetBool("Available", true);
         bellAddonAnimator.SetBool("Available", true);
         bellPromptText.SetActive(true);
+        AudioManager.Instance.PlaySFX("AbilityReady");
     }
 
     private IEnumerator Fade(bool fadeIn)
@@ -253,12 +258,14 @@ public class LevelManager_ScrapGrabber : LevelManager
     {
         brainy.SetBool("Shock", true);
         float duration = 0;
+        AudioSource ElectricEelSource = AudioManager.Instance.PlayAudioAtObject("Electricute", gameObject, 20, true);
         while (duration < shockLength)
         {
             duration += Time.deltaTime;
             yield return null;
         }
         brainy.SetBool("Shock", false);
+        Destroy(ElectricEelSource);
     }
 
     private void BrainyEyes()

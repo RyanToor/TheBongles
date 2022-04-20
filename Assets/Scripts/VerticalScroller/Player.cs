@@ -207,6 +207,7 @@ public class Player : MonoBehaviour
         }
         boostImage.color = Color.white;
         boostFrameImage.SetBool("Available", true);
+        AudioManager.Instance.PlaySFX("AbilityReady");
     }
 
     private void InitialiseTail()

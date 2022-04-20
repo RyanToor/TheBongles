@@ -193,6 +193,7 @@ public class Claw : MonoBehaviour
             if (trash.name == "Fuel(Clone)" || trash.name == "Fuel")
             {
                 levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + fuelTime, 0, levelManager.maxTime);
+                AudioManager.Instance.PlayAudioAtObject("Fuel", gameObject, 20, false);
             }
             else
             {
@@ -224,6 +225,7 @@ public class Claw : MonoBehaviour
         isFlashing = true;
         levelManager.brainy.SetBool("Stress", true);
         float duration = 0;
+        AudioSource CountdownSource = AudioManager.Instance.PlayAudioAtObject("Countdown", gameObject, 20, true);
         while (levelManager.remainingTime < dangerTime && levelManager.remainingTime > 0)
         {
             for (int i = 0; i < seconds.Length; i++)
@@ -233,6 +235,7 @@ public class Claw : MonoBehaviour
             duration += Time.deltaTime;
             yield return null;
         }
+        Destroy(CountdownSource);
         isFlashing = false;
         if (!isCaught)
         {

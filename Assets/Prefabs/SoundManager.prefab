@@ -46,14 +46,14 @@ MonoBehaviour:
   music:
   - name: Map
     clip: {fileID: 8300000, guid: 9a5a6eea4811c0c40b9f90e734e63d59, type: 3}
-    volume: 1
+    volume: 0.3
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 1
   - name: Trash Hunt
     clip: {fileID: 8300000, guid: bd35d69705022a54b99d55030749b993, type: 3}
-    volume: 1
+    volume: 0.3
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
     loop: 0
   - name: Scrap Grabber
     clip: {fileID: 8300000, guid: d12d66258c9141f409545607ec617022, type: 3}
-    volume: 1
+    volume: 0.3
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
     pitchDeviation: 0
     loop: 0
   - name: HMMMMM
-    clip: {fileID: 8300000, guid: 2408422c200522e4abc7d60413cbf699, type: 3}
+    clip: {fileID: 8300000, guid: 812cbea0bbbc65a42a6651e3720dffd9, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
@@ -298,7 +298,7 @@ MonoBehaviour:
     pitchDeviation: 0
     loop: 0
   - name: Boost
-    clip: {fileID: 8300000, guid: 77e8d29dee50cd141b19a71f6f5562ed, type: 3}
+    clip: {fileID: 8300000, guid: 8fa5cdf1d9d2a9840b9a35a6bf576b38, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
@@ -348,6 +348,62 @@ MonoBehaviour:
     loop: 1
   - name: Boing
     clip: {fileID: 8300000, guid: c22b8d9750c5db142a87755fef1e3de3, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Fuel
+    clip: {fileID: 8300000, guid: aa9409e50b8255a4b9ac6968b6976ae9, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: AbilityReady
+    clip: {fileID: 8300000, guid: 6d77c8c370f3a9842be1fbbca0857277, type: 3}
+    volume: 0.3
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: ElectricEel
+    clip: {fileID: 8300000, guid: 6d77c8c370f3a9842be1fbbca0857277, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Countdown
+    clip: {fileID: 8300000, guid: 393939f8ed9acf841b7cba993597a007, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Bell
+    clip: {fileID: 8300000, guid: f130bc8910f9e2647a1e1c0ebd91743e, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Electricute
+    clip: {fileID: 8300000, guid: e2f78199188acd144ae98d07aad35411, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Freeze
+    clip: {fileID: 8300000, guid: dc19cb4acb6845c458b1642c989ac067, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: WipeWindow
+    clip: {fileID: 8300000, guid: 0cb7632cfe9838c458c610ce49737461, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0

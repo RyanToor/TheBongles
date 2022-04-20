@@ -349,6 +349,7 @@ public class Robot : MonoBehaviour
         isMagnetAvailable = true;
         isMagnetCooling = false;
         magnetImage.color = Color.white;
+        AudioManager.Instance.PlaySFX("AbilityReady");
     }
 
     private IEnumerator MagnetArm(GameObject target)
