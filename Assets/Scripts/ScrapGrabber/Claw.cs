@@ -99,7 +99,7 @@ public class Claw : MonoBehaviour
         if (Input.GetAxisRaw("Jump") > 0)
         {
             state = ClawState.fire;
-            //fireSound = AudioManager.Instance.PlayAudioAtObject("FireSound", gameObject, 20, true);
+            fireSound = AudioManager.Instance.PlayAudioAtObject("ClawExtending", gameObject, 20, true);
             linePoints.Insert(linePoints.Count - 1, transform.position);
             isReleasing = true;
         }
@@ -138,7 +138,7 @@ public class Claw : MonoBehaviour
             {
                 Destroy(fireSound);
             }
-            //reelSound = AudioManager.Instance.PlayAudioAtObject("ReelSound", gameObject, 20, true);
+            reelSound = AudioManager.Instance.PlayAudioAtObject("ClawRetracting", gameObject, 20, true);
             GetComponent<Animator>().SetBool("Closed", true);
         }
     }
@@ -363,7 +363,7 @@ public class Claw : MonoBehaviour
                     {
                         Destroy(fireSound);
                     }
-                    //reelSound = AudioManager.Instance.PlayAudioAtObject("ReelSound", gameObject, 20, true);
+                    reelSound = AudioManager.Instance.PlayAudioAtObject("ClawRetracting", gameObject, 20, true);
                     GetComponent<Animator>().SetBool("Closed", true);
                     currentTrash = 0;
                 }
@@ -382,7 +382,7 @@ public class Claw : MonoBehaviour
                 {
                     Destroy(fireSound);
                 }
-                //reelSound = AudioManager.Instance.PlayAudioAtObject("ReelSound", gameObject, 20, true);
+                reelSound = AudioManager.Instance.PlayAudioAtObject("ClawRetracting", gameObject, 20, true);
             }
             if (collision.gameObject.name == "Electric_Eel(Clone)")
             {
@@ -404,7 +404,7 @@ public class Claw : MonoBehaviour
                 {
                     Destroy(fireSound);
                 }
-                //reelSound = AudioManager.Instance.PlayAudioAtObject("ReelSound", gameObject, 20, true);
+                reelSound = AudioManager.Instance.PlayAudioAtObject("ClawRetracting", gameObject, 20, true);
             }
             levelManager.brainy.SetBool("Sad", true);
         }

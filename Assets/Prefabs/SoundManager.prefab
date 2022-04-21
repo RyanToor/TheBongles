@@ -81,7 +81,7 @@ MonoBehaviour:
     loop: 0
   - name: Scrap Grabber
     clip: {fileID: 8300000, guid: d12d66258c9141f409545607ec617022, type: 3}
-    volume: 0.1
+    volume: 0.3
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
@@ -451,6 +451,34 @@ MonoBehaviour:
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 1
+  - name: Throw
+    clip: {fileID: 8300000, guid: 1e8fec21b04360c4782581b916abed84, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0.1
+    loop: 0
+  - name: BallistaDraw
+    clip: {fileID: 8300000, guid: 3f0f1a8a9f3dd7646b695f212db2fa3e, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0.1
+    loop: 0
+  - name: Ballista
+    clip: {fileID: 8300000, guid: 45903e4df7e00d843ae308cd98ff73df, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0.1
+    loop: 0
+  - name: Cannon
+    clip: {fileID: 8300000, guid: ba998246ef48cd847ae66716ac72313c, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0.1
+    loop: 0
   musicSource: {fileID: 0}
   musicSource2: {fileID: 0}
   sfxSource: {fileID: 0}

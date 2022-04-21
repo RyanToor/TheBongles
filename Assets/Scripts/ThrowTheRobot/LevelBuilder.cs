@@ -135,7 +135,7 @@ public class LevelBuilder : MonoBehaviour
             int spriteToPlace = segmentsPlaced == 0 ? 0 : totalHeight + 1024 > totalDisplacement ? 1 : Random.Range(2, finalBlockerSprites.Length);
             if (segmentsPlaced == 0)
             {
-                spriteRenderer.sortingOrder = 2;
+                spriteRenderer.sortingOrder = 3;
             }
             spriteRenderer.sprite = finalBlockerSprites[spriteToPlace].sprite;
             totalXDisplacement += finalBlockerSprites[spriteToPlace].yDifference;

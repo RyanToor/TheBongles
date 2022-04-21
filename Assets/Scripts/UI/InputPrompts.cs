@@ -134,7 +134,7 @@ public class InputPrompts : MonoBehaviour
                         Prompt(1);
                         turnPrompted = true;
                     }
-                    else if (!promptActive && !reelPrompted && claw.isMultiClaw && claw.transform.Find("TrashContainer").childCount > 0 && Time.time - jumpLastActive > inputDelayClawReel)
+                    else if (!reelPrompted && claw.isMultiClaw && claw.transform.Find("TrashContainer").childCount > 0 && Time.time - jumpLastActive > inputDelayClawReel)
                     {
                         Prompt(2);
                         reelPrompted = true;
@@ -160,7 +160,7 @@ public class InputPrompts : MonoBehaviour
 
     public IEnumerator Fade(int direction, float fadeDuration, float delay = 0)
     {
-        if (direction > 0)
+        if (direction == 1)
         {
             coroutines.Add(StartCoroutine(ConfirmInput()));
         }
@@ -185,10 +185,18 @@ public class InputPrompts : MonoBehaviour
     {
         while (true)
         {
-            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Jump") == 1 || Input.GetMouseButtonDown(0))
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Jump") == 1 || (Input.GetMouseButtonDown(0) && level == 0))
             {
                 FadeInterrupt(-1, fadeTime);
                 yield break;
+            }
+            else if (level == 3)
+            {
+                if (claw.state == Claw.ClawState.reel)
+                {
+                    FadeInterrupt(-1, fadeTime);
+                    yield break;
+                }
             }
             yield return null;
         }

@@ -8,12 +8,13 @@ public class Player : MonoBehaviour
     public SpriteRenderer[] spriteRenderers;
     public int maxHealth;
     public float chasmTopperForce, moveForce, maxSpeed, airControlMultiplier, waterDrag, airDrag, knockbackForce, maxBagDistance, damagePulseCount, damagePulseSpeed;
-    public GameObject splash, twin, gameOver, pauseMenu, plastic, endFade, boostPanel, boostCooldown, sonar;
+    public GameObject splash, twin, gameOver, pauseMenu, plastic, endFade, boostPanel, boostCooldown, sonar, boost;
     public float tailSegmentLength = 0.1f, tailWidth = 0.1f, tailGravity = 9.8f, underwaterTailGravity = 0.1f, minJointLerp, endSequenceLength, endSequenceShakeLength, endSequenceShakeMagnitute, spinStarsDuration;
     public Sprite[] boostSprites;
     public Vector3[] boostMultiplierDurationCooldown;
     public Image boostImage;
     public Animator boostFrameImage;
+    public Color[] boostConeColours;
 
     [HideInInspector]
     public float gravity, health = 3;
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
     private bool isFlipping, isBoosting, isPinging;
     private GameObject spinStars;
     private int boostLevel = 0;
-    private Color boostDisabledColour;
+    private Color boostDisabledColour, boostConeColour;
 
     // Start is called before the first frame update
     void Start()
@@ -177,6 +178,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator Boost()
     {
+        SpriteRenderer boostSprite = boost.GetComponent<SpriteRenderer>();
         boostFrameImage.SetBool("Available", false);
         isBoosting = true;
         Vector3 boostInfo = boostMultiplierDurationCooldown[boostLevel];
@@ -188,7 +190,9 @@ public class Player : MonoBehaviour
             yield return null;
             boostDurationTimer += Time.deltaTime;
             boostCooldown.transform.localScale = Vector2.Lerp(Vector2.right, Vector2.one, boostDurationTimer / boostInfo.y);
+            boostSprite.color = new Color(boostConeColour.r, boostConeColour.g, boostConeColour.b, (((rb.velocity.magnitude - maxSpeed)/maxSpeed) * boostConeColour.a)) / (boostInfo.x - 1);
         }
+        boostSprite.color = Color.clear;
         StartCoroutine(BoostCooldown());
     }
 
@@ -304,6 +308,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    boostConeColour = boostConeColours[boostLevel];
                     boostCooldown.transform.localScale = Vector2.right;
                     boostImage.sprite = boostSprites[Mathf.Clamp(boostLevel, 0, boostSprites.Length - 1)];
                     boostFrameImage.SetBool("Available", true);

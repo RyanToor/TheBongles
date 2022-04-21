@@ -75,24 +75,25 @@ public class ThrowInputs : MonoBehaviour
             {
                 yield return null;
             }
-            //ThrowSound
+            AudioManager.Instance.PlayAudioAtObject("Throw", launcher.gameObject, 40);
         }
         else if (levelManager.throwPowerLevel == 1)
         {
             LineRenderer line = launcher.transform.Find("Ballista_Base/Ballista_Arm").GetComponent<LineRenderer>();
             Vector3 localStartPos = robot.transform.localPosition;
             float desiredDisplacement = 3f * (powerAngle.y / powerMax);
+            AudioManager.Instance.PlayAudioAtObject("BallistaDraw", launcher.transform.Find("Ballista_Base").gameObject, 40);
             while (robot.transform.localPosition.x > localStartPos.x - desiredDisplacement)
             {
                 line.SetPosition(1, robot.transform.localPosition);
                 robot.transform.localPosition += ballistaDrawSpeed * Time.deltaTime * Vector3.left;
                 yield return null;
             }
-            //BallistaSound
+            AudioManager.Instance.PlayAudioAtObject("Ballista", launcher.transform.Find("Ballista_Base").gameObject, 40);
         }
         else if (levelManager.throwPowerLevel == 2)
         {
-            //CannonSound
+            AudioManager.Instance.PlayAudioAtObject("Cannon", launcher.transform.Find("Cannon_Stand").gameObject, 40);
         }
         if (levelManager.throwPowerLevel > 0)
         {
@@ -106,7 +107,6 @@ public class ThrowInputs : MonoBehaviour
             yield return null;
         }
         Vector3 throwVector = powerAngle.y * new Vector2(Mathf.Cos(Mathf.Deg2Rad * powerAngle.x), Mathf.Sin(Mathf.Deg2Rad * powerAngle.x));
-        AudioManager.Instance.PlaySFXAtLocation("Throw", transform.position, 20);
         launcher.throwVector = throwVector;
         launcher.Release();
         launcher.isAngleSet = false;

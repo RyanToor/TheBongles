@@ -57,8 +57,9 @@ MonoBehaviour:
   inputDelayMap: 5
   inputDelayTrashHunt: 5
   inputDelayRobotLaunch: 0.5
-  inputDelayRobotMove: 2
+  inputDelayRobotMove: 5
   inputDelayClawLaunch: 3
+  inputDelayClawTurn: 0
   inputDelayClawReel: 0
   startPrompted: 0
   videoPlaying: 0

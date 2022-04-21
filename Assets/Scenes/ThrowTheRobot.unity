@@ -796,6 +796,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 391210774}
+  - {fileID: 523948760}
   m_Father: {fileID: 2064587327}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2379,6 +2380,89 @@ MonoBehaviour:
   boostFill: {fileID: 707318533}
   boostFadeRate: 2
   boostLerpSpeed: 4
+--- !u!1 &523948759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 523948760}
+  - component: {fileID: 523948761}
+  m_Layer: 0
+  m_Name: Cannon_Blast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &523948760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523948759}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 5.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 192367091}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &523948761
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523948759}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 7210445287802566445, guid: 263ec8c0aab1c3d43940d482246cf83d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.56, y: 2.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &547467114
 GameObject:
   m_ObjectHideFlags: 0
@@ -6926,7 +7010,7 @@ MonoBehaviour:
   - 0.7
   - 0.8
   - 0.9
-  reelSpeed: 1.45
+  reelSpeed: 2.5
   moveForce: 12
   jumpForce: 8.5
   airControlMultiplier: 0.4
@@ -8307,6 +8391,70 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f0f1a8a9f3dd7646b695f212db2fa3e, type: 3}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[6].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[6].name
+      value: BallistaDraw
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d12d66258c9141f409545607ec617022, type: 3}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[7].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[7].name
+      value: Scrap Grabber
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d12d66258c9141f409545607ec617022, type: 3}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[8].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[8].name
+      value: Scrap Grabber
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[6].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[7].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[8].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[6].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[7].volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321469445173243460, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
+      propertyPath: music.Array.data[8].volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4321469445173243482, guid: 13ea7c0f28f8c0a4cab49018a848cfa4, type: 3}
       propertyPath: m_Name
       value: SoundManager
