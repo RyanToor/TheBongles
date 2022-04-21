@@ -316,9 +316,12 @@ public class Robot : MonoBehaviour
         {
             float intervalDuration = 0;
             RaycastHit2D[] rayHits = Physics2D.RaycastAll(transform.position, Vector3.down);
-            Vector3 boxBottom = rayHits[rayHits.Length - 1].point + Vector2.down * 5;
             List<Collider2D> newTrash = new List<Collider2D>();
-            Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y > 0? (transform.position.y + boxBottom.y) / 2 : boxBottom.y / 2), new Vector2(magnetScanWidth, transform.position.y > 0? transform.position.y + Mathf.Abs(boxBottom.y) : Mathf.Abs(boxBottom.y)), 0f, magnetContactFilter, newTrash);
+            if (rayHits.Length > 0)
+            {
+                Vector3 boxBottom = rayHits[rayHits.Length - 1].point + Vector2.down * 5;
+                Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y > 0 ? (transform.position.y + boxBottom.y) / 2 : boxBottom.y / 2), new Vector2(magnetScanWidth, transform.position.y > 0 ? transform.position.y + Mathf.Abs(boxBottom.y) : Mathf.Abs(boxBottom.y)), 0f, magnetContactFilter, newTrash);
+            }
             foreach (Collider2D collider in newTrash)
             {
                 if (collider.CompareTag("RandomTrash") && !foundTrash.Contains(collider.gameObject))
@@ -502,7 +505,7 @@ public class Robot : MonoBehaviour
         LineRenderer line = ballista.parent.GetComponent<LineRenderer>();
         while (transform.position.x < ballista.position.x)
         {
-            line.SetPosition(1, transform.localPosition);
+            line.SetPosition(1, ballista.parent.InverseTransformPoint(transform.position));
             yield return null;
         }
         GetComponent<Animator>().SetBool("Ballista", false);

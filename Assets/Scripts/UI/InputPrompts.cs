@@ -13,7 +13,7 @@ public class InputPrompts : MonoBehaviour
     [HideInInspector]
     public List<Coroutine> coroutines = new List<Coroutine>();
 
-    private int level, launchPrompted;
+    private int level, launchPrompted, boostLevel;
     private float horizontalLastActive, verticalLastActive, jumpLastActive;
     private bool promptActive, flyPrompted, firePrompted, reelPrompted, turnPrompted;
     private LevelManager_Robot levelManagerRobot;
@@ -34,6 +34,7 @@ public class InputPrompts : MonoBehaviour
             levelManagerRobot = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
             angleDial = GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("ThrowParameters/Angle dial").GetComponent<Image>();
             powerWheel = GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("ThrowParameters/Power wheel").GetComponent<Image>();
+            boostLevel = GameManager.Instance.upgrades[1][0];
         }
         else if (level == 3)
         {
@@ -89,7 +90,7 @@ public class InputPrompts : MonoBehaviour
                     }
                     break;
                 case 2:
-                    if (!promptActive && ((levelManagerRobot.State == LevelState.launch && launchPrompted < 2 && Time.time - jumpLastActive > inputDelayRobotLaunch && (angleDial.color.a == 1 || powerWheel.color.a == 1)) || (levelManagerRobot.State == LevelState.fly && !flyPrompted && levelManagerRobot.throwPowerLevel > 1 && Time.time - jumpLastActive > inputDelayRobotLaunch)))
+                    if (!promptActive && ((levelManagerRobot.State == LevelState.launch && launchPrompted < 2 && Time.time - jumpLastActive > inputDelayRobotLaunch && (angleDial.color.a == 1 || powerWheel.color.a == 1)) || (levelManagerRobot.State == LevelState.fly && !flyPrompted && boostLevel > 1 && Time.time - jumpLastActive > inputDelayRobotLaunch)))
                     {
                         Prompt(0);
                         if (levelManagerRobot.State == LevelState.launch)
