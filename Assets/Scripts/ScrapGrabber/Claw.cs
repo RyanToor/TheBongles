@@ -164,7 +164,10 @@ public class Claw : MonoBehaviour
                 transform.position = linePoints[1];
                 state = ClawState.aim;
                 GetComponent<Animator>().SetBool("Closed", false);
-                StoreTrash();
+                if (!levelManager.gameEnded)
+                {
+                    StoreTrash();
+                }
                 for (int i = linePoints.Count - 1; i > 1; i--)
                 {
                     linePoints.RemoveAt(i);

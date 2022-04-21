@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager_ScrapGrabber : LevelManager
@@ -28,10 +29,10 @@ public class LevelManager_ScrapGrabber : LevelManager
     [HideInInspector]
     public float remainingTime;
     [HideInInspector]
-    public bool isFreezeEnabled = false, isBellEnabled = false, isBellActive = false;
+    public bool isFreezeEnabled = false, isBellEnabled = false, isBellActive = false, gameEnded = false;
 
     private ScrapGrabberUI uI;
-    private bool isFreezing, isBellCooling, gameEnded = false;
+    private bool isFreezing, isBellCooling;
     private Color[] freezeColours;
     private Color freezeIconDisabled;
 
@@ -79,6 +80,16 @@ public class LevelManager_ScrapGrabber : LevelManager
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         AudioManager.Instance.PlayMusic("Scrap Grabber");
         StartCoroutine(GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<InputPrompts>().LevelPrompts());
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex])
+            {
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause/UpgradeBook").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause").GetComponent<PauseMenu>().UpgradeBook();
+                GameManager.Instance.PauseGame(true);
+                GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] = true;
+            }
+        }
     }
 
     // Update is called once per frame

@@ -180,6 +180,10 @@ public class ProximityElement : MonoBehaviour
 
     public IEnumerator BirdFly()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            gameObject.GetComponent<Collider2D>().enabled = false;
+        }
         float angle = Random.Range(20, 70);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         while (!hit)

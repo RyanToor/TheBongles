@@ -18,33 +18,28 @@ public class InputPrompts : MonoBehaviour
     private bool promptActive, flyPrompted, firePrompted, reelPrompted, turnPrompted;
     private LevelManager_Robot levelManagerRobot;
     private Claw claw;
+    private Player player;
     private Image angleDial, powerWheel;
 
     // Start is called before the first frame update
     void Start()
     {
         level = SceneManager.GetActiveScene().buildIndex;
-        if (level == 2)
+        if (level == 1)
+        {
+            player = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_VerticalScroller>().player;
+        }
+        else if (level == 2)
         {
             levelManagerRobot = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>();
             angleDial = GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("ThrowParameters/Angle dial").GetComponent<Image>();
             powerWheel = GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("ThrowParameters/Power wheel").GetComponent<Image>();
         }
-        if (level == 3)
+        else if (level == 3)
         {
             claw = GameObject.FindGameObjectWithTag("Player").GetComponent<Claw>();
         }
         GetComponent<Animator>().SetInteger("Level", level);
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex])
-            {
-                transform.Find("UpgradeBook").gameObject.SetActive(true);
-                GetComponent<PauseMenu>().UpgradeBook();
-                GameManager.Instance.PauseGame(true);
-                GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] = true;
-            }
-        }
     }
 
     public void Prompt(int prompt)
@@ -88,7 +83,7 @@ public class InputPrompts : MonoBehaviour
                     }
                     break;
                 case 1:
-                    if (!promptActive && Time.time - horizontalLastActive > inputDelayTrashHunt && Time.time - verticalLastActive > inputDelayTrashHunt)
+                    if (!promptActive && Time.time - horizontalLastActive > inputDelayTrashHunt && Time.time - verticalLastActive > inputDelayTrashHunt && player.isloaded)
                     {
                         Prompt(0);
                     }
@@ -134,7 +129,7 @@ public class InputPrompts : MonoBehaviour
                         Prompt(1);
                         turnPrompted = true;
                     }
-                    else if (!reelPrompted && claw.isMultiClaw && claw.transform.Find("TrashContainer").childCount > 0 && Time.time - jumpLastActive > inputDelayClawReel)
+                    else if (!reelPrompted && claw.isMultiClaw && claw.transform.Find("TrashContainer").childCount > 0 && Time.time - jumpLastActive > inputDelayClawReel && Time.time - horizontalLastActive > inputDelayClawReel)
                     {
                         Prompt(2);
                         reelPrompted = true;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager_Robot : LevelManager
 {
@@ -71,6 +72,16 @@ public class LevelManager_Robot : LevelManager
         AudioManager.Instance.PlayMusic("Throw the Robot");
         GameObject.Find("Bubba").GetComponent<Animator>().enabled = true;
         StartCoroutine(GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<InputPrompts>().LevelPrompts());
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex])
+            {
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause/UpgradeBook").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause").GetComponent<PauseMenu>().UpgradeBook();
+                GameManager.Instance.PauseGame(true);
+                GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] = true;
+            }
+        }
     }
 
     private void ChangeState(LevelState newState)

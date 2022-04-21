@@ -192,12 +192,12 @@ public class Player : MonoBehaviour
             boostCooldown.transform.localScale = Vector2.Lerp(Vector2.right, Vector2.one, boostDurationTimer / boostInfo.y);
             boostSprite.color = new Color(boostConeColour.r, boostConeColour.g, boostConeColour.b, (((rb.velocity.magnitude - maxSpeed)/maxSpeed) * boostConeColour.a)) / (boostInfo.x - 1);
         }
-        boostSprite.color = Color.clear;
         StartCoroutine(BoostCooldown());
     }
 
     private IEnumerator BoostCooldown()
     {
+        boost.GetComponent<SpriteRenderer>().color = Color.clear;
         Vector3 boostInfo = boostMultiplierDurationCooldown[boostLevel];
         boostImage.color = boostDisabledColour;
         currentMaxSpeed = maxSpeed;

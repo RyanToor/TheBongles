@@ -59,8 +59,8 @@ MonoBehaviour:
   inputDelayRobotLaunch: 0.5
   inputDelayRobotMove: 5
   inputDelayClawLaunch: 3
-  inputDelayClawTurn: 0
-  inputDelayClawReel: 0
+  inputDelayClawTurn: 0.2
+  inputDelayClawReel: 0.1
   startPrompted: 0
   videoPlaying: 0
 --- !u!222 &8044419771317841837

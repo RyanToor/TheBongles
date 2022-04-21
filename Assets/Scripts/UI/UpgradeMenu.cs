@@ -200,6 +200,7 @@ public class UpgradeMenu : MonoBehaviour
             RefreshReadouts();
             GameObject.Find("BongleIsland").GetComponent<BongleIsland>().RefreshUpgrades();
             audioManager.PlaySFX("Twinkle");
+            RefreshExamplePanel(upgradeIndicies + new Vector3Int(0, 0, 1));
         }
     }
 
@@ -264,9 +265,7 @@ public class UpgradeMenu : MonoBehaviour
 
     private IEnumerator ScaleExamplePanel(int direction, Vector3Int upgradeIndicies)
     {
-        upgradeExamplePanel.GetChild(0).GetComponent<Animator>().SetInteger("Minigame", upgradeIndicies.x + 1);
-        upgradeExamplePanel.GetChild(0).GetComponent<Animator>().SetInteger("Upgrade", upgradeIndicies.y + 1);
-        upgradeExamplePanel.GetChild(0).GetComponent<Animator>().SetInteger("Tier", upgradeIndicies.z + 1);
+        RefreshExamplePanel(upgradeIndicies);
         if (direction == -1 && upgradeExamplePanel.localScale.y == 1)
         {
             float duration = 0;
@@ -295,6 +294,12 @@ public class UpgradeMenu : MonoBehaviour
         }
     }
 
+    public void RefreshExamplePanel(Vector3Int upgradeIndicies)
+    {
+        upgradeExamplePanel.GetChild(0).GetComponent<Animator>().SetInteger("Minigame", upgradeIndicies.x + 1);
+        upgradeExamplePanel.GetChild(0).GetComponent<Animator>().SetInteger("Upgrade", upgradeIndicies.y + 1);
+        upgradeExamplePanel.GetChild(0).GetComponent<Animator>().SetInteger("Tier", upgradeIndicies.z + 1);
+    }
     private IEnumerator StoryButtonBlink()
     {
         float duration = 0;

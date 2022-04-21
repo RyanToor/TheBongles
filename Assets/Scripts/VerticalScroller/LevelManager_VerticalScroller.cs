@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager_VerticalScroller : LevelManager
 {
@@ -35,5 +36,15 @@ public class LevelManager_VerticalScroller : LevelManager
         GameObject.Find("SoundManager").GetComponent<AudioManager>().PlayMusic("Trash Hunt");
         chunkManager.InitialiseToppers();
         StartCoroutine(GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<InputPrompts>().LevelPrompts());
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex])
+            {
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause/UpgradeBook").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause").GetComponent<PauseMenu>().UpgradeBook();
+                GameManager.Instance.PauseGame(true);
+                GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] = true;
+            }
+        }
     }
 }

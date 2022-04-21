@@ -206,13 +206,6 @@ MonoBehaviour:
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 0
-  - name: Throw
-    clip: {fileID: 8300000, guid: 8aaf19717b7d72341b0beec56787db2d, type: 3}
-    volume: 1
-    pitch: 1
-    volumeDeviation: 0
-    pitchDeviation: 0
-    loop: 0
   - name: Cloud
     clip: {fileID: 8300000, guid: 4b5868403fc7344438c884dd280a65e8, type: 3}
     volume: 1
