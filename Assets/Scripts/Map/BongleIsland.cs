@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class BongleIsland : MonoBehaviour
 {
@@ -15,6 +13,13 @@ public class BongleIsland : MonoBehaviour
     public Animator sailAnimator, islandAnimator, waveAnimator;
     public GameObject[] flipObjects;
     public UpgradeSprites[] upgradeSprites;
+
+    [Header("Vibration Data")]
+    #region Vibration Data
+    [SerializeField] float randomTrashDuration;
+    [SerializeField] float randomTrashIntensity;
+    [SerializeField] AnimationCurve randomTrashCurve;
+    #endregion
 
     [HideInInspector]
     public bool isInputEnabled = false, isDrawLineCheat = false;
@@ -33,10 +38,13 @@ public class BongleIsland : MonoBehaviour
     private GameObject[][] upgradeSpriteObjects;
     private List<GameObject> boingObjects = new List<GameObject>();
 
+
     // Start is called before the first frame update
 
     void Start()
     {
+        GameManager.Instance.StartGameEvent += StartGame;
+        InputManager.Instance.Jump += EnterLevel;
         sailZ = sailAnimator.gameObject.transform.position.z;
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         AudioManager.Instance.PlayAudioAtObject("Wind", gameObject, 20, true);
@@ -62,14 +70,15 @@ public class BongleIsland : MonoBehaviour
         RefreshUpgrades();
     }
 
+    private void StartGame()
+    {
+        isInputEnabled = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Application.isEditor)
-        {
-            EditorUpdate();
-        }
-        Vector2 moveDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 moveDir = InputManager.Instance.move;
 
         if (isInputEnabled)
         {
@@ -154,24 +163,6 @@ public class BongleIsland : MonoBehaviour
                 pathObjects.RemoveAt(0);
             }
         }
-        if (Input.GetAxis("Jump") > 0 && isInputEnabled)
-        {
-            float minDist = 100f;
-            GameObject currentMinPopup = null;
-            foreach (KeyValuePair<GameObject, GameObject> popupEntry in activePopups)
-            {
-                float popupEntryDist = (popupEntry.Key.transform.position - transform.position).magnitude;
-                if (popupEntryDist < minDist)
-                {
-                    minDist = popupEntryDist;
-                    currentMinPopup = popupEntry.Value;
-                }
-            }
-            if (currentMinPopup != null)
-            {
-                currentMinPopup.GetComponent<Popup>().LaunchMinigame();
-            }
-        }
     }
 
     public void RefreshUpgrades()
@@ -191,6 +182,7 @@ public class BongleIsland : MonoBehaviour
 
     private IEnumerator Boing(GameObject target)
     {
+        InputManager.Instance.Vibrate(0.25f, boingDuration);
         boingObjects.Add(target);
         Vector3 targetScale = target.transform.localScale;
         Animator animator;
@@ -214,12 +206,35 @@ public class BongleIsland : MonoBehaviour
         boingObjects.TrimExcess();
     }
 
+    private void EnterLevel()
+    {
+        if (isInputEnabled)
+        {
+            float minDist = 100f;
+            GameObject currentMinPopup = null;
+            foreach (KeyValuePair<GameObject, GameObject> popupEntry in activePopups)
+            {
+                float popupEntryDist = (popupEntry.Key.transform.position - transform.position).magnitude;
+                if (popupEntryDist < minDist)
+                {
+                    minDist = popupEntryDist;
+                    currentMinPopup = popupEntry.Value;
+                }
+            }
+            if (currentMinPopup != null)
+            {
+                currentMinPopup.GetComponent<Popup>().LaunchMinigame();
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("RandomTrash"))
         {
+            InputManager.Instance.Vibrate(randomTrashIntensity, randomTrashDuration, randomTrashCurve);
             string trashType = collision.GetComponent<RandomTrash>().trashType;
-            print("Collected " + trashType);
+            Debug.Log("Collected " + trashType);
             GameManager.Instance.trashCounts[trashType]++;
             floatingObjectsScript.objectsToRemove.Add(collision.gameObject);
             upgradeMenu.GetComponent<UpgradeMenu>().RefreshReadouts();
@@ -306,9 +321,9 @@ public class BongleIsland : MonoBehaviour
         }
     }
 
-    private void EditorUpdate()
+    private void OnDisable()
     {
-
+        InputManager.Instance.Jump -= EnterLevel;
     }
 
     [System.Serializable]

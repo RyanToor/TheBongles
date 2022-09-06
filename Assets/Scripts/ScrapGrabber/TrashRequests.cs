@@ -10,6 +10,11 @@ public class TrashRequests : MonoBehaviour
     public Image[] requestSprites;
     public NameSprite[] requestSpriteArray;
 
+    [Header("Vibration Data")]
+    [SerializeField] float fulfilledIntensity;
+    [SerializeField] float fulfilledDuration;
+    [SerializeField] AnimationCurve fulfilled1, fulfilled2;
+
     private LevelManager_ScrapGrabber levelManager;
     private string[] currentRequests;
     private bool[] locked;
@@ -69,13 +74,15 @@ public class TrashRequests : MonoBehaviour
                         GameManager.Instance.SpawnCollectionIndicator(GameObject.FindGameObjectWithTag("Player").transform.position, levelManager.LightsOn? levelManager.collectionIndicatorColor : levelManager.darkCollectionIndicatorColour, "+ " + singleGlassBonus);
                         levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + singleFuelReward, 0, levelManager.maxTime);
                         locked[0] = true;
+                        InputManager.Instance.Vibrate(fulfilledIntensity, fulfilledDuration, fulfilled1);
                         break;
                     case 2:
                         levelManager.glass += doubleGlassBonus;
                         GameManager.Instance.SpawnCollectionIndicator(GameObject.FindGameObjectWithTag("Player").transform.position, levelManager.LightsOn ? levelManager.collectionIndicatorColor : levelManager.darkCollectionIndicatorColour, "+ " + doubleGlassBonus);
-                        levelManager.remainingTime += Mathf.Clamp(levelManager.remainingTime + doubleFuelReward, 0, levelManager.maxTime);
+                        levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + doubleFuelReward, 0, levelManager.maxTime);
                         locked[0] = true;
                         locked[1] = true;
+                        InputManager.Instance.Vibrate(fulfilledIntensity, fulfilledDuration, fulfilled2);
                         break;
                     default:
                         break;

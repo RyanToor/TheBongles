@@ -45,6 +45,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -292,6 +293,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Rocks1_ripple_sprite_1: -7752139838547915054
+      Rocks1_ripple_sprite_0: 7902160424919403304
+      Rocks1_ripple_sprite_6: 8240286960379861012
+      Rocks1_ripple_sprite_2: 3631581757295027312
+      Rocks1_ripple_sprite_4: -1099145767658579151
+      Rocks1_ripple_sprite_5: -4760706243136019672
+      Rocks1_ripple_sprite_3: -1080440398287595810
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

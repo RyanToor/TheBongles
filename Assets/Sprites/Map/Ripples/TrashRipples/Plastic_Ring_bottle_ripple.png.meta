@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -412,6 +413,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Plastic_Ring_bottle_ripple_4: 1064578729464832313
+      Plastic_Ring_bottle_ripple_10: -7966145531313328241
+      Plastic_Ring_bottle_ripple_8: 7831211610771213024
+      Plastic_Ring_bottle_ripple_7: -7058087375754063848
+      Plastic_Ring_bottle_ripple_9: 4739729555235949618
+      Plastic_Ring_bottle_ripple_2: -4882294620631844130
+      Plastic_Ring_bottle_ripple_0: 7385115989278292310
+      Plastic_Ring_bottle_ripple_5: -7452800470812973127
+      Plastic_Ring_bottle_ripple_11: 7064450598755773266
+      Plastic_Ring_bottle_ripple_3: -3693277612612661593
+      Plastic_Ring_bottle_ripple_6: -3817063798052011531
+      Plastic_Ring_bottle_ripple_1: 3497260768048670796
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

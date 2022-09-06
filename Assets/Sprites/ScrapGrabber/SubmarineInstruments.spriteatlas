@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SubmarineInstruments
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: dad3f910d46a1a54dacfcbb5f52b607e, type: 3}
+    - {fileID: 2800000, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+    - {fileID: 2800000, guid: 15e3e95b8fca5e44582d5ec112275b72, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: dad3f910d46a1a54dacfcbb5f52b607e, type: 3}
+  - {fileID: 3391125734079175722, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+  - {fileID: -5122938536208726774, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+  - {fileID: -1555387171552027495, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+  - {fileID: -3162848255872152353, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+  - {fileID: 5015229317899991919, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+  - {fileID: 2234363938880769320, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+  - {fileID: -4288703043217546398, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+  - {fileID: 7640300988873453892, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+  - {fileID: -8547891651100813913, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+  - {fileID: 5063002908571782833, guid: 6d7d6f4bf852ad849a62e66e1751c959, type: 3}
+  - {fileID: 21300000, guid: 15e3e95b8fca5e44582d5ec112275b72, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Submarine_FuelGauge
+  - Submarine_FuelNumbers_9
+  - Submarine_FuelNumbers_8
+  - Submarine_FuelNumbers_7
+  - Submarine_FuelNumbers_6
+  - Submarine_FuelNumbers_5
+  - Submarine_FuelNumbers_4
+  - Submarine_FuelNumbers_3
+  - Submarine_FuelNumbers_2
+  - Submarine_FuelNumbers_1
+  - Submarine_FuelNumbers_0
+  - Submarine_ClawShooter
+  m_RenderDataMap: {}
+  m_Tag: SubmarineInstruments
+  m_IsVariant: 0

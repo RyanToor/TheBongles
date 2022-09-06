@@ -45,6 +45,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -292,6 +293,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Trash_Hunt_Seal_Swimming_SpriteTurnTestTurned_2: -5286906018798716311
+      Trash_Hunt_Seal_Swimming_SpriteTurnTestTurned_0: 1418393525277922489
+      Trash_Hunt_Seal_Swimming_SpriteTurnTestTurned_5: -5710757027451005693
+      Trash_Hunt_Seal_Swimming_SpriteTurnTestTurned_1: 3227849882998377939
+      Trash_Hunt_Seal_Swimming_SpriteTurnTestTurned_6: 7300736996212438430
+      Trash_Hunt_Seal_Swimming_SpriteTurnTestTurned_3: -1647560125930051022
+      Trash_Hunt_Seal_Swimming_SpriteTurnTestTurned_4: 8601368843210033421
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

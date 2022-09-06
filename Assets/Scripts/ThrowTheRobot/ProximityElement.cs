@@ -76,7 +76,7 @@ public class ProximityElement : MonoBehaviour
                         StartCoroutine(CheckBirdOffscreen());
                         AudioManager.Instance.PlayAudioAtObject("BirdFly", gameObject, 20, false);
                     }
-                    else if(!isMap)
+                    else if (!isMap)
                     {
                         hit = true;
                         AudioManager.Instance.PlayAudioAtObject("BirdDead", gameObject, 20, false);
@@ -93,6 +93,11 @@ public class ProximityElement : MonoBehaviour
                 default:
                     break;
             }
+        }
+        else if (type == ProximityElementType.bird && isMap)
+        {
+            GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().SpawnBird();
+            Destroy(gameObject);
         }
     }
 

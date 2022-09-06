@@ -66,6 +66,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -460,6 +461,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      lightbulb_jar_ripple_9: -4775216751758911420
+      lightbulb_jar_ripple_12: -2717276282066421772
+      lightbulb_jar_ripple_3: 1202817248639776574
+      lightbulb_jar_ripple_8: -4632863854926625037
+      lightbulb_jar_ripple_13: 6093975398937357942
+      lightbulb_jar_ripple_2: -1987575280031822301
+      lightbulb_jar_ripple_4: -5893620366704784772
+      lightbulb_jar_ripple_10: 4938604624026903376
+      lightbulb_jar_ripple_1: 3336173743146725476
+      lightbulb_jar_ripple_0: 7315205161482419574
+      lightbulb_jar_ripple_11: -3976618414476934903
+      lightbulb_jar_ripple_6: 7980664114822976891
+      lightbulb_jar_ripple_5: 2561195746983683363
+      lightbulb_jar_ripple_7: -3511723766936962471
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

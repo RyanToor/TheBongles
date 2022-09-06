@@ -48,6 +48,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -316,6 +317,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Twin_Idle_0: -2696904106507169134
+      Twin_Idle_2: -6569779530229555481
+      Twin_Idle_4: -7464152641997767066
+      Twin_Idle_7: -3999157714095062476
+      Twin_Idle_1: -3630391856026123687
+      Twin_Idle_3: -2357696860867250111
+      Twin_Idle_5: 1620763901398084992
+      Twin_Idle_6: -8572303166428744264
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Eel_Trashy
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: b56a954a4f25ecd4f8b261490f0f3d6f, type: 3}
+    - {fileID: 2800000, guid: d70db7d5427146e4fafcb468f78c9fe7, type: 3}
+    - {fileID: 2800000, guid: d2e9f4d0ee37ecf4b967404f73536175, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 3175391733961271143, guid: d2e9f4d0ee37ecf4b967404f73536175, type: 3}
+  - {fileID: -8107359462500643598, guid: d2e9f4d0ee37ecf4b967404f73536175, type: 3}
+  - {fileID: 7901415297346565339, guid: d2e9f4d0ee37ecf4b967404f73536175, type: 3}
+  - {fileID: -6966356035161410039, guid: d2e9f4d0ee37ecf4b967404f73536175, type: 3}
+  - {fileID: 8115107412743203106, guid: d2e9f4d0ee37ecf4b967404f73536175, type: 3}
+  - {fileID: 6358923186920722480, guid: d2e9f4d0ee37ecf4b967404f73536175, type: 3}
+  - {fileID: -3377877171177506539, guid: d70db7d5427146e4fafcb468f78c9fe7, type: 3}
+  - {fileID: 2675061390876888812, guid: d70db7d5427146e4fafcb468f78c9fe7, type: 3}
+  - {fileID: 8484675121927159472, guid: d70db7d5427146e4fafcb468f78c9fe7, type: 3}
+  - {fileID: 6340812237359910486, guid: d70db7d5427146e4fafcb468f78c9fe7, type: 3}
+  - {fileID: 6866227506775265451, guid: d70db7d5427146e4fafcb468f78c9fe7, type: 3}
+  - {fileID: -2892218989116528305, guid: d70db7d5427146e4fafcb468f78c9fe7, type: 3}
+  - {fileID: -7984511630379135844, guid: d70db7d5427146e4fafcb468f78c9fe7, type: 3}
+  - {fileID: 5806897213843227908, guid: d70db7d5427146e4fafcb468f78c9fe7, type: 3}
+  - {fileID: -1591629073154091472, guid: b56a954a4f25ecd4f8b261490f0f3d6f, type: 3}
+  - {fileID: 91295622303706725, guid: b56a954a4f25ecd4f8b261490f0f3d6f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Eel_Trashy_Rand2_4
+  - Eel_Trashy_Rand2_5
+  - Eel_Trashy_Rand2_0
+  - Eel_Trashy_Rand2_1
+  - Eel_Trashy_Rand2_2
+  - Eel_Trashy_Rand2_3
+  - Eel_Clean_Idle_7
+  - Eel_Clean_Idle_6
+  - Eel_Clean_Idle_5
+  - Eel_Clean_Idle_4
+  - Eel_Clean_Idle_3
+  - Eel_Clean_Idle_2
+  - Eel_Clean_Idle_1
+  - Eel_Clean_Idle_0
+  - Eel_Trashy_Idle_1
+  - Eel_Trashy_Idle_0
+  m_RenderDataMap: {}
+  m_Tag: Eel_Trashy
+  m_IsVariant: 0

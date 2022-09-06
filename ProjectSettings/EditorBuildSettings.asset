@@ -17,4 +17,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ScrapGrabber.unity
     guid: f1887cd4ce401d94cae41d4ca8dae62d
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: da0d23081f9f2d74fbb1327f7d31238c, type: 2}

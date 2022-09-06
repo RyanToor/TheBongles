@@ -63,6 +63,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -436,6 +437,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Splash_ThrowTheRobot_0: -4644805867479676662
+      Splash_ThrowTheRobot_7: 4252907383732256291
+      Splash_ThrowTheRobot_8: 232624048418833411
+      Splash_ThrowTheRobot_11: -7310041533739528255
+      Splash_ThrowTheRobot_1: 141758120411746503
+      Splash_ThrowTheRobot_5: 8278547092629633042
+      Splash_ThrowTheRobot_10: -3979151660601634731
+      Splash_ThrowTheRobot_2: -6125293818509550560
+      Splash_ThrowTheRobot_12: -3995357845721669816
+      Splash_ThrowTheRobot_9: 3126352469439884955
+      Splash_ThrowTheRobot_3: 4836406641939683602
+      Splash_ThrowTheRobot_4: 4673284465981266162
+      Splash_ThrowTheRobot_6: 5167390843607516373
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

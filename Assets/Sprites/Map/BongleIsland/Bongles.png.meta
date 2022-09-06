@@ -66,6 +66,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -439,6 +440,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Bongles_9: 5048704376043382190
+      Bongles_5: 2816030064358824506
+      Bongles_6: -267710143816636653
+      Bongles_3: -6906806250962733167
+      Bongles_2: 3308468006838248229
+      Bongles_11: -8330059338957149798
+      Bongles_7: -3768317602680518692
+      Bongles_12: -5836106692922626238
+      Bongles_0: -7347827015065894481
+      Bongles_10: -280502940489992727
+      Bongles_1: 2209478671881957161
+      Bongles_8: 7743225134785988106
+      Bongles_4: -2425231529992901582
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

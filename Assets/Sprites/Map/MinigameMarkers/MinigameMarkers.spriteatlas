@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MinigameMarkers
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 2703ac79fc60a2245b741a39e0aa7024, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ad0d1b2260c3a5e469c201a44a4d360c, type: 3}
+  - {fileID: 21300000, guid: 145ed424612b60645b7e2261df644536, type: 3}
+  - {fileID: 21300000, guid: 3aa661e5936b73147ac75f35a2921b49, type: 3}
+  - {fileID: 21300000, guid: 7027a137a397fe94dba04855fb88185a, type: 3}
+  - {fileID: 21300000, guid: 7e0dc697b1b1cdf42b3c38c767be289c, type: 3}
+  - {fileID: 21300000, guid: 1e813ed8f14e0224d8814e4e3d186358, type: 3}
+  - {fileID: 21300000, guid: ff77fa39463c5dc44927190c6ca63013, type: 3}
+  - {fileID: 21300000, guid: 1f2be69d6cf89654d94fa20fb9d408f8, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Map_Icon
+  - TrashHunt_Icon
+  - Pop up
+  - Glass cluster
+  - Metal cluster
+  - Plastic cluster
+  - ScrapGrabber_Logo
+  - ThrowTheRobot_Icon
+  m_RenderDataMap: {}
+  m_Tag: MinigameMarkers
+  m_IsVariant: 0

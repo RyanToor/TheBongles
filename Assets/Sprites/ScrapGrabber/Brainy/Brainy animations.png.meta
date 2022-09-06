@@ -192,6 +192,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1468,6 +1469,63 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Brainy animations_7: -2726161449707643808
+      Brainy animations_6: 1034451045061558528
+      Brainy animations_11: 1348964475494693566
+      Brainy animations_52: 2936758663712731072
+      Brainy animations_29: -3670319474685237167
+      Brainy animations_48: -8397018943621236361
+      Brainy animations_42: -2959553252727560789
+      Brainy animations_37: 2374609857054813941
+      Brainy animations_43: 3359253803056909903
+      Brainy animations_16: -3578090947351102099
+      Brainy animations_40: -7528948577217150064
+      Brainy animations_36: -116880377958395443
+      Brainy animations_54: 5003218780283001786
+      Brainy animations_8: 7575411680392494834
+      Brainy animations_41: -7975865268281132621
+      Brainy animations_23: -2687947105166441587
+      Brainy animations_33: -1630756178631814624
+      Brainy animations_27: 922208718400932233
+      Brainy animations_24: 4050648324085243794
+      Brainy animations_17: -105741493134788524
+      Brainy animations_2: 9103090751178410711
+      Brainy animations_47: 6765561953479606856
+      Brainy animations_31: -1625052982993462525
+      Brainy animations_55: 5459085528914739771
+      Brainy animations_45: -214822928452903756
+      Brainy animations_32: 3358705633409957393
+      Brainy animations_49: -7161864846074341686
+      Brainy animations_38: -857681865392958637
+      Brainy animations_39: 3810899172676465631
+      Brainy animations_18: -357887471446692839
+      Brainy animations_28: 8437225700597717430
+      Brainy animations_25: 3771666244697445609
+      Brainy animations_19: -7506215021986011035
+      Brainy animations_10: 4685264244412415060
+      Brainy animations_30: -7598870308309082495
+      Brainy animations_0: 479223450622212210
+      Brainy animations_3: -8198751595822288877
+      Brainy animations_13: -7941794654113133785
+      Brainy animations_15: 2634434306529529391
+      Brainy animations_50: 7951947205401886325
+      Brainy animations_14: -6538001802280731537
+      Brainy animations_53: -6937361798221693458
+      Brainy animations_4: 1105285324740416798
+      Brainy animations_9: 3638180514123774200
+      Brainy animations_26: -1322718693684716695
+      Brainy animations_44: 4038223215576464757
+      Brainy animations_51: -7444372473444812693
+      Brainy animations_22: 7757681705004258549
+      Brainy animations_5: -1091482939798526654
+      Brainy animations_1: -3612163889985468350
+      Brainy animations_20: -5488655998906556982
+      Brainy animations_34: -7683717641295621069
+      Brainy animations_46: -7214274249454334184
+      Brainy animations_21: 7601055506644237290
+      Brainy animations_35: 5814257336799929608
+      Brainy animations_12: 2177117093751691788
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -54,6 +54,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -364,6 +365,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Crab_Clean_Rand1&Idle_5: 7104605867094040539
+      Crab_Clean_Rand1&Idle_6: 752909982546679226
+      Crab_Clean_Rand1&Idle_3: -4260904700240676625
+      Crab_Clean_Rand1&Idle_8: 2555963744902486278
+      Crab_Clean_Rand1&Idle_9: 3615852042407582215
+      Crab_Clean_Rand1&Idle_0: -5614065836215771041
+      Crab_Clean_Rand1&Idle_7: -3182409313723431087
+      Crab_Clean_Rand1&Idle_4: -1015471750148024367
+      Crab_Clean_Rand1&Idle_1: 1089607729510678363
+      Crab_Clean_Rand1&Idle_2: 1565971597754428437
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

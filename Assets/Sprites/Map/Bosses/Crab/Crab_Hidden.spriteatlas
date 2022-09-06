@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Crab_Hidden
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: ac4cea87a1827204ebf2d5f233e76ad4, type: 3}
+    - {fileID: 2800000, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -6807662039486543104, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 6267329573710224524, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 5909119866544918, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: -7639139934484495316, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 8627978346587797771, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 2582923925002710682, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 6791436882601367286, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 5604018132857867950, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: -5677352282982071072, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: -3208022315313181278, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 7307354795544312607, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 7024978499357195870, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: -1750926937267555182, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: -8892560625118376824, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 3076742144238185677, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 8383480207904648631, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 5574469626781483922, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: -9171186865830259853, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: 4710850613684109143, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: -2984737043745078288, guid: 7e78ea42e33a7d0408f5f3090c9257b1, type: 3}
+  - {fileID: -5578486878276799397, guid: ac4cea87a1827204ebf2d5f233e76ad4, type: 3}
+  - {fileID: -8926250374765078101, guid: ac4cea87a1827204ebf2d5f233e76ad4, type: 3}
+  - {fileID: -1840664876180491318, guid: ac4cea87a1827204ebf2d5f233e76ad4, type: 3}
+  - {fileID: 4245224747459287346, guid: ac4cea87a1827204ebf2d5f233e76ad4, type: 3}
+  - {fileID: -3949418263998506380, guid: ac4cea87a1827204ebf2d5f233e76ad4, type: 3}
+  - {fileID: -7367906031466372404, guid: ac4cea87a1827204ebf2d5f233e76ad4, type: 3}
+  - {fileID: -268533498568061170, guid: ac4cea87a1827204ebf2d5f233e76ad4, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Crab_Hidden_Rand1_19
+  - Crab_Hidden_Rand1_18
+  - Crab_Hidden_Rand1_15
+  - Crab_Hidden_Rand1_14
+  - Crab_Hidden_Rand1_17
+  - Crab_Hidden_Rand1_16
+  - Crab_Hidden_Rand1_11
+  - Crab_Hidden_Rand1_10
+  - Crab_Hidden_Rand1_13
+  - Crab_Hidden_Rand1_12
+  - Crab_Hidden_Rand1_8
+  - Crab_Hidden_Rand1_9
+  - Crab_Hidden_Rand1_6
+  - Crab_Hidden_Rand1_7
+  - Crab_Hidden_Rand1_4
+  - Crab_Hidden_Rand1_5
+  - Crab_Hidden_Rand1_2
+  - Crab_Hidden_Rand1_3
+  - Crab_Hidden_Rand1_0
+  - Crab_Hidden_Rand1_1
+  - Crab_Trashy_Idle_5
+  - Crab_Trashy_Idle_4
+  - Crab_Trashy_Idle_6
+  - Crab_Trashy_Idle_1
+  - Crab_Trashy_Idle_0
+  - Crab_Trashy_Idle_3
+  - Crab_Trashy_Idle_2
+  m_RenderDataMap: {}
+  m_Tag: Crab_Hidden
+  m_IsVariant: 0

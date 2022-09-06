@@ -48,6 +48,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -316,6 +317,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Arch_Ripple_Left_Sprite_7: 2986984072963591845
+      Arch_Ripple_Left_Sprite_4: -6137065449609188330
+      Arch_Ripple_Left_Sprite_6: -1396663096317059292
+      Arch_Ripple_Left_Sprite_5: 8897278933601954478
+      Arch_Ripple_Left_Sprite_2: 7275773909899126756
+      Arch_Ripple_Left_Sprite_3: 6607081906816314601
+      Arch_Ripple_Left_Sprite_1: -7086421704303491179
+      Arch_Ripple_Left_Sprite_0: -7077918623623953059
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

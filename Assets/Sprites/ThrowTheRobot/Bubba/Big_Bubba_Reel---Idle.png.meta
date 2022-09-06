@@ -54,6 +54,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -364,6 +365,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Big_Bubba_Reel---Idle_4: 3785357121901082479
+      Big_Bubba_Reel---Idle_7: 8309862667154743730
+      Big_Bubba_Reel---Idle_3: -7943632814604615758
+      Big_Bubba_Reel---Idle_5: -7981700803849708566
+      Big_Bubba_Reel---Idle_6: 1143842109846054098
+      Big_Bubba_Reel---Idle_8: -1565308074857821210
+      Big_Bubba_Reel---Idle_9: -4738363206074347316
+      Big_Bubba_Reel---Idle_0: 7056590331792618621
+      Big_Bubba_Reel---Idle_2: -4554730498105336320
+      Big_Bubba_Reel---Idle_1: 3610385038542641223
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

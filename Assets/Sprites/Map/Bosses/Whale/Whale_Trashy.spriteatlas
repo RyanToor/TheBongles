@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Whale_Trashy
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 53cd9e653326e1d4e9b4623a2e83179f, type: 3}
+    - {fileID: 2800000, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+    - {fileID: 2800000, guid: 3ca9aad2914a2234ba14988422360490, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 4762217288246105737, guid: 3ca9aad2914a2234ba14988422360490, type: 3}
+  - {fileID: -4600639754870822779, guid: 3ca9aad2914a2234ba14988422360490, type: 3}
+  - {fileID: -8556140995050919790, guid: 3ca9aad2914a2234ba14988422360490, type: 3}
+  - {fileID: -6429916439134781166, guid: 3ca9aad2914a2234ba14988422360490, type: 3}
+  - {fileID: 1224002842182283685, guid: 3ca9aad2914a2234ba14988422360490, type: 3}
+  - {fileID: -825697039076393769, guid: 3ca9aad2914a2234ba14988422360490, type: 3}
+  - {fileID: 1917551377890672890, guid: 3ca9aad2914a2234ba14988422360490, type: 3}
+  - {fileID: 5121037036232162366, guid: 3ca9aad2914a2234ba14988422360490, type: 3}
+  - {fileID: 93091591542509748, guid: 3ca9aad2914a2234ba14988422360490, type: 3}
+  - {fileID: 4988008479970600846, guid: 53cd9e653326e1d4e9b4623a2e83179f, type: 3}
+  - {fileID: 7018241284333595247, guid: 53cd9e653326e1d4e9b4623a2e83179f, type: 3}
+  - {fileID: 4438905415837213799, guid: 53cd9e653326e1d4e9b4623a2e83179f, type: 3}
+  - {fileID: -70671763974132068, guid: 53cd9e653326e1d4e9b4623a2e83179f, type: 3}
+  - {fileID: 7148485314170936367, guid: 53cd9e653326e1d4e9b4623a2e83179f, type: 3}
+  - {fileID: 7840718222183032162, guid: 53cd9e653326e1d4e9b4623a2e83179f, type: 3}
+  - {fileID: 2415208021785938556, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: 9026131984271958668, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: -8967088615562282634, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: 1345688365031225716, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: 3399530029664564826, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: 1943881422407244518, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: 7819059669167527396, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: -137138239120038479, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: 2215501648666435113, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: -5260562471195439344, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: -8501806527566766872, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  - {fileID: 4432305495641933577, guid: 2c06a9bc0541a1645b181e375c1a2d4b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Whale_Trashy_Rand2_8
+  - Whale_Trashy_Rand2_3
+  - Whale_Trashy_Rand2_2
+  - Whale_Trashy_Rand2_1
+  - Whale_Trashy_Rand2_0
+  - Whale_Trashy_Rand2_7
+  - Whale_Trashy_Rand2_6
+  - Whale_Trashy_Rand2_5
+  - Whale_Trashy_Rand2_4
+  - Whale_Trashy_Idle_4
+  - Whale_Trashy_Idle_5
+  - Whale_Trashy_Idle_2
+  - Whale_Trashy_Idle_3
+  - Whale_Trashy_Idle_0
+  - Whale_Trashy_Idle_1
+  - Whale_Trashy_Rand1_4
+  - Whale_Trashy_Rand1_5
+  - Whale_Trashy_Rand1_6
+  - Whale_Trashy_Rand1_7
+  - Whale_Trashy_Rand1_0
+  - Whale_Trashy_Rand1_1
+  - Whale_Trashy_Rand1_2
+  - Whale_Trashy_Rand1_3
+  - Whale_Trashy_Rand1_8
+  - Whale_Trashy_Rand1_9
+  - Whale_Trashy_Rand1_11
+  - Whale_Trashy_Rand1_10
+  m_RenderDataMap: {}
+  m_Tag: Whale_Trashy
+  m_IsVariant: 0

@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Eel_Clean
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 76f585ed635f09f418184ef9cb7f1b52, type: 3}
+    - {fileID: 2800000, guid: 26396b552ac1e6b408dbc0590d3b33bf, type: 3}
+    - {fileID: 2800000, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -8948006533431010119, guid: 26396b552ac1e6b408dbc0590d3b33bf, type: 3}
+  - {fileID: -2687256670571096176, guid: 26396b552ac1e6b408dbc0590d3b33bf, type: 3}
+  - {fileID: 4022367296770862351, guid: 26396b552ac1e6b408dbc0590d3b33bf, type: 3}
+  - {fileID: 5459157832432966001, guid: 26396b552ac1e6b408dbc0590d3b33bf, type: 3}
+  - {fileID: -3168012884796321204, guid: 26396b552ac1e6b408dbc0590d3b33bf, type: 3}
+  - {fileID: 2294773875323216155, guid: 26396b552ac1e6b408dbc0590d3b33bf, type: 3}
+  - {fileID: -7211247328640228833, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: 2158130100851636167, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: 5762180351667696689, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: -1593757895602923342, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: 5071220710772913299, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: 9152709901189363483, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: 3464670469782724365, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: -5578152923976321321, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: 165868950440234437, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: 2771504283199863698, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: -5909827347791359714, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: -7759115797966746711, guid: 9f5acbec152b4fe4890a5acc4c4a678f, type: 3}
+  - {fileID: -7984511630379135844, guid: 76f585ed635f09f418184ef9cb7f1b52, type: 3}
+  - {fileID: 5806897213843227908, guid: 76f585ed635f09f418184ef9cb7f1b52, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Eel_Clean_Rand1_5
+  - Eel_Clean_Rand1_4
+  - Eel_Clean_Rand1_3
+  - Eel_Clean_Rand1_2
+  - Eel_Clean_Rand1_1
+  - Eel_Clean_Rand1_0
+  - Eel_Clean_Waves_6
+  - Eel_Clean_Waves_5
+  - Eel_Clean_Waves_4
+  - Eel_Clean_Waves_10
+  - Eel_Clean_Waves_11
+  - Eel_Clean_Waves_9
+  - Eel_Clean_Waves_8
+  - Eel_Clean_Waves_3
+  - Eel_Clean_Waves_2
+  - Eel_Clean_Waves_1
+  - Eel_Clean_Waves_0
+  - Eel_Clean_Waves_7
+  - Eel_Clean_Idle_1
+  - Eel_Clean_Idle_0
+  m_RenderDataMap: {}
+  m_Tag: Eel_Clean
+  m_IsVariant: 0

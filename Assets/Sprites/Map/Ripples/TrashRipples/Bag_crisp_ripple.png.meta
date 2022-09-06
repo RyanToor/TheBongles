@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -412,6 +413,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Bag_crisp_ripple_9: 290554946779809509
+      Bag_crisp_ripple_10: 3242589284047897566
+      Bag_crisp_ripple_8: 914735865404285228
+      Bag_crisp_ripple_1: 1748483494222192005
+      Bag_crisp_ripple_6: -3913123182047800786
+      Bag_crisp_ripple_11: -4513010923166974012
+      Bag_crisp_ripple_7: -1797118625364807457
+      Bag_crisp_ripple_2: -1268166161831773276
+      Bag_crisp_ripple_0: -4671689568362594039
+      Bag_crisp_ripple_4: 5428290366972336380
+      Bag_crisp_ripple_3: -267314545510470098
+      Bag_crisp_ripple_5: 1932088723607999797
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

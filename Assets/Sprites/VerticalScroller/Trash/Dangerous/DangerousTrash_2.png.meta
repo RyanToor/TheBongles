@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -278,6 +279,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      DangerousTrash_2_0: 5721735132394483286
+      DangerousTrash_2_5: -1392846669001124849
+      DangerousTrash_2_2: 41567449439216136
+      DangerousTrash_2_1: -4174955167572374029
+      DangerousTrash_2_4: 3271827680748746757
+      DangerousTrash_2_3: -514853501133899498
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

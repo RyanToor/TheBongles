@@ -39,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -244,6 +245,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Crab_Trashy_Idle_0: -3949418263998506380
+      Crab_Trashy_Idle_1: 4245224747459287346
+      Crab_Trashy_Idle_3: -7367906031466372404
+      Crab_Trashy_Idle_4: -8926250374765078101
+      Crab_Trashy_Idle_2: -268533498568061170
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

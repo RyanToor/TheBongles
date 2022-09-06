@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -412,6 +413,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Drinkcan_spraycan_ripple_2: -4140058113077718120
+      Drinkcan_spraycan_ripple_6: -2830033028085593862
+      Drinkcan_spraycan_ripple_3: -6525554829266768220
+      Drinkcan_spraycan_ripple_7: -6683411669780274332
+      Drinkcan_spraycan_ripple_9: 3961193846085315639
+      Drinkcan_spraycan_ripple_5: -7577531922838367054
+      Drinkcan_spraycan_ripple_8: 8382189715296393187
+      Drinkcan_spraycan_ripple_0: -1569436687601868410
+      Drinkcan_spraycan_ripple_1: -7115013749919359853
+      Drinkcan_spraycan_ripple_10: 7916994319812874422
+      Drinkcan_spraycan_ripple_4: -140279720581463965
+      Drinkcan_spraycan_ripple_11: -8732620905912148364
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

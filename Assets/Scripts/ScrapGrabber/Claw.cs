@@ -1,19 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
+
 
 public class Claw : MonoBehaviour
 {
-    public float maxAimAngle, aimSpeed, fireSpeed, turnSpeed, linePointSeparation, maxLineLength, reelSpeed, reelRotateSpeed, fuelTime, secondsFlashPeriod;
+    public float maxAimAngle, aimSpeed, fireSpeed, turnSpeed, linePointSeparation, maxLineLength, reelSpeed, reelRotateSpeed, fuelTime, secondsFlashPeriod, fuelFlashDuration;
     public int trashCatchLimit;
     public GameObject fuelBar, spotLight, freeze, bellAssembly;
-    public Color lightSafeColour, lightDangerColour, secondsDangerColour;
+    public Color lightSafeColour, lightDangerColour, secondsDangerColour, fuelFlashColour;
     public GameObject[] lineLengthIndicators;
     public TrashRequests trashRequestScript;
     public Vector2[] clawExtensionAndItems;
     public Sprite[] numbers;
     public SpriteRenderer[] seconds;
+    public SpriteRenderer fuelBacking;
+
+
+    [SerializeField] private AnimationCurve fuelFlashCurve;
+
+    [Header("Vibration Data")]
+    [SerializeField] float randomTrashIntensity;
+    [SerializeField] float randomTrashDuration, obstacleIntensity, obstacleDuration, flashIntensity;
+    [SerializeField] AnimationCurve randomTrashCurve, flashWaveform;
 
     [HideInInspector]
     public bool isCaught, isMultiClaw;
@@ -22,17 +31,25 @@ public class Claw : MonoBehaviour
 
     private LineRenderer lineRenderer;
     private List<Vector3> linePoints = new List<Vector3>();
-    private bool isReleasing, isFlashing;
+    private bool isFlashing;
     private LevelManager_ScrapGrabber levelManager;
-    private float fuelBarStartLength, lineLength, lineLengthIndicatorPortion, lightOffset, startOffset, dangerTime;
+    private float fuelBarStartLength, lineLength, lineLengthIndicatorPortion, lightOffset, startOffset, dangerTime, fuelFlashProgress;
     private int currentTrash, roundedSeconds;
     private Spawner spawner;
     private Color[] normalColour;
     private AudioSource fireSound, reelSound;
+    private Coroutine fuelFlashCoroutine;
+    private Color fuelBackingColour;
+
+    private void OnEnable()
+    {
+        InputManager.Instance.Jump += Jump;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        fuelBackingColour = fuelBacking.color;
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_ScrapGrabber>();
         linePoints.AddRange(new Vector3[2]{ transform.parent.position, transform.position});
@@ -90,30 +107,34 @@ public class Claw : MonoBehaviour
         {
             Destroy(reelSound);
         }
-        transform.RotateAround(transform.parent.position, Vector3.forward, Input.GetAxisRaw("Horizontal") * aimSpeed * Time.unscaledDeltaTime);
+        transform.RotateAround(transform.parent.position, Vector3.forward, InputManager.Instance.move.x * aimSpeed * Time.unscaledDeltaTime);
         float currentAngle = Vector3.SignedAngle(transform.position - transform.parent.position, Vector3.down, Vector3.forward);
         if (Mathf.Abs(currentAngle) > maxAimAngle)
         {
             transform.RotateAround(transform.parent.position, Mathf.Sign(currentAngle) > 0? Vector3.forward : Vector3.back, Mathf.Abs(currentAngle) - maxAimAngle);
         }
-        if (Input.GetAxisRaw("Jump") > 0)
-        {
-            state = ClawState.fire;
-            fireSound = AudioManager.Instance.PlayAudioAtObject("ClawExtending", gameObject, 20, true);
-            linePoints.Insert(linePoints.Count - 1, transform.position);
-            isReleasing = true;
-        }
         linePoints[linePoints.Count - 1] = transform.position;
         lineRenderer.SetPositions(linePoints.ToArray());
     }
 
+    private void Jump()
+    {
+        if (state == ClawState.aim)
+        {
+            state = ClawState.fire;
+            fireSound = AudioManager.Instance.PlayAudioAtObject("ClawExtending", gameObject, 20, true, AudioRolloffMode.Linear);
+            linePoints.Insert(linePoints.Count - 1, transform.position);
+            levelManager.promptManager.Prompt(1);
+        }
+        else if (state == ClawState.fire && !isCaught)
+        {
+            StartReel();
+        }
+    }
+
     private void Fire()
     {
-        if (isReleasing && Input.GetAxisRaw("Jump") == 0)
-        {
-            isReleasing = false;
-        }
-        transform.Rotate(Vector3.forward, Input.GetAxisRaw("Horizontal") * turnSpeed * Time.unscaledDeltaTime);
+        transform.Rotate(Vector3.forward, InputManager.Instance.move.x * turnSpeed * Time.unscaledDeltaTime);
         float currentAngle = transform.rotation.eulerAngles.z < 180? transform.rotation.eulerAngles.z : -(360 - transform.rotation.eulerAngles.z);
         if (Mathf.Abs(currentAngle) > maxAimAngle)
         {
@@ -130,17 +151,22 @@ public class Claw : MonoBehaviour
         }
         lineRenderer.positionCount = linePoints.Count;
         lineRenderer.SetPositions(linePoints.ToArray());
-        if ((lineLength > maxLineLength || (Input.GetAxis("Jump") > 0 && !isReleasing)) && !isCaught)
+        if (lineLength > maxLineLength && !isCaught)
         {
-            currentTrash = 0;
-            state = ClawState.reel;
-            if (fireSound != null)
-            {
-                Destroy(fireSound);
-            }
-            reelSound = AudioManager.Instance.PlayAudioAtObject("ClawRetracting", gameObject, 20, true);
-            GetComponent<Animator>().SetBool("Closed", true);
+            StartReel();
         }
+    }
+
+    private void StartReel()
+    {
+        currentTrash = 0;
+        state = ClawState.reel;
+        if (fireSound != null)
+        {
+            Destroy(fireSound);
+        }
+        reelSound = AudioManager.Instance.PlayAudioAtObject("ClawRetracting", gameObject, 20, true, AudioRolloffMode.Linear);
+        GetComponent<Animator>().SetBool("Closed", true);
     }
 
     private void Reel()
@@ -162,6 +188,7 @@ public class Claw : MonoBehaviour
             if (linePoints.Count - 1 - pointsToRemove < 2)
             {
                 transform.position = linePoints[1];
+                levelManager.promptManager.CancelPrompt();
                 state = ClawState.aim;
                 GetComponent<Animator>().SetBool("Closed", false);
                 if (!levelManager.gameEnded)
@@ -208,12 +235,17 @@ public class Claw : MonoBehaviour
             if (trash.name == "Fuel(Clone)" || trash.name == "Fuel")
             {
                 levelManager.remainingTime = Mathf.Clamp(levelManager.remainingTime + fuelTime, 0, levelManager.maxTime);
-                AudioManager.Instance.PlayAudioAtObject("Fuel", gameObject, 20, false);
+                AudioManager.Instance.PlayAudioAtObject("Fuel", gameObject, 50, false, AudioRolloffMode.Linear);
+                if (fuelFlashCoroutine != null)
+                {
+                    StopCoroutine(fuelFlashCoroutine);
+                }
+                fuelFlashCoroutine = StartCoroutine(FuelFlash());
             }
             else
             {
                 levelManager.glass++;
-                AudioManager.Instance.PlayAudioAtObject("Glass", gameObject, 20, false);
+                AudioManager.Instance.PlayAudioAtObject("Glass", gameObject, 50, false);
                 collectedTrash.Add(trash.gameObject.GetComponent<CollectableTrash>().trashName);
                 GameManager.Instance.SpawnCollectionIndicator(trash.position, levelManager.collectionIndicatorColor);
             }
@@ -238,19 +270,23 @@ public class Claw : MonoBehaviour
     private IEnumerator Flash()
     {
         isFlashing = true;
+        InputManager.VibrationData flashVibration = InputManager.Instance.Vibrate();
         levelManager.brainy.SetBool("Stress", true);
         float duration = 0;
-        AudioSource CountdownSource = AudioManager.Instance.PlayAudioAtObject("Countdown", gameObject, 20, true);
+        AudioSource countdownSource = AudioManager.Instance.PlayAudioAtObject("Countdown", gameObject, 20, true);
         while (levelManager.remainingTime < dangerTime && levelManager.remainingTime > 0)
         {
+            bool isDangerColour = duration % secondsFlashPeriod < secondsFlashPeriod / 2;
             for (int i = 0; i < seconds.Length; i++)
             {
-                seconds[i].color = duration % secondsFlashPeriod < secondsFlashPeriod / 2 ? secondsDangerColour : normalColour[i];
+                seconds[i].color = isDangerColour ? secondsDangerColour : normalColour[i];
             }
+            flashVibration.Intensity = flashIntensity * flashWaveform.Evaluate(countdownSource.time / countdownSource.clip.length);
             duration += Time.deltaTime;
             yield return null;
         }
-        Destroy(CountdownSource);
+        InputManager.Instance.vibrations.Remove(flashVibration);
+        Destroy(countdownSource);
         isFlashing = false;
         if (!isCaught)
         {
@@ -269,16 +305,32 @@ public class Claw : MonoBehaviour
         }
     }
 
+    private IEnumerator FuelFlash()
+    {
+        if (fuelFlashProgress / fuelFlashDuration > 0.5f)
+        {
+            fuelFlashProgress -= 0.5f * fuelFlashDuration;
+        }
+        while (fuelFlashProgress < fuelFlashDuration)
+        {
+            fuelBacking.color = Color.Lerp(fuelBackingColour, fuelFlashColour, fuelFlashCurve.Evaluate(fuelFlashProgress));
+            fuelFlashProgress += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        fuelFlashProgress = 0;
+        fuelBacking.color = fuelBackingColour;
+    }
+
     private void UpdateLight()
     {
         spotLight.transform.SetPositionAndRotation(transform.parent.position + (transform.position - transform.parent.position).normalized * lightOffset, Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, transform.parent.position - transform.position, Vector3.forward)));
         if (levelManager.remainingTime < levelManager.dangerTime)
         {
-            spotLight.GetComponent<Light2D>().color = lightDangerColour;
+            spotLight.GetComponent<UnityEngine.Rendering.Universal.Light2D>().color = lightDangerColour;
         }
         else
         {
-            spotLight.GetComponent<Light2D>().color = lightSafeColour;
+            spotLight.GetComponent<UnityEngine.Rendering.Universal.Light2D>().color = lightSafeColour;
         }
     }
 
@@ -326,6 +378,18 @@ public class Claw : MonoBehaviour
         }
     }
 
+    public void StopSounds()
+    {
+        if (reelSound != null)
+        {
+            Destroy(reelSound);
+        }
+        if (fireSound != null)
+        {
+            Destroy(fireSound);
+        }
+    }
+
     public bool IsCaught
     {
         get { return isCaught; }
@@ -350,12 +414,19 @@ public class Claw : MonoBehaviour
     {
         if (collision.CompareTag("RandomTrash") && state == ClawState.fire)
         {
-            spawner.objectsToRemove.Add(collision.gameObject);
-            collision.transform.SetParent(transform.Find("TrashContainer"), true);
-            foreach (Transform trash in collision.transform)
+            if (collision.gameObject.transform.parent != null && collision.gameObject.transform.parent.name != "Spawner")
             {
-                trash.transform.SetParent(transform.Find("TrashContainer"), true);
+                Animator animator = collision.transform.parent.GetComponent<Animator>();
+                AnimatorStateInfo currentState = animator.GetCurrentAnimatorStateInfo(0);
+                Vector3 position = collision.transform.position;
+                collision.gameObject.transform.SetParent(null, false);
+                animator.Rebind();
+                animator.Play(currentState.fullPathHash, 0, currentState.normalizedTime);
+                collision.transform.position = position;
             }
+            collision.transform.SetParent(transform.Find("TrashContainer"), true);
+            spawner.objectsToRemove.Add(collision.gameObject);
+            InputManager.Instance.Vibrate(randomTrashIntensity, randomTrashDuration, randomTrashCurve);
             if (state == ClawState.fire)
             {
                 currentTrash++;
@@ -370,6 +441,10 @@ public class Claw : MonoBehaviour
                     GetComponent<Animator>().SetBool("Closed", true);
                     currentTrash = 0;
                 }
+                else
+                {
+                    levelManager.promptManager.Prompt(2);
+                }
             }
             else
             {
@@ -380,6 +455,7 @@ public class Claw : MonoBehaviour
         {
             if (state == ClawState.fire)
             {
+                InputManager.Instance.Vibrate(obstacleIntensity, obstacleDuration);
                 state = ClawState.reel;
                 if (fireSound != null)
                 {
@@ -399,7 +475,6 @@ public class Claw : MonoBehaviour
         {
             currentTrash = 0;
             collision.gameObject.GetComponent<Obstacle>().MineHit();
-            AudioManager.Instance.PlayAudioAtObject("Mine", gameObject, 20, false);
             if (state == ClawState.fire)
             {
                 state = ClawState.reel;
@@ -414,8 +489,12 @@ public class Claw : MonoBehaviour
         else if (collision.gameObject.name == "SharkMouth" && state == ClawState.fire)
         {
             StartCoroutine(collision.transform.parent.GetComponent<Obstacle>().SharkGrab(this));
-            AudioManager.Instance.PlayAudioAtObject("Shark", gameObject, 20, false);
         }
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.Jump -= Jump;
     }
 
     public enum ClawState

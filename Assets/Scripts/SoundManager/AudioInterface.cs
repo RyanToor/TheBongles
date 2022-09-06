@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AudioInterface : MonoBehaviour
 {
@@ -26,5 +27,15 @@ public class AudioInterface : MonoBehaviour
     public void ToggleSFX()
     {
         AudioManager.Instance.ToggleSFX();
+    }
+
+    public void ToggleObject(GameObject toggleObject)
+    {
+        toggleObject.SetActive(!toggleObject.activeSelf);
+    }
+
+    public void SetSelectedButton(GameObject button)
+    {
+        InputManager.Instance.SetSelectedButton(button);
     }
 }

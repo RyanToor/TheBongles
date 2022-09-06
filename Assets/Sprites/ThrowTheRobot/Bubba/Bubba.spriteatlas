@@ -1,0 +1,197 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bubba
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: e836ce319a7dfa145911678c2baca65a, type: 3}
+    - {fileID: 2800000, guid: 98a2394f0a2855a4e85a6d0c0f94d7e2, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 6283240950939863066, guid: 6dc5c050a21214c4d97fa793d619c946, type: 3}
+  - {fileID: 3785584565834323553, guid: 6dc5c050a21214c4d97fa793d619c946, type: 3}
+  - {fileID: 2604435362767342853, guid: 6dc5c050a21214c4d97fa793d619c946, type: 3}
+  - {fileID: -7220248647634472688, guid: 6dc5c050a21214c4d97fa793d619c946, type: 3}
+  - {fileID: -1160904364975888293, guid: 6dc5c050a21214c4d97fa793d619c946, type: 3}
+  - {fileID: 21300000, guid: 4cac1147d6547ea469e9660f0d289d40, type: 3}
+  - {fileID: -998437578320570402, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 3771932179051259780, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 3348318513550735865, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: -277830878599631308, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: -8897943302941061138, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 8229183921945548765, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 8772117682662543073, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: -9140149039713627879, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 5300926123484580613, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: -5451381241810507254, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 5229153271175767316, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 3505966155759960717, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 3035120265756526283, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: -8383433966587502470, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 2957512892353132362, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 1377992070773002962, guid: 42b55b485ab79c8408d8f0152c07fd63, type: 3}
+  - {fileID: 5142610511535793930, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: 4237553608149975749, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: -2417922572147681376, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: -5948377988913599831, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: -909474297158467643, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: -8962604758993500368, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: 5968720706773433128, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: 9128182556366628859, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: -8227405025412419591, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: -5326680012254700815, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: -8719041948934284276, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: 5816870530780310685, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: -5156067276974979314, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: 1512736407313741248, guid: db8c5bd8286b1c14e80eedf78c6c3075, type: 3}
+  - {fileID: -7563404324772723906, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: -4602928946512266639, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: -1940572312318003838, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: -5950240214741362989, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: -7643559974042011049, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: 3170886798705198096, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: -956771989938319948, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: 7738245978192417575, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: 2403239136390261676, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: -5173475744357742485, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: -6942204086961823135, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: -3588170487832389673, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: -5632559662554545752, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: 89100433997538749, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: 6103933428606092838, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: 1857405905830468972, guid: 56fe9ce8f8cacfa48bdf2c897c420d15, type: 3}
+  - {fileID: 21300000, guid: d18213592ef8f4141b4d335d83b39bf5, type: 3}
+  - {fileID: 710203575387278445, guid: 286cbbca38d9b304d9d01d367cbf6aca, type: 3}
+  - {fileID: -8449579881824811735, guid: 286cbbca38d9b304d9d01d367cbf6aca, type: 3}
+  - {fileID: -923798578137769445, guid: 286cbbca38d9b304d9d01d367cbf6aca, type: 3}
+  - {fileID: -5944896796361685726, guid: 286cbbca38d9b304d9d01d367cbf6aca, type: 3}
+  - {fileID: 21300000, guid: 5074a18c25e7d3f4e921121b2a4b262a, type: 3}
+  - {fileID: -7943632814604615758, guid: 72c0cf7d07a7ec74c9ef867785511a62, type: 3}
+  - {fileID: -4554730498105336320, guid: 72c0cf7d07a7ec74c9ef867785511a62, type: 3}
+  - {fileID: 3610385038542641223, guid: 72c0cf7d07a7ec74c9ef867785511a62, type: 3}
+  - {fileID: 7056590331792618621, guid: 72c0cf7d07a7ec74c9ef867785511a62, type: 3}
+  - {fileID: 8309862667154743730, guid: 72c0cf7d07a7ec74c9ef867785511a62, type: 3}
+  - {fileID: 1143842109846054098, guid: 72c0cf7d07a7ec74c9ef867785511a62, type: 3}
+  - {fileID: -7981700803849708566, guid: 72c0cf7d07a7ec74c9ef867785511a62, type: 3}
+  - {fileID: 3785357121901082479, guid: 72c0cf7d07a7ec74c9ef867785511a62, type: 3}
+  - {fileID: -4738363206074347316, guid: 72c0cf7d07a7ec74c9ef867785511a62, type: 3}
+  - {fileID: -1565308074857821210, guid: 72c0cf7d07a7ec74c9ef867785511a62, type: 3}
+  - {fileID: 21300000, guid: 98a2394f0a2855a4e85a6d0c0f94d7e2, type: 3}
+  - {fileID: 21300000, guid: b50325bff7420b347a83bc356003f5d5, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Big_Bubba_Fire_4
+  - Big_Bubba_Fire_0
+  - Big_Bubba_Fire_1
+  - Big_Bubba_Fire_2
+  - Big_Bubba_Fire_3
+  - Thrown_Hand
+  - Big_Bubba_Reload_0
+  - Big_Bubba_Reload_7
+  - Big_Bubba_Reload_6
+  - Big_Bubba_Reload_5
+  - Big_Bubba_Reload_4
+  - Big_Bubba_Reload_9
+  - Big_Bubba_Reload_14
+  - Big_Bubba_Reload_8
+  - Big_Bubba_Reload_15
+  - Big_Bubba_Reload_12
+  - Big_Bubba_Reload_13
+  - Big_Bubba_Reload_10
+  - Big_Bubba_Reload_11
+  - Big_Bubba_Reload_3
+  - Big_Bubba_Reload_2
+  - Big_Bubba_Reload_1
+  - Big_Bubba_Eat_13
+  - Big_Bubba_Eat_12
+  - Big_Bubba_Eat_11
+  - Big_Bubba_Eat_10
+  - Big_Bubba_Eat_8
+  - Big_Bubba_Eat_9
+  - Big_Bubba_Eat_4
+  - Big_Bubba_Eat_5
+  - Big_Bubba_Eat_6
+  - Big_Bubba_Eat_7
+  - Big_Bubba_Eat_0
+  - Big_Bubba_Eat_1
+  - Big_Bubba_Eat_2
+  - Big_Bubba_Eat_3
+  - Big_Bubba_Throw_6
+  - Big_Bubba_Throw_7
+  - Big_Bubba_Throw_4
+  - Big_Bubba_Throw_5
+  - Big_Bubba_Throw_11
+  - Big_Bubba_Throw_10
+  - Big_Bubba_Throw_13
+  - Big_Bubba_Throw_12
+  - Big_Bubba_Throw_15
+  - Big_Bubba_Throw_14
+  - Big_Bubba_Throw_8
+  - Big_Bubba_Throw_9
+  - Big_Bubba_Throw_2
+  - Big_Bubba_Throw_3
+  - Big_Bubba_Throw_0
+  - Big_Bubba_Throw_1
+  - Big_Bubba_Aiming_Arm
+  - Big_Bubba_Reel_0
+  - Big_Bubba_Reel_1
+  - Big_Bubba_Reel_2
+  - Big_Bubba_Reel_3
+  - Big_Bubba_Idle
+  - Big_Bubba_Reel---Idle_3
+  - Big_Bubba_Reel---Idle_2
+  - Big_Bubba_Reel---Idle_1
+  - Big_Bubba_Reel---Idle_0
+  - Big_Bubba_Reel---Idle_7
+  - Big_Bubba_Reel---Idle_6
+  - Big_Bubba_Reel---Idle_5
+  - Big_Bubba_Reel---Idle_4
+  - Big_Bubba_Reel---Idle_9
+  - Big_Bubba_Reel---Idle_8
+  - Hook
+  - Fishing_Pole
+  m_RenderDataMap: {}
+  m_Tag: Bubba
+  m_IsVariant: 0

@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1331.9882, y: 647.572, z: -1508.983}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,28 +47,49 @@ MonoBehaviour:
   music:
   - name: Map
     clip: {fileID: 8300000, guid: 9a5a6eea4811c0c40b9f90e734e63d59, type: 3}
-    volume: 0.3
+    volume: 1
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 1
   - name: Trash Hunt
     clip: {fileID: 8300000, guid: bd35d69705022a54b99d55030749b993, type: 3}
-    volume: 0.3
+    volume: 1
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 1
   - name: Story
     clip: {fileID: 8300000, guid: 33e9bbe6d299c45448c200701fa4af23, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
     loop: 1
-  - name: Throw the Robot
-    clip: {fileID: 8300000, guid: cbaaa1b1652d1d34b83c337f77d39f88, type: 3}
-    volume: 0.3
+  - name: Throw the Robot Bubba
+    clip: {fileID: 8300000, guid: 723236e6ccb7ef94c8bd2df819492f91, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Throw the Robot Fly
+    clip: {fileID: 8300000, guid: a276f3710c45b1946860e892583fb1ef, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Throw the Robot Platform
+    clip: {fileID: 8300000, guid: da06525db68b92e41bffb7f61e859ecf, type: 3}
+    volume: 1
+    pitch: 1
+    volumeDeviation: 0
+    pitchDeviation: 0
+    loop: 1
+  - name: Scrap Grabber
+    clip: {fileID: 8300000, guid: d12d66258c9141f409545607ec617022, type: 3}
+    volume: 1
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
@@ -75,13 +97,6 @@ MonoBehaviour:
   - name: Silence
     clip: {fileID: 0}
     volume: 1
-    pitch: 1
-    volumeDeviation: 0
-    pitchDeviation: 0
-    loop: 0
-  - name: Scrap Grabber
-    clip: {fileID: 8300000, guid: d12d66258c9141f409545607ec617022, type: 3}
-    volume: 0.3
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0
@@ -99,25 +114,25 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: Confirm
     clip: {fileID: 8300000, guid: 70359f05613255f4b8178635d48f8cf5, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: Harp
     clip: {fileID: 8300000, guid: 784ba0abafa760941b929ccf63d85c10, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: Hover
     clip: {fileID: 8300000, guid: 5016a1da16a968b45913430631a6c20c, type: 3}
-    volume: 0.3
+    volume: 0.5
     pitch: 0.7
     volumeDeviation: 0
     pitchDeviation: 0.2
@@ -127,7 +142,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: GameOver-TrashHunt
     clip: {fileID: 8300000, guid: 1882d25b0cea51940ade7eac7bfef2d8, type: 3}
@@ -141,182 +156,182 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: Pop
     clip: {fileID: 8300000, guid: f1e3ab52ab1c71a4faf9b3f0a6cc4828, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.3
     loop: 0
   - name: Jellyfish
     clip: {fileID: 8300000, guid: 5d091b345bdb1e04ca665c461a0652a8, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: NearBubble
     clip: {fileID: 8300000, guid: 0736c2ebaa0fc3c4aa90c67cf96bdeb0, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: BubblingWater
     clip: {fileID: 8300000, guid: acebdf2518d1bec43b76b35e0b6ea7c6, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: PieCrunch
     clip: {fileID: 8300000, guid: 812cbea0bbbc65a42a6651e3720dffd9, type: 3}
     volume: 0.5
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: PieGrab
     clip: {fileID: 8300000, guid: de9d4ee75a51c2544a2944acdb0aa73b, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: Skim
     clip: {fileID: 8300000, guid: af9337d8c75b90e41b90194053b4c59f, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: Slingshot
     clip: {fileID: 8300000, guid: 2479875f39f82da41bc49b60113ce084, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: SlingshotString
     clip: {fileID: 8300000, guid: 3f0f1a8a9f3dd7646b695f212db2fa3e, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: Cloud
     clip: {fileID: 8300000, guid: 4b5868403fc7344438c884dd280a65e8, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.3
     loop: 0
   - name: Splash
     clip: {fileID: 8300000, guid: 0a267c625b2ee44428369786fab0ffae, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: BirdFly
     clip: {fileID: 8300000, guid: 64a70a8c0cc2e4444a8965b1b44c8286, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: BirdDead
     clip: {fileID: 8300000, guid: 52fdacd315e4a94478ebb4bd076c6894, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: Blob
     clip: {fileID: 8300000, guid: e54b4c6699d9bc145a953713f0e3f95c, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: BubbleMoving
     clip: {fileID: 8300000, guid: 0736c2ebaa0fc3c4aa90c67cf96bdeb0, type: 3}
     volume: 0.2
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: Clam
     clip: {fileID: 8300000, guid: c8abe0048d6033344b3a3decabbc4986, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 0.8
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: Glass
     clip: {fileID: 8300000, guid: cf154d96d7c971247b3af95901334d90, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: Metal
     clip: {fileID: 8300000, guid: 7d6b30c4d8b6d7a498c99b8bcfbd68f2, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: Plastic
     clip: {fileID: 8300000, guid: a9b92c214fc766642a9cb4570b07e0b4, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: Reel
     clip: {fileID: 8300000, guid: 6f8549ca3346c4740ae1cd4cffb3aafa, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: Boost
     clip: {fileID: 8300000, guid: 8fa5cdf1d9d2a9840b9a35a6bf576b38, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 0
   - name: DoubleJump
     clip: {fileID: 8300000, guid: 1729204e80193294881dd90a144fae86, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.3
     loop: 0
   - name: Jump
     clip: {fileID: 8300000, guid: 8b5e9f1f1d4f7e04bae991589f3c0447, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.3
     loop: 0
   - name: PopUp
     clip: {fileID: 8300000, guid: 62d1b4f1267c1db4a82adafb6a0a1b7f, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 0
   - name: Wind
     clip: {fileID: 8300000, guid: 30fe6b75a37d3464c8259b811094c084, type: 3}
     volume: 0.25
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 1
   - name: AmbientWind
     clip: {fileID: 8300000, guid: 0633f25c87e235249b2c71a0f4a14a96, type: 3}
@@ -337,14 +352,14 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 1
   - name: Fuel
     clip: {fileID: 8300000, guid: aa9409e50b8255a4b9ac6968b6976ae9, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 1
   - name: AbilityReady
     clip: {fileID: 8300000, guid: 6d77c8c370f3a9842be1fbbca0857277, type: 3}
@@ -358,7 +373,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.2
     loop: 1
   - name: Countdown
     clip: {fileID: 8300000, guid: 393939f8ed9acf841b7cba993597a007, type: 3}
@@ -372,28 +387,28 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 1
   - name: Electricute
     clip: {fileID: 8300000, guid: e2f78199188acd144ae98d07aad35411, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 1
   - name: Freeze
     clip: {fileID: 8300000, guid: dc19cb4acb6845c458b1642c989ac067, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.1
     loop: 1
   - name: WipeWindow
     clip: {fileID: 8300000, guid: 0cb7632cfe9838c458c610ce49737461, type: 3}
-    volume: 1
+    volume: 0.45
     pitch: 1
-    volumeDeviation: 0
-    pitchDeviation: 0
+    volumeDeviation: 0.2
+    pitchDeviation: 0.3
     loop: 1
   - name: HighPitch
     clip: {fileID: 8300000, guid: ac211f57782b8084e8fe9e5f75e5f4bc, type: 3}
@@ -424,25 +439,25 @@ MonoBehaviour:
     pitchDeviation: 0
     loop: 1
   - name: Mine
-    clip: {fileID: 8300000, guid: 977f6a32bc054c145b1082c3905b04a9, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 4f6e3eda6cc825742a6c88d47d4f8ed9, type: 3}
+    volume: 0.7
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.3
     loop: 1
   - name: Shark
     clip: {fileID: 8300000, guid: 9aafe0130dd7e1d419d73a51d3b5827a, type: 3}
     volume: 1
     pitch: 1
     volumeDeviation: 0
-    pitchDeviation: 0
+    pitchDeviation: 0.3
     loop: 1
   - name: FishEscaping
     clip: {fileID: 8300000, guid: 9dc21dbcceaae56489be68a632e441bf, type: 3}
-    volume: 1
-    pitch: 1
-    volumeDeviation: 0
-    pitchDeviation: 0
+    volume: 0.6
+    pitch: 1.4
+    volumeDeviation: 0.1
+    pitchDeviation: 0.5
     loop: 1
   - name: Throw
     clip: {fileID: 8300000, guid: 1e8fec21b04360c4782581b916abed84, type: 3}
@@ -471,6 +486,20 @@ MonoBehaviour:
     pitch: 1
     volumeDeviation: 0
     pitchDeviation: 0.1
+    loop: 0
+  - name: Celebrate
+    clip: {fileID: 8300000, guid: 33ce681956d5af04dbc29d97f90900ff, type: 3}
+    volume: 0.5
+    pitch: 1.1
+    volumeDeviation: 0.1
+    pitchDeviation: 0.3
+    loop: 0
+  - name: Surprise
+    clip: {fileID: 8300000, guid: a16865666f4fc034ebec18955946c720, type: 3}
+    volume: 0.5
+    pitch: 1.1
+    volumeDeviation: 0.1
+    pitchDeviation: 0.3
     loop: 0
   musicSource: {fileID: 0}
   musicSource2: {fileID: 0}

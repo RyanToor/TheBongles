@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -268,6 +269,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Eel_Trashy_Rand2_2: 8115107412743203106
+      Eel_Trashy_Rand2_0: 7901415297346565339
+      Eel_Trashy_Rand2_3: 6358923186920722480
+      Eel_Trashy_Rand2_5: -8107359462500643598
+      Eel_Trashy_Rand2_1: -6966356035161410039
+      Eel_Trashy_Rand2_4: 3175391733961271143
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

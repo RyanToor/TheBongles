@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Popup : MonoBehaviour
 {
-    public GameObject minigameMarker;
+    public GameObject minigameMarker, spacePrompt, buttonPrompt;
     public TrashType trashType;
     public GameObject loadScreen;
     public GameObject[] stars;
@@ -34,6 +33,9 @@ public class Popup : MonoBehaviour
                 break;
             }
         }
+
+        InputManager.Instance.SwitchControlScheme += SwitchPrompts;
+        SwitchPrompts();
     }
 
     // Update is called once per frame
@@ -44,7 +46,17 @@ public class Popup : MonoBehaviour
 
     public void LaunchMinigame()
     {
-        GameManager.Instance.LoadMinigame(trashType);
+        if (GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().isLoaded && GameManager.Instance.gameStarted)
+        {
+            GameManager.Instance.LoadMinigame(trashType);
+        }
+    }
+
+    private void SwitchPrompts()
+    {
+        spacePrompt.SetActive(InputManager.Instance.inputMethod == "Keyboard&Mouse");
+        buttonPrompt.SetActive(InputManager.Instance.inputMethod != "Keyboard&Mouse");
+        buttonPrompt.GetComponent<Image>().sprite = InputManager.Instance.abilityPrompts[0].abilityPrompts[GameManager.Instance.playstationLayout ? 2 : 1].sprite;
     }
 
     public void OnClick()
@@ -55,6 +67,11 @@ public class Popup : MonoBehaviour
     public void OnHover()
     {
         GameObject.Find("SoundInterface").GetComponent<AudioInterface>().OnHover();
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.SwitchControlScheme -= SwitchPrompts;
     }
 
     [System.Serializable]

@@ -51,6 +51,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -256,6 +257,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Mast_ripple_sprite_0: -8914664548809164490
+      Mast_ripple_sprite_1: 5158534277015221722
+      Mast_ripple_sprite_3: -6242558404142533572
+      Mast_ripple_sprite_2: -6422080790371454740
+      Mast_ripple_sprite_4: 9108643373295625604
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

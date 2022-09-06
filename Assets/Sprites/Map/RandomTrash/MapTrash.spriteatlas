@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MapTrash
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 6fe625a916f3cfd46af8fc700fdc0859, type: 3}
+    - {fileID: 102900000, guid: bc20584284386774dae14171780bbd3d, type: 3}
+    - {fileID: 102900000, guid: 552d6c5ee758c65488e3449afea5fdab, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: bb0a7e329d9166a4bb1eccf16c1b11c5, type: 3}
+  - {fileID: 21300000, guid: 06789e52170e18543aca2bfbf22142f2, type: 3}
+  - {fileID: 21300000, guid: aead9562e84f90e48a1ca6cd104cdf1c, type: 3}
+  - {fileID: 21300000, guid: cf276f03ca70e2845a46f6d23089d22e, type: 3}
+  - {fileID: 21300000, guid: 614ade26c4114184db39160cffbd54d2, type: 3}
+  - {fileID: 21300000, guid: f2f4b277739de5e49885796aef5bc1eb, type: 3}
+  - {fileID: 21300000, guid: 01083b69ba87a5742ba624be2ea5b1b2, type: 3}
+  - {fileID: 21300000, guid: 24a3a4b9b2308db479011fe658ec7175, type: 3}
+  - {fileID: 21300000, guid: ff45095a476b07a49ae223b06871f675, type: 3}
+  - {fileID: 21300000, guid: c794560b52f819b4fbbd9e24f6f8ffd1, type: 3}
+  - {fileID: 21300000, guid: 4b26dddd4d3844842b2cc8ecd59892cf, type: 3}
+  - {fileID: 21300000, guid: 5a2f98bf2883a0a418b24084699324fb, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Glass Bottle
+  - Jar
+  - Plastic Rings
+  - Lightbulb
+  - Soda Can
+  - Broken bottle
+  - Crisp Bag
+  - Rusted bucket
+  - Rusty spray can
+  - Can
+  - Plastic Bottle
+  - Bag
+  m_RenderDataMap: {}
+  m_Tag: MapTrash
+  m_IsVariant: 0

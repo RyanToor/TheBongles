@@ -120,6 +120,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -892,6 +893,39 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tutorial_Animations_4: 6780195067829746132
+      Tutorial_Animations_30: 7322542157039986798
+      Tutorial_Animations_15: 6615708375158412150
+      Tutorial_Animations_18: -491818492305958201
+      Tutorial_Animations_27: -5119542067348346405
+      Tutorial_Animations_3: 6806548160127554470
+      Tutorial_Animations_23: 4812127819299375611
+      Tutorial_Animations_0: -2300141325741934530
+      Tutorial_Animations_22: 1022186779974892851
+      Tutorial_Animations_16: -7642399537160263152
+      Tutorial_Animations_5: -5081470437509485017
+      Tutorial_Animations_7: 8720634830301225767
+      Tutorial_Animations_29: 8007045583164320743
+      Tutorial_Animations_21: -7304100687943847222
+      Tutorial_Animations_19: 1624334902326607360
+      Tutorial_Animations_2: 5447214074305272627
+      Tutorial_Animations_14: 8661681638756611542
+      Tutorial_Animations_28: -2219613573523986842
+      Tutorial_Animations_12: -7728271975750091240
+      Tutorial_Animations_26: -7973859810802930991
+      Tutorial_Animations_9: -7617992780455648489
+      Tutorial_Animations_31: 2893721539069026298
+      Tutorial_Animations_20: 5830197413117565441
+      Tutorial_Animations_25: 1338283357595577510
+      Tutorial_Animations_24: 3252508975421166198
+      Tutorial_Animations_10: 5852659206799238763
+      Tutorial_Animations_8: -6989418529445517011
+      Tutorial_Animations_17: 3078800398001806737
+      Tutorial_Animations_6: 8994293779846729675
+      Tutorial_Animations_11: -347226127924823612
+      Tutorial_Animations_1: -5300649821063366527
+      Tutorial_Animations_13: 2351908477313868120
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

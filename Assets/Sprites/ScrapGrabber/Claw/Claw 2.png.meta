@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -412,6 +413,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Claw 2_11: -7218759812210018256
+      Claw 2_0: -3324197304498300295
+      Claw 2_1: 8426897924586014858
+      Claw 2_8: -8307534051326541679
+      Claw 2_5: -4799199756824299150
+      Claw 2_2: 4260288480570886416
+      Claw 2_3: -4543899917987118636
+      Claw 2_4: 2762838736617292919
+      Claw 2_10: 2896035871767943989
+      Claw 2_7: -4021236140599674728
+      Claw 2_6: -2456387119827454075
+      Claw 2_9: -2673862716059458172
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

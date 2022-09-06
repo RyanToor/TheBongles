@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Trash
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: bbed2cab865a70c48a4c331cbc795eff, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0e8ca79227b4e6740a79bbc35ca6df4d, type: 3}
+  - {fileID: 1024246151860867157, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: 8201829820311750956, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -4078655226017568287, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -5972923186598024860, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -8293934819655444, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -5867386444314176210, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -7571910191506385175, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: 5656032060023777338, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -318703605416332390, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -8161860954868674084, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -5221951007663455745, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: 2824673793554675198, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -1326071130970143660, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -3630662100863890893, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: -2270978576779865727, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: 415106947460019703, guid: 8312b744d941c954ea29d07f10c8083e, type: 3}
+  - {fileID: 21300000, guid: b0ccd3f7bfa590947998662828176770, type: 3}
+  - {fileID: 21300000, guid: 0b855ca9a0d0bd041a640b665fce0b64, type: 3}
+  - {fileID: 21300000, guid: 14ac477d49578554a994874407a5bf22, type: 3}
+  - {fileID: -514853501133899498, guid: a1900c6f722104448a21ee9e7f2ef798, type: 3}
+  - {fileID: 41567449439216136, guid: a1900c6f722104448a21ee9e7f2ef798, type: 3}
+  - {fileID: -4174955167572374029, guid: a1900c6f722104448a21ee9e7f2ef798, type: 3}
+  - {fileID: 5721735132394483286, guid: a1900c6f722104448a21ee9e7f2ef798, type: 3}
+  - {fileID: -1392846669001124849, guid: a1900c6f722104448a21ee9e7f2ef798, type: 3}
+  - {fileID: 3271827680748746757, guid: a1900c6f722104448a21ee9e7f2ef798, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Crisp bag full
+  - DangerousTrash_1_15
+  - DangerousTrash_1_14
+  - DangerousTrash_1_13
+  - DangerousTrash_1_12
+  - DangerousTrash_1_11
+  - DangerousTrash_1_10
+  - DangerousTrash_1_4
+  - DangerousTrash_1_5
+  - DangerousTrash_1_6
+  - DangerousTrash_1_7
+  - DangerousTrash_1_0
+  - DangerousTrash_1_1
+  - DangerousTrash_1_2
+  - DangerousTrash_1_3
+  - DangerousTrash_1_8
+  - DangerousTrash_1_9
+  - Can rings full
+  - Bag full
+  - Plastic bottle full
+  - DangerousTrash_2_3
+  - DangerousTrash_2_2
+  - DangerousTrash_2_1
+  - DangerousTrash_2_0
+  - DangerousTrash_2_5
+  - DangerousTrash_2_4
+  m_RenderDataMap: {}
+  m_Tag: Trash
+  m_IsVariant: 0

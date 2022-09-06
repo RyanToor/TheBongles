@@ -48,6 +48,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -316,6 +317,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Robot_Jump_5: 7393612964261089463
+      Robot_Jump_1: -3539073589417021424
+      Robot_Jump_7: 4452417772721772716
+      Robot_Jump_4: -3591352804936753923
+      Robot_Jump_6: 2183171753371183385
+      Robot_Jump_3: 7539323002157307785
+      Robot_Jump_0: -7702943386775053247
+      Robot_Jump_2: -8746951922181359352
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

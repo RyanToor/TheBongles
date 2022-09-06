@@ -150,6 +150,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1132,6 +1133,49 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Trash_Hunt_Seal_Turn_Around_Upgrades_4: 4918826228199576325
+      Trash_Hunt_Seal_Turn_Around_Upgrades_8: 7757455758726742028
+      Trash_Hunt_Seal_Turn_Around_Upgrades_9: -1365612017489040750
+      Trash_Hunt_Seal_Turn_Around_Upgrades_7: -8448819369190699591
+      Trash_Hunt_Seal_Turn_Around_Upgrades_29: 4534454638518233227
+      Trash_Hunt_Seal_Turn_Around_Upgrades_17: 6073724948409841868
+      Trash_Hunt_Seal_Turn_Around_Upgrades_18: 8658340767522701727
+      Trash_Hunt_Seal_Turn_Around_Upgrades_31: 8976082024146293505
+      Trash_Hunt_Seal_Turn_Around_Upgrades_21: 1195608551320382343
+      Trash_Hunt_Seal_Turn_Around_Upgrades_5: -1980962817899974443
+      Trash_Hunt_Seal_Turn_Around_Upgrades_19: -4336774382410662553
+      Trash_Hunt_Seal_Turn_Around_Upgrades_13: 121934300302957723
+      Trash_Hunt_Seal_Turn_Around_Upgrades_28: 305402040588021783
+      Trash_Hunt_Seal_Turn_Around_Upgrades_23: 3800725601351624158
+      Trash_Hunt_Seal_Turn_Around_Upgrades_15: 6635249366101206457
+      Trash_Hunt_Seal_Turn_Around_Upgrades_34: 1412418294234111891
+      Trash_Hunt_Seal_Turn_Around_Upgrades_25: -172259860962297998
+      Trash_Hunt_Seal_Turn_Around_Upgrades_6: 3886072897134392316
+      Trash_Hunt_Seal_Turn_Around_Upgrades_26: 1050789800127594182
+      Trash_Hunt_Seal_Turn_Around_Upgrades_11: -1199664244170850732
+      Trash_Hunt_Seal_Turn_Around_Upgrades_20: -4359334722247087692
+      Trash_Hunt_Seal_Turn_Around_Upgrades_37: -8120528478783918620
+      Trash_Hunt_Seal_Turn_Around_Upgrades_39: -5242025816302925758
+      Trash_Hunt_Seal_Turn_Around_Upgrades_10: 4979580539511250841
+      Trash_Hunt_Seal_Turn_Around_Upgrades_16: 9090252826976876815
+      Trash_Hunt_Seal_Turn_Around_Upgrades_24: -630415031780560614
+      Trash_Hunt_Seal_Turn_Around_Upgrades_0: 3803651480806983748
+      Trash_Hunt_Seal_Turn_Around_Upgrades_36: 102392909696938047
+      Trash_Hunt_Seal_Turn_Around_Upgrades_22: -3466801658215774476
+      Trash_Hunt_Seal_Turn_Around_Upgrades_41: 2157004999496428137
+      Trash_Hunt_Seal_Turn_Around_Upgrades_3: -5222174899648126610
+      Trash_Hunt_Seal_Turn_Around_Upgrades_14: -5706208805470951287
+      Trash_Hunt_Seal_Turn_Around_Upgrades_27: -520484505462122907
+      Trash_Hunt_Seal_Turn_Around_Upgrades_30: -5190247521881609164
+      Trash_Hunt_Seal_Turn_Around_Upgrades_2: 1860982995342241634
+      Trash_Hunt_Seal_Turn_Around_Upgrades_40: 7988462075005873813
+      Trash_Hunt_Seal_Turn_Around_Upgrades_35: -2334202400599497010
+      Trash_Hunt_Seal_Turn_Around_Upgrades_12: -4552493007707181020
+      Trash_Hunt_Seal_Turn_Around_Upgrades_1: -6361621872379023757
+      Trash_Hunt_Seal_Turn_Around_Upgrades_33: 7714994371236840000
+      Trash_Hunt_Seal_Turn_Around_Upgrades_38: 4481498328713678127
+      Trash_Hunt_Seal_Turn_Around_Upgrades_32: 1807710422677108881
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

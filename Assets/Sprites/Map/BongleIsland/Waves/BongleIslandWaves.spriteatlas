@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BongleIslandWaves
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: baa59a58ec4357743a8f499c11d8b259, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 476738341067449085, guid: cf65501af93dd624fa09985c34a6c6f7, type: 3}
+  - {fileID: 2711926451624414882, guid: cf65501af93dd624fa09985c34a6c6f7, type: 3}
+  - {fileID: 5505644749833199677, guid: cf65501af93dd624fa09985c34a6c6f7, type: 3}
+  - {fileID: -1234427384700288583, guid: cf65501af93dd624fa09985c34a6c6f7, type: 3}
+  - {fileID: -6649843266776965454, guid: cf65501af93dd624fa09985c34a6c6f7, type: 3}
+  - {fileID: -5709076216712381341, guid: cf65501af93dd624fa09985c34a6c6f7, type: 3}
+  - {fileID: 9076754393445493823, guid: cf65501af93dd624fa09985c34a6c6f7, type: 3}
+  - {fileID: 7475390747936451622, guid: cf65501af93dd624fa09985c34a6c6f7, type: 3}
+  - {fileID: 4681154382020207078, guid: cf65501af93dd624fa09985c34a6c6f7, type: 3}
+  - {fileID: 5280457648555765308, guid: cf65501af93dd624fa09985c34a6c6f7, type: 3}
+  - {fileID: -1857807657878812160, guid: baf0fb8aae8a5864f9404e3053a5cfb7, type: 3}
+  - {fileID: 1958253162786724723, guid: baf0fb8aae8a5864f9404e3053a5cfb7, type: 3}
+  - {fileID: 4821652999742747207, guid: baf0fb8aae8a5864f9404e3053a5cfb7, type: 3}
+  - {fileID: 7122293244972616196, guid: baf0fb8aae8a5864f9404e3053a5cfb7, type: 3}
+  - {fileID: 9030602650244338086, guid: baf0fb8aae8a5864f9404e3053a5cfb7, type: 3}
+  - {fileID: -6620190483599975223, guid: baf0fb8aae8a5864f9404e3053a5cfb7, type: 3}
+  - {fileID: -2962522608866665764, guid: baf0fb8aae8a5864f9404e3053a5cfb7, type: 3}
+  - {fileID: -7827990404906249011, guid: baf0fb8aae8a5864f9404e3053a5cfb7, type: 3}
+  - {fileID: -6746212973140518150, guid: baf0fb8aae8a5864f9404e3053a5cfb7, type: 3}
+  - {fileID: -3995460186964877160, guid: baf0fb8aae8a5864f9404e3053a5cfb7, type: 3}
+  - {fileID: 2806049180760322976, guid: 6fa9a39aeb2689d43868d586820c329c, type: 3}
+  - {fileID: 5433864872994604167, guid: 6fa9a39aeb2689d43868d586820c329c, type: 3}
+  - {fileID: 609094432892484807, guid: 6fa9a39aeb2689d43868d586820c329c, type: 3}
+  - {fileID: 2358289213792895729, guid: 6fa9a39aeb2689d43868d586820c329c, type: 3}
+  - {fileID: -8995259565062356152, guid: 6fa9a39aeb2689d43868d586820c329c, type: 3}
+  - {fileID: 447850901560952724, guid: 6fa9a39aeb2689d43868d586820c329c, type: 3}
+  - {fileID: 3319153175233624130, guid: 6fa9a39aeb2689d43868d586820c329c, type: 3}
+  - {fileID: -840694012775269681, guid: 6fa9a39aeb2689d43868d586820c329c, type: 3}
+  - {fileID: -8963732128679270232, guid: 6fa9a39aeb2689d43868d586820c329c, type: 3}
+  - {fileID: 1300208196083442407, guid: 6fa9a39aeb2689d43868d586820c329c, type: 3}
+  - {fileID: -1487660749042531935, guid: edfdd78d2e6644842949ce33f744d0db, type: 3}
+  - {fileID: -9143305190424803007, guid: edfdd78d2e6644842949ce33f744d0db, type: 3}
+  - {fileID: 7727881620317917970, guid: edfdd78d2e6644842949ce33f744d0db, type: 3}
+  - {fileID: -2435556808807701032, guid: edfdd78d2e6644842949ce33f744d0db, type: 3}
+  - {fileID: 4990789188432626572, guid: edfdd78d2e6644842949ce33f744d0db, type: 3}
+  - {fileID: -6931248352422374901, guid: edfdd78d2e6644842949ce33f744d0db, type: 3}
+  - {fileID: 564042922023100985, guid: edfdd78d2e6644842949ce33f744d0db, type: 3}
+  - {fileID: 5000927251509650613, guid: edfdd78d2e6644842949ce33f744d0db, type: 3}
+  - {fileID: -5840571216706997033, guid: edfdd78d2e6644842949ce33f744d0db, type: 3}
+  - {fileID: 2231772683120516731, guid: edfdd78d2e6644842949ce33f744d0db, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Side_Waves_5
+  - Side_Waves_6
+  - Side_Waves_7
+  - Side_Waves_0
+  - Side_Waves_1
+  - Side_Waves_2
+  - Side_Waves_3
+  - Side_Waves_8
+  - Side_Waves_9
+  - Side_Waves_4
+  - Down_wave_8
+  - Down_wave_9
+  - Down_wave_0
+  - Down_wave_1
+  - Down_wave_2
+  - Down_wave_3
+  - Down_wave_4
+  - Down_wave_5
+  - Down_wave_6
+  - Down_wave_7
+  - Idle_wave_6
+  - Idle_wave_7
+  - Idle_wave_4
+  - Idle_wave_5
+  - Idle_wave_2
+  - Idle_wave_3
+  - Idle_wave_0
+  - Idle_wave_1
+  - Idle_wave_8
+  - Idle_wave_9
+  - Back_7
+  - Back_6
+  - Back_5
+  - Back_4
+  - Back_3
+  - Back_2
+  - Back_1
+  - Back_0
+  - Back_9
+  - Back_8
+  m_RenderDataMap: {}
+  m_Tag: BongleIslandWaves
+  m_IsVariant: 0

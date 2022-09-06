@@ -22,7 +22,7 @@ public class RandomTrash : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Player"))
         {
-            if (!collision.CompareTag("Region") || collision.CompareTag("Region") && !collision.gameObject.GetComponent<Region>().isUnlocked)
+            if (collision.transform.name != "Bird(Clone)" && (!collision.CompareTag("Region") || collision.CompareTag("Region") && !collision.gameObject.GetComponent<Region>().isUnlocked))
             {
                 GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().SpawnRandomTrash();
                 floatingObjectsScript.objectsToRemove.Add(gameObject);

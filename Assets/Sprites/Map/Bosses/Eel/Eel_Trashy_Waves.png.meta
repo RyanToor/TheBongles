@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -412,6 +413,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Eel_Trashy_Waves_6: -8827432369464622335
+      Eel_Trashy_Waves_10: 1275314719929077224
+      Eel_Trashy_Waves_2: -7991175279389336515
+      Eel_Trashy_Waves_9: 8196482450024089900
+      Eel_Trashy_Waves_11: 1186251701058189825
+      Eel_Trashy_Waves_3: -8449510163870817240
+      Eel_Trashy_Waves_5: 6721673213922362556
+      Eel_Trashy_Waves_0: -672131573710135723
+      Eel_Trashy_Waves_7: 3698827338941060710
+      Eel_Trashy_Waves_8: 5476091866923424136
+      Eel_Trashy_Waves_4: 864559250704890931
+      Eel_Trashy_Waves_1: 5448122224858335783
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -5,13 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public float minimumLoadDuration;
     public GameObject loadScreenPrefab, collectionIndicatorPrefab;
     public List<GameObject> inGameUI;
     public int[] regionStoryPoints;
 
+    public event Action<bool> EnablePrompts;
     public Dictionary<string, int> trashCounts = new Dictionary<string, int>();
     [HideInInspector]
-    public InputMethod inputMethod;
+    public event Action StartGameEvent;
 
     private static GameManager instance;
     private bool isResetting = false;
@@ -19,21 +22,23 @@ public class GameManager : MonoBehaviour
     #region SavedFields
     [HideInInspector] public bool gameStarted = false;
     [HideInInspector] public Vector3 bongleIslandPosition;
+    [HideInInspector] public double lastTrashSpawn;
     [HideInInspector] public int[][] upgrades;
     [HideInInspector] public int[] highscoreStars;
-    [HideInInspector] public int storyPoint;
+    [HideInInspector] public int storyPoint, remainingTrash;
     [HideInInspector] public bool[] levelsPrompted;
     #endregion
 
     #region Settings
     [HideInInspector] public int musicMuted = 1, sFXMuted = 1;
     [HideInInspector] public float musicVolume = 0.25f, sFXVolume = 0.5f;
+    [HideInInspector] public bool allowVibration, playstationLayout, promptsEnabled;
     #endregion
 
 
     public static GameManager Instance
     {
-        get { return instance; }
+        get{ return instance; }
     }
 
     private void Awake()
@@ -63,45 +68,22 @@ public class GameManager : MonoBehaviour
             upgrades[i] = new int[3] { 0, 0, 0};
         }
         highscoreStars = new int[] { 0, 0, 0 };
+        LoadGame();
+    }
+
+    private void Start()
+    {
+        if (!gameStarted && SceneManager.GetActiveScene().name == "Map")
+        {
+            InputManager.Instance.EnableUIInput();
+        }
     }
 
     public void StartGame()
     {
-        GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = true;
-        GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().StartGame();
+        StartGameEvent?.Invoke();
         gameStarted = true;
     }
-
-    /*private void OnGUI()
-    {
-        if (Event.current.isKey)
-        {
-            print("Detected Key");
-        }
-        switch (inputMethod)
-        {
-            case InputMethod.MKB:
-                if (Input.anyKeyDown && !Event.current.isKey)
-                {
-                    //print("Switched to MKB");
-                    inputMethod = InputMethod.Controller;
-                }
-                break;
-            case InputMethod.Controller:
-                if (Input.anyKeyDown && Event.current.isKey)
-                {
-                    //print("Switched to Controller");
-                    inputMethod = InputMethod.MKB;
-                }
-                break;
-            default:
-                break;
-        }
-        if (Input.GetButton("Escape"))
-        {
-            print("Start Pressed");
-        }
-    }*/
 
     public int MaxRegion()
     {
@@ -130,6 +112,8 @@ public class GameManager : MonoBehaviour
                 plastic = trashCounts["Plastic"],
                 metal = trashCounts["Metal"],
                 glass = trashCounts["Glass"],
+                remainingTrash = remainingTrash,
+                lastTrashSpawn = lastTrashSpawn,
                 upgrades1 = upgrades[0],
                 upgrades2 = upgrades[1],
                 upgrades3 = upgrades[2],
@@ -148,7 +132,10 @@ public class GameManager : MonoBehaviour
             musicMuted = musicMuted,
             sFXMuted = sFXMuted,
             musicVolume = musicVolume,
-            sFXVolume = sFXVolume
+            sFXVolume = sFXVolume,
+            allowVibration = allowVibration,
+            playstationLayout = playstationLayout,
+            promptsEnabled = promptsEnabled
         };
         File.WriteAllText(Application.persistentDataPath + "/settings.json", JsonUtility.ToJson(settings, true));
     }
@@ -164,6 +151,15 @@ public class GameManager : MonoBehaviour
         trashCounts["Plastic"] = loadedSave.plastic;
         trashCounts["Metal"] = loadedSave.metal;
         trashCounts["Glass"] = loadedSave.glass;
+        remainingTrash = loadedSave.remainingTrash;
+        if (loadedSave.lastTrashSpawn != 0)
+        {
+            lastTrashSpawn = loadedSave.lastTrashSpawn;
+        }
+        else
+        {
+            lastTrashSpawn = 0;
+        }
         if (loadedSave.upgrades1 != null)
         {
             upgrades[0] = loadedSave.upgrades1;
@@ -202,6 +198,9 @@ public class GameManager : MonoBehaviour
             sFXMuted = loadedSettings.sFXMuted;
             musicVolume = loadedSettings.musicVolume;
             sFXVolume = loadedSettings.sFXVolume;
+            allowVibration = loadedSettings.allowVibration;
+            playstationLayout = loadedSettings.playstationLayout;
+            promptsEnabled = loadedSettings.promptsEnabled;
         }
         else
         {
@@ -209,6 +208,9 @@ public class GameManager : MonoBehaviour
             sFXMuted = 1;
             musicVolume = 0.25f;
             sFXVolume = 0.5f;
+            allowVibration = true;
+            playstationLayout = false;
+            promptsEnabled = true;
             SaveSettings();
         }
         isResetting = false;
@@ -229,11 +231,15 @@ public class GameManager : MonoBehaviour
     public void PauseGame(bool isPaused)
     {
         Time.timeScale = isPaused ? 0 : 1;
-        Cursor.visible = isPaused || SceneManager.GetActiveScene().name == "Map";
+        if(isPaused || SceneManager.GetActiveScene().name == "Map")
+        {
+            InputManager.Instance.EnableCursor();
+        }
     }
 
     public void LoadMinigame(TrashType trashType)
     {
+        print(GameObject.Find("MapObjects/RandomTrash").transform.childCount);
         SaveGame();
         GameObject newLoadScreen = Instantiate(loadScreenPrefab, new Vector3(960, 540, 0), Quaternion.identity);
         DontDestroyOnLoad(newLoadScreen);
@@ -278,21 +284,73 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetLastSpawnTime()
+    {
+        lastTrashSpawn = SystemSeconds;
+    }
+
+    public double SystemSeconds
+    {
+        get
+        {
+            return DateTime.Now.Subtract(DateTime.MinValue).TotalSeconds;
+        }
+    }
+
+    public bool AllowVibration
+    {
+        get
+        {
+            return allowVibration;
+        }
+        set
+        {
+            allowVibration = value;
+            InputManager.Instance.SwitchControls();
+            SaveSettings();
+        }
+    }
+
+    public bool PlaystationLayout
+    {
+        get
+        {
+            return playstationLayout;
+        }
+        set
+        {
+            playstationLayout = value;
+            InputManager.Instance.SwitchControls();
+            SaveSettings();
+        }
+    }
+
+    public bool PromptsEnabled
+    {
+        get
+        {
+            return promptsEnabled;
+        }
+        set
+        {
+            promptsEnabled = value;
+            EnablePrompts?.Invoke(value);
+            SaveSettings();
+        }
+    }
+
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         LoadGame();
-        AudioManager.Instance.Load(scene);
     }
 
     public void QuitGame()
     {
-        Application.Quit();
-    }
+        if (true)
+        {
 
-    public enum InputMethod
-    {
-        MKB,
-        Controller
+        }
+        Application.Quit();
     }
 }
 
@@ -309,15 +367,15 @@ struct Settings
 {
     public int musicMuted, sFXMuted;
     public float musicVolume, sFXVolume;
+    public bool allowVibration, playstationLayout, promptsEnabled;
 }
 
 [System.Serializable]
 struct Save
 {
     public Vector3 position;
-    public int plastic;
-    public int metal;
-    public int glass;
+    public int plastic, metal, glass, remainingTrash;
+    public double lastTrashSpawn;
     public int[] upgrades1;
     public int[] upgrades2;
     public int[] upgrades3;

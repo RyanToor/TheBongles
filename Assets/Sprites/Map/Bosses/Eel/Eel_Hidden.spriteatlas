@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Eel_Hidden
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: fa8708b15b88bf44da7447210277064d, type: 3}
+    - {fileID: 2800000, guid: 1335a3d369eea5f44aa29d357aa49deb, type: 3}
+    - {fileID: 2800000, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 3333840535338107679, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: -4286776962041349730, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: -1591629073154091472, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: 91295622303706725, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: -409973875180934386, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: -7741695157168271614, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: -655793307966314545, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: 2230170103985054778, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: 2140792113653731433, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: -1494799667308282220, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: -5570979567062609452, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: -7927536067820782129, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: 6106646777059832707, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: -3913107048728534425, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: 8344306387608807101, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: -1117267727551660305, guid: 0639d8205f2a90f4bb8fef179219f5cc, type: 3}
+  - {fileID: 3333840535338107679, guid: fa8708b15b88bf44da7447210277064d, type: 3}
+  - {fileID: -4286776962041349730, guid: fa8708b15b88bf44da7447210277064d, type: 3}
+  - {fileID: -1591629073154091472, guid: fa8708b15b88bf44da7447210277064d, type: 3}
+  - {fileID: 91295622303706725, guid: fa8708b15b88bf44da7447210277064d, type: 3}
+  - {fileID: 2230170103985054778, guid: fa8708b15b88bf44da7447210277064d, type: 3}
+  - {fileID: -1472535565748158727, guid: 1335a3d369eea5f44aa29d357aa49deb, type: 3}
+  - {fileID: 6387311698586078872, guid: 1335a3d369eea5f44aa29d357aa49deb, type: 3}
+  - {fileID: 2634072797154221726, guid: 1335a3d369eea5f44aa29d357aa49deb, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Eel_Trashy_Idle_3
+  - Eel_Trashy_Idle_2
+  - Eel_Trashy_Idle_1
+  - Eel_Trashy_Idle_0
+  - Eel_Trashy_Idle_7
+  - Eel_Trashy_Idle_6
+  - Eel_Trashy_Idle_5
+  - Eel_Trashy_Idle_4
+  - Eel_Trashy_Idle_9
+  - Eel_Trashy_Idle_8
+  - Eel_Trashy_Idle_14
+  - Eel_Trashy_Idle_15
+  - Eel_Trashy_Idle_12
+  - Eel_Trashy_Idle_13
+  - Eel_Trashy_Idle_10
+  - Eel_Trashy_Idle_11
+  - Eel_Trashy_Idle_3
+  - Eel_Trashy_Idle_2
+  - Eel_Trashy_Idle_1
+  - Eel_Trashy_Idle_0
+  - Eel_Trashy_Idle_4
+  - Eel_Trashy_Rand1_2
+  - Eel_Trashy_Rand1_1
+  - Eel_Trashy_Rand1_0
+  m_RenderDataMap: {}
+  m_Tag: Eel_Hidden
+  m_IsVariant: 0

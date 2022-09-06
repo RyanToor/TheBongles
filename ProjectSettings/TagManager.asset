@@ -16,6 +16,7 @@ TagManager:
   - GameManager
   - Emergency
   - MainCanvas
+  - Slippery
   layers:
   - Default
   - TransparentFX

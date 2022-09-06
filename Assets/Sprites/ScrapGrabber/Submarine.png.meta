@@ -126,6 +126,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -919,6 +920,40 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Submarine_17: -3421771880272239719
+      Submarine_4: -5767386709015500426
+      Submarine_23: 7691969177464392175
+      Submarine_28: 7401639161092271347
+      Submarine_31: 8703350478628551104
+      Submarine_3: 7935637431235430210
+      Submarine_14: 542155705870344299
+      Submarine_13: -1860385297855579461
+      Submarine_19: 881420700846024193
+      Submarine_22: -5528290274524417971
+      Submarine_10: 5928471946245213344
+      Submarine_8: 4457087247208828202
+      Submarine_16: 7233938637228972827
+      Submarine_6: 5658345392934809248
+      Submarine_9: 3070535339473127475
+      Submarine_12: -7413237549926448450
+      Submarine_32: 6787372588124881699
+      Submarine_26: 6710974644876013741
+      Submarine_0: -941222759849540844
+      Submarine_21: 9080068877250226013
+      Submarine_29: 1224347951036901857
+      Submarine_24: -7755574219874715816
+      Submarine_5: -1740886650082209242
+      Submarine_2: 895641037975425111
+      Submarine_1: -7444771728682132349
+      Submarine_15: -6127475070921263315
+      Submarine_30: -8669016921434527525
+      Submarine_20: -8012840461162239670
+      Submarine_25: -4156861480397944683
+      Submarine_7: 5680573607921540426
+      Submarine_11: -7453628076080107409
+      Submarine_18: 5853422910588729095
+      Submarine_27: -8926261740563603364
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

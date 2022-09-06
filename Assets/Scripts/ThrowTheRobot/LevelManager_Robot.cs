@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class LevelManager_Robot : LevelManager
 {
@@ -16,11 +15,12 @@ public class LevelManager_Robot : LevelManager
     public int throwPowerLevel;
 
     private LevelState state;
-    private LevelBuilder levelbuilder;
+    private LevelBuilder levelBuilder;
     private ThrowTheRobotUI uI;
 
     protected override void Awake()
     {
+        base.Awake();
         if (!Application.isEditor)
         {
             floatingDecorations.enabled = true;
@@ -32,9 +32,9 @@ public class LevelManager_Robot : LevelManager
     // Start is called before the first frame update
     protected override void Start()
     {
+        base.Start();
         uI = GameObject.Find("Canvas").GetComponent<ThrowTheRobotUI>();
-        levelbuilder = GameObject.Find("Level").GetComponent<LevelBuilder>();
-        StartCoroutine(CheckLoaded());
+        levelBuilder = GameObject.Find("Level").GetComponent<LevelBuilder>();
         throwParameters.ResetDials();
     }
 
@@ -61,27 +61,15 @@ public class LevelManager_Robot : LevelManager
         }
     }
 
-    private IEnumerator CheckLoaded()
+    protected override IEnumerator CheckLoaded()
     {
-        while (!levelbuilder.isLevelBuilt)
+        while (levelBuilder == null || !levelBuilder.isLevelBuilt)
         {
             yield return null;
         }
-        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         ChangeState(0);
-        AudioManager.Instance.PlayMusic("Throw the Robot");
         GameObject.Find("Bubba").GetComponent<Animator>().enabled = true;
-        StartCoroutine(GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<InputPrompts>().LevelPrompts());
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex])
-            {
-                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause/UpgradeBook").gameObject.SetActive(true);
-                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause").GetComponent<PauseMenu>().UpgradeBook();
-                GameManager.Instance.PauseGame(true);
-                GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] = true;
-            }
-        }
+        StartCoroutine(base.CheckLoaded());
     }
 
     private void ChangeState(LevelState newState)
@@ -94,11 +82,14 @@ public class LevelManager_Robot : LevelManager
                 StartCoroutine(throwParameters.Throw());
                 break;
             case LevelState.fly:
+                AudioManager.Instance.PlayMusicWithFade("Throw the Robot Fly");
                 break;
             case LevelState.move:
+                AudioManager.Instance.PlayMusicWithFade("Throw the Robot Platform");
                 break;
             case LevelState.reel:
                 GameObject.Find("Bubba").GetComponent<Launcher>().Reel();
+                AudioManager.Instance.PlayMusicWithFade("Throw the Robot Bubba");
                 break;
             default:
                 break;
@@ -147,7 +138,8 @@ public class LevelManager_Robot : LevelManager
 
     private void EditorUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard.enterKey.wasPressedThisFrame)
         {
             ChangeState(LevelState.launch);
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Launcher : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Launcher : MonoBehaviour
     public GameObject thrownHand;
     public SpriteRenderer piesSprite;
     public Sprite[] pieSprites;
+
+    [Header("Vibration Data")]
+    [SerializeField] float reelIntensity;
 
     [HideInInspector]
     public bool isReeling, isAngleSet;
@@ -112,6 +116,11 @@ public class Launcher : MonoBehaviour
             if (pauseCoroutine != null)
             {
                 StopCoroutine(pauseCoroutine);
+                arm.gameObject.SetActive(false);
+                if (levelManager.throwPowerLevel == 0)
+                {
+                    thrownHand.SetActive(false);
+                }
                 animator.speed = 1;
             }
             StartCoroutine(ReelIn());
@@ -121,6 +130,7 @@ public class Launcher : MonoBehaviour
 
     public IEnumerator ReelIn()
     {
+        InputManager.VibrationData reelVibration = InputManager.Instance.Vibrate(reelIntensity);
         Vector3 robotStartPos = robot.transform.position;
         float progress = 0;
         animator.SetTrigger("Reel");
@@ -139,6 +149,7 @@ public class Launcher : MonoBehaviour
             }
         }
         Destroy(reelSound);
+        InputManager.Instance.vibrations.Remove(reelVibration);
         animator.SetInteger("Pies", levelManager.Pies);
         animator.SetTrigger("Eat");
         reelStarted = false;
@@ -229,7 +240,8 @@ public class Launcher : MonoBehaviour
 
     private void EditorUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard.rKey.wasPressedThisFrame)
         {
             Reel();
         }

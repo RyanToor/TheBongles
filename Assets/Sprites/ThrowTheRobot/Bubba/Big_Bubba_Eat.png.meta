@@ -66,6 +66,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -460,6 +461,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Big_Bubba_Eat_10: -5948377988913599831
+      Big_Bubba_Eat_11: -2417922572147681376
+      Big_Bubba_Eat_8: -909474297158467643
+      Big_Bubba_Eat_6: -8227405025412419591
+      Big_Bubba_Eat_2: -5156067276974979314
+      Big_Bubba_Eat_12: 4237553608149975749
+      Big_Bubba_Eat_7: -5326680012254700815
+      Big_Bubba_Eat_5: 9128182556366628859
+      Big_Bubba_Eat_4: 5968720706773433128
+      Big_Bubba_Eat_13: 5142610511535793930
+      Big_Bubba_Eat_9: -8962604758993500368
+      Big_Bubba_Eat_3: 1512736407313741248
+      Big_Bubba_Eat_1: 5816870530780310685
+      Big_Bubba_Eat_0: -8719041948934284276
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

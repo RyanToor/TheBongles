@@ -54,6 +54,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -364,6 +365,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Submarine_FuelNumbers_5: 5015229317899991919
+      Submarine_FuelNumbers_8: -5122938536208726774
+      Submarine_FuelNumbers_9: 3391125734079175722
+      Submarine_FuelNumbers_3: -4288703043217546398
+      Submarine_FuelNumbers_0: 5063002908571782833
+      Submarine_FuelNumbers_4: 2234363938880769320
+      Submarine_FuelNumbers_2: 7640300988873453892
+      Submarine_FuelNumbers_1: -8547891651100813913
+      Submarine_FuelNumbers_6: -3162848255872152353
+      Submarine_FuelNumbers_7: -1555387171552027495
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

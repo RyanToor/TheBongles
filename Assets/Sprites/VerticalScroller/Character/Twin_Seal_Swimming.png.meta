@@ -72,6 +72,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -508,6 +509,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Twin_Seal_Swimming_15: 1574353707634694132
+      Twin_Seal_Swimming_4: -1950874816728206912
+      Twin_Seal_Swimming_7: 2719873768218819054
+      Twin_Seal_Swimming_8: -8532363215044720633
+      Twin_Seal_Swimming_3: 1456029997624670524
+      Twin_Seal_Swimming_10: 2918855106242857362
+      Twin_Seal_Swimming_6: 4066780920307548899
+      Twin_Seal_Swimming_5: -107141711196233967
+      Twin_Seal_Swimming_9: -870317061869248615
+      Twin_Seal_Swimming_13: 1857265084224063001
+      Twin_Seal_Swimming_2: 3100924106984285537
+      Twin_Seal_Swimming_12: -927122121243706257
+      Twin_Seal_Swimming_0: 3547960991386003483
+      Twin_Seal_Swimming_1: 5195730928069796839
+      Twin_Seal_Swimming_14: 1144444932352956947
+      Twin_Seal_Swimming_11: 2500882784586001904
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

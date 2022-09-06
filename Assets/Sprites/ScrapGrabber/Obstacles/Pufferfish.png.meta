@@ -66,6 +66,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -460,6 +461,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Pufferfish_3: -7328882374816866238
+      Pufferfish_5: 2758892428433715691
+      Pufferfish_0: -371740909335319690
+      Pufferfish_6: 7478407674237482187
+      Pufferfish_11: 8102719601486012020
+      Pufferfish_1: 83131122054123967
+      Pufferfish_13: -4728722122087121571
+      Pufferfish_7: -7111261801108071560
+      Pufferfish_12: 6940437921451678463
+      Pufferfish_4: -5166930337481690322
+      Pufferfish_2: -9098394080347696226
+      Pufferfish_9: -4125435258472378820
+      Pufferfish_8: 7510016632267959885
+      Pufferfish_10: 7110850868162793504
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

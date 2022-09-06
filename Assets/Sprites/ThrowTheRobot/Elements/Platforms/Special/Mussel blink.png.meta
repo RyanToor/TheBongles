@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -268,6 +269,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Mussel blink_1: 1593715314330016880
+      Mussel blink_3: -4517593551505641258
+      Mussel blink_5: 6353501944967256261
+      Mussel blink_4: 360626982030707638
+      Mussel blink_0: 4306884926498521682
+      Mussel blink_2: -2678596531173097639
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

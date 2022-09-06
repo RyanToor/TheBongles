@@ -48,6 +48,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -316,6 +317,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Whale_Clean_Idle_5: 1345399921792559158
+      Whale_Clean_Idle_0: -3420122239981716186
+      Whale_Clean_Idle_4: -3109173996665135353
+      Whale_Clean_Idle_3: -6647984118004330524
+      Whale_Clean_Idle_1: -1090011099309204032
+      Whale_Clean_Idle_7: -1742315886393714109
+      Whale_Clean_Idle_6: 6089124959453228142
+      Whale_Clean_Idle_2: -5262082476014765561
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

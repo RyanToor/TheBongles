@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Obstacles
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 963e8fbdb7dac7e4baf584f1d8913f84, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 661dbc01fe0b4874d842fe1796d300bb, type: 3}
+  - {fileID: 21300000, guid: 7d68d3b31f669f54b93b71f4d3d79d76, type: 3}
+  - {fileID: -6256494634640490536, guid: 1d078947de07b4347b16fd6252021eb6, type: 3}
+  - {fileID: 5332896236791635370, guid: 1d078947de07b4347b16fd6252021eb6, type: 3}
+  - {fileID: 1710287611819875245, guid: 1d078947de07b4347b16fd6252021eb6, type: 3}
+  - {fileID: 8375422469748817915, guid: 1d078947de07b4347b16fd6252021eb6, type: 3}
+  - {fileID: -5365379857942791381, guid: 1d078947de07b4347b16fd6252021eb6, type: 3}
+  - {fileID: 3926540587986220611, guid: 1d078947de07b4347b16fd6252021eb6, type: 3}
+  - {fileID: -5818906401386137648, guid: 1d078947de07b4347b16fd6252021eb6, type: 3}
+  - {fileID: 21300000, guid: a1333de7d31ecb1439d15254ec781a63, type: 3}
+  - {fileID: 21300000, guid: 7a42fe19b6498f048bc0803beb8c9cf7, type: 3}
+  - {fileID: 21300000, guid: d9d70e294707a2d48867fcc2e4b595bf, type: 3}
+  - {fileID: 5926749249210822052, guid: f2553d9905098304695d3afda8950060, type: 3}
+  - {fileID: -7202331136329805206, guid: f2553d9905098304695d3afda8950060, type: 3}
+  - {fileID: 1775240025905586067, guid: f2553d9905098304695d3afda8950060, type: 3}
+  - {fileID: 8175240307901404163, guid: f2553d9905098304695d3afda8950060, type: 3}
+  - {fileID: 3093992087056957503, guid: f2553d9905098304695d3afda8950060, type: 3}
+  - {fileID: 21300000, guid: 947abffbb6e58fe4aaa9f2d613c70681, type: 3}
+  - {fileID: 21300000, guid: 5eab0f2de78e779429b7f45f6b414c52, type: 3}
+  - {fileID: 21300000, guid: ac44392efb3a120478061747ad8f8e81, type: 3}
+  - {fileID: 21300000, guid: c1ff41fecb712954d8db69b7df0f43a4, type: 3}
+  - {fileID: 21300000, guid: 0e92fc1f14e691b4c9094c971717af7e, type: 3}
+  - {fileID: 21300000, guid: fe3f076f5c97065489c69ea03c7df943, type: 3}
+  - {fileID: -5699529641103719944, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: 7713414345570885106, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: 8514736427044619578, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: -276850509819207132, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: 1784295233473637880, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: 2802755014526840057, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: 8938098700149820407, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: -5042799729565933543, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: 1698725597112956586, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: -8321936686117303201, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: 4795714991716828210, guid: 30cb66af78258bd4c859d2b8e47ef803, type: 3}
+  - {fileID: -4489682952930534020, guid: a6cfbddf9c48c3e409a721e6343a5de1, type: 3}
+  - {fileID: 7358306651024088392, guid: a6cfbddf9c48c3e409a721e6343a5de1, type: 3}
+  - {fileID: 3581282945902432821, guid: a6cfbddf9c48c3e409a721e6343a5de1, type: 3}
+  - {fileID: -932373052787018761, guid: a6cfbddf9c48c3e409a721e6343a5de1, type: 3}
+  - {fileID: -6324657853714966678, guid: a6cfbddf9c48c3e409a721e6343a5de1, type: 3}
+  - {fileID: -6181594399367465956, guid: a6cfbddf9c48c3e409a721e6343a5de1, type: 3}
+  - {fileID: 6851880539319124355, guid: a6cfbddf9c48c3e409a721e6343a5de1, type: 3}
+  - {fileID: 2530143257368117184, guid: a6cfbddf9c48c3e409a721e6343a5de1, type: 3}
+  - {fileID: -4088906949158246437, guid: a6cfbddf9c48c3e409a721e6343a5de1, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Castle island before
+  - Rocks 2
+  - Small island_Animated_0
+  - Small island_Animated_1
+  - Small island_Animated_2
+  - Small island_Animated_3
+  - Small island_Animated_4
+  - Small island_Animated_5
+  - Small island_Animated_6
+  - Spiky stone 1
+  - Bush island
+  - Mast
+  - Bush island animated_2
+  - Bush island animated_3
+  - Bush island animated_0
+  - Bush island animated_1
+  - Bush island animated_4
+  - Rocks 1
+  - Big island
+  - Arch
+  - Spiky stone 2
+  - Castle island after
+  - Small island
+  - Pre-castle and castle animated_10
+  - Pre-castle and castle animated_6
+  - Pre-castle and castle animated_7
+  - Pre-castle and castle animated_4
+  - Pre-castle and castle animated_5
+  - Pre-castle and castle animated_2
+  - Pre-castle and castle animated_3
+  - Pre-castle and castle animated_0
+  - Pre-castle and castle animated_1
+  - Pre-castle and castle animated_8
+  - Pre-castle and castle animated_9
+  - big island animated_8
+  - big island animated_4
+  - big island animated_5
+  - big island animated_6
+  - big island animated_7
+  - big island animated_0
+  - big island animated_1
+  - big island animated_2
+  - big island animated_3
+  m_RenderDataMap: {}
+  m_Tag: Obstacles
+  m_IsVariant: 0

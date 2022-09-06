@@ -7,13 +7,16 @@ public class ThrowInputs : MonoBehaviour
     public Launcher launcher;
     public GameObject powerWheel, powerPointer, anglePointer;
     public float fadeTime, drawDistance, drawPause, powerMin, powerMax, angleMin, angleMax, powerSpeedMin, powerSpeedMax, angleSpeedMin, angleSpeedMax, ballistaDrawSpeed;
+    [Header("Vibration Data")]
+    [SerializeField] float[] launchIntensity;
+    [SerializeField] float[] launchDuration;
 
     [HideInInspector]
     public float power, angle;
     [HideInInspector]
     public bool isLoaded;
 
-    private bool isFaded, isJumpHeld;
+    private bool isFaded, triggered;
     private GameObject robot;
     private LevelManager_Robot levelManager;
 
@@ -29,6 +32,11 @@ public class ThrowInputs : MonoBehaviour
                 child.GetComponent<Image>().color = Color.clear;
             }
         }
+    }
+
+    private void Start()
+    {
+        InputManager.Instance.Jump += Trigger;
     }
 
     public IEnumerator Throw()
@@ -47,7 +55,6 @@ public class ThrowInputs : MonoBehaviour
     private void GetThrowInputs(System.Action<Vector2> callback)
     {
         Vector2 throwValues = Vector2.zero;
-        isJumpHeld = false;
         StartCoroutine(Spin("angle", valueCollected =>
         {
             Debug.Log("Angle Collected : " + valueCollected);
@@ -95,6 +102,7 @@ public class ThrowInputs : MonoBehaviour
         {
             AudioManager.Instance.PlayAudioAtObject("Cannon", launcher.transform.Find("Cannon_Stand").gameObject, 40);
         }
+        InputManager.Instance.Vibrate(launchIntensity[levelManager.throwPowerLevel], launchDuration[levelManager.throwPowerLevel]);
         if (levelManager.throwPowerLevel > 0)
         {
             for (int i = 0; i < 5; i++)
@@ -121,6 +129,7 @@ public class ThrowInputs : MonoBehaviour
 
     public IEnumerator Spin(string type, System.Action<float> callback)
     {
+        levelManager.promptManager.Prompt(0);
         isFaded = false;
         StartCoroutine(Fade(type == "angle"? transform.GetChild(0) : transform.GetChild(1), Color.clear, Color.white));
         while (!isFaded)
@@ -133,9 +142,8 @@ public class ThrowInputs : MonoBehaviour
         //Play spin sound
         while (true)
         {
-            if (Input.GetAxis("Jump") == 1 && !isJumpHeld)
+            if (triggered)
             {
-                isJumpHeld = true;
                 if (pointer == powerPointer)
                 {
                     callback(Mathf.Lerp(powerMax, powerMin, Mathf.Abs(Mathf.DeltaAngle(pointer.transform.rotation.eulerAngles.z, powerWheel.transform.rotation.eulerAngles.z)) / 180));
@@ -151,11 +159,8 @@ public class ThrowInputs : MonoBehaviour
                         callback(45 - Mathf.Clamp(360 - pointer.transform.rotation.eulerAngles.z, 0, 45));
                     }
                 }
+                triggered = false;
                 break;
-            }
-            else if (Input.GetAxis("Jump") == 0 && isJumpHeld)
-            {
-                isJumpHeld = false;
             }
             pointer.transform.Rotate(speed * spinDir * Time.deltaTime * Vector3.back);
             if (pointer == anglePointer)
@@ -205,5 +210,18 @@ public class ThrowInputs : MonoBehaviour
             child.GetComponent<Image>().color = toColour;
         }
         isFaded = true;
+    }
+
+    private void Trigger()
+    {
+        if (levelManager.State == LevelState.launch)
+        {
+            triggered = true;
+        }
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.Jump -= Trigger;
     }
 }

@@ -57,6 +57,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -388,6 +389,18 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      salmon_1: -8020008594795063659
+      salmon_4: -4805654916583651642
+      salmon_3: 8327493530152845531
+      salmon_8: -6612261765536767529
+      salmon_5: 223440763680064145
+      salmon_9: 6559203903487678688
+      salmon_10: -7730170693613957975
+      salmon_6: -8058199046356383241
+      salmon_7: -7641014960671179672
+      salmon_0: 6774393580310161239
+      salmon_2: -3994752063369087336
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

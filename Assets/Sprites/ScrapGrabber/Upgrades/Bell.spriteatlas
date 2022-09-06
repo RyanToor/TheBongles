@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bell
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: c0681be675cf4594c8b9f7e41f22ae92, type: 3}
+    - {fileID: 2800000, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 3099492747633288552, guid: c0681be675cf4594c8b9f7e41f22ae92, type: 3}
+  - {fileID: 4945037801642211991, guid: c0681be675cf4594c8b9f7e41f22ae92, type: 3}
+  - {fileID: -6287299162908264353, guid: c0681be675cf4594c8b9f7e41f22ae92, type: 3}
+  - {fileID: -9200418907024884549, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  - {fileID: -7863436975713877026, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  - {fileID: 3650359422548270077, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  - {fileID: -4198883235668059461, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  - {fileID: 4511945639411484277, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  - {fileID: -2963174702864144119, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  - {fileID: 4169699516828642862, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  - {fileID: 125391835932820309, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  - {fileID: -7831884239907893924, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  - {fileID: 5918136912733210232, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  - {fileID: 6261047046930716513, guid: c4e3610a360575a49bc0d2763c7d8686, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Bell add on_1
+  - Bell add on_0
+  - Bell add on_2
+  - Bell_10
+  - Bell_5
+  - Bell_4
+  - Bell_7
+  - Bell_6
+  - Bell_1
+  - Bell_0
+  - Bell_3
+  - Bell_2
+  - Bell_9
+  - Bell_8
+  m_RenderDataMap: {}
+  m_Tag: Bell
+  m_IsVariant: 0

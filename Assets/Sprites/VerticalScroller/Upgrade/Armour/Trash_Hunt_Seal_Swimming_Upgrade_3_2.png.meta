@@ -120,6 +120,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -892,6 +893,39 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_9: -8271555516454235344
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_7: -3275307692099740189
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_11: 6761406538727611634
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_1: 7897355379635235526
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_23: 236835109012655615
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_26: -3954360854101952780
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_2: -8902213820950154352
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_5: -5335581597595921890
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_15: 2413354465560683435
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_22: 613228964925810963
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_8: 6335091922478837404
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_10: -4592075134190104055
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_18: -7467182291304367032
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_24: 6054653402550524540
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_13: -7585453124724206537
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_3: -897130454514275830
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_12: -858550227349201192
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_21: -458719251028999092
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_4: 42666949455404246
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_25: -9085758026457035439
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_14: -2096873304690714812
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_19: -5514629138425700360
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_17: 4548558358528844975
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_20: -7192009037965418840
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_30: 3142365690795092728
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_0: 458492288867605727
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_27: 5975718166015976816
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_16: 9191209577387076945
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_28: -6280721908621308696
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_6: 1575554850177556391
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_29: 6660049494076392078
+      Trash_Hunt_Seal_Swimming_Upgrade_3_2_31: -4311512389031973522
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

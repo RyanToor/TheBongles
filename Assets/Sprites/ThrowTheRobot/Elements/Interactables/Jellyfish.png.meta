@@ -63,6 +63,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -436,6 +437,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Jellyfish_1: 3468323384984400375
+      Jellyfish_8: 4664913265292160246
+      Jellyfish_2: 9061350252532723052
+      Jellyfish_7: 5081259028579631066
+      Jellyfish_12: 7206391342400263175
+      Jellyfish_9: 7483713750386185885
+      Jellyfish_6: 4392754375380778802
+      Jellyfish_4: -8095093003050493519
+      Jellyfish_3: 3360472189278244205
+      Jellyfish_10: 5736359947974247577
+      Jellyfish_5: 7408578770711283848
+      Jellyfish_11: 8185881636804695497
+      Jellyfish_0: 1965404493759735644
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

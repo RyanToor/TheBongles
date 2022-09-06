@@ -69,6 +69,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -484,6 +485,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Anglerfish_0: 1249149584347041918
+      Anglerfish_12: 9192411203251070049
+      Anglerfish_14: 5351761792592650065
+      Anglerfish_11: 619097972601982679
+      Anglerfish_7: -3057154706283636184
+      Anglerfish_8: 6543454022646112553
+      Anglerfish_3: -5630452716880817349
+      Anglerfish_5: -1950010176421779916
+      Anglerfish_13: 1487020858579720437
+      Anglerfish_9: -396348630050920119
+      Anglerfish_4: 4737544665734063189
+      Anglerfish_6: -5183017729096050356
+      Anglerfish_1: 1728275083561325949
+      Anglerfish_2: -7169718066472726663
+      Anglerfish_10: -1115244000853164754
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

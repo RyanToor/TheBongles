@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelManager_ScrapGrabber : LevelManager
 {
-    public float maxTime, dangerTime, freezeTimeMultiplier, freezeTimeDuration, freezeTimeCooldown, freezeFadeTime, bellDuration, bellCooldownDuration, lightsOutDuration;
+    public float startTime, maxTime, dangerTime, freezeTimeMultiplier, freezeTimeDuration, freezeTimeCooldown, freezeFadeTime, bellDuration, bellCooldownDuration, lightsOutDuration;
     public bool lightsOn = true, loseFuel;
     public LightType[] lights;
     public GameObject freezeCooldownPanel, bellPromptText;
@@ -16,15 +16,11 @@ public class LevelManager_ScrapGrabber : LevelManager
     public GameObject[] bellIndicators;
     public Spawner spawner;
     public Color darkCollectionIndicatorColour;
-
-    [Header("Brainy Settings")]
     public Animator brainy;
-    [Range(0, 100)]
-    public float focusChance;
-    public float shockLength, eyeOffset, focusTime;
-    public Transform eyes, eyePoint, claw;
-    private bool isFocussed;
-    private float currentEyeOffset;
+    public float shockLength;
+
+    [Header("Vibration Data")]
+    [SerializeField] float shockIntensity;
 
     [HideInInspector]
     public float remainingTime;
@@ -38,8 +34,9 @@ public class LevelManager_ScrapGrabber : LevelManager
 
     protected override void Awake()
     {
+        base.Awake();
         freezeFrameAnimator.SetBool("Freeze", true);
-        remainingTime = maxTime;
+        remainingTime = startTime;
         uI = GameObject.Find("Canvas").GetComponent<ScrapGrabberUI>();
         freezeColours = new Color[freezeElements.Length];
         for (int i = 0; i < freezeElements.Length; i++)
@@ -62,34 +59,32 @@ public class LevelManager_ScrapGrabber : LevelManager
         {
             bellIndicator.SetActive(true);
         }
-        currentEyeOffset = eyeOffset;
-        StartCoroutine(CheckLoaded());
         if (!Application.isEditor)
         {
             loseFuel = true;
         }
     }
 
-    private IEnumerator CheckLoaded()
+    private void OnEnable()
+    {
+        InputManager.Instance.PrimaryAbility += CheckFreeze;
+        InputManager.Instance.SecondaryAbility += CheckBell;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+    }
+
+    protected override IEnumerator CheckLoaded()
     {
         while (!Camera.main.GetComponent<Camera_ScrapGrabber>().isInitialised)
         {
             yield return null;
         }
+        promptManager.Prompt(0);
         isLoaded = true;
-        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
-        AudioManager.Instance.PlayMusic("Scrap Grabber");
-        StartCoroutine(GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<InputPrompts>().LevelPrompts());
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex])
-            {
-                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause/UpgradeBook").gameObject.SetActive(true);
-                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause").GetComponent<PauseMenu>().UpgradeBook();
-                GameManager.Instance.PauseGame(true);
-                GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] = true;
-            }
-        }
+        StartCoroutine(base.CheckLoaded());
     }
 
     // Update is called once per frame
@@ -104,27 +99,12 @@ public class LevelManager_ScrapGrabber : LevelManager
             gameEnded = true;
             uI.EndGame();
         }
-        if (Input.GetAxisRaw("Primary Ability") == 1 && !isFreezing && isFreezeEnabled)
-        {
-            StartCoroutine(FreezeTime());
-            AudioManager.Instance.PlaySFX("Freeze");
-        }
-        if (Input.GetAxisRaw("Secondary Ability") == 1 && !(isBellActive || isBellCooling) && isBellEnabled)
-        {
-            StartCoroutine(Bell());
-        }
-        brainy.SetFloat("RandomChance", Random.Range(0f, 100f));
         submarineAnimator.SetFloat("RandomChance", Random.Range(0f, 100f));
         base.Update();
         if (Application.isEditor)
         {
             EditorUpdate();
         }
-    }
-
-    private void FixedUpdate()
-    {
-        BrainyEyes();
     }
 
     public bool LightsOn
@@ -140,6 +120,15 @@ public class LevelManager_ScrapGrabber : LevelManager
             {
                 light.lightComponent.enabled = (light.isBlackoutLight ^ lightsOn);
             }
+        }
+    }
+
+    private void CheckFreeze()
+    {
+        if (!isFreezing && isFreezeEnabled)
+        {
+            StartCoroutine(FreezeTime());
+            AudioManager.Instance.PlaySFX("Freeze");
         }
     }
 
@@ -175,6 +164,14 @@ public class LevelManager_ScrapGrabber : LevelManager
         freezeIcon.color = Color.white;
         freezeFrameAnimator.SetBool("Available", true);
         AudioManager.Instance.PlaySFX("AbilityReady");
+    }
+
+    private void CheckBell()
+    {
+        if (!(isBellActive || isBellCooling) && isBellEnabled)
+        {
+            StartCoroutine(Bell());
+        }
     }
 
     private IEnumerator Bell()
@@ -268,6 +265,7 @@ public class LevelManager_ScrapGrabber : LevelManager
 
     public IEnumerator BrainyShock()
     {
+        InputManager.VibrationData shockVibration = InputManager.Instance.Vibrate(shockIntensity);
         brainy.SetBool("Shock", true);
         float duration = 0;
         AudioSource ElectricEelSource = AudioManager.Instance.PlayAudioAtObject("Electricute", gameObject, 20, true);
@@ -277,42 +275,24 @@ public class LevelManager_ScrapGrabber : LevelManager
             yield return null;
         }
         brainy.SetBool("Shock", false);
+        InputManager.Instance.vibrations.Remove(shockVibration);
         Destroy(ElectricEelSource);
     }
 
-    private void BrainyEyes()
+    private void OnDisable()
     {
-        eyes.position = eyePoint.position + (claw.position - eyePoint.position).normalized * currentEyeOffset;
-        if (!isFocussed)
-        {
-            if (Random.Range(0f, 100f) < focusChance)
-            {
-                StartCoroutine(EyeFocus());
-            }
-        }
-    }
-
-    private IEnumerator EyeFocus()
-    {
-        isFocussed = true;
-        currentEyeOffset = 0;
-        float duration = 0;
-        while (duration < focusTime)
-        {
-            duration += Time.deltaTime;
-            yield return null;
-        }
-        currentEyeOffset = eyeOffset;
-        isFocussed = false;
+        InputManager.Instance.PrimaryAbility -= CheckFreeze;
+        InputManager.Instance.SecondaryAbility -= CheckBell;
     }
 
     private void EditorUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard.lKey.wasPressedThisFrame)
         {
             LightsOn = !LightsOn;
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        if (keyboard.tKey.wasPressedThisFrame)
         {
             if (Time.timeScale == 1)
             {
@@ -328,7 +308,7 @@ public class LevelManager_ScrapGrabber : LevelManager
     [System.Serializable]
     public struct LightType
     {
-        public Light2D lightComponent;
+        public UnityEngine.Rendering.Universal.Light2D lightComponent;
         public bool isBlackoutLight;
     }
 }

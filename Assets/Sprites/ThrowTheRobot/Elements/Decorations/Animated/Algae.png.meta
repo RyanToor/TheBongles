@@ -48,6 +48,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -316,6 +317,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Algae_4: 730000842490790340
+      Algae_3: 3661055746942636926
+      Algae_2: 1077984453238431906
+      Algae_6: 8317698387136027479
+      Algae_0: 7313050984213011898
+      Algae_7: -8059778193792411444
+      Algae_1: 5045297967746654826
+      Algae_5: 8633374602223253248
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

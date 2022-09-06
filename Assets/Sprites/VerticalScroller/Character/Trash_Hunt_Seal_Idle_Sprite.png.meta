@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -326,6 +327,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Trash_Hunt_Seal_Idle_Sprite_2: -4262562579001713526
+      Trash_Hunt_Seal_Idle_Sprite_0: 186757214430992511
+      Trash_Hunt_Seal_Idle_Sprite_4: 7751855329119566583
+      Trash_Hunt_Seal_Idle_Sprite_3: 2517564588906644251
+      Trash_Hunt_Seal_Idle_Sprite_5: -3842797986363625595
+      Trash_Hunt_Seal_Idle_Sprite_1: 2942782772389519964
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -72,6 +72,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -693,6 +694,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Trash_Hunt_Seal_Swimming_Sprite_9: 2652675015203988859
+      Trash_Hunt_Seal_Swimming_Sprite_12: 246708551359399584
+      Trash_Hunt_Seal_Swimming_Sprite_7: 6833611371615542389
+      Trash_Hunt_Seal_Swimming_Sprite_3: 2327235762076767870
+      Trash_Hunt_Seal_Swimming_Sprite_5: -8445287873521105452
+      Trash_Hunt_Seal_Swimming_Sprite_14: 8807951783012548780
+      Trash_Hunt_Seal_Swimming_Sprite_6: -1832271661897229180
+      Trash_Hunt_Seal_Swimming_Sprite_15: 5959034863249740243
+      Trash_Hunt_Seal_Swimming_Sprite_10: 4649681676978081285
+      Trash_Hunt_Seal_Swimming_Sprite_13: -8590696571116771262
+      Trash_Hunt_Seal_Swimming_Sprite_11: 6548730021403716776
+      Trash_Hunt_Seal_Swimming_Sprite_1: 1458211433636705040
+      Trash_Hunt_Seal_Swimming_Sprite_0: 6523245969361514185
+      Trash_Hunt_Seal_Swimming_Sprite_4: -1703103751155240278
+      Trash_Hunt_Seal_Swimming_Sprite_2: 8828365399557140837
+      Trash_Hunt_Seal_Swimming_Sprite_8: -3163786978861419438
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

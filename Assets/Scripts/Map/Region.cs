@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Region : MonoBehaviour
 {
@@ -128,13 +129,17 @@ public class Region : MonoBehaviour
 
     public IEnumerator CheckPrompt()
     {
+        arrow.SetActive(false);
         int storypoint = GameManager.Instance.storyPoint;
         if (bossEnum == BossTypes.Eel && storypoint == 1 || bossEnum == BossTypes.Crab && storypoint == 5 || bossEnum == BossTypes.Whale && storypoint == 9)
         {
             float duration = 0;
             while (duration < arrowWaitDuration)
             {
-                duration += Time.deltaTime;
+                if (GameManager.Instance.gameStarted && GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().isLoaded)
+                {
+                    duration += Time.deltaTime;
+                }
                 yield return null;
             }
             arrow.SetActive(true);
@@ -143,15 +148,16 @@ public class Region : MonoBehaviour
 
     private void EditorUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard.lKey.wasPressedThisFrame)
         {
             Unlock(!isUnlocked);
-            print("Regions Unlocked : " + isUnlocked);
+            Debug.Log("Regions Unlocked : " + isUnlocked);
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (keyboard.kKey.wasPressedThisFrame)
         {
             isStoryCleared = !isStoryCleared;
-            print("Story Cleared :" + boss + " = " + isStoryCleared);
+            Debug.Log("Story Cleared :" + boss + " = " + isStoryCleared);
         }
     }
 

@@ -6,6 +6,11 @@ public class Bubble : MonoBehaviour
 {
     public float floatSpeed, boostForce;
 
+    [Header("Vibration Data")]
+    [SerializeField] float intensity;
+    [SerializeField] float duration;
+    [SerializeField] AnimationCurve curve;
+
     private bool isPopping;
    
     void Awake()
@@ -41,6 +46,7 @@ public class Bubble : MonoBehaviour
         {
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce((collision.gameObject.transform.position - transform.position) * boostForce, ForceMode2D.Impulse);
             Pop();
+            InputManager.Instance.Vibrate(intensity, duration, curve);
         }
     }
 }

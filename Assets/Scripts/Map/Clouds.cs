@@ -11,6 +11,7 @@ public class Clouds : MonoBehaviour
     public GameObject cloudObject, map;
     public Transform[] windSystems;
 
+    private Transform cloudContainer;
     private float width, height, angle;
     private float3 displacement;
     private int2 moveDir;
@@ -21,6 +22,7 @@ public class Clouds : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cloudContainer = GameObject.Find("MapObjects").transform.Find("Clouds");
         angle = UnityEngine.Random.Range(0, 2 * math.PI);
         displacement = new float3(displacementSpeed * Mathf.Cos(angle), displacementSpeed * Mathf.Sin(angle), 0);
         moveDir = new int2((int)math.sign(displacement.x), (int)math.sign(displacement.y));
@@ -32,7 +34,7 @@ public class Clouds : MonoBehaviour
             Vector2 samplePos = new Vector2(sample.x - (width / 2), sample.y - (height / 2));
             if (!(samplePos.magnitude > height))
             {
-                GameObject newCloud = (GameObject)Instantiate(cloudObject, new Vector3(samplePos.x, samplePos.y, 0), Quaternion.identity, gameObject.transform);
+                GameObject newCloud = (GameObject)Instantiate(cloudObject, new Vector3(samplePos.x, samplePos.y, 0), Quaternion.identity, cloudContainer);
                 clouds.Add(newCloud);
             }
         }
@@ -88,7 +90,7 @@ public class Clouds : MonoBehaviour
                 Color col = clouds[i].transform.Find("Sprite").GetComponent<SpriteRenderer>().color;
                 clouds[i].transform.Find("Sprite").GetComponent<SpriteRenderer>().color = new Color(col.r, col.g, col.b, 0);
                 StartCoroutine(clouds[i].GetComponent<Cloud>().Fade(1));
-                GameObject newCloud = Instantiate(cloudObject, clouds[i].transform.position, clouds[i].transform.rotation, gameObject.transform);
+                GameObject newCloud = Instantiate(cloudObject, clouds[i].transform.position, clouds[i].transform.rotation, cloudContainer);
                 StartCoroutine(newCloud.GetComponent<Cloud>().Fade(-1));
                 newCloud.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = clouds[i].transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite;
                 newCloud.GetComponent<Cloud>().originalCloud = false;
@@ -118,7 +120,7 @@ public class Clouds : MonoBehaviour
     [BurstCompile]
     private struct CalculateCloudPosition : IJobParallelFor
     {
-    public NativeArray<float3> basePos, positions;
+        public NativeArray<float3> basePos, positions;
         public NativeArray<bool> teleportedClouds;
         public float3 displacement;
         public float cloudsWidth, cloudsHeight, wiggleAmplitude, wiggleSpeed, time, deltaTime;

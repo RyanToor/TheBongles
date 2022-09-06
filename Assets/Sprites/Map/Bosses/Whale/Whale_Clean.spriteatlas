@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Whale_Clean
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 6ab726e40fbea4c4d9b365bd732c2354, type: 3}
+    - {fileID: 2800000, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -3109173996665135353, guid: 6ab726e40fbea4c4d9b365bd732c2354, type: 3}
+  - {fileID: 1345399921792559158, guid: 6ab726e40fbea4c4d9b365bd732c2354, type: 3}
+  - {fileID: 6089124959453228142, guid: 6ab726e40fbea4c4d9b365bd732c2354, type: 3}
+  - {fileID: -1742315886393714109, guid: 6ab726e40fbea4c4d9b365bd732c2354, type: 3}
+  - {fileID: -3420122239981716186, guid: 6ab726e40fbea4c4d9b365bd732c2354, type: 3}
+  - {fileID: -1090011099309204032, guid: 6ab726e40fbea4c4d9b365bd732c2354, type: 3}
+  - {fileID: -5262082476014765561, guid: 6ab726e40fbea4c4d9b365bd732c2354, type: 3}
+  - {fileID: -6647984118004330524, guid: 6ab726e40fbea4c4d9b365bd732c2354, type: 3}
+  - {fileID: 876393625610698394, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: 5348627262047905320, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: 5317087181621423799, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: -5310716925532951554, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: 7301886955791154970, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: -2455600532115622951, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: -3022452794150092124, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: -9170686861358040928, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: -4017405062778069147, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: -444067271762359295, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: 8178101288760572087, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: -9034823970090276783, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: 161702194427268830, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: -7570520802487516980, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: -5895244886167661147, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  - {fileID: 2737697662518587978, guid: 45ccaf263932f224fb55cfd49ddd3736, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Whale_Clean_Idle_4
+  - Whale_Clean_Idle_5
+  - Whale_Clean_Idle_6
+  - Whale_Clean_Idle_7
+  - Whale_Clean_Idle_0
+  - Whale_Clean_Idle_1
+  - Whale_Clean_Idle_2
+  - Whale_Clean_Idle_3
+  - Whale_Clean_Rand1&Rand2_9
+  - Whale_Clean_Rand1&Rand2_8
+  - Whale_Clean_Rand1&Rand2_5
+  - Whale_Clean_Rand1&Rand2_4
+  - Whale_Clean_Rand1&Rand2_7
+  - Whale_Clean_Rand1&Rand2_6
+  - Whale_Clean_Rand1&Rand2_1
+  - Whale_Clean_Rand1&Rand2_0
+  - Whale_Clean_Rand1&Rand2_3
+  - Whale_Clean_Rand1&Rand2_2
+  - Whale_Clean_Rand1&Rand2_14
+  - Whale_Clean_Rand1&Rand2_15
+  - Whale_Clean_Rand1&Rand2_10
+  - Whale_Clean_Rand1&Rand2_11
+  - Whale_Clean_Rand1&Rand2_12
+  - Whale_Clean_Rand1&Rand2_13
+  m_RenderDataMap: {}
+  m_Tag: Whale_Clean
+  m_IsVariant: 0

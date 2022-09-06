@@ -132,6 +132,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -988,6 +989,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Trash_Hunt_Seal_Idle_Upgrades_5: -8506969002629120005
+      Trash_Hunt_Seal_Idle_Upgrades_21: 6206486414148971006
+      Trash_Hunt_Seal_Idle_Upgrades_28: 1007661486416827984
+      Trash_Hunt_Seal_Idle_Upgrades_7: 1305520884174214673
+      Trash_Hunt_Seal_Idle_Upgrades_1: 8107526497359116599
+      Trash_Hunt_Seal_Idle_Upgrades_12: -1060863452384187158
+      Trash_Hunt_Seal_Idle_Upgrades_22: 7574772142350103538
+      Trash_Hunt_Seal_Idle_Upgrades_20: 6501521205876726234
+      Trash_Hunt_Seal_Idle_Upgrades_2: -3732238646181227970
+      Trash_Hunt_Seal_Idle_Upgrades_25: -5902024847422778364
+      Trash_Hunt_Seal_Idle_Upgrades_9: 8948463153733421738
+      Trash_Hunt_Seal_Idle_Upgrades_23: -420176284805525136
+      Trash_Hunt_Seal_Idle_Upgrades_29: -4384039538212024261
+      Trash_Hunt_Seal_Idle_Upgrades_24: -7685641920311360773
+      Trash_Hunt_Seal_Idle_Upgrades_14: -5515786675739976677
+      Trash_Hunt_Seal_Idle_Upgrades_15: -747441343149837745
+      Trash_Hunt_Seal_Idle_Upgrades_30: 8966051562355164603
+      Trash_Hunt_Seal_Idle_Upgrades_35: 1941082020630572086
+      Trash_Hunt_Seal_Idle_Upgrades_27: -129228674273677335
+      Trash_Hunt_Seal_Idle_Upgrades_26: -362587166346996762
+      Trash_Hunt_Seal_Idle_Upgrades_13: -8555708453258159598
+      Trash_Hunt_Seal_Idle_Upgrades_16: -4976604680736888542
+      Trash_Hunt_Seal_Idle_Upgrades_10: 2370922817570242659
+      Trash_Hunt_Seal_Idle_Upgrades_8: 1066121280821825110
+      Trash_Hunt_Seal_Idle_Upgrades_31: 4324529898226033945
+      Trash_Hunt_Seal_Idle_Upgrades_6: 3152902112322645259
+      Trash_Hunt_Seal_Idle_Upgrades_19: 698742078989472012
+      Trash_Hunt_Seal_Idle_Upgrades_0: -4362964810636366897
+      Trash_Hunt_Seal_Idle_Upgrades_4: -8865835785930404827
+      Trash_Hunt_Seal_Idle_Upgrades_3: 4925229910441665031
+      Trash_Hunt_Seal_Idle_Upgrades_33: -2804444347264901646
+      Trash_Hunt_Seal_Idle_Upgrades_18: 4532962343309114413
+      Trash_Hunt_Seal_Idle_Upgrades_17: -1365300806686271745
+      Trash_Hunt_Seal_Idle_Upgrades_32: -6759030242612857279
+      Trash_Hunt_Seal_Idle_Upgrades_34: 8034588791105790499
+      Trash_Hunt_Seal_Idle_Upgrades_11: 4171170744130772210
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

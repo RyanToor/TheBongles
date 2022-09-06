@@ -57,6 +57,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -388,6 +389,18 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Pre-castle and castle animated_10: -5699529641103719944
+      Pre-castle and castle animated_3: 8938098700149820407
+      Pre-castle and castle animated_8: -8321936686117303201
+      Pre-castle and castle animated_6: 7713414345570885106
+      Pre-castle and castle animated_4: -276850509819207132
+      Pre-castle and castle animated_5: 1784295233473637880
+      Pre-castle and castle animated_9: 4795714991716828210
+      Pre-castle and castle animated_2: 2802755014526840057
+      Pre-castle and castle animated_1: 1698725597112956586
+      Pre-castle and castle animated_0: -5042799729565933543
+      Pre-castle and castle animated_7: 8514736427044619578
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

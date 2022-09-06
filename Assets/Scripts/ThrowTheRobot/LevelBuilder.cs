@@ -39,10 +39,10 @@ public class LevelBuilder : MonoBehaviour
                 biomeEndPoints[i] += biomeLengths[j];
             }
         }
-        PlaceLevel();
+        StartCoroutine(PlaceLevel());
     }
 
-    private void PlaceLevel()
+    private IEnumerator PlaceLevel()
     {
         int lastTileIndex = int.MaxValue;
         for (int i = 0; i < levelLength; i++)
@@ -85,6 +85,7 @@ public class LevelBuilder : MonoBehaviour
                     break;
                 }
             }
+            yield return null;
         }
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager_Robot>();
         levelManager.floatingDecorations.objectsToAdd.AddRange(GameObject.FindGameObjectsWithTag("UpgradeButton"));
@@ -136,6 +137,10 @@ public class LevelBuilder : MonoBehaviour
             if (segmentsPlaced == 0)
             {
                 spriteRenderer.sortingOrder = 3;
+            }
+            else
+            {
+                spriteRenderer.sortingOrder = -1;
             }
             spriteRenderer.sprite = finalBlockerSprites[spriteToPlace].sprite;
             totalXDisplacement += finalBlockerSprites[spriteToPlace].yDifference;
@@ -228,6 +233,7 @@ public class LevelBuilder : MonoBehaviour
         {
             birdCoverage += Random.Range(birdMinSeparation, birdMaxSeparation);
             Instantiate(birdPrefab, Vector3.right * birdCoverage, Quaternion.identity, transform.Find("Birds"));
+            yield return null;
         }
         for (int i = 0; i < blockerSprites.Length; i++)
         {

@@ -72,6 +72,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -508,6 +509,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Whale_Clean_Rand1&Rand2_10: 161702194427268830
+      Whale_Clean_Rand1&Rand2_4: -5310716925532951554
+      Whale_Clean_Rand1&Rand2_6: -2455600532115622951
+      Whale_Clean_Rand1&Rand2_1: -3022452794150092124
+      Whale_Clean_Rand1&Rand2_8: 5348627262047905320
+      Whale_Clean_Rand1&Rand2_9: 876393625610698394
+      Whale_Clean_Rand1&Rand2_13: 2737697662518587978
+      Whale_Clean_Rand1&Rand2_14: 8178101288760572087
+      Whale_Clean_Rand1&Rand2_11: -7570520802487516980
+      Whale_Clean_Rand1&Rand2_0: -9170686861358040928
+      Whale_Clean_Rand1&Rand2_2: -444067271762359295
+      Whale_Clean_Rand1&Rand2_12: -5895244886167661147
+      Whale_Clean_Rand1&Rand2_15: -9034823970090276783
+      Whale_Clean_Rand1&Rand2_7: 7301886955791154970
+      Whale_Clean_Rand1&Rand2_3: -4017405062778069147
+      Whale_Clean_Rand1&Rand2_5: 5317087181621423799
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

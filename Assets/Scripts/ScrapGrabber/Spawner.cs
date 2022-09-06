@@ -6,29 +6,31 @@ using Unity.Collections;
 using UnityEngine.Jobs;
 using Unity.Jobs;
 using Unity.Burst;
+using UnityEngine.InputSystem;
 
 public class Spawner : MonoBehaviour
 {
     [Range(0, 100)]
     public float startObstacleSpawnChance, endObstacleSpawnChance;
-    public float startSpeed, speedIncreaseRate, endTime, maxAngle, maxYDisplacement, escapeSpeedMultiplier;
+    public float startWidth, startWidthPeriod, widthChangePeriod, startSpeed, speedIncreaseRate, endTime, maxAngle, maxYDisplacement, escapeSpeedMultiplier;
     public SpawnSet[] spawnSets;
     public bool spawnLeft, spawnRight;
 
     [HideInInspector]
     public List<GameObject> spawnedObjects = new List<GameObject>(), objectsToRemove = new List<GameObject>(), destroyRequests = new List<GameObject>();
 
-    private float speed;
+    private float speed, finalWidth;
     private float[] timesSinceLastSpawn, spawnChangeDurations, nextRandomIntervals;
     private Vector2 prevSpawnPos, prevSpawnDim, isPrevSpawnLeft;
     private Bounds playArea;
     private TransformAccessArray transformAccessArray;
-    private NativeList<bool> rotatingObjects, moveVertical, isEscaping;
+    private NativeList<bool> rotatingObjects, moveVertical, isEscaping, ignoreIndicies;
     private NativeList<float> speedMultipliers, seeds;
     private NativeList<float3> startPosList;
     private List<bool> willEscape = new List<bool>();
     private bool[] isRandomIntervalSet;
     private LevelManager_ScrapGrabber levelManager;
+    private BoxCollider2D boxCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class Spawner : MonoBehaviour
         rotatingObjects = new NativeList<bool>(0, Allocator.Persistent);
         moveVertical = new NativeList<bool>(0, Allocator.Persistent);
         isEscaping = new NativeList<bool>(0, Allocator.Persistent);
+        ignoreIndicies = new NativeList<bool>(0, Allocator.Persistent);
         playArea = GetComponent<BoxCollider2D>().bounds;
         timesSinceLastSpawn = new float[spawnSets.Length];
         spawnChangeDurations = new float[spawnSets.Length];
@@ -50,6 +53,29 @@ public class Spawner : MonoBehaviour
         {
             spawnChangeDurations[i] = spawnSets[i].timeEnd - spawnSets[i].timeStart;
         }
+        boxCollider = GetComponent<BoxCollider2D>();
+        finalWidth = boxCollider.size.x;
+        boxCollider.size = new Vector2(startWidth, boxCollider.size.y);
+        StartCoroutine(ExpandSpawner());
+    }
+
+    private IEnumerator ExpandSpawner()
+    {
+        float duration = 0;
+        while (duration < startWidthPeriod)
+        {
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        duration = 0;
+        float boxHeight = boxCollider.size.y;
+        while (duration < widthChangePeriod)
+        {
+            boxCollider.size = new Vector2(Mathf.Lerp(startWidth, finalWidth, duration / widthChangePeriod), boxHeight);
+            duration += Time.deltaTime;
+            yield return null;
+        }
+        boxCollider.size = new Vector3(finalWidth, boxHeight);
     }
 
     // Update is called once per frame
@@ -67,6 +93,22 @@ public class Spawner : MonoBehaviour
                 Spawn(i);
             }
         }
+        List<GameObject> childObjects = new();
+        foreach (GameObject oldObject in objectsToRemove)
+        {
+            if (spawnedObjects.Contains(oldObject))
+            {
+                ignoreIndicies[spawnedObjects.IndexOf(oldObject)] = true;
+            }
+            else
+            {
+                childObjects.Add(oldObject);
+            }
+        }
+        foreach (GameObject childObject in childObjects)
+        {
+            objectsToRemove.Remove(childObject);
+        }
         CalculateObjectTransform calculateFloatTransform = new CalculateObjectTransform
         {
             time = Time.time,
@@ -79,7 +121,8 @@ public class Spawner : MonoBehaviour
             seeds = seeds,
             speed = speed,
             moveVertical = moveVertical,
-            isEscaping = isEscaping
+            isEscaping = isEscaping,
+            ignoreIndices = ignoreIndicies
         };
         JobHandle floatingObjectsJob = calculateFloatTransform.Schedule(transformAccessArray);
         floatingObjectsJob.Complete();
@@ -98,9 +141,16 @@ public class Spawner : MonoBehaviour
         }
         for (int i = spawnedObjects.Count - 1; i >= 0; i--)
         {
-            if (Mathf.Abs(spawnedObjects[i].transform.position.x) > playArea.extents.x + 1 || spawnedObjects[i].transform.position.y > 6f)
+            if (spawnedObjects[i] != null)
             {
-                objectsToDestroy.Add(spawnedObjects[i]);
+                if (Mathf.Abs(spawnedObjects[i].transform.position.x) > boxCollider.bounds.extents.x + 1 || spawnedObjects[i].transform.position.y > 6f)
+                {
+                    objectsToDestroy.Add(spawnedObjects[i]);
+                }
+            }
+            else
+            {
+                RemoveFromLists(spawnedObjects[i]);
             }
         }
         foreach (GameObject objectToDestroy in objectsToDestroy)
@@ -154,7 +204,8 @@ public class Spawner : MonoBehaviour
     {
         timesSinceLastSpawn[spawnSetIndex] = 0;
         SpawnSet spawnSet = spawnSets[spawnSetIndex];
-        GameObject objectToSpawn = spawnSet.prefabs[UnityEngine.Random.Range(0, spawnSet.prefabs.Length)];
+        int spawnIndex = UnityEngine.Random.Range(0, spawnSet.prefabs.Length);
+        GameObject objectToSpawn = spawnSet.prefabs[spawnIndex];
         bool isSpawnLeft = UnityEngine.Random.value > 0.5f;
         Vector3 spawnPoint;
         if (spawnSet.moveVertical)
@@ -163,7 +214,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            spawnPoint = new Vector3(spawnLeft && spawnRight ? isSpawnLeft ? playArea.min.x : playArea.max.x : spawnLeft ? playArea.min.x : playArea.max.x, UnityEngine.Random.Range(playArea.min.y, playArea.max.y));
+            spawnPoint = new Vector3(spawnLeft && spawnRight ? isSpawnLeft ? boxCollider.bounds.min.x : boxCollider.bounds.max.x : spawnLeft ? boxCollider.bounds.min.x : boxCollider.bounds.max.x, UnityEngine.Random.Range(playArea.min.y, playArea.max.y));
         }
         GameObject newObject = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity, transform);
         newObject.transform.localScale = Vector3.Scale(newObject.transform.localScale, newObject.transform.position.x > 0 ? new Vector3(-1, 1, 1) : Vector3.one);
@@ -176,6 +227,11 @@ public class Spawner : MonoBehaviour
         speedMultipliers.Add(UnityEngine.Random.Range(spawnSet.minSpeedMultiplier, spawnSet.maxSpeedMultiplier) * newObject.transform.position.x > 0 && !spawnSet.moveVertical ? -1 : 1);
         seeds.Add(UnityEngine.Random.Range(0, 100000));
         willEscape.Add(spawnSet.willEscape);
+        ignoreIndicies.Add(false);
+        if (spawnSet.name == "Puzzles")
+        {
+            newObject.GetComponent<Animator>().SetInteger("PuzzleIndex", spawnIndex);
+        }
         if (newObject.TryGetComponent(out Obstacle obstacleScript))
         {
             obstacleScript.spawner = this;
@@ -199,13 +255,6 @@ public class Spawner : MonoBehaviour
         if (spawnedObjects.Contains(objectToRemove))
         {
             indexToRemove = spawnedObjects.IndexOf(objectToRemove);
-        }
-        else
-        {
-            indexToRemove = -1;
-        }
-        if (indexToRemove >= 0)
-        {
             spawnedObjects.RemoveAtSwapBack(indexToRemove);
             transformAccessArray.RemoveAtSwapBack(indexToRemove);
             seeds.RemoveAtSwapBack(indexToRemove);
@@ -215,6 +264,7 @@ public class Spawner : MonoBehaviour
             willEscape.RemoveAtSwapBack(indexToRemove);
             moveVertical.RemoveAtSwapBack(indexToRemove);
             isEscaping.RemoveAtSwapBack(indexToRemove);
+            ignoreIndicies.RemoveAtSwapBack(indexToRemove);
         }
     }
 
@@ -268,38 +318,42 @@ public class Spawner : MonoBehaviour
                 }
             }
             spawnedObjects[escapingIndicies[i]].GetComponent<Animator>().speed = escapeSpeedMultiplier;
-            AudioManager.Instance.PlayAudioAtObject("FishEscaping", gameObject, 20, false);
+            AudioManager.Instance.PlayAudioAtObject("FishEscaping", spawnedObjects[escapingIndicies[i]], 50, false, AudioRolloffMode.Linear);
         }
     }
 
     [BurstCompile]
     private struct CalculateObjectTransform : IJobParallelForTransform
     {
-        [ReadOnly] public NativeList<bool> rotatingObjects, moveVertical, isEscaping;
+        [ReadOnly] public NativeList<bool> rotatingObjects, moveVertical, isEscaping, ignoreIndices;
         [ReadOnly] public NativeList<float> speedMultipliers, seeds;
         [ReadOnly] public NativeList<float3> startPosList;
         public float maxAngle, maxYDisplacement, time, deltaTime, speed;
 
         public void Execute(int index, TransformAccess transform)
         {
-            if (moveVertical[index])
+            if (ignoreIndices[index] == false)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y + speedMultipliers[index] * speed * deltaTime * (isEscaping[index]? 1 : ((math.sin(time + seeds[index]) + 0.5f) / 2)), startPosList[index].z);
-            }
-            else
-            {
-                transform.position = new Vector3(transform.position.x + speedMultipliers[index] * speed * deltaTime, startPosList[index].y + maxYDisplacement * math.sin(time + seeds[index]), startPosList[index].z);
-            }
-            if (rotatingObjects[index] == true)
-            {
-                transform.localRotation = Quaternion.SlerpUnclamped(Quaternion.AngleAxis(-maxAngle, Vector3.forward), Quaternion.AngleAxis(maxAngle, Vector3.forward), (math.cos(time + seeds[index]) + 1) / 2);
+                if (moveVertical[index])
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y + speedMultipliers[index] * speed * deltaTime * (isEscaping[index] ? 1 : ((math.sin(time + seeds[index]) + 0.5f) / 2)), startPosList[index].z);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x + speedMultipliers[index] * speed * deltaTime, startPosList[index].y + maxYDisplacement * math.sin(time + seeds[index]), startPosList[index].z);
+                }
+                if (rotatingObjects[index] == true)
+                {
+                    transform.localRotation = Quaternion.SlerpUnclamped(Quaternion.AngleAxis(-maxAngle, Vector3.forward), Quaternion.AngleAxis(maxAngle, Vector3.forward), (math.cos(time + seeds[index]) + 1) / 2);
+                }
             }
         }
     }
 
     private void EditorUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard.eKey.wasPressedThisFrame)
         {
             Escape();
         }
@@ -313,6 +367,7 @@ public class Spawner : MonoBehaviour
         rotatingObjects.Dispose();
         moveVertical.Dispose();
         isEscaping.Dispose();
+        ignoreIndicies.Dispose();
         transformAccessArray.Dispose();
     }
 

@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UpgradeMenu : MonoBehaviour
 {
+    public Animator upgradeIconAnimator;
+    public GameObject defaultButton, gamepadPrompt;
     public VideoManager videoManager;
     public float lerpSpeed, lerpDir = -1, examplePanelPauseDuration, examplePanelScaleSpeed, storyUpgradeBlinkDuration;
     public Vector3 closedPos, openPos;
@@ -12,6 +16,7 @@ public class UpgradeMenu : MonoBehaviour
     public List<Sprite> sprites;
     public List<Text> trashReadouts;
     public Button upgradeButton;
+    public Transform bumperButtons;
     public GameObject[] tabs, storyCostContainers;
     public UpgradePanel[] upgradeCosts;
     public Sprite[] storySprites;
@@ -20,6 +25,8 @@ public class UpgradeMenu : MonoBehaviour
     public UpgradeButton[] upgradeButtons;
     public RectTransform upgradeExamplePanel;
 
+    [SerializeField] private Sprite gamepadButton, playstationButton;
+
     private AudioManager audioManager;
     private float lerpPos = 0;
     private readonly string[] trashNames = new string[] { "Plastic", "Metal", "Glass" };
@@ -27,8 +34,19 @@ public class UpgradeMenu : MonoBehaviour
     private Coroutine currentExampleCoroutine, storyButtonBlink;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        foreach (UpgradeButton button in upgradeButtons)
+        {
+            button.upgradeMenu = this;
+        }
+    }
+
+    private void Start()
+    {
+        InputManager.Instance.UpgradeMenu += FlipLerpDir;
+        InputManager.Instance.Shoulder += CheckShoulderTabSwitch;
+        InputManager.Instance.SwitchControlScheme += ToggleGamepadIcons;
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         currentTabIndex = 0;
     }
@@ -40,10 +58,6 @@ public class UpgradeMenu : MonoBehaviour
             lerpPos = Mathf.Clamp(Mathf.Lerp(0, 1, lerpPos + lerpDir * lerpSpeed), 0, 1);
             transform.localPosition = Vector3.Lerp(closedPos, openPos, lerpPos);
         }
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            FlipLerpDir();
-        }
         if (Application.isEditor)
         {
             EditorUpdate();
@@ -52,10 +66,6 @@ public class UpgradeMenu : MonoBehaviour
 
     public void RefreshReadouts()
     {
-        foreach (UpgradeButton button in upgradeButtons)
-        {
-            button.upgradeMenu = this;
-        }
         int trashToRefresh;
         if (GameManager.Instance.trashCounts["Glass"] > 0)
         {
@@ -89,15 +99,21 @@ public class UpgradeMenu : MonoBehaviour
             trashReadouts[i].text = GameManager.Instance.trashCounts[trashReadouts[i].gameObject.name].ToString();
         }
         transform.Find("LeftPanel/TrashCount").GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
+        bool upgradeAvailable = false;
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
             int upgradeTier = GameManager.Instance.upgrades[currentTabIndex][i];
             upgradeButtons[i].upgradeIndicies = new Vector3Int(currentTabIndex, i, upgradeTier);
             upgradeButtons[i].upgrade = upgradeCosts[currentTabIndex].upgrades[i];
-            upgradeButtons[i].UpdateContents(GameManager.Instance.upgrades[currentTabIndex][i], UpgradeAffordabilityCheck(new Vector3Int(currentTabIndex, i, upgradeTier)));
+            bool currentUpgradeAvailable = UpgradeAffordabilityCheck(new Vector3Int(currentTabIndex, i, upgradeTier));
+            upgradeButtons[i].UpdateContents(GameManager.Instance.upgrades[currentTabIndex][i], currentUpgradeAvailable);
+            if (currentUpgradeAvailable)
+            {
+                upgradeAvailable = true;
+            }
         }
         int currentLevel = GameManager.Instance.MaxRegion();
-        bool upgradeReady = true;
+        bool storyUpgradeReady = true;
         if (currentLevel < 4 && GameManager.Instance.storyPoint != 5 && GameManager.Instance.storyPoint != 9)
         {
             transform.Find("LeftPanel/UpgradeBackground/Story").gameObject.SetActive(true);
@@ -113,7 +129,7 @@ public class UpgradeMenu : MonoBehaviour
                     storyCostContainers[i].transform.Find("BarFill").GetComponent<Image>().color = (barFill.x == 1) ? barAvailableColour : barUnavailableColour;
                     if (barFill.x < 1)
                     {
-                        upgradeReady = false;
+                        storyUpgradeReady = false;
                     }
                 }
                 else
@@ -121,12 +137,12 @@ public class UpgradeMenu : MonoBehaviour
                     storyCostContainers[i].SetActive(false);
                 }
             }
-            transform.Find("LeftPanel/UpgradeBackground/Story").GetComponent<Image>().sprite = storySprites[currentLevel - 1];
+            transform.Find("LeftPanel/UpgradeBackground/Story/UpgradeStoryButton/StoryImage").GetComponent<Image>().sprite = storySprites[currentLevel - 1];
         }
         else
         {
             transform.Find("LeftPanel/UpgradeBackground/Story").gameObject.SetActive(false);
-            upgradeReady = false;
+            storyUpgradeReady = false;
         }
         switch (currentLevel)
         {
@@ -146,30 +162,46 @@ public class UpgradeMenu : MonoBehaviour
             default:
                 break;
         }
-        upgradeButton.interactable = upgradeReady;
-        if (upgradeReady && gameObject.activeSelf)
+        upgradeButton.interactable = storyUpgradeReady;
+        foreach (UpgradeButton upgradeButtonInstance in upgradeButtons)
         {
-            if (storyButtonBlink == null)
-            {
-                storyButtonBlink = StartCoroutine(StoryButtonBlink());
-            }
+            Navigation newNavigation = upgradeButtonInstance.gameObject.GetComponent<Button>().navigation;
+            newNavigation.selectOnUp = storyUpgradeReady ? upgradeButton : null;
+            upgradeButtonInstance.gameObject.GetComponent<Button>().navigation = newNavigation;
         }
-        else
-        {
-            if (storyButtonBlink != null)
-            {
-                StopCoroutine(storyButtonBlink);
-                storyButtonBlink = null;
-            }
-        }
+        transform.Find("LeftPanel/UpgradeBackground/Story/UpgradeStoryButton").GetComponent<Image>().color = storyUpgradeReady ? upgradeAvailableColour : Color.white;
+        ToggleGamepadIcons();
+        upgradeIconAnimator.SetBool("Available", storyUpgradeReady || upgradeAvailable);
     }
 
     public void FlipLerpDir()
     {
         if (GameManager.Instance.storyPoint > 1)
         {
-            print("Upgrade Menu Dir Flipped");
+            Debug.Log("Upgrade Menu Dir Flipped");
             lerpDir *= -1;
+        }
+        if (lerpDir == -1)
+        {
+            InputManager.Instance.CloseMenu(transform);
+        }
+        else
+        {
+            InputManager.Instance.SetSelectedButton(defaultButton);
+            InputManager.Instance.SetBackButton(gameObject.transform.Find("LeftPanel/TrashCount").gameObject.GetComponent<Button>());
+            InputManager.Instance.EnableUIInput();
+        }
+    }
+
+    private void CheckShoulderTabSwitch(int direction)
+    {
+        int desiredTab = currentTabIndex + direction;
+        if (desiredTab >= 0 && desiredTab < tabs.Length)
+        {
+            SwitchTab(tabs[desiredTab]);
+            GameObject currentlySelectedObject = EventSystem.current.currentSelectedGameObject;
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(currentlySelectedObject);
         }
     }
 
@@ -212,13 +244,11 @@ public class UpgradeMenu : MonoBehaviour
             bool canAffordUpgrade = true;
             for (int i = 0; i < upgradeCost.Length; i++)
             {
-                //print(upgradeCost[i].type.ToString() + " : " + GameManager.Instance.trashCounts[upgradeCost[i].type.ToString()] + " / " + upgradeCost[i].cost);
                 if (GameManager.Instance.trashCounts[upgradeCost[i].type.ToString()] < upgradeCost[i].cost)
                 {
                     canAffordUpgrade = false;
                 }
             }
-            //print(canAffordUpgrade);
             return canAffordUpgrade;
         }
         else
@@ -311,19 +341,38 @@ public class UpgradeMenu : MonoBehaviour
         }
     }
 
+    private void ToggleGamepadIcons()
+    {
+        bool isGamepad = InputManager.Instance.playerInput.currentControlScheme == "Gamepad";
+        foreach (Transform item in bumperButtons)
+        {
+            item.gameObject.SetActive(isGamepad);
+            item.Find("Text").GetComponent<Text>().text = GameManager.Instance.playstationLayout ? item.name == "LB" ? "L1" : "R1" : item.name == "LB" ? "LB" : "RB";
+        }
+        gamepadPrompt.SetActive(isGamepad);
+        gamepadPrompt.GetComponent<Image>().sprite = GameManager.Instance.playstationLayout ? playstationButton : gamepadButton;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.UpgradeMenu -= FlipLerpDir;
+        InputManager.Instance.Shoulder -= CheckShoulderTabSwitch;
+        InputManager.Instance.SwitchControlScheme -= ToggleGamepadIcons;
+    }
+
     private void EditorUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.U))
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard.uKey.wasPressedThisFrame)
         {
             for (int i = 0; i < upgradeCosts.Length; i++)
             {
                 for (int j = 0; j < upgradeCosts[i].upgrades.Length; j++)
                 {
                     GameManager.Instance.upgrades[i][j] = 0;
-                    RefreshReadouts();
                 }
             }
-            print("Upgrades Reset");
+            Debug.Log("Upgrades Reset");
             RefreshReadouts();
         }
     }

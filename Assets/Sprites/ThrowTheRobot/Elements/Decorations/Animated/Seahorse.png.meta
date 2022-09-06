@@ -45,6 +45,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -292,6 +293,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Seahorse_4: 8880137704626499636
+      Seahorse_1: 3152794796827760949
+      Seahorse_0: -675077305428329604
+      Seahorse_2: -9217003658105536024
+      Seahorse_6: 2806910568339326767
+      Seahorse_3: 4581944153398848666
+      Seahorse_5: -1920643227733524748
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -51,6 +51,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -340,6 +341,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Bird scare_4: 504770118124234277
+      Bird scare_2: -8193624502247741708
+      Bird scare_3: -523233229525060952
+      Bird scare_8: 4239912070247252536
+      Bird scare_0: -663916673708630524
+      Bird scare_6: 236861335537423296
+      Bird scare_7: -9097609890002908568
+      Bird scare_1: -6547367029952121015
+      Bird scare_5: 6075642838834355975
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

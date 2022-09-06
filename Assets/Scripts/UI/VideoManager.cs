@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -9,6 +10,7 @@ public class VideoManager : MonoBehaviour
     public Image background;
     public Cutscene[] cutScenes;
     public int testScene;
+    public Button upgradeButton;
 
     private VideoPlayer videoPlayer;
     private RawImage image;
@@ -16,16 +18,24 @@ public class VideoManager : MonoBehaviour
     private Image frame;
     private bool isPlayingCutscene;
     public int currentScene = 0, currentCutscene = 0;
+    private InputActionMap savedActionMap;
+    private PromptManager promptManager;
 
     // Start is called before the first frame update
     void Awake()
     {
         frame = transform.Find("Frame").GetComponent<Image>();
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
+        promptManager = GameObject.Find("UI/Prompts").GetComponent<PromptManager>();
         videoPlayer = GetComponent<VideoPlayer>();
         image = GetComponent<RawImage>();
         videoPlayer.targetTexture.Release();
         videoPlayer.SetTargetAudioSource(0, audioManager.sfxSource);
+    }
+
+    private void Start()
+    {
+        InputManager.Instance.Proceed += StopLoop;
     }
 
     public void CheckCutscene()
@@ -35,10 +45,6 @@ public class VideoManager : MonoBehaviour
             if (cutScenes[i].storyPoint == GameManager.Instance.storyPoint)
             {
                 PlayCutscene(i);
-                if ((GameManager.Instance.storyPoint == 2 || GameManager.Instance.storyPoint == 6 || GameManager.Instance.storyPoint == 10) && GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().lerpDir == -1)
-                {
-                    GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().FlipLerpDir();
-                }
             }
         }
     }
@@ -53,8 +59,9 @@ public class VideoManager : MonoBehaviour
 
     public void PlayCutscene(int cutscene)
     {
-        GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().startPrompted = true;
-        GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().coroutines.Add(StartCoroutine(GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().Fade(-1, 0.1f)));
+        promptManager.CancelPrompt();
+        savedActionMap = InputManager.Instance.playerInput.currentActionMap;
+        InputManager.Instance.playerInput.SwitchCurrentActionMap("Video");
         currentCutscene = cutscene;
         GameObject.Find("BongleIsland").GetComponent<BongleIsland>().isInputEnabled = false;
         background.enabled = true;
@@ -79,7 +86,7 @@ public class VideoManager : MonoBehaviour
             }
             if (cutScenes[currentCutscene].scenes[currentScene].isLooping)
             {
-                GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().Prompt(1);
+                promptManager.Prompt(1);
             }
             if (cutScenes[currentCutscene].scenes[currentScene].audio != null)
             {
@@ -107,10 +114,6 @@ public class VideoManager : MonoBehaviour
             while (videoPlayer.frame < System.Convert.ToInt64(video.frameCount) - 1 || videoPlayer.isLooping)
             {
                 yield return null;
-                if (Input.GetAxis("Jump") == 1 || Input.GetMouseButtonDown(0))
-                {
-                    videoPlayer.isLooping = false;
-                }
             }
             if (currentScene != cutScenes[currentCutscene].scenes.Length)
             {
@@ -138,6 +141,11 @@ public class VideoManager : MonoBehaviour
         {
             yield return null;
         }
+        InputManager.Instance.playerInput.currentActionMap = savedActionMap;
+        if ((GameManager.Instance.storyPoint == 2 || GameManager.Instance.storyPoint == 6 || GameManager.Instance.storyPoint == 10) && GameObject.Find("UI/Upgrades").GetComponent<UpgradeMenu>().lerpDir == -1)
+        {
+            upgradeButton.onClick?.Invoke();
+        }
         GameManager.Instance.storyPoint++;
         Debug.Log("Story Point : " + GameManager.Instance.storyPoint);
         videoPlayer.enabled = false;
@@ -150,30 +158,35 @@ public class VideoManager : MonoBehaviour
             GameObject.Find("CloudCover").SetActive(false);
         }
         GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().UpdateRegionsUnlocked();
-        GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().startPrompted = false;
-        GameObject.Find("UI/Prompts").GetComponent<InputPrompts>().ResetTimers();
+        GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().isLoaded = true;
+        promptManager.Prompt(0);
         GameObject.FindGameObjectWithTag("Player").GetComponent<BongleIsland>().isInputEnabled = true;
-        Cursor.visible = true;
+        InputManager.Instance.EnableCursor();
         foreach (Transform region in GameObject.Find("BossRegions").transform)
         {
             if (region.Find("BossIsland/Arrow").gameObject.activeSelf)
             {
                 region.Find("BossIsland/Arrow").gameObject.SetActive(false);
             }
-            if (GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().arrowCoroutine != null)
-            {
-                StopCoroutine(GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Map>().arrowCoroutine);
-            }
+        }
+    }
+
+    private void StopLoop()
+    {
+        if (videoPlayer != null)
+        {
+            videoPlayer.isLooping = false;
         }
     }
 
     void EditorUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard.vKey.wasPressedThisFrame)
         {
             PlayCutscene(testScene);
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (keyboard.bKey.wasPressedThisFrame)
         {
             videoPlayer.frame = System.Convert.ToInt64(cutScenes[currentCutscene].scenes[currentScene].video.frameCount - fadeFramesBefore);
         }

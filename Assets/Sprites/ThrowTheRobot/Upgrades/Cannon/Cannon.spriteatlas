@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cannon
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: f56806a266ee5cd4aab9cc24547b9a05, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 7210445287802566445, guid: 263ec8c0aab1c3d43940d482246cf83d, type: 3}
+  - {fileID: -5197445638325688846, guid: 263ec8c0aab1c3d43940d482246cf83d, type: 3}
+  - {fileID: 4897767389531326932, guid: 263ec8c0aab1c3d43940d482246cf83d, type: 3}
+  - {fileID: -4010959181518419721, guid: 263ec8c0aab1c3d43940d482246cf83d, type: 3}
+  - {fileID: 2749472201747689220, guid: 263ec8c0aab1c3d43940d482246cf83d, type: 3}
+  - {fileID: 4859828483305828472, guid: 263ec8c0aab1c3d43940d482246cf83d, type: 3}
+  - {fileID: -3188957796567996262, guid: 263ec8c0aab1c3d43940d482246cf83d, type: 3}
+  - {fileID: 21300000, guid: 88b9f8f3c71eafb4ca0245e638e4d213, type: 3}
+  - {fileID: -3126292766103910376, guid: 0dde78bd51b8f3b49838d0d375b13788, type: 3}
+  - {fileID: 366410996155017104, guid: 0dde78bd51b8f3b49838d0d375b13788, type: 3}
+  - {fileID: -4056372485180014136, guid: 0dde78bd51b8f3b49838d0d375b13788, type: 3}
+  - {fileID: -8887103843865182548, guid: 0dde78bd51b8f3b49838d0d375b13788, type: 3}
+  - {fileID: 7772191112685151638, guid: 0dde78bd51b8f3b49838d0d375b13788, type: 3}
+  - {fileID: -728637971897736446, guid: 0dde78bd51b8f3b49838d0d375b13788, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Cannon_Blast_6
+  - Cannon_Blast_4
+  - Cannon_Blast_5
+  - Cannon_Blast_2
+  - Cannon_Blast_3
+  - Cannon_Blast_0
+  - Cannon_Blast_1
+  - Cannon_Stand
+  - Cannon_Barrel_4
+  - Cannon_Barrel_5
+  - Cannon_Barrel_2
+  - Cannon_Barrel_3
+  - Cannon_Barrel_0
+  - Cannon_Barrel_1
+  m_RenderDataMap: {}
+  m_Tag: Cannon
+  m_IsVariant: 0

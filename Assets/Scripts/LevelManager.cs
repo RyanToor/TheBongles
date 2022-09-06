@@ -1,40 +1,71 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    public bool isTrashTrigger, isTrashRandom, isCursorVisible;
+    public bool isTrashTrigger, isTrashRandom;
     public float mouseVisibleDuration = 2f;
     public TrashType levelTrashType;
     public Color collectionIndicatorColor;
 
-    [HideInInspector]
-    public int plastic = 0, metal = 0, glass = 0;
-    public Coroutine mouseVisibleCoroutine;
-    public bool isLoaded;
+    [HideInInspector] public int buildIndex, plastic = 0, metal = 0, glass = 0;
+    [HideInInspector] public Coroutine mouseVisibleCoroutine;
+    [HideInInspector] public bool isLoaded;
+    [HideInInspector] public PromptManager promptManager;
 
     protected virtual void Awake()
     {
-        
+        promptManager = GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<PromptManager>();
     }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        Debug.Log("Story Point : " + GameManager.Instance.storyPoint);
+        StartCoroutine(CheckLoaded());
+        GameManager.Instance.StartGameEvent += StartGame;
+        Debug.Log(SceneManager.GetActiveScene().name + ", loaded at story point : " + GameManager.Instance.storyPoint);
+    }
+
+    protected virtual IEnumerator CheckLoaded()
+    {
+        buildIndex = SceneManager.GetActiveScene().buildIndex;
+        while (Time.timeSinceLevelLoad < GameManager.Instance.minimumLoadDuration)
+        {
+            yield return null;
+        }
+        PlayLevelMusic();
+        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
+        if (buildIndex != 0)
+        {
+            if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex])
+            {
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause").GetComponent<PauseMenu>().StartPrompt();
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause/UpgradeBook").gameObject.SetActive(true);
+                GameManager.Instance.PauseGame(true);
+                GameManager.Instance.levelsPrompted[buildIndex] = true;
+            }
+        }
+        isLoaded = true;
     }
 
     public virtual void StartGame()
     {
-        StartCoroutine(GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Prompts").GetComponent<InputPrompts>().LevelPrompts());
+        
+    }
+
+    public virtual void PlayLevelMusic()
+    {
+        AudioManager.Instance.PlayMusic(buildIndex == 0 ? "Map" : buildIndex < 2 ? "Trash Hunt" : buildIndex < 3 ? "Throw the Robot Bubba" : "Scrap Grabber");
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && SceneManager.GetActiveScene().name != "Map" && !isCursorVisible)
+        Mouse mouse = Mouse.current;
+        if ((mouse.leftButton.wasPressedThisFrame || mouse.rightButton.wasPressedThisFrame) && SceneManager.GetActiveScene().name != "Map" && !Cursor.visible)
         {
             mouseVisibleCoroutine = StartCoroutine(MouseVisible());
         }
@@ -53,7 +84,7 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1f;
         GameObject newLoadScreen = Instantiate(GameManager.Instance.loadScreenPrefab, new Vector3(960, 540, 0), Quaternion.identity);
         DontDestroyOnLoad(newLoadScreen);
-        Cursor.visible = true;
+        InputManager.Instance.EnableCursor();
         SceneManager.LoadScene("Map");
     }
 
@@ -67,8 +98,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator MouseVisible()
 	{
-        Cursor.visible = true;
-        isCursorVisible = true;
+        InputManager.Instance.EnableCursor();
         float duration = 0;
         while (duration < mouseVisibleDuration)
         {
@@ -76,15 +106,9 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
         Cursor.visible = false;
-        isCursorVisible = false;
 	}
 
     private void OnDestroy()
-    {
-        SendSaveData();
-    }
-
-    private void OnApplicationQuit()
     {
         SendSaveData();
     }

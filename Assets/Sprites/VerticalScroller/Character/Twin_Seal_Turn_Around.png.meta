@@ -45,6 +45,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -292,6 +293,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Twin_Seal_Turn_Around_6: -7927578049465093869
+      Twin_Seal_Turn_Around_3: -2152035269308142777
+      Twin_Seal_Turn_Around_0: -4141850289687260160
+      Twin_Seal_Turn_Around_5: -3301840612026544608
+      Twin_Seal_Turn_Around_2: -1038114454826938330
+      Twin_Seal_Turn_Around_1: 577177160996980932
+      Twin_Seal_Turn_Around_4: 4725592318269586052
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

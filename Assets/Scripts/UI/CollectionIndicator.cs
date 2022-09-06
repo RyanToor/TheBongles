@@ -34,4 +34,9 @@ public class CollectionIndicator : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+    private void OnSceneUnload()
+    {
+        Destroy(gameObject);
+    }
 }

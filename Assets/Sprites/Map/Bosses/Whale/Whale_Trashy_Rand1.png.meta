@@ -96,6 +96,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -448,6 +449,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Whale_Trashy_Rand1_5: 9026131984271958668
+      Whale_Trashy_Rand1_11: -8501806527566766872
+      Whale_Trashy_Rand1_4: 2415208021785938556
+      Whale_Trashy_Rand1_1: 1943881422407244518
+      Whale_Trashy_Rand1_3: -137138239120038479
+      Whale_Trashy_Rand1_2: 7819059669167527396
+      Whale_Trashy_Rand1_0: 3399530029664564826
+      Whale_Trashy_Rand1_8: 2215501648666435113
+      Whale_Trashy_Rand1_6: -8967088615562282634
+      Whale_Trashy_Rand1_7: 1345688365031225716
+      Whale_Trashy_Rand1_10: 4432305495641933577
+      Whale_Trashy_Rand1_9: -5260562471195439344
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

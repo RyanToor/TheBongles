@@ -45,6 +45,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -292,6 +293,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      BushIsland_0: -5002980085857023573
+      BushIsland_4: 7216587533767409027
+      BushIsland_6: 2205558559349205597
+      BushIsland_5: 4452024536100481893
+      BushIsland_3: -6045912661202637494
+      BushIsland_2: -4734616413759740837
+      BushIsland_1: -1081115479540905298
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

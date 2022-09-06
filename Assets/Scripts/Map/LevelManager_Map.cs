@@ -1,15 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class LevelManager_Map : LevelManager
 {
     public NameSpriteArray[] trashSprites;
-    public int randomTrashAmount, birdAmount, castleStoryPoint;
-    public GameObject map, randomTrashContainer, randomTrashPrefab, birdPrefab, castle;
+    public int maxRandomTrash, secondsPerTrash, birdAmount, castleStoryPoint;
+    public GameObject map, randomTrashPrefab, birdPrefab, castle;
     public float trashClearBorder;
     public CapsuleCollider2D castleSmallCollider, castleBigCollider;
-    public KeyCode[] drawLineCheat;
+    public Key[] keyboardDrawLineCheat;
+    public GamepadButton[] gamepadDrawLineCheat;
 
     [HideInInspector]
     public GameObject upgradesUI;
@@ -18,11 +20,11 @@ public class LevelManager_Map : LevelManager
 
     [SerializeField] private GameObject cloudCover, bongleIsland, pauseUI;
 
+    private Transform randomTrashContainer;
     private Vector3 bongleIslandPosition;
     private FloatingObjects floatingObjectsScript;
     private Rect mapArea;
-    private int drawUnlockProgress = 0;
-    private Coroutine[] promptCoroutines;
+    private int drawUnlockProgress = 0, remainingTrash;
 
     protected override void Awake()
     {
@@ -32,6 +34,7 @@ public class LevelManager_Map : LevelManager
 
     protected override void Start()
     {
+        randomTrashContainer = GameObject.Find("MapObjects").transform.Find("RandomTrash");
         SpriteRenderer sprite = map.GetComponent<SpriteRenderer>();
         mapArea = new Rect(sprite.bounds.min + Vector3.one * trashClearBorder, sprite.bounds.size - 2 * trashClearBorder * Vector3.one);
         GameObject.FindGameObjectWithTag("Player").transform.position = GameManager.Instance.bongleIslandPosition;
@@ -46,29 +49,17 @@ public class LevelManager_Map : LevelManager
             upgradesUI.SetActive(false);
             pauseUI.SetActive(false);
         }
-        Destroy(GameObject.Find("LoadingCanvas(Clone)"));
-        promptCoroutines = new Coroutine[GameObject.Find("BossRegions").transform.childCount];
         UpdateRegionsUnlocked();
         RespawnTrash();
-        bool isVideoPlaying = false;
-        foreach (VideoManager.Cutscene scene in GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().cutScenes)
-        {
-            if (scene.storyPoint == GameManager.Instance.storyPoint)
-            {
-                isVideoPlaying = true;
-                break;
-            }
-        }
-        if (!isVideoPlaying || !GameManager.Instance.gameStarted)
-        {
-            GameObject.Find("SoundManager").GetComponent<AudioManager>().PlayMusic("Map");
-        }
         if (GameManager.Instance.gameStarted)
         {
             GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().CheckCutscene();
         }
         StartCoroutine(CheckDrawCheat());
-        SpawnBirds();
+        for (int i = 0; i < birdAmount; i++)
+        {
+            SpawnBird();
+        }
         base.Start();
     }
 
@@ -83,11 +74,28 @@ public class LevelManager_Map : LevelManager
         cloudCover.SetActive(false);
         UpdateRegionsUnlocked();
         upgradesUI.GetComponent<UpgradeMenu>().RefreshReadouts();
-        RespawnTrash();
         GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().CheckCutscene();
         Time.timeScale = 1;
         StartCoroutine(Camera.main.GetComponent<MapCamera>().ZoomToMap());
         base.StartGame();
+    }
+
+    protected override IEnumerator CheckLoaded()
+    {
+        bool isVideoPlaying = false;
+        foreach (VideoManager.Cutscene scene in GameObject.Find("UI/StoryVideo").GetComponent<VideoManager>().cutScenes)
+        {
+            if (scene.storyPoint == GameManager.Instance.storyPoint)
+            {
+                isVideoPlaying = true;
+                break;
+            }
+        }
+        if (!isVideoPlaying || !GameManager.Instance.gameStarted)
+        {
+            yield return base.CheckLoaded();
+        }
+        yield break;
     }
 
     public void UpdateRegionsUnlocked()
@@ -104,26 +112,25 @@ public class LevelManager_Map : LevelManager
         castleBigCollider.enabled = storyPoint >= castleStoryPoint;
         for (int i = 0; i < GameObject.Find("BossRegions").transform.childCount; i++)
         {
-            if (promptCoroutines[i] != null)
-            {
-                StopCoroutine(promptCoroutines[i]);
-            }
-            arrowCoroutine = StartCoroutine(GameObject.Find("BossRegions").transform.GetChild(i).GetComponent<Region>().CheckPrompt());
+            StartCoroutine(GameObject.Find("BossRegions").transform.GetChild(i).GetComponent<Region>().CheckPrompt());
         }
     }
 
     public void RespawnTrash()
     {
         floatingObjectsScript.RemoveAll();
-        for (int i = 0; i < randomTrashAmount; i++)
+        int trashToSpawn = Mathf.FloorToInt(Mathf.Clamp(Mathf.Floor((float)((GameManager.Instance.SystemSeconds - GameManager.Instance.lastTrashSpawn) / secondsPerTrash)) + GameManager.Instance.remainingTrash, 0, maxRandomTrash));
+        Debug.Log("Spawned " + trashToSpawn + " random trash, including " + GameManager.Instance.remainingTrash + " restored from last map unload.");
+        for (int i = 0; i < trashToSpawn; i++)
         {
             SpawnRandomTrash();
         }
+        GameManager.Instance.SetLastSpawnTime();
     }
 
     public void SpawnRandomTrash()
     {
-        GameObject newTrash = Instantiate(randomTrashPrefab, new Vector3(Random.Range(mapArea.min.x, mapArea.max.x), Random.Range(mapArea.min.y, mapArea.max.y), 0), Quaternion.identity, randomTrashContainer.transform);
+        GameObject newTrash = Instantiate(randomTrashPrefab, new Vector3(Random.Range(mapArea.min.x, mapArea.max.x), Random.Range(mapArea.min.y, mapArea.max.y), 0), Quaternion.identity, randomTrashContainer);
         int trashType = Mathf.Clamp(Random.Range(0, GameManager.Instance.MaxRegion()), 0, 2);
         RandomTrash trashScript = newTrash.GetComponent<RandomTrash>();
         int trashIndex = Random.Range(0, trashSprites[trashType].sprites.Length);
@@ -134,20 +141,18 @@ public class LevelManager_Map : LevelManager
         floatingObjectsScript.objectsToAdd.Add(newTrash);
     }
 
-    private void SpawnBirds()
+    public void SpawnBird()
     {
-        for (int i = 0; i < birdAmount; i++)
-        {
-            GameObject newBird = Instantiate(birdPrefab, new Vector3(Random.Range(mapArea.min.x, mapArea.max.x), Random.Range(mapArea.min.y, mapArea.max.y), 0), Quaternion.identity, GameObject.Find("MapObjects").transform);
-            newBird.GetComponent<SpriteRenderer>().sortingOrder = 0;
-            newBird.GetComponent<SpriteRenderer>().flipX = Random.value > 0.5f;
-            newBird.transform.rotation = Quaternion.Euler(-60f, 0, 0);
-        }
+        GameObject newBird = Instantiate(birdPrefab, new Vector3(Random.Range(mapArea.min.x, mapArea.max.x), Random.Range(mapArea.min.y, mapArea.max.y), 0), Quaternion.identity, GameObject.Find("MapObjects/Birds").transform);
+        newBird.GetComponent<SpriteRenderer>().sortingOrder = 0;
+        newBird.GetComponent<SpriteRenderer>().flipX = Random.value > 0.5f;
+        newBird.transform.rotation = Quaternion.Euler(-60f, 0, 0);
     }
 
     protected override void Update()
     {
         bongleIslandPosition = bongleIsland.transform.position;
+        remainingTrash = randomTrashContainer.childCount;
         if (Application.isEditor)
         {
             EditorOnly();
@@ -158,14 +163,16 @@ public class LevelManager_Map : LevelManager
     protected override void SendSaveData()
     {
         GameManager.Instance.bongleIslandPosition = bongleIslandPosition;
+        GameManager.Instance.remainingTrash = remainingTrash;
+        Debug.Log(remainingTrash + " remaining trash reported to Game Manager.");
         base.SendSaveData();
     }
 
     private IEnumerator CheckDrawCheat()
     {
-        while (drawUnlockProgress < drawLineCheat.Length)
+        while (drawUnlockProgress < keyboardDrawLineCheat.Length)
         {
-            if (Input.GetKeyDown(drawLineCheat[drawUnlockProgress]))
+            if (Keyboard.current != null && Keyboard.current[keyboardDrawLineCheat[drawUnlockProgress]].wasPressedThisFrame || Gamepad.current != null && Gamepad.current[gamepadDrawLineCheat[drawUnlockProgress]].wasPressedThisFrame)
             {
                 drawUnlockProgress += 1;
             }
@@ -178,23 +185,24 @@ public class LevelManager_Map : LevelManager
 
     private void EditorOnly()
     {
-        if (Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.Minus))
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard.equalsKey.wasPressedThisFrame || keyboard.minusKey.wasPressedThisFrame)
         {
-            if (Input.GetKeyDown(KeyCode.Equals))
+            if (keyboard.equalsKey.wasPressedThisFrame)
             {
                 GameManager.Instance.storyPoint = Mathf.Clamp(GameManager.Instance.storyPoint + 1, 1, 3);
             }
-            else if (Input.GetKeyDown(KeyCode.Minus))
+            else if (keyboard.minusKey.wasPressedThisFrame)
             {
                 GameManager.Instance.storyPoint = Mathf.Clamp(GameManager.Instance.storyPoint - 1, 1, 3);
             }
-            print("Max Region : " + GameManager.Instance.MaxRegion());
+            Debug.Log("Max Region : " + GameManager.Instance.MaxRegion());
             UpdateRegionsUnlocked();
             RespawnTrash();
         }
-        if (Input.GetKeyDown(KeyCode.P))
+        if (keyboard.pKey.wasPressedThisFrame)
         {
-            print(GameManager.Instance.storyPoint);
+            Debug.Log(GameManager.Instance.storyPoint);
         }
     }
 }

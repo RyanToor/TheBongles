@@ -39,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -244,6 +245,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Crab_Trashy_Rand1_3: -2185722289429183144
+      Crab_Trashy_Rand1_2: 4317800299810833968
+      Crab_Trashy_Rand1_1: 6128491928096092129
+      Crab_Trashy_Rand1_4: -670315802176129513
+      Crab_Trashy_Rand1_0: -4036253251760651738
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

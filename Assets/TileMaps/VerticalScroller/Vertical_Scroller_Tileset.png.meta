@@ -198,6 +198,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1516,6 +1517,65 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Vertical_Scroller_Tileset_30: -2233920898084375772
+      Vertical_Scroller_Tileset_57: -5149554423263692154
+      Vertical_Scroller_Tileset_17: -3667351927983896314
+      Vertical_Scroller_Tileset_31: -1450020831534216647
+      Vertical_Scroller_Tileset_7: -862700829628084121
+      Vertical_Scroller_Tileset_15: 4925449664407221391
+      Vertical_Scroller_Tileset_26: 3193632285395646947
+      Vertical_Scroller_Tileset_10: 8568924114410505519
+      Vertical_Scroller_Tileset_53: 3544628743418177553
+      Vertical_Scroller_Tileset_29: -2814448235697225588
+      Vertical_Scroller_Tileset_52: 3851770113617719101
+      Vertical_Scroller_Tileset_37: 586399493038505763
+      Vertical_Scroller_Tileset_6: -5867728911698720495
+      Vertical_Scroller_Tileset_4: -7474346786085833119
+      Vertical_Scroller_Tileset_14: -4919912229730754161
+      Vertical_Scroller_Tileset_8: 8647103785405281707
+      Vertical_Scroller_Tileset_40: 201276147988692277
+      Vertical_Scroller_Tileset_38: -5440979813029061637
+      Vertical_Scroller_Tileset_51: 3278770831307512038
+      Vertical_Scroller_Tileset_22: -3441056374666438574
+      Vertical_Scroller_Tileset_9: 3440509632476028023
+      Vertical_Scroller_Tileset_0: 3816514743957521894
+      Vertical_Scroller_Tileset_47: -3735884774653347131
+      Vertical_Scroller_Tileset_24: -5506033442329351453
+      Vertical_Scroller_Tileset_41: -4791519103986142734
+      Vertical_Scroller_Tileset_42: 6697229566232073410
+      Vertical_Scroller_Tileset_25: -6645866670036230570
+      Vertical_Scroller_Tileset_21: 2440002757692652157
+      Vertical_Scroller_Tileset_48: 1528281371118568001
+      Vertical_Scroller_Tileset_13: -4190249339362378288
+      Vertical_Scroller_Tileset_2: 7027996704341001353
+      Vertical_Scroller_Tileset_44: -2399201661713579739
+      Vertical_Scroller_Tileset_49: -2798615663223565846
+      Vertical_Scroller_Tileset_32: 7195093693292568574
+      Vertical_Scroller_Tileset_3: -747248239581449079
+      Vertical_Scroller_Tileset_12: -3370280101820298250
+      Vertical_Scroller_Tileset_23: 2317347696416936734
+      Vertical_Scroller_Tileset_18: -5573508110008112810
+      Vertical_Scroller_Tileset_27: -8933932794194777456
+      Vertical_Scroller_Tileset_46: -70945670763829782
+      Vertical_Scroller_Tileset_20: 2693616320015110386
+      Vertical_Scroller_Tileset_45: -2115394959051373585
+      Vertical_Scroller_Tileset_28: 6012684282173823123
+      Vertical_Scroller_Tileset_19: 3251139663360290359
+      Vertical_Scroller_Tileset_54: 6294616422972453254
+      Vertical_Scroller_Tileset_5: 2435734774366609113
+      Vertical_Scroller_Tileset_39: 5452589945398711019
+      Vertical_Scroller_Tileset_16: -9205820182842961023
+      Vertical_Scroller_Tileset_35: 8135348062432224875
+      Vertical_Scroller_Tileset_43: -275452512562560590
+      Vertical_Scroller_Tileset_50: 1975778365808625306
+      Vertical_Scroller_Tileset_33: 7193767252826330143
+      Vertical_Scroller_Tileset_34: -6814256121728593258
+      Vertical_Scroller_Tileset_36: -2721271777759909415
+      Vertical_Scroller_Tileset_56: -4267072190479376168
+      Vertical_Scroller_Tileset_11: -6164032823210121003
+      Vertical_Scroller_Tileset_1: 8324639126922852118
+      Vertical_Scroller_Tileset_55: 3155492968293369697
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

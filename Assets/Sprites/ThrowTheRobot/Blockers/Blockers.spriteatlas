@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Blockers
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 2911cd96f9d89ba4c891ce1875afb62a, type: 3}
+    - {fileID: 2800000, guid: 798e0c29977e58244831a7e285ce7b52, type: 3}
+    - {fileID: 2800000, guid: b02c946982b224e438367bea55e74bf8, type: 3}
+    - {fileID: 2800000, guid: 13257224dccc6d142a35dbbeb0bb222f, type: 3}
+    - {fileID: 2800000, guid: 11b722f7a6590254da65979d92475f2f, type: 3}
+    - {fileID: 2800000, guid: 4cad4de2c77c1cf4bbd427e933c25cc8, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -1786217351112976694, guid: 4cad4de2c77c1cf4bbd427e933c25cc8, type: 3}
+  - {fileID: -7045059053412226323, guid: 4cad4de2c77c1cf4bbd427e933c25cc8, type: 3}
+  - {fileID: -7652871782586348463, guid: 4cad4de2c77c1cf4bbd427e933c25cc8, type: 3}
+  - {fileID: -8278467993737290059, guid: 4cad4de2c77c1cf4bbd427e933c25cc8, type: 3}
+  - {fileID: 5761738416104896519, guid: 4cad4de2c77c1cf4bbd427e933c25cc8, type: 3}
+  - {fileID: 1263795669915471889, guid: 4cad4de2c77c1cf4bbd427e933c25cc8, type: 3}
+  - {fileID: 3338864366976302972, guid: 4cad4de2c77c1cf4bbd427e933c25cc8, type: 3}
+  - {fileID: 21300000, guid: 13257224dccc6d142a35dbbeb0bb222f, type: 3}
+  - {fileID: 21300000, guid: 2911cd96f9d89ba4c891ce1875afb62a, type: 3}
+  - {fileID: 21300000, guid: 11b722f7a6590254da65979d92475f2f, type: 3}
+  - {fileID: 21300000, guid: 798e0c29977e58244831a7e285ce7b52, type: 3}
+  - {fileID: 21300000, guid: b02c946982b224e438367bea55e74bf8, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - SandDustCloud_1
+  - SandDustCloud_0
+  - SandDustCloud_3
+  - SandDustCloud_2
+  - SandDustCloud_5
+  - SandDustCloud_4
+  - SandDustCloud_6
+  - Raft
+  - Anchor
+  - Ship
+  - Anchor_Chain
+  - Anchor_Seabed
+  m_RenderDataMap: {}
+  m_Tag: Blockers
+  m_IsVariant: 0

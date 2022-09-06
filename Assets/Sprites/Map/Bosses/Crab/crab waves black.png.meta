@@ -66,6 +66,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -460,6 +461,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      crab waves black_9: 267257939260459636
+      crab waves black_4: -268666767731145066
+      crab waves black_5: 1850456911777730870
+      crab waves black_10: -2883087289845604612
+      crab waves black_13: 3963463985860191504
+      crab waves black_8: 1983373283870928793
+      crab waves black_7: 3111016564957955917
+      crab waves black_1: 2320425002316697196
+      crab waves black_12: 2214633561426392463
+      crab waves black_6: 5136184508173166234
+      crab waves black_11: 9052533358764400183
+      crab waves black_0: -5598537362057314512
+      crab waves black_2: -8355732996579364205
+      crab waves black_3: 6617727870507538642
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

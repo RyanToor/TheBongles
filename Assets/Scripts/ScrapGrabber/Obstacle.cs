@@ -1,33 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
+
 
 public class Obstacle : MonoBehaviour
 {
     public float mineRadius, sharkDragPeriod;
     public AnimationCurve mineBlast;
     public float mineAnimationLength;
+    [Header("Vibration Data")]
+    [SerializeField] float mineIntensity;
+    [SerializeField] float sharkIntensity;
 
     [HideInInspector]
     public Spawner spawner;
 
+    private bool hit;
+
     public void MineHit()
     {
-        GetComponent<Animator>().SetTrigger("Hit");
-        StartCoroutine(LightPulse(mineBlast, mineAnimationLength));
-        Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, mineRadius);
-        foreach (Collider2D collider in nearbyObjects)
+        if (!hit)
         {
-            if (collider.CompareTag("RandomTrash"))
+            hit = true;
+            AudioManager.Instance.PlayAudioAtObject("Mine", gameObject, 50, false, AudioRolloffMode.Linear);
+            GetComponent<Animator>().SetTrigger("Hit");
+            StartCoroutine(LightPulse(mineBlast, mineAnimationLength));
+            Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, mineRadius);
+            foreach (Collider2D collider in nearbyObjects)
             {
-                if (collider.transform.parent.name == "TrashContainer")
+                if (collider.CompareTag("RandomTrash"))
                 {
-                    Destroy(collider.gameObject);
+                    if (collider.transform.parent.name == "Spawner")
+                    {
+                        spawner.destroyRequests.Add(collider.gameObject);
+                    }
+                    else
+                    {
+                        Destroy(collider.gameObject);
+                    }
                 }
-                else
+                else if (collider.CompareTag("Boss"))
                 {
-                    spawner.destroyRequests.Add(collider.gameObject);
+                    spawner.Escape(spawner.spawnedObjects.IndexOf(collider.gameObject));
+                }
+                else if (collider.CompareTag("Emergency"))
+                {
+                    collider.gameObject.GetComponent<Obstacle>().MineHit();
                 }
             }
         }
@@ -35,7 +53,8 @@ public class Obstacle : MonoBehaviour
 
     private IEnumerator LightPulse(AnimationCurve curve, float duration)
     {
-        Light2D light = GetComponent<Light2D>();
+        UnityEngine.Rendering.Universal.Light2D light = GetComponent<UnityEngine.Rendering.Universal.Light2D>();
+        InputManager.Instance.Vibrate(mineIntensity, mineAnimationLength, mineBlast);
         float lightMaxIntensity = light.intensity;
         light.enabled = true;
         float currentTime = 0;
@@ -52,7 +71,9 @@ public class Obstacle : MonoBehaviour
     public IEnumerator SharkGrab(Claw clawScript)
     {
         GetComponent<Animator>().SetBool("Drag", true);
+        AudioManager.Instance.PlayAudioAtObject("Shark", gameObject, 50, false, AudioRolloffMode.Linear);
         clawScript.IsCaught = true;
+        InputManager.VibrationData grabVibration = InputManager.Instance.Vibrate(sharkIntensity);
         Transform catchPoint = transform.Find("CatchPoint");
         float duration = 0;
         while (duration < sharkDragPeriod && Mathf.Abs(transform.position.x) < 9.6)
@@ -62,12 +83,20 @@ public class Obstacle : MonoBehaviour
             yield return null;
         }
         GetComponent<Animator>().SetBool("Drag", false);
+        InputManager.Instance.vibrations.Remove(grabVibration);
         clawScript.IsCaught = false;
     }
 
     public void RequestDestruction()
     {
-        spawner.destroyRequests.Add(gameObject);
+        if (transform.parent.name == "Spawner")
+        {
+            spawner.destroyRequests.Add(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void FlipSprite()

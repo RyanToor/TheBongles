@@ -62,17 +62,17 @@ public class FollowCamera_Robot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (levelManager.State != LevelState.launch)
-        {
-            PositionElements();
-        }
+        PositionElements();
     }
 
     private void PositionElements()
     {
-        desiredPosition = robot.transform.position + startOffset;
-        desiredPosition = new Vector3(Mathf.Clamp(desiredPosition.x, 0, levelManager.State == LevelState.move && robot.GetComponent<Robot>().stopRightMovement ? Mathf.Clamp(robotScript.rightMostPoint - 9.6f, 0, cameraMaxX) : cameraMaxX), desiredPosition.y, desiredPosition.z);
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraLerpSpeed);
+        if (levelManager.State != LevelState.launch)
+        {
+            desiredPosition = robot.transform.position + startOffset;
+            desiredPosition = new Vector3(Mathf.Clamp(desiredPosition.x, 0, levelManager.State == LevelState.move && robot.GetComponent<Robot>().stopRightMovement ? Mathf.Clamp(robotScript.rightMostPoint - 9.6f, 0, cameraMaxX) : cameraMaxX), desiredPosition.y, desiredPosition.z);
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraLerpSpeed);
+        }
         float cameraZoom = Mathf.Clamp(transform.position.y + maxWaterOffset, initialOrthographicSize, int.MaxValue);
         cameraComponent.orthographicSize = cameraZoom;
         for (int i = 0; i < levelBuilder.levelTileLibrary.backgroundParralaxLevels.Length; i++)

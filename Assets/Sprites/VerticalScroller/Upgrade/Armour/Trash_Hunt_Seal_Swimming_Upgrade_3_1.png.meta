@@ -216,6 +216,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1660,6 +1661,71 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_44: 1018956641359362387
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_6: -1708599565775722697
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_13: -5101441550576222868
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_33: -5801365331928226385
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_48: -2266228754999520218
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_19: -991194991151209429
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_23: 5268469882508246281
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_28: -8269441261704993495
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_32: 8826193803084930179
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_50: -2258766212269849081
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_45: -8135689634052254055
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_31: -243900612281686584
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_30: -5765494722372371407
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_20: 1376566005871300577
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_62: -7222928496560545266
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_40: 5187531076700663066
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_55: 9090581753222414768
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_9: 8111900618113189549
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_36: 4465648508762495073
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_54: 1741252032539261095
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_58: -5326503589516057443
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_43: 482944081986978656
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_3: -3329057008277830972
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_16: 6667699713764057452
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_18: 893486729756110310
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_15: 1954844982191625388
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_35: -4767263585781674865
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_42: 8915426002771281832
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_46: -5941543615213726342
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_53: -8933629772316924723
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_26: 9210850695104126371
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_10: -2697347251555108930
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_49: -9064136389296103221
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_60: -5994159670548849534
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_17: -2307280597099123604
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_8: -508338054872571478
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_61: 2391584949110020271
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_4: 2396757024478088336
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_38: -4570861055882954404
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_27: -4456911337078544800
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_41: -9197178455121963271
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_59: -5258916091243338656
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_7: 2077488879846652609
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_14: 6288272895996009217
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_1: -5304204324577657606
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_57: -81105142609432488
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_5: 4195555718620762767
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_52: -5216143868394930342
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_63: 464360592235910817
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_47: -4532834922872360990
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_37: 7281308555008476638
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_2: 3732984516707143356
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_11: -4454928295500531572
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_34: 5257038257462529962
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_12: -4346898165200024059
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_21: -515417912200050348
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_22: 4400072015137537336
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_25: 5823516553784597033
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_24: -3988401306544885420
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_56: 6466784254463498521
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_51: 1695157020482084272
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_0: -6415163736008313208
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_39: 2479472087813955270
+      Trash_Hunt_Seal_Swimming_Upgrade_3_1_29: -206490347437038097
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

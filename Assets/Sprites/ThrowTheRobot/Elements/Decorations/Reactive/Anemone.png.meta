@@ -57,6 +57,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -388,6 +389,18 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Anemone_0: 1098820029867108818
+      Anemone_2: 4204595475920099952
+      Anemone_9: -7280420406444212065
+      Anemone_5: 3664583609003377036
+      Anemone_1: 2855325047137470041
+      Anemone_8: 8361263782614586081
+      Anemone_6: 1363365246929421404
+      Anemone_4: -1351618666991568057
+      Anemone_7: 5073077299711819668
+      Anemone_3: 7426287018904905974
+      Anemone_10: -3725087478499307295
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

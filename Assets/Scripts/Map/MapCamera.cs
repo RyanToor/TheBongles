@@ -32,7 +32,7 @@ public class MapCamera : MonoBehaviour
     {
         if (isStarted)
         {
-            float mouseScroll = Input.mouseScrollDelta.y;
+            float mouseScroll = InputManager.Instance.zoom;
             Vector3 targetPos = target.transform.position + target.transform.up * targetHeightOffset;
             desiredOffset += mouseScroll * transform.forward;
             if (offset != desiredOffset)
@@ -52,7 +52,7 @@ public class MapCamera : MonoBehaviour
                 }
             }
             transform.position = targetPos + offset;
-            if (desiredOffset.magnitude == minZoom && GameManager.Instance.storyPoint >= 3)
+            if (desiredOffset.magnitude == minZoom && GameManager.Instance.storyPoint >= 3 && InputManager.Instance.inputMethod == "Keyboard&Mouse")
             {
                 if (upgradeMenu.lerpDir == -1 && !upgradesPoppedOut)
                 {

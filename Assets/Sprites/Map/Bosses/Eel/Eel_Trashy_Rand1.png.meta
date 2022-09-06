@@ -48,6 +48,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -316,6 +317,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Eel_Clean_Idle_0: 5806897213843227908
+      Eel_Clean_Idle_6: 2675061390876888812
+      Eel_Clean_Idle_3: 6866227506775265451
+      Eel_Clean_Idle_1: -7984511630379135844
+      Eel_Clean_Idle_4: 6340812237359910486
+      Eel_Clean_Idle_7: -3377877171177506539
+      Eel_Clean_Idle_2: -2892218989116528305
+      Eel_Clean_Idle_5: 8484675121927159472
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

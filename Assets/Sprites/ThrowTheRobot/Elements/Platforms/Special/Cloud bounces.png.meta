@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -412,6 +413,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Cloud bounces_6: 4604437650257920085
+      Cloud bounces_1: -5241497714743251226
+      Cloud bounces_4: 574335761704643409
+      Cloud bounces_0: 263122527897851915
+      Cloud bounces_10: 355744456856711677
+      Cloud bounces_9: 4988386953751734218
+      Cloud bounces_8: -1101159437376775922
+      Cloud bounces_7: 3938383621455525984
+      Cloud bounces_11: 6992724021685034990
+      Cloud bounces_5: -8993528774099777611
+      Cloud bounces_3: 524423177044298035
+      Cloud bounces_2: -13681357700794635
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

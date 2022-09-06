@@ -31,6 +31,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,16 +54,91 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTime: 0.5
-  videoDelay: 2
-  inputDelayMap: 5
-  inputDelayTrashHunt: 5
-  inputDelayRobotLaunch: 0.5
-  inputDelayRobotMove: 5
-  inputDelayClawLaunch: 3
-  inputDelayClawTurn: 0.2
-  inputDelayClawReel: 0.1
+  promptConditions:
+  - promptConditions:
+    - resetOnJump: 0
+      resetOnClick: 0
+      resetOnVertical: 1
+      resetOnHorizontal: 1
+    - resetOnJump: 1
+      resetOnClick: 1
+      resetOnVertical: 0
+      resetOnHorizontal: 0
+  - promptConditions:
+    - resetOnJump: 0
+      resetOnClick: 0
+      resetOnVertical: 1
+      resetOnHorizontal: 1
+  - promptConditions:
+    - resetOnJump: 1
+      resetOnClick: 0
+      resetOnVertical: 0
+      resetOnHorizontal: 0
+    - resetOnJump: 1
+      resetOnClick: 0
+      resetOnVertical: 1
+      resetOnHorizontal: 1
+  - promptConditions:
+    - resetOnJump: 1
+      resetOnClick: 0
+      resetOnVertical: 0
+      resetOnHorizontal: 1
+    - resetOnJump: 0
+      resetOnClick: 0
+      resetOnVertical: 0
+      resetOnHorizontal: 1
+    - resetOnJump: 1
+      resetOnClick: 0
+      resetOnVertical: 0
+      resetOnHorizontal: 0
+  prompts:
+  - prompts:
+    - inputDelay: 5
+      fadeTime: 0
+      isPersistent: 1
+      extraPrompts: 0
+      prompted: 0
+    - inputDelay: 2
+      fadeTime: 0
+      isPersistent: 0
+      extraPrompts: 0
+      prompted: 0
+  - prompts:
+    - inputDelay: 5
+      fadeTime: 0
+      isPersistent: 1
+      extraPrompts: 0
+      prompted: 0
+  - prompts:
+    - inputDelay: 0.5
+      fadeTime: 0
+      isPersistent: 0
+      extraPrompts: 1
+      prompted: 0
+    - inputDelay: 5
+      fadeTime: 0
+      isPersistent: 1
+      extraPrompts: 0
+      prompted: 0
+  - prompts:
+    - inputDelay: 3
+      fadeTime: 0
+      isPersistent: 0
+      extraPrompts: 0
+      prompted: 0
+    - inputDelay: 0.2
+      fadeTime: 0
+      isPersistent: 0
+      extraPrompts: 0
+      prompted: 0
+    - inputDelay: 0.1
+      fadeTime: 0
+      isPersistent: 0
+      extraPrompts: 0
+      prompted: 0
   startPrompted: 0
   videoPlaying: 0
+  prompt: 0
 --- !u!222 &8044419771317841837
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -124,7 +200,7 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 --- !u!95 &8044419771317841836
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,6 +213,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1

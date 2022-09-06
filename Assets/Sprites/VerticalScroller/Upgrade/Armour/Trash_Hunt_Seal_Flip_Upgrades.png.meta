@@ -114,6 +114,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -844,6 +845,37 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Trash_Hunt_Seal_Flip_Upgrades_8: 1024162818773592233
+      Trash_Hunt_Seal_Flip_Upgrades_14: 1247186665135536469
+      Trash_Hunt_Seal_Flip_Upgrades_20: -5439443290223623835
+      Trash_Hunt_Seal_Flip_Upgrades_15: 4868100109075087403
+      Trash_Hunt_Seal_Flip_Upgrades_23: 5793954923231313771
+      Trash_Hunt_Seal_Flip_Upgrades_2: 2426578739129180729
+      Trash_Hunt_Seal_Flip_Upgrades_7: 7269880345062719382
+      Trash_Hunt_Seal_Flip_Upgrades_18: 710795623739153966
+      Trash_Hunt_Seal_Flip_Upgrades_13: -1942502512681359964
+      Trash_Hunt_Seal_Flip_Upgrades_3: -8943300624843776301
+      Trash_Hunt_Seal_Flip_Upgrades_16: 2879847268716790846
+      Trash_Hunt_Seal_Flip_Upgrades_26: -6042923030897604317
+      Trash_Hunt_Seal_Flip_Upgrades_5: 4660827712134817802
+      Trash_Hunt_Seal_Flip_Upgrades_24: 724320025066118429
+      Trash_Hunt_Seal_Flip_Upgrades_28: 2976744205364466834
+      Trash_Hunt_Seal_Flip_Upgrades_27: 8899581343233098172
+      Trash_Hunt_Seal_Flip_Upgrades_10: -5524129882171660473
+      Trash_Hunt_Seal_Flip_Upgrades_17: 2259234048058789447
+      Trash_Hunt_Seal_Flip_Upgrades_21: -3977745989861921997
+      Trash_Hunt_Seal_Flip_Upgrades_4: 6254511449293860551
+      Trash_Hunt_Seal_Flip_Upgrades_25: -4143292514061363894
+      Trash_Hunt_Seal_Flip_Upgrades_11: -5232636960759574824
+      Trash_Hunt_Seal_Flip_Upgrades_0: 5507036786387167173
+      Trash_Hunt_Seal_Flip_Upgrades_6: -3511086636172104709
+      Trash_Hunt_Seal_Flip_Upgrades_19: -6999712144969173925
+      Trash_Hunt_Seal_Flip_Upgrades_12: 8772254154143747670
+      Trash_Hunt_Seal_Flip_Upgrades_29: 2372763462362579224
+      Trash_Hunt_Seal_Flip_Upgrades_1: -7429164905396336476
+      Trash_Hunt_Seal_Flip_Upgrades_9: -3234118922202476396
+      Trash_Hunt_Seal_Flip_Upgrades_22: -3453876220786005316
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -39,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -244,6 +245,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Twin_Seal_Flip_2: 7176393474740624932
+      Twin_Seal_Flip_4: 3614016956922129573
+      Twin_Seal_Flip_1: -6899642328632925284
+      Twin_Seal_Flip_3: -2698474731189865854
+      Twin_Seal_Flip_0: 580760826511304239
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -84,6 +84,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -604,6 +605,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Crab_Hidden_Rand1_4: 3076742144238185677
+      Crab_Hidden_Rand1_0: 4710850613684109143
+      Crab_Hidden_Rand1_10: 5604018132857867950
+      Crab_Hidden_Rand1_2: 5574469626781483922
+      Crab_Hidden_Rand1_9: 7024978499357195870
+      Crab_Hidden_Rand1_1: -2984737043745078288
+      Crab_Hidden_Rand1_17: 8627978346587797771
+      Crab_Hidden_Rand1_5: 8383480207904648631
+      Crab_Hidden_Rand1_11: 6791436882601367286
+      Crab_Hidden_Rand1_3: -9171186865830259853
+      Crab_Hidden_Rand1_7: -8892560625118376824
+      Crab_Hidden_Rand1_18: 6267329573710224524
+      Crab_Hidden_Rand1_12: -3208022315313181278
+      Crab_Hidden_Rand1_13: -5677352282982071072
+      Crab_Hidden_Rand1_14: -7639139934484495316
+      Crab_Hidden_Rand1_8: 7307354795544312607
+      Crab_Hidden_Rand1_16: 2582923925002710682
+      Crab_Hidden_Rand1_6: -1750926937267555182
+      Crab_Hidden_Rand1_19: -6807662039486543104
+      Crab_Hidden_Rand1_15: 5909119866544918
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
