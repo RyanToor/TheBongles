@@ -53,10 +53,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   regionStoryPoints: 0000000004000000080000000c000000
+  storyMeetPoints: 02000000060000000a000000
+  isWeb: 0
   gameStarted: 0
   bongleIslandPosition: {x: 0, y: 0, z: 0}
+  lastTrashSpawn: 0
   highscoreStars: 
   storyPoint: 0
+  remainingTrash: 0
   levelsPrompted: 
   musicMuted: 1
   sFXMuted: 1
