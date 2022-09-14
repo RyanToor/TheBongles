@@ -10,14 +10,17 @@ public class GameManager : MonoBehaviour
     public GameObject loadScreenPrefab, collectionIndicatorPrefab;
     public List<GameObject> inGameUI;
     public int[] regionStoryPoints;
+    public int[] storyMeetPoints;
 
     public event Action<bool> EnablePrompts;
     public Dictionary<string, int> trashCounts = new Dictionary<string, int>();
     [HideInInspector]
     public event Action StartGameEvent;
+    [HideInInspector] public bool isWeb;
 
     private static GameManager instance;
     private bool isResetting = false;
+    private string savePath;
 
     #region SavedFields
     [HideInInspector] public bool gameStarted = false;
@@ -52,6 +55,9 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        #if UNITY_WEBGL
+            isWeb = true;
+        #endif
         if (SceneManager.GetActiveScene().name == "Map")
         {
             inGameUI.Clear();
@@ -68,6 +74,11 @@ public class GameManager : MonoBehaviour
             upgrades[i] = new int[3] { 0, 0, 0};
         }
         highscoreStars = new int[] { 0, 0, 0 };
+        savePath = (isWeb && !Application.isEditor) ? "idbfs/TheBongles2021" : Application.persistentDataPath;
+        if (isWeb && !Directory.Exists("idbfs/TheBongles2021") && !Application.isEditor)
+        {
+            Directory.CreateDirectory("idbfs/TheBongles2021");
+        }
         LoadGame();
     }
 
@@ -90,7 +101,7 @@ public class GameManager : MonoBehaviour
         int maxRegion = 1;
         for (int i = 0; i < regionStoryPoints.Length; i++)
         {
-            if (storyPoint >= regionStoryPoints[i])
+            if (storyPoint > regionStoryPoints[i])
             {
                 maxRegion = i + 1;
             }
@@ -121,7 +132,7 @@ public class GameManager : MonoBehaviour
                 highscoreStars = highscoreStars,
                 levelsPrompted = levelsPrompted
             };
-            File.WriteAllText(Application.persistentDataPath + "/saveGame.json", JsonUtility.ToJson(save, true));
+            File.WriteAllText(savePath + "/saveGame.json", JsonUtility.ToJson(save, true));
         }
     }
 
@@ -137,15 +148,15 @@ public class GameManager : MonoBehaviour
             playstationLayout = playstationLayout,
             promptsEnabled = promptsEnabled
         };
-        File.WriteAllText(Application.persistentDataPath + "/settings.json", JsonUtility.ToJson(settings, true));
+        File.WriteAllText(savePath + "/settings.json", JsonUtility.ToJson(settings, true));
     }
 
     private void LoadGame()
     {
         Save loadedSave = new Save();
-        if (File.Exists(Application.persistentDataPath + "/saveGame.json"))
+        if (File.Exists(savePath + "/saveGame.json"))
         {
-            loadedSave = JsonUtility.FromJson<Save>(File.ReadAllText(Application.persistentDataPath + "/saveGame.json"));
+            loadedSave = JsonUtility.FromJson<Save>(File.ReadAllText(savePath + "/saveGame.json"));
         }
         bongleIslandPosition = loadedSave.position;
         trashCounts["Plastic"] = loadedSave.plastic;
@@ -191,9 +202,9 @@ public class GameManager : MonoBehaviour
             levelsPrompted = new bool[4] { false, false, false, false };
         }
 
-        if (File.Exists(Application.persistentDataPath + "/settings.json"))
+        if (File.Exists(savePath + "/settings.json"))
         {
-            Settings loadedSettings = JsonUtility.FromJson<Settings>(File.ReadAllText(Application.persistentDataPath + "/settings.json"));
+            Settings loadedSettings = JsonUtility.FromJson<Settings>(File.ReadAllText(savePath + "/settings.json"));
             musicMuted = loadedSettings.musicMuted;
             sFXMuted = loadedSettings.sFXMuted;
             musicVolume = loadedSettings.musicVolume;
@@ -219,10 +230,10 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         isResetting = true;
-        Debug.Log(Application.persistentDataPath)
+        Debug.Log("Resetting saves at : " + savePath)
 ;       if (!File.Exists(Application.persistentDataPath + "/saveGame.json"))
         {
-            Debug.Log("Save file not found.");
+            Debug.Log("Save directory not found.");
         }
         File.Delete(Application.persistentDataPath + "/saveGame.json");
         SceneManager.LoadScene("Map");

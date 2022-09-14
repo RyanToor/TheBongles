@@ -10,6 +10,7 @@ public class PromptManager : MonoBehaviour
 
     [SerializeField] private PromptConditionArray[] promptConditions;
     [SerializeField] private InputPromptArray[] prompts;
+    [SerializeField] private VideoManager videoManager;
 
     [HideInInspector] public List<Coroutine> coroutines = new List<Coroutine>();
     [HideInInspector] public int prompt = 0;
@@ -37,7 +38,7 @@ public class PromptManager : MonoBehaviour
 
     private IEnumerator CheckLoaded()
     {
-        while (!GameManager.Instance.gameStarted || !levelManager.isLoaded)
+        while (!GameManager.Instance.gameStarted || !levelManager.isLoaded || (videoManager != null && videoManager.isPlayingCutscene))
         {
             yield return null;
         }

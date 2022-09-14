@@ -112,7 +112,8 @@ public class LevelManager_Map : LevelManager
         castleBigCollider.enabled = storyPoint >= castleStoryPoint;
         for (int i = 0; i < GameObject.Find("BossRegions").transform.childCount; i++)
         {
-            StartCoroutine(GameObject.Find("BossRegions").transform.GetChild(i).GetComponent<Region>().CheckPrompt());
+            Region region = GameObject.Find("BossRegions").transform.GetChild(i).GetComponent<Region>();
+            region.arrowCoroutine = StartCoroutine(region.CheckPrompt());
         }
     }
 

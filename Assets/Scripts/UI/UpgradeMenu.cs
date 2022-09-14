@@ -31,7 +31,7 @@ public class UpgradeMenu : MonoBehaviour
     private float lerpPos = 0;
     private readonly string[] trashNames = new string[] { "Plastic", "Metal", "Glass" };
     private int currentTabIndex;
-    private Coroutine currentExampleCoroutine, storyButtonBlink;
+    private Coroutine currentExampleCoroutine;
 
     // Start is called before the first frame update
     void Awake()
@@ -112,6 +112,24 @@ public class UpgradeMenu : MonoBehaviour
                 upgradeAvailable = true;
             }
         }
+        for (int i = 0; i < 3; i++)
+        {
+            if (upgradeAvailable)
+            {
+                break;
+            }
+            if (i != currentTabIndex)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (UpgradeAffordabilityCheck(new Vector3Int(i, j, GameManager.Instance.upgrades[i][j])))
+                    {
+                        upgradeAvailable = true;
+                        break;
+                    }
+                }
+            }
+        }
         int currentLevel = GameManager.Instance.MaxRegion();
         bool storyUpgradeReady = true;
         if (currentLevel < 4 && GameManager.Instance.storyPoint != 5 && GameManager.Instance.storyPoint != 9)
@@ -144,23 +162,14 @@ public class UpgradeMenu : MonoBehaviour
             transform.Find("LeftPanel/UpgradeBackground/Story").gameObject.SetActive(false);
             storyUpgradeReady = false;
         }
-        switch (currentLevel)
+        if (GameManager.Instance.storyPoint > GameManager.Instance.storyMeetPoints[1])
         {
-            case 4:
-                transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageCrab").GetComponent<Image>().sprite = enabledSprites[0];
-                transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];
-                transform.Find("LeftPanel/UpgradeBackground/CrabTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];
-                break;
-            case 3:
-                transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageCrab").GetComponent<Image>().sprite = enabledSprites[0];
-                transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];
-                transform.Find("LeftPanel/UpgradeBackground/CrabTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];
-                break;
-            case 2:
-                transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageCrab").GetComponent<Image>().sprite = enabledSprites[0];
-                break;
-            default:
-                break;
+            transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageCrab").GetComponent<Image>().sprite = enabledSprites[0];
+        }
+        if (GameManager.Instance.storyPoint > GameManager.Instance.storyMeetPoints[2])
+        {
+            transform.Find("LeftPanel/UpgradeBackground/EelTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];
+            transform.Find("LeftPanel/UpgradeBackground/CrabTab/ImageWhale").GetComponent<Image>().sprite = enabledSprites[1];
         }
         upgradeButton.interactable = storyUpgradeReady;
         foreach (UpgradeButton upgradeButtonInstance in upgradeButtons)
@@ -208,7 +217,7 @@ public class UpgradeMenu : MonoBehaviour
     public void SwitchTab(GameObject newTab)
     {
         int newTabIndex = System.Array.IndexOf(tabs, newTab);
-        if (newTabIndex < GameManager.Instance.MaxRegion())
+        if (GameManager.Instance.storyPoint >= GameManager.Instance.storyMeetPoints[newTabIndex])
         {
             currentTabIndex = newTabIndex;
             foreach (GameObject tab in tabs)

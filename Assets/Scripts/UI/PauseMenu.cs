@@ -205,46 +205,34 @@ public class PauseMenu : MonoBehaviour
                 }
             }
         }
-        for (int i = 0; i < upgradeControlPrompts.Length; i++)
+        if (currentTutorialPages.Count > 0)
         {
-            GameObject promptObject = null;
-            InputType promptType = upgradeSprites[currentTutorialPages[Mathf.Clamp(tutorialPage - tutorialPages, 0, int.MaxValue)]].upgradeSprites[i].input;
-            foreach (GameObject possiblePromptObject in upgradeControlPrompts[i].possiblePrompts)
+            for (int i = 0; i < upgradeControlPrompts.Length; i++)
             {
-                possiblePromptObject.SetActive(false);
-            }
-            foreach (ControlPrompt prompt in upgradeControlPrompts[i].controlPrompts)
-            {
-                if (prompt.control == promptType)
+                GameObject promptObject = null;
+                InputType promptType = upgradeSprites[currentTutorialPages[Mathf.Clamp(tutorialPage - tutorialPages, 0, int.MaxValue)]].upgradeSprites[i].input;
+                foreach (GameObject possiblePromptObject in upgradeControlPrompts[i].possiblePrompts)
                 {
-                    promptObject = InputManager.Instance.inputMethod == "Keyboard&Mouse"? prompt.keyboardPromptObject : prompt.gamepadPromptObject;
-                    promptObject.SetActive(true);
-                    break;
+                    possiblePromptObject.SetActive(false);
                 }
-            }
-            if (InputManager.Instance.inputMethod == "Gamepad" && promptType != InputType.Passive)
-            {
-                promptObject.GetComponent<Image>().sprite = InputManager.Instance.abilityPrompts[(int)promptType - 1].abilityPrompts[GameManager.Instance.PlaystationLayout ? 2 : 1].sprite;
-            }
-            else if (InputManager.Instance.inputMethod == "Keyboard&Mouse" && (int)promptType > 1)
-            {
-                promptObject.transform.GetChild(0).GetComponent<Text>().text = (int)promptType == 2 ? "F" : "B";
-            }
-            /*foreach (ControlPrompt prompt in upgradeControlPrompts[i].controlPrompts)
-            {
-                if (prompt.control == upgradeSprites[currentTutorialPages[tutorialPage - tutorialPages]].upgradeSprites[i].input)
+                foreach (ControlPrompt prompt in upgradeControlPrompts[i].controlPrompts)
                 {
-                    prompt.keyboardPromptObject.SetActive(true);
-                    if (prompt.control == InputType.PrimaryInput)
+                    if (prompt.control == promptType)
                     {
-                        prompt.keyboardPromptObject.transform.GetChild(0).GetComponent<Text>().text = "F";
-                    }
-                    else if (prompt.control == InputType.SecondaryInput)
-                    {
-                        prompt.keyboardPromptObject.transform.GetChild(0).GetComponent<Text>().text = "B";
+                        promptObject = InputManager.Instance.inputMethod == "Keyboard&Mouse" ? prompt.keyboardPromptObject : prompt.gamepadPromptObject;
+                        promptObject.SetActive(true);
+                        break;
                     }
                 }
-            }*/
+                if (InputManager.Instance.inputMethod == "Gamepad" && promptType != InputType.Passive)
+                {
+                    promptObject.GetComponent<Image>().sprite = InputManager.Instance.abilityPrompts[(int)promptType - 1].abilityPrompts[GameManager.Instance.PlaystationLayout ? 2 : 1].sprite;
+                }
+                else if (InputManager.Instance.inputMethod == "Keyboard&Mouse" && (int)promptType > 1)
+                {
+                    promptObject.transform.GetChild(0).GetComponent<Text>().text = (int)promptType == 2 ? "F" : "B";
+                }
+            }
         }
     }
 

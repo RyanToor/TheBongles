@@ -10,9 +10,10 @@ public class Region : MonoBehaviour
     public GameObject minigameMarker, cloudScreen, arrow;
     public TrashType trashType;
     public BossTypes bossEnum;
-    public int[] storyMeetPoints;
     public float arrowWaitDuration;
     public List<NameController> bossControllers = new List<NameController>();
+
+    [HideInInspector] public Coroutine arrowCoroutine;
 
     private Collider2D regionCollider;
     private List<Transform> minigameSpawnPoints = new List<Transform>();
@@ -63,10 +64,10 @@ public class Region : MonoBehaviour
     public void Unlock(bool isUnlocked)
     {
         regionCollider.enabled = !isUnlocked;
-        if (isUnlocked && GameManager.Instance.storyPoint > storyMeetPoints[regionOrder] && GameManager.Instance.storyPoint != 1)
+        if (isUnlocked && GameManager.Instance.storyPoint > GameManager.Instance.storyMeetPoints[regionOrder] && GameManager.Instance.storyPoint != 1)
         {
             SpawnMinigames();
-            if (transform.Find("BossIsland/CloudScreen") != null && GameManager.Instance.storyPoint > storyMeetPoints[regionOrder] + 1)
+            if (transform.Find("BossIsland/CloudScreen") != null && GameManager.Instance.storyPoint > GameManager.Instance.storyMeetPoints[regionOrder] + 1)
             {
                 transform.Find("BossIsland/CloudScreen").gameObject.SetActive(false);
             }
@@ -105,7 +106,7 @@ public class Region : MonoBehaviour
     public void RefreshSprites()
     {
         isStoryCleared = GameManager.Instance.storyPoint >= GameManager.Instance.regionStoryPoints[Mathf.Clamp(regionOrder + 1, 1, int.MaxValue)];
-        isBossMet = GameManager.Instance.storyPoint >= storyMeetPoints[(int)bossEnum];
+        isBossMet = GameManager.Instance.storyPoint >= GameManager.Instance.storyMeetPoints[(int)bossEnum];
         if (transform.Find("BossIsland/CloudScreen") != null)
         {
             cloudScreen.SetActive(!isBossMet);
@@ -143,6 +144,13 @@ public class Region : MonoBehaviour
                 yield return null;
             }
             arrow.SetActive(true);
+        }
+        else
+        {
+            if (arrowCoroutine != null)
+            {
+                StopCoroutine(arrowCoroutine);
+            }
         }
     }
 
