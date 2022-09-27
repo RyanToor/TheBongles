@@ -272,28 +272,31 @@ public class UpgradeMenu : MonoBehaviour
 
     public void StoryUpgradeButton()
     {
-        bool affordable = true;
-        UpgradeCost[] prices = storyUpgradeCosts[GameManager.Instance.MaxRegion() - 1].upgradeCosts;
-        for (int i = 0; i < prices.Length; i++)
+        if (!videoManager.isPlayingCutscene)
         {
-            if (GameManager.Instance.trashCounts[prices[i].type.ToString()] < prices[i].cost)
-            {
-                affordable = false;
-            }
-        }
-        if (affordable)
-        {
+            bool affordable = true;
+            UpgradeCost[] prices = storyUpgradeCosts[GameManager.Instance.MaxRegion() - 1].upgradeCosts;
             for (int i = 0; i < prices.Length; i++)
             {
-                GameManager.Instance.trashCounts[prices[i].type.ToString()] -= prices[i].cost;
+                if (GameManager.Instance.trashCounts[prices[i].type.ToString()] < prices[i].cost)
+                {
+                    affordable = false;
+                }
             }
-            GameManager.Instance.storyPoint++;
-            videoManager.CheckCutscene();
-            Debug.Log("Unlocked Next Region");
-        }
-        foreach (Transform bossRegion in GameObject.Find("BossRegions").transform)
-        {
-            bossRegion.gameObject.GetComponent<Region>().RefreshSprites();
+            if (affordable)
+            {
+                for (int i = 0; i < prices.Length; i++)
+                {
+                    GameManager.Instance.trashCounts[prices[i].type.ToString()] -= prices[i].cost;
+                }
+                GameManager.Instance.storyPoint++;
+                videoManager.CheckCutscene();
+                Debug.Log("Unlocked Next Region");
+            }
+            foreach (Transform bossRegion in GameObject.Find("BossRegions").transform)
+            {
+                bossRegion.gameObject.GetComponent<Region>().RefreshSprites();
+            }
         }
     }
 
