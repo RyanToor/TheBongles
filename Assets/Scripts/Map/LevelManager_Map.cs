@@ -113,7 +113,7 @@ public class LevelManager_Map : LevelManager
         for (int i = 0; i < GameObject.Find("BossRegions").transform.childCount; i++)
         {
             Region region = GameObject.Find("BossRegions").transform.GetChild(i).GetComponent<Region>();
-            region.arrowCoroutine = StartCoroutine(region.CheckPrompt());
+            region.StartArrowCoroutine();
         }
     }
 

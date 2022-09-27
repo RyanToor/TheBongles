@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
                 highscoreStars = highscoreStars
             };
             File.WriteAllText(savePath + "/saveGame.json", JsonUtility.ToJson(save, true));
+            Debug.Log("Game saved to : " + savePath);
         }
     }
 

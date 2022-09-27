@@ -128,6 +128,11 @@ public class Region : MonoBehaviour
         }
     }
 
+    public void StartArrowCoroutine()
+    {
+        arrowCoroutine = StartCoroutine(CheckPrompt());
+    }
+
     public IEnumerator CheckPrompt()
     {
         arrow.SetActive(false);
