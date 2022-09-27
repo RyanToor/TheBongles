@@ -96,8 +96,7 @@ public class LevelManager_ScrapGrabber : LevelManager
         }
         if (remainingTime == 0 && !gameEnded)
         {
-            gameEnded = true;
-            uI.EndGame();
+            EndLevel();
         }
         submarineAnimator.SetFloat("RandomChance", Random.Range(0f, 100f));
         base.Update();
@@ -105,6 +104,12 @@ public class LevelManager_ScrapGrabber : LevelManager
         {
             EditorUpdate();
         }
+    }
+
+    public void EndLevel()
+    {
+        gameEnded = true;
+        uI.EndGame();
     }
 
     public bool LightsOn

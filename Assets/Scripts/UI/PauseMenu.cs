@@ -72,6 +72,10 @@ public class PauseMenu : MonoBehaviour
         playstationImage.sprite = isPlaystation ? controllerPlaystation : controllerGamepad;
         promptsImage.sprite = promptsEnabled ? promptsOn : promptsOff;
         InputManager.Instance.SwitchControlScheme += UpdateTutorialPrompts;
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            exitButton.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "Map";
+        }
     }
 
     public bool TutorialButtonEnabled()
@@ -255,21 +259,37 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitButton()
     {
-        if (GameManager.Instance.isWeb)
+        switch (SceneManager.GetActiveScene().buildIndex)
         {
-            GameManager.Instance.SaveGame();
-            GameManager.Instance.SaveSettings();
-            if (saveConfirmation == null)
-            {
-                saveConfirmation = StartCoroutine(ConfirmWebSave());
-            }
-        }
-        else
-        {
-            sureQuitMenu.SetActive(true);
-            pauseMenu.SetActive(false);
-            SetBackButton(noButton);
-            SetSelectedButton(noButton.gameObject);
+            case 0:
+                if (GameManager.Instance.isWeb)
+                {
+                    GameManager.Instance.SaveGame();
+                    GameManager.Instance.SaveSettings();
+                    if (saveConfirmation == null)
+                    {
+                        saveConfirmation = StartCoroutine(ConfirmWebSave());
+                    }
+                }
+                else
+                {
+                    sureQuitMenu.SetActive(true);
+                    pauseMenu.SetActive(false);
+                    SetBackButton(noButton);
+                    SetSelectedButton(noButton.gameObject);
+                }
+                break;
+            case 1:
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Dead();
+                break;
+            case 2:
+                GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_Robot>().EndLevel();
+                break;
+            case 3:
+                GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_ScrapGrabber>().EndLevel();
+                break;
+            default:
+                break;
         }
     }
 

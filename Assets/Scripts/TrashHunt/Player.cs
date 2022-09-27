@@ -490,7 +490,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Dead()
+    public void Dead()
     {
         rb.bodyType = RigidbodyType2D.Static;
         GetComponent<Collider2D>().enabled = false;
