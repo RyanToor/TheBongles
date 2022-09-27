@@ -27,7 +27,7 @@ public class Popup : MonoBehaviour
         {
             if (info.trashType == trashType)
             {
-                transform.Find("Title").GetComponent<Text>().text = info.title;
+                transform.Find("Title").GetComponent<TMPro.TextMeshProUGUI>().text = info.title;
                 transform.Find("Logo").GetComponent<Image>().sprite = info.logo;
                 transform.Find("Logo").GetComponent<Image>().color = Color.white;
                 break;

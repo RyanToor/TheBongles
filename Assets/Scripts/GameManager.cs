@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public event Action StartGameEvent;
     [HideInInspector] public bool isWeb;
+    [HideInInspector] public bool[] levelsPrompted;
 
     private static GameManager instance;
     private bool isResetting = false;
@@ -29,7 +30,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int[][] upgrades;
     [HideInInspector] public int[] highscoreStars;
     [HideInInspector] public int storyPoint, remainingTrash;
-    [HideInInspector] public bool[] levelsPrompted;
     #endregion
 
     #region Settings
@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
             Directory.CreateDirectory("idbfs/TheBongles2021");
         }
         LoadGame();
+        levelsPrompted = new bool[4] { false, false, false, false };
     }
 
     private void Start()
@@ -129,8 +130,7 @@ public class GameManager : MonoBehaviour
                 upgrades2 = upgrades[1],
                 upgrades3 = upgrades[2],
                 storyPoint = storyPoint,
-                highscoreStars = highscoreStars,
-                levelsPrompted = levelsPrompted
+                highscoreStars = highscoreStars
             };
             File.WriteAllText(savePath + "/saveGame.json", JsonUtility.ToJson(save, true));
         }
@@ -193,14 +193,6 @@ public class GameManager : MonoBehaviour
         {
             highscoreStars = new int[4] { 0, 0, 0, 0 };
         }
-        if (loadedSave.levelsPrompted != null && loadedSave.levelsPrompted.Length != 0)
-        {
-            levelsPrompted = loadedSave.levelsPrompted;
-        }
-        else
-        {
-            levelsPrompted = new bool[4] { false, false, false, false };
-        }
 
         if (File.Exists(savePath + "/settings.json"))
         {
@@ -231,11 +223,11 @@ public class GameManager : MonoBehaviour
     {
         isResetting = true;
         Debug.Log("Resetting saves at : " + savePath)
-;       if (!File.Exists(Application.persistentDataPath + "/saveGame.json"))
+;       if (!File.Exists(savePath + "/saveGame.json"))
         {
             Debug.Log("Save directory not found.");
         }
-        File.Delete(Application.persistentDataPath + "/saveGame.json");
+        File.Delete(savePath + "/saveGame.json");
         SceneManager.LoadScene("Map");
     }
 
@@ -392,7 +384,6 @@ struct Save
     public int[] upgrades3;
     public int storyPoint;
     public int[] highscoreStars;
-    public bool[] levelsPrompted;
 }
 
 [System.Serializable]

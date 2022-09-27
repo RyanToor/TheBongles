@@ -214,6 +214,10 @@ public class LevelBuilder : MonoBehaviour
                 {
                     currentBiomeTiles = fittingBackgroundTiles;
                 }
+                else if(currentBiome % 2 == 0 && parallaxLevel == 0)
+                {
+                    Debug.Log("No fitting background tiles found for biome " + currentBiome + ".");
+                }
                 Tile newBackgroundTile = currentBiomeTiles[Random.Range(0, Mathf.Clamp(currentBiomeTiles.Count - 1, 0, int.MaxValue))];
                 newBackground.GetComponent<SpriteRenderer>().sprite = newBackgroundTile.sprite;
                 newBackground.GetComponent<SpriteRenderer>().sortingLayerName = "Background";

@@ -8,6 +8,9 @@ public class MainMenu : MonoBehaviour
     public VideoManager videoManager;
 
     [SerializeField] private string backgroundUrl;
+    [SerializeField] private GameObject exitButton;
+    [SerializeField] private GameObject[] webTranslateObjects;
+    [SerializeField] private float webTranslate;
 
     private void Start()
     {
@@ -20,6 +23,14 @@ public class MainMenu : MonoBehaviour
         {
             videoPlayer.source = VideoSource.Url;
             videoPlayer.url = backgroundUrl;
+            if (exitButton)
+            {
+                exitButton.SetActive(false);
+                foreach (GameObject item in webTranslateObjects)
+                {
+                    item.transform.position += Vector3.up * webTranslate;
+                }
+            }
         }
         videoPlayer.Play();
     }

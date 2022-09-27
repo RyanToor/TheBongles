@@ -24,6 +24,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -41,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -87,10 +88,128 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
+    sprites:
+    - serializedVersion: 2
+      name: Button 2_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 302
+        width: 954
+        height: 413
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -477, y: 206.5}
+        - {x: -477, y: -202.5}
+        - {x: -470, y: -206.5}
+        - {x: 477, y: -206.5}
+        - {x: 477, y: 206.5}
+      - - {x: -424, y: 122.5}
+        - {x: -429, y: 125.5}
+        - {x: -435, y: 130.5}
+        - {x: -435, y: 132.5}
+        - {x: -436, y: 133.5}
+        - {x: -436, y: 143.5}
+        - {x: -434, y: 146.5}
+        - {x: -430, y: 151.5}
+        - {x: -426, y: 152.5}
+        - {x: -425, y: 151.5}
+        - {x: -417, y: 150.5}
+        - {x: -413, y: 146.5}
+        - {x: -413, y: 144.5}
+        - {x: -410, y: 138.5}
+        - {x: -410, y: 135.5}
+        - {x: -409, y: 134.5}
+        - {x: -409, y: 129.5}
+        - {x: -413, y: 122.5}
+        - {x: -414, y: 121.5}
+        - {x: -421, y: 121.5}
+        - {x: -422, y: 122.5}
+      - - {x: 440, y: 144.5}
+        - {x: 440, y: 145.5}
+        - {x: 437, y: 148.5}
+        - {x: 437, y: 149.5}
+        - {x: 425, y: 161.5}
+        - {x: 424, y: 161.5}
+        - {x: 419, y: 166.5}
+        - {x: 418, y: 166.5}
+        - {x: 416, y: 168.5}
+        - {x: 419, y: 166.5}
+        - {x: 422, y: 166.5}
+        - {x: 426, y: 163.5}
+        - {x: 427, y: 163.5}
+        - {x: 433, y: 156.5}
+        - {x: 434, y: 154.5}
+        - {x: 438, y: 148.5}
+        - {x: 441, y: 143.5}
+        - {x: 443, y: 138.5}
+        - {x: 444, y: 140.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ce1199c868cbca42ba712cc29a9f06a
+      internalID: -1605001169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -482, y: -213}
+      - {x: -482, y: 203}
+      - {x: 470, y: 205}
+      - {x: 470, y: -211}
     physicsShape:
     - - {x: -484, y: 205}
       - {x: -484, y: -189}
@@ -140,12 +259,14 @@ TextureImporter:
       - {x: 439, y: 137}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Button 2_0: -646557308
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

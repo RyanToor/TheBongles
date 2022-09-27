@@ -11,10 +11,9 @@ public class UpgradeMenu : MonoBehaviour
     public GameObject defaultButton, gamepadPrompt;
     public VideoManager videoManager;
     public float lerpSpeed, lerpDir = -1, examplePanelPauseDuration, examplePanelScaleSpeed, storyUpgradeBlinkDuration;
-    public Vector3 closedPos, openPos;
     public Color upgradeAvailableColour, upgradeActiveColour, barUnavailableColour, barAvailableColour;
     public List<Sprite> sprites;
-    public List<Text> trashReadouts;
+    public List<TMPro.TextMeshProUGUI> trashReadouts;
     public Button upgradeButton;
     public Transform bumperButtons;
     public GameObject[] tabs, storyCostContainers;
@@ -24,6 +23,7 @@ public class UpgradeMenu : MonoBehaviour
     public Sprite[] enabledSprites;
     public UpgradeButton[] upgradeButtons;
     public RectTransform upgradeExamplePanel;
+    public Vector3 openTranslate;
 
     [SerializeField] private Sprite gamepadButton, playstationButton;
 
@@ -32,6 +32,8 @@ public class UpgradeMenu : MonoBehaviour
     private readonly string[] trashNames = new string[] { "Plastic", "Metal", "Glass" };
     private int currentTabIndex;
     private Coroutine currentExampleCoroutine;
+    private Vector3 closedPos;
+    private RectTransform leftPane;
 
     // Start is called before the first frame update
     void Awake()
@@ -44,6 +46,8 @@ public class UpgradeMenu : MonoBehaviour
 
     private void Start()
     {
+        leftPane = transform.GetChild(0).GetComponent<RectTransform>();
+        closedPos = leftPane.localPosition;
         InputManager.Instance.UpgradeMenu += FlipLerpDir;
         InputManager.Instance.Shoulder += CheckShoulderTabSwitch;
         InputManager.Instance.SwitchControlScheme += ToggleGamepadIcons;
@@ -56,7 +60,7 @@ public class UpgradeMenu : MonoBehaviour
         if (lerpPos != Mathf.Clamp(lerpDir, 0, 1))
         {
             lerpPos = Mathf.Clamp(Mathf.Lerp(0, 1, lerpPos + lerpDir * lerpSpeed), 0, 1);
-            transform.localPosition = Vector3.Lerp(closedPos, openPos, lerpPos);
+            leftPane.localPosition = Vector3.Lerp(closedPos, closedPos + openTranslate, lerpPos);
         }
         if (Application.isEditor)
         {
@@ -70,7 +74,7 @@ public class UpgradeMenu : MonoBehaviour
         if (GameManager.Instance.trashCounts["Glass"] > 0)
         {
             trashToRefresh = 2;
-            foreach (Text readout in trashReadouts)
+            foreach (TMPro.TextMeshProUGUI readout in trashReadouts)
             {
                 readout.enabled = true;
             }
@@ -141,7 +145,7 @@ public class UpgradeMenu : MonoBehaviour
                 {
                     Vector3 barFill;
                     storyCostContainers[i].SetActive(true);
-                    storyCostContainers[i].transform.Find("Text").GetComponent<Text>().text = storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost.ToString();
+                    storyCostContainers[i].transform.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost.ToString();
                     barFill = new Vector3(Mathf.Clamp((float)GameManager.Instance.trashCounts[trashNames[i]] / storyUpgradeCosts[currentLevel - 1].upgradeCosts[i].cost, 0, 1), 1, 1);
                     storyCostContainers[i].transform.Find("BarFill").localScale = barFill;
                     storyCostContainers[i].transform.Find("BarFill").GetComponent<Image>().color = (barFill.x == 1) ? barAvailableColour : barUnavailableColour;
@@ -356,7 +360,7 @@ public class UpgradeMenu : MonoBehaviour
         foreach (Transform item in bumperButtons)
         {
             item.gameObject.SetActive(isGamepad);
-            item.Find("Text").GetComponent<Text>().text = GameManager.Instance.playstationLayout ? item.name == "LB" ? "L1" : "R1" : item.name == "LB" ? "LB" : "RB";
+            item.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.Instance.playstationLayout ? item.name == "LB" ? "L1" : "R1" : item.name == "LB" ? "LB" : "RB";
         }
         gamepadPrompt.SetActive(isGamepad);
         gamepadPrompt.GetComponent<Image>().sprite = GameManager.Instance.playstationLayout ? playstationButton : gamepadButton;

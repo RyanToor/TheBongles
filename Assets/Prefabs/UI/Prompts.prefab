@@ -98,7 +98,7 @@ MonoBehaviour:
       isPersistent: 1
       extraPrompts: 0
       prompted: 0
-    - inputDelay: 0.5
+    - inputDelay: 1
       fadeTime: 0
       isPersistent: 0
       extraPrompts: 0

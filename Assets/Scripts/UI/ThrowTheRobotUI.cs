@@ -7,7 +7,7 @@ public class ThrowTheRobotUI : MinigameUI
     public float boostFadeRate, boostLerpSpeed;
 
     private LevelManager_Robot levelManager;
-    private Text pieReadout;
+    private TMPro.TextMeshProUGUI pieReadout;
     private Robot robotScript;
     private float boostDesiredXScale;
     private Vector3 initialBoostFillScale;
@@ -17,7 +17,7 @@ public class ThrowTheRobotUI : MinigameUI
     {
         starScoreIndex = 1;
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager_Robot>();
-        pieReadout = transform.Find("ReadoutPanel/Pie Panel/Pies").GetComponent<Text>();
+        pieReadout = transform.Find("ReadoutPanel/Pie Panel/Pies").GetComponent<TMPro.TextMeshProUGUI>();
         initialBoostFillScale = boostFill.localScale;
         robotScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Robot>();
         Color currentColour = boostFill.gameObject.GetComponent<Image>().color;

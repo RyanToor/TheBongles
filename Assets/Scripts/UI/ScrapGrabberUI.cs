@@ -9,13 +9,13 @@ public class ScrapGrabberUI : MinigameUI
     [SerializeField] private SpriteRenderer bellSprite;
 
     private LevelManager_ScrapGrabber levelManager;
-    private Text freezeText;
+    private TMPro.TextMeshProUGUI freezeText;
 
     protected override void Start()
     {
         starScoreIndex = 2;
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager_ScrapGrabber>();
-        freezeText = primaryAbilityFrame.transform.GetChild(0).GetComponent<Text>();
+        freezeText = primaryAbilityFrame.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>();
         base.Start();
     }
 

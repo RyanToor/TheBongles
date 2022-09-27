@@ -14,7 +14,7 @@ public class VerticalScrollerUI : MinigameUI
     {
         starScoreIndex = 0;
         player = GameObject.Find("Player").GetComponent<Player>();
-        secondaryCounterText = transform.Find("ReadoutPanel/DepthPanel/Depth").GetComponent<Text>();
+        secondaryCounterText = transform.Find("ReadoutPanel/DepthPanel/Depth").GetComponent<TMPro.TextMeshProUGUI>();
         base.Start();
         for (int i = 0; i < 3; i++)
         {

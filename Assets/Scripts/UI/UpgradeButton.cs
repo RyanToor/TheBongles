@@ -52,7 +52,7 @@ public class UpgradeButton : MonoBehaviour
             {
                 costValue.SetActive(true);
                 costValue.transform.localPosition = new Vector3(costValue.transform.localPosition.x, requirementOffset + requirementSeparation * (costCount - 1) / 2 - requirementSeparation * i, costValue.transform.localPosition.z);
-                requirementImages[i].GetComponentInChildren<Text>().text = requiredAmmounts[i].ToString();
+                requirementImages[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = requiredAmmounts[i].ToString();
             }
         }
         if (available)

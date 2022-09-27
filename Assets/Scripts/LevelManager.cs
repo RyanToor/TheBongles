@@ -40,10 +40,9 @@ public class LevelManager : MonoBehaviour
         Destroy(GameObject.Find("LoadingCanvas(Clone)"));
         if (buildIndex != 0)
         {
-            if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex])
+            if (!GameManager.Instance.levelsPrompted[SceneManager.GetActiveScene().buildIndex] && GameManager.Instance.promptsEnabled)
             {
                 GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause").GetComponent<PauseMenu>().StartPrompt();
-                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Pause/UpgradeBook").gameObject.SetActive(true);
                 GameManager.Instance.PauseGame(true);
                 GameManager.Instance.levelsPrompted[buildIndex] = true;
             }

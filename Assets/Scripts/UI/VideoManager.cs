@@ -80,6 +80,7 @@ public class VideoManager : MonoBehaviour
             newVideoPlayer.isLooping = cutScenes[currentCutscene].scenes[i].isLooping;
             newVideoPlayer.targetTexture = renderTexture;
             newVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            newVideoPlayer.aspectRatio = VideoAspectRatio.Stretch;
             newVideoPlayer.errorReceived += VideoError;
             if (cutScenes[currentCutscene].scenes[i].isLooping)
             {

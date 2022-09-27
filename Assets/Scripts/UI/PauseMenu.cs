@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,21 +16,24 @@ public class PauseMenu : MonoBehaviour
     public int[] availableTutorialPages;
     public Animator sceneAnimator;
     public GameObject[] upgradeImages, dividers;
-    public Button prevPage, nextPage;
+    public Button prevPage, nextPage, noButton;
     public int tutorialPages = 1, tutorialPage, startPromptPage;
     public GameObject defaultButton, tutorialButtonObject;
     public UpgradeSpriteArray[] upgradeSprites;
     public ControlPromptSet[] upgradeControlPrompts;
 
-    [SerializeField] private Text vibrationText, playstationText, promptsText;
+    [SerializeField] private TMPro.TextMeshProUGUI vibrationText, playstationText, promptsText;
     [SerializeField] private Image vibrationImage, playstationImage, promptsImage;
     [SerializeField] private Sprite vibrateOffPlaystation, vibrateOffGamepad, vibrateOnPlaystation, vibrateOnGamepad, controllerPlaystation, controllerGamepad, promptsOff, promptsOn;
     [SerializeField] private Toggle vibrationToggle, playstationToggle, promptsToggle;
+    [SerializeField] private GameObject exitButton, pauseMenu, sureQuitMenu;
+    [SerializeField] private float saveConfirmationPeriod;
 
     private float lerpPos = 0, lerpDir = -1;
     private RectTransform rightPaneTransform;
     private AudioManager audioManager;
     private List<int> currentTutorialPages;
+    private Coroutine saveConfirmation;
 
     private void Awake()
     {
@@ -50,6 +54,10 @@ public class PauseMenu : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Map")
         {
             tutorialButtonObject.SetActive(TutorialButtonEnabled());
+        }
+        if (GameManager.Instance.isWeb && exitButton)
+        {
+            exitButton.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "Save";
         }
         bool vibrateEnabled = GameManager.Instance.allowVibration;
         bool isPlaystation = GameManager.Instance.playstationLayout;
@@ -243,6 +251,38 @@ public class PauseMenu : MonoBehaviour
             GameManager.Instance.PauseGame(false);
         }
         InputManager.Instance.CloseMenu(transform.Find("UpgradeBook"));
+    }
+
+    public void ExitButton()
+    {
+        if (GameManager.Instance.isWeb)
+        {
+            GameManager.Instance.SaveGame();
+            GameManager.Instance.SaveSettings();
+            if (saveConfirmation == null)
+            {
+                saveConfirmation = StartCoroutine(ConfirmWebSave());
+            }
+        }
+        else
+        {
+            sureQuitMenu.SetActive(true);
+            pauseMenu.SetActive(false);
+            SetBackButton(noButton);
+            SetSelectedButton(noButton.gameObject);
+        }
+    }
+
+    private IEnumerator ConfirmWebSave()
+    {
+        exitButton.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "Game Saved";
+        float duration = 0;
+        while (duration < saveConfirmationPeriod)
+        {
+            duration += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        exitButton.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "Save";
     }
 
     public void QuitGame()

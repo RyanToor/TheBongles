@@ -14,7 +14,7 @@ public class MinigameUI : MonoBehaviour
 
     protected LevelManager levelManagerBase;
     protected GameObject gameOver, pauseMenu, readouts;
-    protected Text trashCounterText, secondaryCounterText, scoreText;
+    protected TMPro.TextMeshProUGUI trashCounterText, secondaryCounterText, scoreText;
     protected float trashCount, secondaryCount, score;
     protected Slider fillBar;
     protected int starScoreIndex;
@@ -28,8 +28,8 @@ public class MinigameUI : MonoBehaviour
         pauseMenu = transform.Find("Pause").gameObject;
         readouts = transform.Find("ReadoutPanel").gameObject;
         fillBar = transform.Find("GameOver/EndScreen/Score/FillBar").GetComponent<Slider>();
-        scoreText = gameOver.transform.Find("EndScreen/Score/Highscore_Num").GetComponent<Text>();
-        trashCounterText = transform.Find("ReadoutPanel/TrashPanel/Trash").GetComponent<Text>();
+        scoreText = gameOver.transform.Find("EndScreen/Score/Highscore_Num").GetComponent<TMPro.TextMeshProUGUI>();
+        trashCounterText = transform.Find("ReadoutPanel/TrashPanel/Trash").GetComponent<TMPro.TextMeshProUGUI>();
         gameOver.SetActive(false);
         foreach (GameObject star in stars)
         {
@@ -64,7 +64,7 @@ public class MinigameUI : MonoBehaviour
                 frames[i].transform.GetChild(1).gameObject.SetActive(controlSchemeIndex != 0);
                 if (controlSchemeIndex == 0)
                 {
-                    Text text = frames[i].transform.GetChild(0).GetComponent<Text>();
+                    TMPro.TextMeshProUGUI text = frames[i].transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>();
                     text.color = InputManager.Instance.abilityPrompts[i].abilityPrompts[controlSchemeIndex].colour;
                     text.text = InputManager.Instance.abilityPrompts[i].abilityPrompts[controlSchemeIndex].text;
                 }
@@ -87,8 +87,8 @@ public class MinigameUI : MonoBehaviour
         InputManager.Instance.EnableUIInput();
         pauseMenu.SetActive(false);
         readouts.SetActive(false);
-        transform.Find("GameOver/EndScreen/Score/Trash").GetComponent<Text>().text = trashCount.ToString();
-        transform.Find("GameOver/EndScreen/Score/Secondary").GetComponent<Text>().text = secondaryCount.ToString();
+        transform.Find("GameOver/EndScreen/Score/Trash").GetComponent<TMPro.TextMeshProUGUI>().text = trashCount.ToString();
+        transform.Find("GameOver/EndScreen/Score/Secondary").GetComponent<TMPro.TextMeshProUGUI>().text = secondaryCount.ToString();
         score = trashScore * trashCount + secondaryCount * secondaryCountMultiplier;
         StartCoroutine(FillBar());
         PromptManager promptManager = transform.Find("Prompts").GetComponent<PromptManager>();
