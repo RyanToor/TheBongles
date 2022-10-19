@@ -1835,8 +1835,8 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: -0.36189258
-    y: -0.87954545
+    x: -0.86317134
+    y: -0.49772725
     width: 2.4552429
     height: 2.4545453
   near clip plane: 0.3
@@ -4257,6 +4257,8 @@ MonoBehaviour:
   boostIntensity: 0.3
   eelFadeIn: 0.5
   eelIntensity: 0.7
+  animator: {fileID: 813436470}
+  twinAnimator: {fileID: 365929713}
   gravity: 0
   health: 3
   isloaded: 0

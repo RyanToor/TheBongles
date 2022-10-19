@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [Header("Vibration Data")]
     [SerializeField] float dangerousTrashDuration;
     [SerializeField] float dangerousTrashIntensity, boostIntensity, eelFadeIn, eelIntensity;
+    [SerializeField] private Animator animator, twinAnimator;
 
     [HideInInspector]
     public float gravity, health = 3;
@@ -29,7 +30,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private float controlMultiplier, flipDir = 1, spriteDir = 1, boostCooldownTimer, boostDurationTimer, currentMaxSpeed, startZ;
-    private Animator animator, twinAnimator;
     private TrashManager trashManager;
     private AudioManager audioManager;
     private VerticalScrollerUI uI;
@@ -56,10 +56,8 @@ public class Player : MonoBehaviour
         uI = GameObject.Find("Canvas").GetComponent<VerticalScrollerUI>();
         audioManager = GameObject.Find("SoundManager").GetComponent<AudioManager>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
         gravity = rb.gravityScale;
-        animator = GetComponent<Animator>();
-        twinAnimator = GameObject.Find("Twin").GetComponent<Animator>();
         trashManager = GameObject.Find("TrashContainer").GetComponent<TrashManager>();
         rb.gravityScale = 0;
         currentMaxSpeed = maxSpeed;
@@ -109,11 +107,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        Animate();
         if (Application.isEditor)
         {
             EditorUpdate();
         }
-        Animate();
     }
 
     private void CheckPhysics()
